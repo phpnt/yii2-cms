@@ -1,0 +1,313 @@
+id;language;translation;hash
+1;en;"Link with registration confirmation sent to Email.";4e5c3a82287c922d5c0f289df196b726
+2;en;"Email successfully verified.";0204f21c31059735effccf01f37c4611
+3;en;Registration;3cfa038bcdadc4a646353816e6923704
+4;en;"Check your email and follow the instructions.";01e5a942297b9f351da7db8c08fddacf
+5;en;"Sorry, we were unable to reset the password for the specified email address.";c11610647095402e1a0de24dda447156
+6;en;"New password saved.";c11610647095402e1a0de24dda447156
+7;en;Logout;836df658570ed43d4c461314a726c765
+8;en;"To register";836df658570ed43d4c461314a726c765
+9;en;"Sign up using social networks";b9b3136f1395d743a7dac637c333c0a7
+10;en;"If you registered before, you can";7ab1dd7052f2c1bfff713851a21efb4c
+11;en;"enter the site";ee5a567eb663f97b7a301bacd43db069
+12;en;"Password reset";5c07b484c90bf8decb52cc879eb069e4
+13;en;"Enter a new password";cfdf366a725805773088032ff7e36e63
+14;en;Save;410a31a5337f49c6307f809bbc10f4ac
+15;en;"Password reset request";892bb2958d9115a7c4297575ed01263d
+16;en;"Enter your email to get a password reset link.";a342f1a2fd08ebef4c548bcf75a90a6e
+17;en;Send;71ce45bc03857d5830ca493adf291b65
+18;en;Login;f019903d4e435d9f472ffe8a873639d8
+19;en;"I\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
+21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
+22;en;"Publications ";0486cd1539d22122a512401de58c6b36
+23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
+24;en;Products;9acb74ee03f1df38fb38636a7cef6ed1
+25;en;<h1>Products</h1>;dadfc91bbd7fab3f36e766c59148c509
+26;en;<h1>Login</h1>;82b181bdfa5f6089c12922587887dca9
+27;en;"<h1> Registration </h1>";0031f8f4f2f1e19b38ae80066c131444
+28;en;Profile;7af840354f55cbf87bd5b372a6d45816
+29;en;<h1>Profile</h1>;c6a855395e4a10d3ca1ea7d42242855c
+30;en;"Letter Templates";b052698835a60f4a714dd2d9cb8a9b1b
+31;en;"Confirmation of registration";22ae9fcac7c7ea800dc68e2902b43cce
+33;en;"<p> Hello, {EMAIL_1}! </p> <p> Please follow the link below to reset your password. </p> <p> <a href=""{URL_1}""> Password reset </a > </p> <p> {DATE_1} </p>";4aa27d2bda4f5a388a253cde6f7db16d
+34;en;Basket;e35dc54d37374bc9db91e407ece6630a
+35;en;"Language switching";88a3b5fd0105bb1fa3803ea43fc82fed
+36;en;"<p> Hello {NAME_1}! </p> <p> Please confirm your email address, follow the link. </p> <p> <a href=""{URL_1}""> activation </a> </p> <p> If you have not registered on our website, simply delete this letter. </p> <p> {DATE_1} </p>";82e9ce3f7a12c61feda2e79f30c9b71a
+37;en;Continent;33d28aa40c8fa04f38c6201bd4bee849
+38;en;"Russian name";33d28aa40c8fa04f38c6201bd4bee849
+39;en;Latitude;640cb44caed9c9aac510f8fd6d1fc240
+40;en;Longitude;274765c6c703f4a98b84556def729605
+41;en;"Time zone";bcbc6a375c04bf168f82871569d4ee16
+42;en;"Short title";d5fcba6f0570b5e2f6c86200511adc1f
+43;en;"Long title";8851e7fbf32402edaf7bb20a284ebef1
+44;en;"Digital code";ee2f46b04df7126b121410e9b4fa2f54
+45;en;Participant;d32571fa8c4b242895efd828ba67067c
+46;en;"Telephone code";35e6ad8d84691f69e1b1e8f798c71f91
+47;en;"Domain zone";51aac5cd9616d4f63d44f086cb03553b
+48;en;"The number of digits in the phone number";156c0f5caf38ce8b7b6cc57021c12e8f
+49;en;Currency;04fb4f8626dd045795dd3247cf476cb3
+50;en;"Measurement system";91590d72b5a8de7c5cc578c4e5e0802f
+51;en;Active;91590d72b5a8de7c5cc578c4e5e0802f
+52;en;Name;a663b5c413f6fa296da81c78e513267c
+53;en;Value;ee982015300b59237d6cd4738d867239
+54;en;Type;e107bd23ee6d8f8708ef055dbcbc0330
+55;en;Document;e107bd23ee6d8f8708ef055dbcbc0330
+56;en;Field;abb94531a6c33b78c0f8992aa717715a
+57;en;Position;abb94531a6c33b78c0f8992aa717715a
+58;en;Name;6cb8dd96f1462e60152473ba7ce00313
+59;en;Alias;0fe533a611fad1be6443b6570001a57c
+60;en;Route;cd0d5765e0d6af202e62c6185e8b3808
+61;en;Title;c81f9909a1cf133b0355e3450821d64f
+62;en;"Meta keys";c66df2fcedc82d6ef7db45a1ab922be1
+63;en;"Meta description";a50198e04575a69ce9f4e0d835a75caf
+64;en;Annotation;c800a8562c1ecc89b6461fb156c59bdd
+65;en;Content;c82161f145952129a53be19cbc838851
+66;en;Status;2e5f31d4f33fe5d1e1ce46b3d35d879d
+67;en;Folder?;2da0bb4c0ded01d549385a306ef1b927
+68;en;Parent;95723d60baadff8612255f5d9722e16d
+69;en;Template;d6dcd6d6b3b3af95cd0d84cdcb9e7426
+70;en;"Created at";1c98bbf34b1394e9369b3c621f7c7d79
+71;en;"Updated at";e61010cdee1d8713b8cdaa1f6f013a1a
+72;en;Created;64f19c9a1918d837288cc677a0c87265
+73;en;Changed;64f19c9a1918d837288cc677a0c87265
+74;en;Access;ce1299d662fe170234667a3ada4b9f08
+75;en;User;59b4c6a048c917e3a7dd859d91bd3c7d
+76;en;Provider;43d3b1a7522cbda76ac190771b065d55
+77;en;"Provider user";d28bc21f6535e702668f2a375c6e638b
+78;en;Page;678f1e171e7a458214894b77e6f40f00
+79;en;Description;1f6280e24457b27b2fcdabe1fa62eb75
+80;en;Rule;84eab6862e14c040ae1e91112544a876
+81;en;Data;72b752d3d733ddc6801baae0065d3337
+82;en;"Field type";d9d58a558b26086ce17f1b10c305def3
+83;en;Required;84b7e5142b0df99332332bf0455fa527
+84;en;Unique;84b7e5142b0df99332332bf0455fa527
+85;en;"Minimum value";37a8ba297d0c1ffac3ba0ba1f683a043
+86;en;"Maximum value";2752b64aa16433cdc16dcece5eeb0d73
+87;en;"Extra options";d12b12db44f670d8335f840232b25112
+88;en;Child;4e781b92106145efd22c723744b616fb
+89;en;"The user with the email address is not registered";247dd9bc8d70d35ae2a2dfdd5f77d9f7
+90;en;Email;a155137df5cf626aee28658d4278ad35
+91;en;"{name} robot";373218f0715b64d5cd04e794934604fc
+92;en;"Password reset for {name}";3a847950f837aba3da072b3441585b62
+93;en;"A photo";3a847950f837aba3da072b3441585b62
+94;en;Password;c1bc6de313bebf1ad9e865fbc9ce7766
+95;en;"Password confirmation";c933c26fed469c45b1a0e55b675e84cf
+96;en;Role;3985936f04d9c56060e2c7216a00b0d3
+97;en;"This email is already registered.";5432299d5ed76bc0edbbfd83769f53a1
+98;en;"Confirmation of registration on the site";c729a3acb28d1616eabd2a94e8b4304f
+99;en;"Missing verification code.";c95b78f5bbd4f754b69f851cdf6bf283
+100;en;"Invalid token.";921b8b2a505043d79ff0e2992c243c0b
+101;en;"Minimum date";09520959fe937c103267619413bf03b3
+102;en;"Maximum date";7d0521f16db4f6da8909227e7edcc4f8
+103;en;"File extension";96a4fa4479f317fa9d276fc3fa6dd86d
+104;en;"The list cannot be empty.";41ef54e7f43ef21a2dd2abff927a9610
+105;en;"Permission List";760fcc5a18f242e433d470bada7dd690
+106;en;"Remember me";4c34ebf3ec38ecc4305893828ec4df46
+107;en;"Invalid Email or Password entered.";c2cec6b1f356b759e11ec4d21000b289
+108;en;"Account not confirmed. Check Email.";c2cec6b1f356b759e11ec4d21000b289
+109;en;"Account is blocked. Contact person with administrator.";249695371343d718c0c0fbe706237fc2
+110;en;"The field ""{field}"" is required.";d38e373443b2318450cc63a315603800
+111;en;"The field ""{field}"" is not an email address.";e7c6988b0d176b5f87fae9f8797bf949
+112;en;"The field ""{field}"" is not a link.";acca4eb0d4763a168b0dc889a9b41955
+113;en;"The field ""{field}"" is not a YuoTube link.";acca4eb0d4763a168b0dc889a9b41955
+114;en;"Files may have the following extensions {extensions}";55cf08c34e8df5643967c5cafa389e68
+115;en;"The field ""{field}"" cannot be less than ""{min}"".";1ea0ae28197eec25f7f6caa5b5bf2090
+116;en;"The field ""{field}"" cannot be less than ""{date}"".";d7d1e9ac4f616a66b53dc6c6c9c50125
+117;en;"The field ""{field}"" cannot be greater than ""{max}"".";d31a58531b7aaa3710bfe69b71cd47b1
+118;en;"The field ""{field}"" must contain no more than ""{strlen}"" characters.";d31a58531b7aaa3710bfe69b71cd47b1
+119;en;"The field ""{field}"" cannot be greater than ""{date}"".";f57a7d60c23a09659e7d1201e2f16780
+120;en;"The field ""{field}"" cannot contain more ""{files}"" files.";28b64e019c17771da2d5c15032173add
+121;en;"The field ""{field}"" must be unique.";a93695d2acc817da650988a8178e3118
+122;en;"The reset token cannot be empty.";0da23572a86952a0ed3ac41b01c47e8f
+123;en;"Invalid password reset token.";6090596cd1ae2b4df38f216f2672b708
+124;en;"English name";b061e4a3eceb23ef07043032ff098d0c
+125;en;OKATO;b061e4a3eceb23ef07043032ff098d0c
+126;en;Region;f310e583b74059a315fd00cb3cad5c4a
+127;en;"Message category";ab9007c1f05a49616018fb17d1e02379
+128;en;Message;9ed9dfbef84a678f24f973e29f5d9d85
+129;en;Location;9130522ecb85476511b3341518466469
+130;en;"Message hash";926148d572817093c6b90897a413b2d3
+132;en;"Browser data";023aaf6aa96a08970d7991e1f63f694c
+133;en;Name;ffd4f45cb4649db274461f24f3e80dc2
+134;en;"Last name";023aaf6aa96a08970d7991e1f63f694c
+135;en;"Authorization key";9b0fa986ebca44a79a10bd93459f1ec3
+136;en;"Password hash";957216d5fda93631985fbcbd26afcfb8
+137;en;"Password recovery token";957216d5fda93631985fbcbd26afcfb8
+138;en;"Email Confirmation Token";76e703df178731cc878965c792c8f844
+139;en;Gender;4020921428a04f7b8cc653194efec019
+140;en;"Date of Birth";87ef6678eeef2e920f28a36ebf975c9d
+141;en;Phone;656b4e07a129c35e54f4d2a4e1691549
+142;en;"A country";a0f9cd6e98312061eaf1e1f25cbc00bc
+143;en;City;c01a246ac413b04ec0e5032f3f200aaf
+144;en;Address;1fd906e96e71d7e25ace083957a44a9e
+145;en;Authorized;1fd906e96e71d7e25ace083957a44a9e
+146;en;"File name";34df3e87e36c3b2f4b4bcb58834e7b7f
+147;en;Extension;fb7ad62b58374e33a18bcc3be6924612
+148;en;"The size";fb7ad62b58374e33a18bcc3be6924612
+149;en;"The path to the file";605c30affabccd66b5a84de4cf4e8372
+150;en;Integer;da3972d2eb7d41b3aa78325496a83fed
+151;en;"Integer range";b4ff16d8abc585fcbd5009498eb3257c
+152;en;"Number with a fraction";36819be92fadbc665edd6a1dbc6c8528
+153;en;"Range of numbers with a fraction";36819be92fadbc665edd6a1dbc6c8528
+154;en;String;08e1a2dfc535a104304ee7d0775cf5e2
+155;en;Text;6f308e6b9ca365fa2ca7e3af86c9ceae
+156;en;Checkbox;dca092ddb3301060fd5b814cfb34c700
+157;en;"Radio button";544666c98529db68332e1b22d926f0f7
+158;en;List;083ea28ddeb2a06e158ce26dc94201b2
+159;en;"Multi-select list";6b46e610148b437c9ecf3797af898f9f
+160;en;Price;6b46e610148b437c9ecf3797af898f9f
+161;en;Date;3fb5f7f55fa13257b4c760d6fa501181
+162;en;"Date range";ffcd6e1d4fb22cf2e6827689b3c84111
+163;en;Email;40d8c617f5967a1279e8a198ab82f7fd
+164;en;Link;1e21763739945c9fea056afde5765687
+165;en;"Page social network";43a7011e63dd0bbc3e710b0fa941a13c
+166;en;"YouTube video";dc02c06f2939fc51d6f1208d1919adf3
+167;en;File;c9fd1a8a4ff48ced2dccaaed4e38129a
+168;en;"Multiple files";9223c390359095a777dba67df6fa6e9c
+169;en;Resolution;f08a860c9ec5001f6fee1c3565c614ec
+170;en;"Authorized user";f08a860c9ec5001f6fee1c3565c614ec
+171;en;"All users";c22e3195a959158c0b7ecb0bb779c781
+172;en;"The guests";5e84ef1b883b2a9a61aaa8c2478927b8
+173;en;"Not confirmed";5e84ef1b883b2a9a61aaa8c2478927b8
+174;en;Published;ebda82605f13e208842ce0b6fa358c61
+175;en;Blocked;6686cb1cf5d88a1bfaa63bc0e2ecec26
+176;en;Active;d0177dfde678ce1415ecbf629729018d
+177;en;"Not active";9dbf2b59c8dad534267437b3b769ab38
+178;en;Male;38e5ff2e4aef03d1a50d679aa90dbbed
+179;en;Female;92ab6ad1146c76d53c040048dfbd02f8
+180;en;"Search by token is not supported.";8444bd724173fdc872eb9ef74b7e6521
+181;en;"Translation language";b74f5e0f4cd22feb419d554b802a3b49
+182;en;Transfer;29657617212a1a186f6c77b686a09db9
+183;en;"Translation hash";b038eed690fce61d406db51107f3ae1b
+184;en;"This name is already used in this folder.";73d75231b3623ed724e51960058c15d2
+185;en;"Additional fields must be an array.";6cead45e70bd94ad07f4fe3d861eaec4
+186;en;"This route is already used in this folder.";81611485d28f76d414c39651e5cce0e8
+187;en;"This alias is already used in this folder.";81611485d28f76d414c39651e5cce0e8
+188;en;Hello;e5b2d5e5b9b1c4687a8de0fa971b4e0e
+189;en;"Click the link below to reset your password.";51b50a805d84b6b26de3cbd03322aa11
+190;en;"To confirm the address and initial authorization, follow the link.";4d3ddb766323876285e2fbe8250d0bcd
+192;en;Error!;c53dc6664a1bbd8cda0b3088be95cdfd
+193;en;"You have insufficient rights.";8f296ebffe737b8884c775a3312d75af
+194;en;"Enable PHP ""zip"" extension or install ZipArchive on the server.";45d70682bceb06624860cf58e647e815
+195;en;"Models not transferred.";45d70682bceb06624860cf58e647e815
+196;en;"Choose a city";fb0fd91dc2639400cd0817a9f377a6a6
+197;en;"Likes {likes}";4a7a7bf3ca4aad99aea1264824488a05
+198;en;"Create folder";ccd6a22e30f4e69e88d61ba396bd45e1
+199;en;"View folder";67da7c5dfdf89eeec875671479f0700f
+200;en;"Update folder";1350e44c743b79a192d46dfc12deb47e
+201;en;"Delete folder";19c87890182049c5160e8e3e42c762b5
+202;en;"There are no required properties ""getRootUrl"" or ""getChildUrl"" or an array of elements ""items"".";19c87890182049c5160e8e3e42c762b5
+203;en;"Missing array of ""items"" elements.";b3a5d9a532e3553c8c05c1b07e7495a5
+204;en;"If you have not registered on our website, then simply delete this email.";86c76f677f3c8340ea38c95e60be0a58
+205;en;"Quantity {quantity} pcs.";b912a385825945a8ad1b09ea9a99de48
+206;en;Successfully;e5df8707da88234f9f5c59c83eb8580a
+207;en;"Sign in";59cdff139f55e09bb04345524c3fb14e
+208;en;"Log in to go to the control panel site.";f6540998b8077b5b0e0275b7cbfb3acc
+209;en;"Delete user?";f6540998b8077b5b0e0275b7cbfb3acc
+210;en;Yes;cee040ec3ed97b340db7855d31b8f781
+211;en;No;47706a6f15fdf078523700542319c2b9
+212;en;"Create user";abc78d73f8312d3bb694667d6007bf89
+213;en;"Edit user";06bc84fed9685ec891299fc2a93067f1
+214;en;"Viewing user";cd30cb99622d1495b75cbbbc48d174e4
+215;en;"Delete user";713160999490bcdb8e2ea5f26b31855d
+216;en;"You are not authorized to view.";c6298664fcb5ac2c3f86f0be250e06be
+217;en;"View role or permissions";c08cd2efd8e439ad9ff113ba7a5e3f22
+218;en;"User manager";bd7a910fc4be887125855ae79d999da8
+219;en;"Export users, their roles and social keys in CSV";475070d796f24ce89e05c31f268956ca
+220;en;Users;475070d796f24ce89e05c31f268956ca
+221;en;"Attention!!! The folder contains items, delete them first.";409f0e96bcffcca27fae72d0a719f2b5
+222;en;"Create item";409f0e96bcffcca27fae72d0a719f2b5
+223;en;"Edit item";41fe48e4c25693dedc0e2ba0ed6d13cd
+224;en;To;6ceb4cedae5e3a1b4dd41950ebffbd70
+225;en;From;97ccb791aa12056cfd58264c3167dee4
+226;en;"Delete item";de38814c1464443b053ee3b6ce171c7d
+227;en;"View Item";14a01a9cb1421e799709bfb6fd3f9870
+228;en;Views;14a01a9cb1421e799709bfb6fd3f9870
+229;en;Likes;65cbe3a986f420f69c24e06ea172e116
+230;en;"To create and display documents, you must select a folder.";ec4b26ac0dc4e61ef08979855098bd4c
+231;en;"Delete a file?
+";a17176d914c136151d0f4ff3ad02dc8d
+232;en;"Delete item?";30705bc993e0093f3e054e9e4c839733
+233;en;"Repeat name";805d8206f9ab9144e5730496299d6754
+234;en;"To form";533be1b760c071669129f9007c77f975
+235;en;"From the name";2674e46e3b8cd11b4be754b44424856f
+236;en;"From title";d2027cbcb2e9cc631f438780891b62c1
+237;en;"Create template";5092c7bf26b46a6cd4ddb74f5568d4b7
+238;en;"Change template";31508b6ded12c67da41b2a48f9155701
+239;en;"View Template";de7d8671157afcf8591ab4c152bd8e66
+240;en;Fields;a130e05f453b038f95a539d3c5cb5c5f
+241;en;"Add field";fd7c127ea5cb6d40f9f4d8be07487775
+242;en;"Delete template";1566e2689101a9f516c920098a3b3272
+243;en;"View basket item";cdf650880bfd088bb180055d975de753
+244;en;"No rights to view.";cdf650880bfd088bb180055d975de753
+245;en;"Cart manager";88375709a4e72d4b584c9b7e8030b665
+246;en;"Export basket to CSV";231e1dab1632c90ceffcee4b169a5e1c
+247;en;"Update field";3bb433c1943a1ca98ae8e3a2cb772a33
+248;en;"Delete field";752f01c2737a098b2bcef4ff9e973fd2
+249;en;Value;7f49a7ed54b6c97415b9a76c814b2365
+250;en;"View field";49ff2fda802ff060cebffe9a6138a7c9
+251;en;"Document Manager";fcd953ec9598b189460ba233b10d7a99
+252;en;"Export all templates and documents to CSV";ca7e12618bf0d159eeeb33a4165ceb98
+253;en;Folders;f3c35604307312e5e4cc10a4c8e0a74f
+254;en;"Documents
+";f07f8012cd6d5a568357046df3364502
+255;en;Templates;489a81e19727b06cae5a67882594aa6b
+256;en;"New Posts:";7e6626b89eae40b0c4d50aeba3a65ecc
+257;en;"Deleted messages:";7e6626b89eae40b0c4d50aeba3a65ecc
+258;en;"Cache successfully cleared.";9a1ae9a6825d5ee232701f2b408813ca
+259;en;Error;fdb22f916d8be4e447e3d8fcbe2b8584
+260;en;"Office I18n";05425f49873a65152afdeb345a8b31f7
+261;en;"Export I18n to CSV";15b3112492fd3f64c4087643b4f7ee62
+262;en;"Search for new messages";a6dd4f225f202b42929c1bf15f506f95
+263;en;"Clear cache";011da7714e9c19dd8ecb0d7baf184ac4
+264;en;Everything;011da7714e9c19dd8ecb0d7baf184ac4
+265;en;"Not translated.";ac98983ad475be756ca0ebe34830fa1b
+266;en;Category;47bd035e400f7dc95716afe13230271d
+267;en;"The above error occurred when the web server processed your request.";498a187774f592f269c942e418be10c2
+268;en;"If you think this is a server error, please contact us <strong> {email} </ strong>.";21c9ab83e4e08a7394d3f8b3f005dbb6
+269;en;Desktop;e241df1e6a69538ffdbb4f5e2493d7ab
+270;en;"Delete rule";b9b7f435f79774d3a0b3a1ac24599d77
+271;en;"Create a rule";79c2fe5dcf1a5225761a6ffd9a1ae03a
+272;en;"View rule";c38d3e775af9872cd78d3bc950266f80
+273;en;"Change rule";1934031d999298bf4f970a3266f82de0
+274;en;"Remove role or permission?";3c293f2164d529d5e1ecc2b4f3ff7f21
+275;en;"View RBAC inheritance";3c293f2164d529d5e1ecc2b4f3ff7f21
+276;en;"Create RBAC inheritance";553faf3b9cf3caecb15b951884b62ef5
+277;en;"Change RBAC inheritance";0ff37474b77fce4853c332e2ed2711e0
+278;en;"Remove RBAC inheritance";0ff37474b77fce4853c332e2ed2711e0
+279;en;"Change role or permission";12a0d5c1bcf221dc0709c1c843610366
+280;en;"Remove role or permission";4791e190ebaa122585d113ba3323e8cb
+282;en;"Roles and tolerances";f1fde1d26bc68f29790f3e71f3a60cbc
+283;en;"Export RBAC to CSV";61ab3e26946521cc36ba8e6f06c0a0f4
+284;en;"All roles and permissions";e952dfae91787bb263342e281891bb72
+285;en;"Create role or permission";e952dfae91787bb263342e281891bb72
+286;en;"Role inheritance";d8483f4b302437f9af2fc16f668ec066
+287;en;"Rules for users";6cf866f76f146609d7aa4b2dda5e72bd
+288;en;"Country Management";839034da244fc1744a0067c79a6af322
+289;en;"Export countries to CSV";839034da244fc1744a0067c79a6af322
+290;en;Country;eb47ebe678f39994010cf2fcbea30b54
+291;en;"City Management";e31327370db4289b6b039528893225a1
+292;en;"Export Cities to CSV";efe4c783977ea9af239ee2ef44d61115
+293;en;Cities;efe4c783977ea9af239ee2ef44d61115
+294;en;"Regional Management";854bfe8a1d9b363544e09a57cbebddfd
+295;en;"Exporting Regions to CSV";7133adb16b772f184685e7d96181b53b
+296;en;Regions;f03229fb0ebeefc7d9914d0558b22a66
+297;en;Statistics;dec6ca4a45b419390c0aa23545b6fab4
+298;en;"Visitor statistics";d233ff93ca69dbbbf385aa5103f79724
+299;en;"Export visitor statistics to CSV";d233ff93ca69dbbbf385aa5103f79724
+300;en;"User rating";a1c1bedab6ba5c9c03c011c9cda05797
+301;en;"Export user ratings to CSV";932df96ce61781a5dd61daa631e373cd
+302;en;"Roles and rights";e523a8b09a7d6ac127d0f66eae0d3a90
+303;en;Geo;e523a8b09a7d6ac127d0f66eae0d3a90
+304;en;Settings;419e9c40b86df22bb3d94dc111b39343
+305;en;"Export entire database to CSV";d99da46d6d6d7ef1b2fdddf017ab93ab
+306;en;"File manager";58cdc675139c5bd0c53ee1f02064c6d5
+307;en;"Folders and items";157f136c0b6eff16f463286f4b2d2a87
+308;en;Quantity;a02e1e8704c6248e7094226cd27133b1
+309;en;"Payment State";61fa3ce1022731bdcf7bd59379701430
+310;en;"To the cart";244b4d6b2d2dedbc27472601f50474d6
+311;en;"Admin panel";48b7aa8290dbee9baa41d45b54a42e2c
+312;en;"Publishing Template";647cd61d5643dd133565458565063cc0
+313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
+314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe

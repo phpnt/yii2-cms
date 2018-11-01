@@ -1,0 +1,71 @@
+name;type;description;rule_name;data;created_at;updated_at
+admin;1;Администратор;;;1535796441;1540823716
+document/basket/index;2;"document/basket/index (просмотр таблицы корзины)";;;1540823696;1540823696
+document/basket/view-basket;2;"document/basket/view-basket (просмотр элемента корзины)";;;1540823662;1540823662
+document/element-manage/confirm-delete-element;2;"document/element-manage/confirm-delete-element (подтверждение удаления элемента)";;;1540722333;1540722333
+document/element-manage/create-element;2;"document/element-manage/create-element (создание элемента)";;;1540721980;1540721980
+document/element-manage/delete-element;2;"document/element-manage/delete-element (удаление элемента)";;;1540722293;1540722293
+document/element-manage/delete-file;2;"document/element-manage/delete-file (удалять файл)";;;1540722463;1540722463
+document/element-manage/refresh-elements;2;"document/element-manage/refresh-elements (обновление элемента)";;;1540722022;1540722022
+document/element-manage/update-element;2;"document/element-manage/update-element (изменение элемента)";;;1540722251;1540722251
+document/element-manage/view-element;2;"document/element-manage/view-element (просмотр элемента)";;;1540722129;1540722129
+document/field-manage/confirm-delete-field;2;"document/field-manage/confirm-delete-field (подтверждение удаления поля в шаблоне)";;;1540720436;1540720436
+document/field-manage/create-field;2;"document/field-manage/create-field (добавление поля к шаблону)";;;1540719829;1540719829
+document/field-manage/delete-field;2;"document/field-manage/delete-field (удаление поля в шаблоне)";;;1540720395;1540720395
+document/field-manage/refresh-field;2;"document/field-manage/refresh-field (обновление поля)";;;1540719910;1540719910
+document/field-manage/update-field;2;"document/field-manage/update-field (изменение поля в шаблоне)";;;1540720293;1540720293
+document/field-manage/view-field;2;"document/field-manage/view-field (просмотр поля в шаблоне)";;;1540720077;1540720077
+document/folder-manage/confirm-delete-folder;2;"document/folder-manage/confirm-delete-folder (подтверждение удаления папки)";;;1540721278;1540721278
+document/folder-manage/create-folder;2;"document/folder-manage/create-folder (создание папки)";;;1540720685;1540720685
+document/folder-manage/delete-folder;2;"document/folder-manage/delete-folder (удалять папку)";;;1540721222;1540721222
+document/folder-manage/refresh-folders;2;"document/folder-manage/refresh-folders (обновление папки)";;;1540720765;1540720765
+document/folder-manage/update-folder;2;"document/folder-manage/update-folder (изменять папку)";;;1540721182;1540721182
+document/folder-manage/view-elements;2;"document/folder-manage/view-elements (просмотр элементов)";;;1540720895;1540720895
+document/folder-manage/view-folder;2;"document/folder-manage/view-folder (просмотр папки)";;;1540720864;1540720864
+document/manage/get-childs;2;"document/manage/get-childs (получение содержимого папок)";;;1540718309;1540718309
+document/manage/get-root;2;"document/manage/get-root (получение папок)";;;1540718251;1540718251
+document/manage/index;2;"document/manage/index (просмотр таблиц документов)";;;1540718108;1540718108
+document/template-manage/create-template;2;"document/template-manage/create-template (создание шаблона)";;;1540718820;1540718849
+document/template-manage/delete-template;2;"document/template-manage/delete-template (удаление шаблона)";;;1540719300;1540719300
+document/template-manage/refresh-template;2;"document/template-manage/refresh-template (обновление шаблона)";;;1540719469;1540719469
+document/template-manage/update-template;2;"document/template-manage/update-template (изменение шаблона)";;;1540719202;1540719202
+document/template-manage/view-template;2;"document/template-manage/view-template (просмотр шаблона)";;;1540719051;1540719051
+editor;1;Модератор;;;1535796441;1535796441
+geo/city/get-city;2;"geo/city/get-city (получить город)";;;1540732206;1540732206
+geo/city/index;2;"geo/city/index (просматривать таблицу городов)";;;1540726983;1540726983
+geo/country/get-country;2;"geo/country/get-country (получить страну)";;;1540732252;1540732252
+geo/country/index;2;"geo/country/index (просматривать таблицу стран)";;;1540726892;1540726892
+geo/region/get-region;2;"geo/region/get-region (получить регион)";;;1540732299;1540732299
+geo/region/index;2;"geo/region/index (просматривать таблицу регионов)";;;1540726938;1540726938
+i18n/manage/clear-cache;2;"i18n/manage/clear-cache (очистка кеша)";;;1540789930;1540789930
+i18n/manage/index;2;"i18n/manage/index (просмотр таблиц I18n)";;;1540789855;1540789855
+i18n/manage/rescan;2;"i18n/manage/rescan (поиск новых сообщений)";;;1540789895;1540789895
+i18n/manage/save;2;"i18n/manage/save (создание/изменение перевода)";;;1540789975;1540789975
+main/manage/files-manager;2;"main/manage/files-manager (файловый менеджер)";;;1535796441;1540717878
+main/manage/index;2;"main/manage/index (рабочий стол)";;;1535796441;1540717562
+role/manage/confirm-delete-auth-item;2;"role/manage/confirm-delete-auth-item (подтверждение удаления роли или разрешения)";;;1540725323;1540725323
+role/manage/confirm-delete-auth-item-child;2;"role/manage/confirm-delete-auth-item-child (подтверждение удаления наследования RBAC)";;;1540725741;1540725741
+role/manage/confirm-delete-auth-rule;2;"role/manage/confirm-delete-auth-rule (подтверждение удаления правила RBAC)";;;1540726199;1540726199
+role/manage/create-auth-item;2;"role/manage/create-auth-item (создавать роль или разрешение)";;;1540724488;1540724488
+role/manage/create-auth-item-child;2;"role/manage/create-auth-item-child (создание наследования RBAC)";;;1540725422;1540725422
+role/manage/create-auth-rule;2;"role/manage/create-auth-rule (создание правила RBAC)";;;1540725843;1540725843
+role/manage/delete-auth-item;2;"role/manage/delete-auth-item (удаление роли или разрешения)";;;1540725255;1540725255
+role/manage/delete-auth-item-child;2;"role/manage/delete-auth-item-child (удаление наследования RBAC)";;;1540725658;1540725658
+role/manage/delete-auth-rule;2;"role/manage/delete-auth-rule (удалять правила RBAC)";;;1540726149;1540726149
+role/manage/index;2;"role/manage/index (просмотр таблиц RBAC)";;;1540723896;1540723896
+role/manage/refresh-auth-item-form;2;"role/manage/refresh-auth-item-form (обновлять роль или разрешение)";;;1540724714;1540724714
+role/manage/refresh-auth-rule;2;"role/manage/refresh-auth-rule (обновление правила)";;;1540725895;1540725895
+role/manage/update-auth-item;2;"role/manage/update-auth-item (изменять роль или разрешение)";;;1540724633;1540724633
+role/manage/update-auth-rule;2;"role/manage/update-auth-rule (изменять правила RBAC)";;;1540726106;1540726106
+role/manage/view-auth-item;2;"role/manage/view-auth-item (просмотр роли или разрешения)";;;1540724956;1540724956
+role/manage/view-auth-rule;2;"role/manage/view-auth-rule (просмотр правила RBAC)";;;1540725962;1540725962
+settings/statistic/index;2;"settings/statistic/index (просмотр статистики)";;;1540727296;1540727296
+tester;1;Тестировщик;;;1535796441;1540823705
+user;1;Пользователь;;;1540790541;1540790541
+user/manage/confirm-delete-user;2;"user/manage/confirm-delete-user (подтверждение удаления пользователя)";;;1540723339;1540723339
+user/manage/create-user;2;"user/manage/create-user (создавать пользователей)";;;1540723068;1540723068
+user/manage/delete-user;2;"user/manage/delete-user (удалять пользователей)";;;1540723299;1540972782
+user/manage/index;2;"user/manage/index (просмотр таблицы пользователей)";;;1540722807;1540722807
+user/manage/refresh-user;2;"user/manage/refresh-user (обновлять пользователей)";;;1540723112;1540723112
+user/manage/update-user;2;"user/manage/update-user (изменять пользователей)";;;1540723263;1540723263
+user/manage/view-user;2;"user/manage/view-user (просматривать пользователей)";;;1540723213;1540723213

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: fontAwesome; /* Гарнитура шрифта */
+    src: url(../fonts/FontAwesome.otf); /* Путь к файлу со шрифтом */
+}
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .01s linear;
+    -o-transition: opacity .01s linear;
+    transition: opacity .01s linear;
+}
+.control-sidebar-bg, .control-sidebar {
+    top: 0;
+    right: -50%;
+    width: 50%;
+}
+

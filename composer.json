@@ -1,0 +1,58 @@
+{
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Project Template",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1",
+        "yiisoft/yii2": "~2.0.6",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "yiisoft/yii2-jui": "~2.0.0",
+        "yiisoft/yii2-imagine": "^2.1",
+        "phpnt/admin-lte": "^0.0.1",
+        "phpnt/bootstrap-notify": "^0.0.2",
+        "phpnt/font-awesome": "^0.0.1",
+        "phpnt/yii2-icheck": "0.0.2",
+        "phpnt/yii2-datepicker": "^0.0.2",
+        "phpnt/yii2-wow": "^0.0.1",
+        "phpnt/yii2-slimscroll": "^0.0.1",
+        "phpnt/yii2-pace": "^0.0.2",
+        "phpnt/bootstrap-select": "^0.0.1",
+        "phpnt/animate-css": "^0.0.1",
+        "mihaildev/yii2-ckeditor": "*",
+        "bower-asset/jstree-bootstrap-theme": "*",
+        "bower-asset/typeahead.js": "*",
+        "studio-42/elfinder": "*",
+        "2amigos/yii2-multi-select-widget" : "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
