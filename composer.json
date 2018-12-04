@@ -1,20 +1,17 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "phpnt/yii2-cms",
+    "description": "Yii2 CMS",
+    "keywords": ["yii2", "framework", "CMS", "Yii2 CMS"],
+    "homepage": "http://www.phpnt.com/",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "source": "https://github.com/phpnt/yii2-cms"
     },
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",
+        "phpnt/yii2-cms": "~0.0.1",
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
