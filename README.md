@@ -12,12 +12,8 @@
 ### Установка (в консоли)
 ###### composer create-project --prefer-dist phpnt/yii2-cms example
 ###### php init
-###### composer install
+###### Файл /common/config/main-local.php - Настройка доступа в БД и отправки почтовых сообщений.
 ###### yii migrate
-
-### Настройка
-#### Файл /common/config/main-local.php
-###### Настройка доступа в БД и отправки почтовых сообщений.
 
 ### Доступы
 #### Админ
