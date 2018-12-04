@@ -9,11 +9,11 @@
 
 ## Демо <a href="http://cms.phpnt.com/" target="_blank">Frontend</a>
 ## Демо <a href="http://admin.cms.phpnt.com/" target="_blank">Backend</a>
-### Установка (в консоли)
-###### composer create-project --prefer-dist phpnt/yii2-cms example
-###### php init
-###### Файл /common/config/main-local.php - Настройка доступа в БД и отправки почтовых сообщений.
-###### yii migrate
+### Установка
+###### 1. composer create-project --prefer-dist phpnt/yii2-cms example
+###### 2. php init
+###### 3. Файл /common/config/main-local.php - Настройка доступа в БД и отправки почтовых сообщений.
+###### 4. yii migrate
 
 ### Доступы
 #### Админ
