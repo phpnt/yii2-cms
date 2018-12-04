@@ -37,9 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('app', 'Города') ?></h3>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <span data-toggle="tooltip-city" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘geo_city’ города. Содержит список городов и информацию о них.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -92,6 +93,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-city"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 </div>
 

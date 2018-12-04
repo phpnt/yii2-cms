@@ -30,15 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('app', 'Корзина') ?></h3>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <span data-toggle="tooltip-basket" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘basket’ корзина. Отображает добавленные в корзину товары, их количество и пользователей, которые их заказали.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -51,5 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-basket"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 </div>

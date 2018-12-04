@@ -25,12 +25,13 @@ document/folder-manage/view-folder;2;"document/folder-manage/view-folder (просмо
 document/manage/get-childs;2;"document/manage/get-childs (получение содержимого папок)";;;1540718309;1540718309
 document/manage/get-root;2;"document/manage/get-root (получение папок)";;;1540718251;1540718251
 document/manage/index;2;"document/manage/index (просмотр таблиц документов)";;;1540718108;1540718108
+document/manage/refresh-templates;2;"document/manage/refresh-templates (обновлять шаблон)";;;1541091670;1541091670
 document/template-manage/create-template;2;"document/template-manage/create-template (создание шаблона)";;;1540718820;1540718849
 document/template-manage/delete-template;2;"document/template-manage/delete-template (удаление шаблона)";;;1540719300;1540719300
 document/template-manage/refresh-template;2;"document/template-manage/refresh-template (обновление шаблона)";;;1540719469;1540719469
 document/template-manage/update-template;2;"document/template-manage/update-template (изменение шаблона)";;;1540719202;1540719202
 document/template-manage/view-template;2;"document/template-manage/view-template (просмотр шаблона)";;;1540719051;1540719051
-editor;1;Модератор;;;1535796441;1535796441
+editor;1;Модератор;;;1535796441;1540974233
 geo/city/get-city;2;"geo/city/get-city (получить город)";;;1540732206;1540732206
 geo/city/index;2;"geo/city/index (просматривать таблицу городов)";;;1540726983;1540726983
 geo/country/get-country;2;"geo/country/get-country (получить страну)";;;1540732252;1540732252
@@ -60,11 +61,11 @@ role/manage/update-auth-rule;2;"role/manage/update-auth-rule (изменять правила R
 role/manage/view-auth-item;2;"role/manage/view-auth-item (просмотр роли или разрешения)";;;1540724956;1540724956
 role/manage/view-auth-rule;2;"role/manage/view-auth-rule (просмотр правила RBAC)";;;1540725962;1540725962
 settings/statistic/index;2;"settings/statistic/index (просмотр статистики)";;;1540727296;1540727296
-tester;1;Тестировщик;;;1535796441;1540823705
+tester;1;Тестировщик;;;1535796441;1541091703
 user;1;Пользователь;;;1540790541;1540790541
 user/manage/confirm-delete-user;2;"user/manage/confirm-delete-user (подтверждение удаления пользователя)";;;1540723339;1540723339
 user/manage/create-user;2;"user/manage/create-user (создавать пользователей)";;;1540723068;1540723068
-user/manage/delete-user;2;"user/manage/delete-user (удалять пользователей)";;;1540723299;1540972782
+user/manage/delete-user;2;"user/manage/delete-user (удалять пользователей)";;;1540723299;1540972475
 user/manage/index;2;"user/manage/index (просмотр таблицы пользователей)";;;1540722807;1540722807
 user/manage/refresh-user;2;"user/manage/refresh-user (обновлять пользователей)";;;1540723112;1540723112
 user/manage/update-user;2;"user/manage/update-user (изменять пользователей)";;;1540723263;1540723263

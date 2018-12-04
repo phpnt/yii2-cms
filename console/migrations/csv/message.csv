@@ -6,10 +6,6 @@ id;language;translation;hash
 5;en;"Sorry, we were unable to reset the password for the specified email address.";c11610647095402e1a0de24dda447156
 6;en;"New password saved.";c11610647095402e1a0de24dda447156
 7;en;Logout;836df658570ed43d4c461314a726c765
-8;en;"To register";836df658570ed43d4c461314a726c765
-9;en;"Sign up using social networks";b9b3136f1395d743a7dac637c333c0a7
-10;en;"If you registered before, you can";7ab1dd7052f2c1bfff713851a21efb4c
-11;en;"enter the site";ee5a567eb663f97b7a301bacd43db069
 12;en;"Password reset";5c07b484c90bf8decb52cc879eb069e4
 13;en;"Enter a new password";cfdf366a725805773088032ff7e36e63
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
@@ -17,7 +13,7 @@ id;language;translation;hash
 16;en;"Enter your email to get a password reset link.";a342f1a2fd08ebef4c548bcf75a90a6e
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
@@ -311,3 +307,48 @@ id;language;translation;hash
 312;en;"Publishing Template";647cd61d5643dd133565458565063cc0
 313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
 314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe
+315;en;"News 1";711bf6f713c37eef6837445b67cd0c7a
+316;en;"<p>News 1</p>";34bb9dba064da2796f02b0fb4349d76a
+317;en;"<h1>News  1</h1>";44484c8de5d00e9401a5e671d6ef00ec
+318;en;"News 2";44484c8de5d00e9401a5e671d6ef00ec
+319;en;"<p>News 2</p>";9bc07bc2b3e24abb99ed2f18a3c91732
+320;en;"<h1>News 2</h1>";52f0f38207d808ee92b49bf4c49ecdfa
+321;en;Stones;3422a01e4d07db5442a97333268ef038
+322;en;<p>Stones</p>;3422a01e4d07db5442a97333268ef038
+323;en;<h1>Stones</h1>;ca10fc0d1aa74e87abf122285bbd5ade
+324;en;Beads;8b435220af6afba23a6c8958175275dc
+325;en;<p>Beads</p>;8b435220af6afba23a6c8958175275dc
+326;en;<h1>Beads</h1>;5d93c97fb2d538fe1d4949642a919566
+327;en;Glasses;5a06511146b76023e235552759e555a9
+328;en;"	
+<p>Glasses</p>";56d278c264c491beb398eeb668b1eb12
+329;en;<h1>Glasses</h1>;235e9a3da89901f000001230237181c6
+330;en;"Red  stone";235e9a3da89901f000001230237181c6
+331;en;"	
+<p>Red  stone</p>";3961c1b4b69967073a497a43dfe7bd98
+332;en;"<h1>Red  stone</h1>";3961c1b4b69967073a497a43dfe7bd98
+333;en;"Green stone";b9ae7638723559fa275ae2721ba6b2eb
+334;en;"<p>Green stone</p>";a3ed9704d3f1d8b730b26105fac87676
+335;en;"<h1>Green stone</h1>";17aa51f57f361d06e0f8f785f21c0545
+336;en;"Round bead";995749a9a546f89863260a7733ca2151
+337;en;"<p>Round bead</p>";94af463d45d6b73aa35fa67f1d22ba28
+338;en;<h1></h1>;94af463d45d6b73aa35fa67f1d22ba28
+339;en;Author;978c3f85ed52b8d8a1daf0342a2763e8
+340;en;"Main image";3e915c5d28d13e927bdf1bd66b8aed71
+341;en;"Additional Images";cbd07b15e4bfdd704afa05c8aaad8ffb
+342;en;"Template for products";6e33c36b7167bd28ddd6e820bbefa5fd
+343;en;"Table ‘user’ users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
+344;en;"User is not registered.";3838cd7903d95247ace2638eaf9630f6
+345;en;"Table ‘basket’ basket. Shows added to the basket of goods, their number, and users who have ordered them.";9d1da8bd0164345acb0e66365fd258a2
+346;en;"Table ‘document’ documents. CMS folders. Displays the basic structure of the site. Right-clicking on the selected folder - to create, edit, view, delete this folder. Left-clicking on the selected folder - to create, edit, view, delete elements in this folder.";391334ab05a391bce3738e317c4e26d9
+347;en;"Table ‘document’ documents. Elements of a specific folder. These can be publications, products, letter templates, or your own elements used on the site. To create, edit, view, delete items, select a folder.";a7f668cc2f1a35d28a4d0bc65e94f919
+348;en;"Table ‘template’ templates. contains templates for items. Templates are assigned to folders and applied to the elements of these folders.";e496ce2abdfedb5cf67a021d3c062bdb
+349;en;"Tables ‘source_message’ source text and category, and ‘message’ their translation. Multilingual management.";68b7c7aa6ee20d2be6e4178195106816
+350;en;"Create and edit new roles and permissions. Assign permissions to roles used.";c9741a76dd1becee56ec4f7bdbd9b5c0
+351;en;"Tables ‘auth_item, auth_item_child’ RBAC.";32ba460fb1b4ec6da4aa81aeba6a88b2
+352;en;"Table ‘auth_rule’ RBAC rules.";cf732e3ae660f6ecd09d8076547a182b
+353;en;"Country ‘geo_country’ table. Contains a list of countries and information about them.";1a9a8bc48f99d7abd25082d32e70edb4
+354;en;"Table ‘city geo_city’. Contains a list of cities and information about them.";20e2d7190ab17d7aa21522ee9f20e041
+355;en;"Table ‘geo_region’ regions. Contains a list of regions and information about them.";12bbbe5b2273fb2e2fc175dfd2c532b2
+356;en;"Table ‘visit’ statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
+357;en;"Table ‘like’ statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d

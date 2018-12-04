@@ -86,6 +86,10 @@ class SignupForm extends UserForm
     {
         parent::afterSave($insert, $changedAttributes);
 
+        $auth = Yii::$app->authManager;
+        $role = $auth->getRole('user');
+        $auth->assign($role, $this->id);
+
         $template = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
@@ -114,7 +118,7 @@ class SignupForm extends UserForm
                 ->setSubject(Yii::t('app', 'Сброс пароля для {name}', ['name' => Yii::$app->name]))
                 ->send();
         } else {
-            Yii::$app->mailer->compose(
+            return Yii::$app->mailer->compose(
                 ['html' => 'confirm-email'],
                 ['modelUserForm' => $this])
                 ->setFrom([Yii::$app->params['adminEmail']])

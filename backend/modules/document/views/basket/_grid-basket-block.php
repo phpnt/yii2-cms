@@ -106,8 +106,11 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             'format' => 'raw',
             'value' => function ($modelBasketForm) {
                 /* @var $modelBasketForm \common\models\extend\BasketExtend */
-                if (isset($modelBasketForm->user) && Yii::$app->user->can('admin')) {
-                    return $modelBasketForm->user->email;
+                if (Yii::$app->user->can('admin')) {
+                    if (isset($modelBasketForm->user)) {
+                        return $modelBasketForm->user->email;
+                    }
+                    return Yii::t('app', 'Пользователь не зарегистрирован.');
                 }
                 return Yii::t('app', 'Нет прав для просмотра.');
             },

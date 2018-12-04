@@ -44,7 +44,7 @@ use yii\helpers\Url;
     </div>
     <?php ActiveForm::end(); ?>
     <?php
-    $url_refresh = Url::to(['refresh-templates']);
+    $url_refresh = Url::to(['/document/template-manage/refresh-templates']);
     $id_grid_refresh = '#pjax-grid-templates-block';
 
     $js = <<< JS

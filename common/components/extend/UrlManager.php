@@ -201,6 +201,11 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
+                'pattern' => 'signup/default/confirm',
+                'route' => 'signup/default/confirm',
+                'suffix' => ''
+            ];
+            $rules[] = [
                 'pattern' => $item['alias'] . '/<folder:[A-Za-z0-9-_]+>/<alias:[A-Za-z0-9-_]+>',
                 'route' => $item['alias'] . '/default/view',
                 'suffix' => ''

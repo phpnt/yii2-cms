@@ -18,7 +18,7 @@ use yii\helpers\Url;
 Modal::begin([
     'id' => 'universal-modal',
     'size' => 'modal-sm',
-    'header' => '<h2 class="text-center">' . Yii::t('app', 'Удалить пользователя?') . '</h2>',
+    'header' => '<h2 class="text-center">' . Yii::t('app', 'Удалить пользователя?') . '?</h2>',
     'clientOptions' => ['show' => true],
     'options' => [],
 ]);

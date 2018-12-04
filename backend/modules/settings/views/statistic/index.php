@@ -33,6 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'with_header' => true
                         ]),
                         ['class' => 'btn btn-box-tool', 'data-pjax' => 0]) ?>
+                    <span data-toggle="tooltip-visit" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘visit’ статистика посещений.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -45,6 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-visit"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 
     <div class="col-md-6">
@@ -58,6 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'with_header' => true
                         ]),
                         ['class' => 'btn btn-box-tool', 'data-pjax' => 0]) ?>
+                    <span data-toggle="tooltip-like" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘like’ статистика оценок.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -70,5 +83,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-like"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 </div>

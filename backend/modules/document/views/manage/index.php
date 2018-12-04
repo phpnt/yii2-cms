@@ -47,9 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="box-header with-border">
                         <h3 class="box-title"><?= Yii::t('app', 'Папки') ?></h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                            <span data-toggle="tooltip-folder" title="" class="btn btn-box-tool" data-original-title="
+                            <?= Yii::t('app', 'Таблица ‘document’ документы. Папки CMS. Отображает основную структуру сайта. Нажатие правой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления этой папки. Нажатие левой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления элементов этой папки.'); ?>
+                            "><i class="fas fa-question"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="box-body table-responsive">
@@ -67,15 +68,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-folder"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
     <div class="col-md-7">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('app', 'Документы') ?></h3>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <span data-toggle="tooltip-element" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘document’ документы. Элементы определенной папки. Это могут быть публикации, товары, шаблоны писем или собственные элементы, используемые на сайте. Чтобы создать, редактировать, просматривать, удалять элементы, выберите папку.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -89,15 +96,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-element"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('app', 'Шаблоны') ?></h3>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <span data-toggle="tooltip-template" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблица ‘template’ шаблоны. содержит шаблоны для элементов. Шаблоны назначаются папкам и применяются к элементам этих папок.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -110,5 +123,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-template"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 </div>

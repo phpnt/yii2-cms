@@ -69,16 +69,17 @@ class CountryController extends Controller
     {
         $manyGeoCountryForm = GeoCountryForm::find()
             ->where(['like', 'name_ru', $query])
+            ->orWhere(['like', 'short_name', $query])
             ->orderBy(['name_ru' => SORT_ASC])
             ->all();
 
         $result = [];
-        $i = 0;
         foreach ($manyGeoCountryForm as $modelGeoCountryForm) {
             /* @var $modelGeoCountryForm GeoCountryForm */
-            $result[$i]['id'] = $modelGeoCountryForm->id_geo_country;
-            $result[$i]['name'] = $modelGeoCountryForm->name_ru;
-            $i++;
+            $result[] = [
+                'id' => $modelGeoCountryForm->id_geo_country,
+                'name' => $modelGeoCountryForm->name_ru
+            ];
         }
 
         return $this->asJson($result);

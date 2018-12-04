@@ -46,7 +46,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 <?= GridView::widget([
     'dataProvider' => $dataProviderTemplateSearch,
     'filterModel' => $modelTemplateSearch,
-    'filterUrl' => ['refresh-templates'],
+    'filterUrl' => Url::to(['/document/template-manage/refresh-templates']),
     'options' => [
         'id' => 'grid-templates-block',
         'class' => 'grid-view'

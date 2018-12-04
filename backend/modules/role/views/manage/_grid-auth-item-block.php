@@ -45,9 +45,10 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                         ]) ?></p>
             <?php endif; ?>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
+                <span data-toggle="tooltip-rbac" title="" class="btn btn-box-tool" data-original-title="
+                <?= Yii::t('app', 'Создание и редактирование новых ролей и разрешений. Назначение разрешений для используемых ролей.'); ?>
+                "><i class="fas fa-question"></i>
+                </span>
             </div>
         </div>
         <div class="box-body table-responsive">
@@ -61,6 +62,11 @@ use phpnt\bootstrapNotify\BootstrapNotify;
         </div>
         <div class="box-footer">
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-rbac"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 <?php endif; ?>
 
@@ -68,9 +74,10 @@ use phpnt\bootstrapNotify\BootstrapNotify;
     <div class="box-header with-border">
         <?= Yii::t('app', 'Все роли и разрешения') ?>
         <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                <i class="fa fa-minus"></i>
-            </button>
+            <span data-toggle="tooltip-role" title="" class="btn btn-box-tool" data-original-title="
+            <?= Yii::t('app', 'Таблицы ‘auth_item, auth_item_child’ RBAC.'); ?>
+            "><i class="fas fa-question"></i>
+            </span>
         </div>
     </div>
     <div class="box-body table-responsive">
@@ -175,6 +182,11 @@ use phpnt\bootstrapNotify\BootstrapNotify;
     </div>
     <div class="box-footer">
     </div>
+    <?php
+    $js = <<< JS
+        $('[data-toggle="tooltip-role"]').tooltip({ boundary: 'window' })
+JS;
+    $this->registerJs($js); ?>
 </div>
 <?php
 $js = <<< JS

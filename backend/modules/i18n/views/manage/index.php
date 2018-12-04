@@ -43,9 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('app', 'Очистить кеш'), Url::to(['/i18n/manage/clear-cache']), ['class' => 'btn btn-warning']) ?>
                 </p>
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <span data-toggle="tooltip-i18n" title="" class="btn btn-box-tool" data-original-title="
+                    <?= Yii::t('app', 'Таблицы ‘source_message’ исходный текст и категория, и ‘message’ их перевод. Управление мультиязычностью.'); ?>
+                    "><i class="fas fa-question"></i>
+                    </span>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -184,5 +185,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
         </div>
+        <?php
+        $js = <<< JS
+        $('[data-toggle="tooltip-i18n"]').tooltip({ boundary: 'window' })
+JS;
+        $this->registerJs($js); ?>
     </div>
 </div>

@@ -95,7 +95,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                 },
                 'delete' => function ($url, $modelUserForm, $id) {
                     /* @var $modelUserForm \common\models\forms\UserForm */
-                    if (Yii::$app->user->can('user/manage/delete-user')) {
+                    if (Yii::$app->user->can('user/manage/delete-element')) {
                         return Html::a('<i class="fa fa-trash"></i>', 'javascript:void(0);', [
                             'class' => 'text-danger',
                             'title' => Yii::t('app', 'Удалить пользователя'),

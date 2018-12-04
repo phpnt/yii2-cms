@@ -2,6 +2,12 @@
     font-family: fontAwesome; /* Гарнитура шрифта */
     src: url(../fonts/FontAwesome.otf); /* Путь к файлу со шрифтом */
 }
+.tooltip-inner {
+    max-width: 250px;
+    /* If max-width does not work, try using width instead */
+    width: 250px;
+    text-align: left;
+}
 .fade {
     opacity: 0;
     -webkit-transition: opacity .01s linear;

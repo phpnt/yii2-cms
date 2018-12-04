@@ -69,16 +69,17 @@ class CityController extends Controller
     {
         $manyGeoCityForm = GeoCityForm::find()
             ->where(['like', 'name_ru', $query])
+            ->orWhere(['like', 'name_en', $query])
             ->orderBy(['name_ru' => SORT_ASC])
             ->all();
 
         $result = [];
-        $i = 0;
         foreach ($manyGeoCityForm as $modelGeoCityForm) {
             /* @var $modelGeoCityForm GeoCityForm */
-            $result[$i]['id'] = $modelGeoCityForm->id_geo_city;
-            $result[$i]['name'] = $modelGeoCityForm->name_ru;
-            $i++;
+            $result[] = [
+                'id' => $modelGeoCityForm->id_geo_city,
+                'name' => $modelGeoCityForm->name_ru
+            ];
         }
 
         return $this->asJson($result);

@@ -8,6 +8,7 @@ admin;document/element-manage/create-element
 admin;document/element-manage/delete-element
 admin;document/element-manage/delete-file
 admin;document/element-manage/refresh-elements
+tester;document/element-manage/refresh-elements
 admin;document/element-manage/update-element
 admin;document/element-manage/view-element
 tester;document/element-manage/view-element
@@ -33,6 +34,7 @@ admin;document/manage/get-root
 tester;document/manage/get-root
 admin;document/manage/index
 tester;document/manage/index
+tester;document/manage/refresh-templates
 admin;document/template-manage/create-template
 admin;document/template-manage/delete-template
 admin;document/template-manage/refresh-template
