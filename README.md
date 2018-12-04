@@ -1,5 +1,7 @@
 # Yii2 CMS
 
+[![Latest Stable Version](https://poser.pugx.org/phpnt/yii2-cms/v/stable)](https://packagist.org/packages/phpnt/yii2-cms) [![Total Downloads](https://poser.pugx.org/phpnt/yii2-cms/downloads)](https://packagist.org/packages/phpnt/yii2-cms) [![Latest Unstable Version](https://poser.pugx.org/phpnt/yii2-cms/v/unstable)](https://packagist.org/packages/phpnt/yii2-cms) [![License](https://poser.pugx.org/phpnt/yii2-chartjs/license)](https://packagist.org/packages/phpnt/yii2-cms)
+
 ### Социальные сети:
  - [Канал YouTube](https://www.youtube.com/c/phpnt)
  - [Группа VK](https://vk.com/phpnt)
@@ -8,7 +10,7 @@
 ## Демо <a href="http://cms.phpnt.com/" target="_blank">Frontend</a>
 ## Демо <a href="http://admin.cms.phpnt.com/" target="_blank">Backend</a>
 ### Установка (в консоли)
-###### git clone https://github.com/phpnt/yii2-cms.git
+###### composer create-project --prefer-dist phpnt/yii2-cms example
 ###### php init
 ###### composer install
 ###### yii migrate
@@ -29,7 +31,7 @@
 ###### Пароль: tester
 
 ### Описание
-###### CMS на Yii2 фреймворке, для создания блогов и интернет магазинов.
+###### CMS на Yii2 фреймворке Advanced, для создания блогов и интернет магазинов.
 ###### Позволяет управлять контентом сайта из backend части приложения и настраивать вывод под индивидуальный дизайн на frontend.
 ###### Встроен модуль I18n, позволяющий подключить любые языки и управлять переводом.
 ###### Настроен RBAC и управление ролями, разрешениями и правилами.
