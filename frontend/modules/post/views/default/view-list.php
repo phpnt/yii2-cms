@@ -16,13 +16,15 @@ use common\widgets\ViewItems\ViewItems;
 
 $this->title = Yii::t('app', $selectedPage['name']);
 $this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app',  $page['name']),
+    'label' => Yii::t('app', $page['name']),
     'url' => Url::to(['/' . $page['alias'] . '/default/index'])
 ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-default-index">
-    <div class="col-md-12">
-        <?= ViewItems::widget(['page' => $page, 'selectedPage' => $selectedPage]); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?= ViewItems::widget(['page' => $page, 'selectedPage' => $selectedPage]); ?>
+        </div>
     </div>
 </div>

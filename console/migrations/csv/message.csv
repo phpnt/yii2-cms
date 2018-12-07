@@ -13,7 +13,7 @@ id;language;translation;hash
 16;en;"Enter your email to get a password reset link.";a342f1a2fd08ebef4c548bcf75a90a6e
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
@@ -196,7 +196,6 @@ id;language;translation;hash
 202;en;"There are no required properties ""getRootUrl"" or ""getChildUrl"" or an array of elements ""items"".";19c87890182049c5160e8e3e42c762b5
 203;en;"Missing array of ""items"" elements.";b3a5d9a532e3553c8c05c1b07e7495a5
 204;en;"If you have not registered on our website, then simply delete this email.";86c76f677f3c8340ea38c95e60be0a58
-205;en;"Quantity {quantity} pcs.";b912a385825945a8ad1b09ea9a99de48
 206;en;Successfully;e5df8707da88234f9f5c59c83eb8580a
 207;en;"Sign in";59cdff139f55e09bb04345524c3fb14e
 208;en;"Log in to go to the control panel site.";f6540998b8077b5b0e0275b7cbfb3acc
@@ -307,36 +306,6 @@ id;language;translation;hash
 312;en;"Publishing Template";647cd61d5643dd133565458565063cc0
 313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
 314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe
-315;en;"News 1";711bf6f713c37eef6837445b67cd0c7a
-316;en;"<p>News 1</p>";34bb9dba064da2796f02b0fb4349d76a
-317;en;"<h1>News  1</h1>";44484c8de5d00e9401a5e671d6ef00ec
-318;en;"News 2";44484c8de5d00e9401a5e671d6ef00ec
-319;en;"<p>News 2</p>";9bc07bc2b3e24abb99ed2f18a3c91732
-320;en;"<h1>News 2</h1>";52f0f38207d808ee92b49bf4c49ecdfa
-321;en;Stones;3422a01e4d07db5442a97333268ef038
-322;en;<p>Stones</p>;3422a01e4d07db5442a97333268ef038
-323;en;<h1>Stones</h1>;ca10fc0d1aa74e87abf122285bbd5ade
-324;en;Beads;8b435220af6afba23a6c8958175275dc
-325;en;<p>Beads</p>;8b435220af6afba23a6c8958175275dc
-326;en;<h1>Beads</h1>;5d93c97fb2d538fe1d4949642a919566
-327;en;Glasses;5a06511146b76023e235552759e555a9
-328;en;"	
-<p>Glasses</p>";56d278c264c491beb398eeb668b1eb12
-329;en;<h1>Glasses</h1>;235e9a3da89901f000001230237181c6
-330;en;"Red  stone";235e9a3da89901f000001230237181c6
-331;en;"	
-<p>Red  stone</p>";3961c1b4b69967073a497a43dfe7bd98
-332;en;"<h1>Red  stone</h1>";3961c1b4b69967073a497a43dfe7bd98
-333;en;"Green stone";b9ae7638723559fa275ae2721ba6b2eb
-334;en;"<p>Green stone</p>";a3ed9704d3f1d8b730b26105fac87676
-335;en;"<h1>Green stone</h1>";17aa51f57f361d06e0f8f785f21c0545
-336;en;"Round bead";995749a9a546f89863260a7733ca2151
-337;en;"<p>Round bead</p>";94af463d45d6b73aa35fa67f1d22ba28
-338;en;<h1></h1>;94af463d45d6b73aa35fa67f1d22ba28
-339;en;Author;978c3f85ed52b8d8a1daf0342a2763e8
-340;en;"Main image";3e915c5d28d13e927bdf1bd66b8aed71
-341;en;"Additional Images";cbd07b15e4bfdd704afa05c8aaad8ffb
-342;en;"Template for products";6e33c36b7167bd28ddd6e820bbefa5fd
 343;en;"Table ‘user’ users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
 344;en;"User is not registered.";3838cd7903d95247ace2638eaf9630f6
 345;en;"Table ‘basket’ basket. Shows added to the basket of goods, their number, and users who have ordered them.";9d1da8bd0164345acb0e66365fd258a2
@@ -352,3 +321,4 @@ id;language;translation;hash
 355;en;"Table ‘geo_region’ regions. Contains a list of regions and information about them.";12bbbe5b2273fb2e2fc175dfd2c532b2
 356;en;"Table ‘visit’ statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
 357;en;"Table ‘like’ statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d
+358;en;"Further folder attachment is not yet provided.";86e9ac62aeba9635a69a7ada398b2009

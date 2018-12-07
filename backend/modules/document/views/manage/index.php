@@ -57,10 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $this->render('@backend/modules/document/views/folder-manage/_tree-folders-block', [
                             'modelDocumentSearchFolder' => $modelDocumentSearchFolder,
                         ]); ?>
-                        <?/*= $this->render('@backend/modules/document/views/folder-manage/_grid-folders-block', [
-                            'modelDocumentSearchFolder' => $modelDocumentSearchFolder,
-                            'dataProviderDocumentSearchFolders' => $dataProviderDocumentSearchFolders
-                        ]); */?>
                     </div>
                     <div class="box-footer">
 

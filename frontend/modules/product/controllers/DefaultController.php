@@ -133,29 +133,18 @@ class DefaultController extends Controller
      */
     public function actionViewList($folder)
     {
-        $data = (new \yii\db\Query())
+        $selectedPage = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
             ->where([
                 'alias' => $folder,
-                'parent_id' => $this->page['id'],
                 'status' => Constants::STATUS_DOC_ACTIVE
             ])
             ->one();
 
-        $dataItems = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'parent_id' => $data['id'],
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->all();
-
         return $this->render('view-list', [
             'page' => $this->page,
-            'data' => $data,
-            'dataItems' => $dataItems,
+            'selectedPage' => $selectedPage,
         ]);
     }
 
@@ -163,32 +152,30 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionView($folder, $alias)
+    public function actionView($alias)
     {
-        $data = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'alias' => $folder,
-                'parent_id' => $this->page['id'],
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->one();
-
-        $dataItem = (new \yii\db\Query())
+        $item = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
             ->where([
                 'alias' => $alias,
-                'parent_id' => $data['id'],
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        $parentItem = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'id' => $item['parent_id'],
                 'status' => Constants::STATUS_DOC_ACTIVE
             ])
             ->one();
 
         return $this->render('view', [
             'page' => $this->page,
-            'data' => $data,
-            'dataItem' => $dataItem
+            'parentItem' => $parentItem,
+            'item' => $item
         ]);
     }
 }

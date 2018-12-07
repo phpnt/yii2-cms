@@ -36,11 +36,9 @@ AppAsset::register($this);
 <div class="wrap">
     <?= MainMenu::widget([]) ?>
     <div class="container">
-        <div class="col-md-12">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-        </div>
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
         <?= BootstrapNotify::widget() ?>
         <?= $content ?>
     </div>

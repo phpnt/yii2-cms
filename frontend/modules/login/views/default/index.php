@@ -20,32 +20,34 @@ $this->title = Yii::t('app', $page['title']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="login-default-index">
-    <div class="col-md-12">
-        <?= $page['content'] ?>
-        <?php $form = ActiveForm::begin([
-            'id' => 'login-form',
-        ]); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?= $page['content'] ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+            ]); ?>
 
-        <?= $form->field($modelLoginForm, 'email')->textInput([
-            'maxlength' => true,
-            'placeholder' => $modelLoginForm->getAttributeLabel('email')
-        ]); ?>
+            <?= $form->field($modelLoginForm, 'email')->textInput([
+                'maxlength' => true,
+                'placeholder' => $modelLoginForm->getAttributeLabel('email')
+            ]); ?>
 
-        <?= $form->field($modelLoginForm, 'password')->passwordInput([
-            'maxlength' => true,
-            'placeholder' => $modelLoginForm->getAttributeLabel('password')
-        ]);?>
+            <?= $form->field($modelLoginForm, 'password')->passwordInput([
+                'maxlength' => true,
+                'placeholder' => $modelLoginForm->getAttributeLabel('password')
+            ]);?>
 
-        <?= $form->field($modelLoginForm, 'rememberMe')->checkbox() ?>
+            <?= $form->field($modelLoginForm, 'rememberMe')->checkbox() ?>
 
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Войти'), [
-                'class' => 'btn btn-primary',
-                'name' => 'login-button']) ?>
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('app', 'Войти'), [
+                    'class' => 'btn btn-primary',
+                    'name' => 'login-button']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
+            <?= Html::a(Yii::t('app', 'Я забыл свой пароль'), ['/login/default/request-password-reset']) ?>
         </div>
-
-        <?php ActiveForm::end(); ?>
-
-        <?= Html::a(Yii::t('app', 'Я забыл свой пароль'), ['/login/default/request-password-reset']) ?>
     </div>
 </div>

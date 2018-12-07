@@ -124,7 +124,7 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         if (Yii::$app->user->isGuest) {
-            $data = (new \yii\db\Query())
+            $items = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('basket')
                 ->where([
@@ -133,19 +133,16 @@ class DefaultController extends Controller
                 ])
                 ->all();
         } else {
-            $data = (new \yii\db\Query())
+            $items = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('basket')
-                ->where([
-                    'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
-                ])->orWhere(['user_id' => Yii::$app->user->id])
+                ->where(['user_id' => Yii::$app->user->id])
                 ->all();
         }
 
         $dataItems = [];
-        if ($data) {
-            foreach ($data as $item) {
+        if ($items) {
+            foreach ($items as $item) {
                 $data = (new \yii\db\Query())
                     ->select(['*'])
                     ->from('document')
@@ -155,13 +152,12 @@ class DefaultController extends Controller
                     ->one();
                 $data['quantity'] = $item['quantity'];
                 $dataItems[] = $data;
-                //$quantity = $quantity + $item['quantity'];
             }
         }
 
         return $this->render('index', [
             'page' => $this->page,
-            'dataItems' => $dataItems,
+            'items' => $dataItems,
         ]);
     }
 
@@ -171,19 +167,41 @@ class DefaultController extends Controller
      */
     public function actionView($alias)
     {
-        $dataItem = (new \yii\db\Query())
+        $item = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
             ->where([
                 'alias' => $alias,
-                'parent_id' => $this->page['id'],
                 'status' => Constants::STATUS_DOC_ACTIVE
             ])
             ->one();
 
+        if (Yii::$app->user->isGuest) {
+            $itemBasket = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('basket')
+                ->where([
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent,
+                    'document_id' => $item['id']
+                ])
+                ->one();
+        } else {
+            $itemBasket = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('basket')
+                ->where([
+                    'user_id' => Yii::$app->user->id,
+                    'document_id' => $item['id']
+                ])
+                ->one();
+        }
+
+        $item['quantity'] = $itemBasket['quantity'];
+
         return $this->render('view', [
             'page' => $this->page,
-            'dataItem' => $dataItem
+            'item' => $item
         ]);
     }
 }

@@ -98,25 +98,56 @@ class FolderManageController extends Controller
      */
     public function actionCreateFolder($parent_id = null)
     {
-        if (!Yii::$app->request->isPjax) {
+        /*if (!Yii::$app->request->isPjax) {
             return $this->redirect(['index']);
-        }
+        }*/
+
+        $lastFolder = false;
 
         $modelDocumentForm = new DocumentForm();
-        $modelDocumentForm->scenario = 'create-folder';
-        $modelDocumentForm->is_folder = 1;
-        $modelDocumentForm->parent_id = $parent_id;
+        $modelDocumentForm->load($modelDocumentForm->load(Yii::$app->request->post()));
 
-        if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
+        if ($modelDocumentForm->parent_id) {
+            $modelDocumentForm = DocumentForm::findOne($modelDocumentForm->parent_id);
+            if (isset($modelDocumentForm->parent->parent->parent->parent) && !isset($modelDocumentForm->parent->parent->parent->parent->parent)) {
+                $lastFolder = true;
+            }
+        }
+
+        if ($parent_id) {
+            $modelDocumentForm = DocumentForm::findOne($parent_id);
+            if (isset($modelDocumentForm->parent->parent->parent->parent) && !isset($modelDocumentForm->parent->parent->parent->parent->parent)) {
+                $lastFolder = true;
+            }
+        }
+
+        if ($lastFolder) {
             Yii::$app->session->set(
                 'message',
                 [
-                    'type' => 'success',
-                    'icon' => 'glyphicon glyphicon-ok',
-                    'message' => Yii::t('app', 'Успешно'),
+                    'type' => 'danger',
+                    'icon' => 'glyphicon glyphicon-ban',
+                    'message' => Yii::t('app', 'Дальнейшее вложение папок пока не предусмотрено.'),
                 ]
             );
-            return $this->asJson(['success' => 1]);
+            return $this->redirect(['/document/manage/index']);
+        } else {
+            $modelDocumentForm = new DocumentForm();
+            $modelDocumentForm->scenario = 'create-folder';
+            $modelDocumentForm->is_folder = 1;
+            $modelDocumentForm->parent_id = $parent_id;
+
+            if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
+                Yii::$app->session->set(
+                    'message',
+                    [
+                        'type' => 'success',
+                        'icon' => 'glyphicon glyphicon-ok',
+                        'message' => Yii::t('app', 'Успешно'),
+                    ]
+                );
+                return $this->asJson(['success' => 1]);
+            }
         }
 
         if ($modelDocumentForm->errors) {

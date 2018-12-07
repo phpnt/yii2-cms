@@ -142,21 +142,51 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
+    public function actionViewList($folder)
+    {
+        $selectedPage = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => $folder,
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        return $this->render('view-list', [
+            'page' => $this->page,
+            'selectedPage' => $selectedPage,
+        ]);
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionView($alias)
     {
-        $dataItem = (new \yii\db\Query())
+        $item = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
             ->where([
                 'alias' => $alias,
-                'parent_id' => $this->page['id'],
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        $parentItem = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'id' => $item['parent_id'],
                 'status' => Constants::STATUS_DOC_ACTIVE
             ])
             ->one();
 
         return $this->render('view', [
             'page' => $this->page,
-            'dataItem' => $dataItem
+            'parentItem' => $parentItem,
+            'item' => $item
         ]);
     }
 }

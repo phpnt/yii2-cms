@@ -2,7 +2,6 @@
 
 namespace frontend\modules\main\controllers;
 
-use common\models\Constants;
 use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
@@ -122,40 +121,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $dataItems = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'parent_id' => $this->page['id'],
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->all();
-
         return $this->render('index', [
             'page' => $this->page,
-            'dataItems' => $dataItems,
-        ]);
-    }
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionView($alias)
-    {
-        $dataItem = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'alias' => $alias,
-                'parent_id' => $this->page['id'],
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->one();
-
-        return $this->render('view', [
-            'page' => $this->page,
-            'dataItem' => $dataItem
         ]);
     }
 }

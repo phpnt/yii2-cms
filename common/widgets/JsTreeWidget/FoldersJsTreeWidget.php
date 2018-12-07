@@ -90,7 +90,7 @@ class FoldersJsTreeWidget extends Widget
                             },
                         },
                     },
-                    "plugins" : $plugins,
+                    "plugins" : $plugins, 
                     "contextmenu":{         
                         "items": function(node) {
                             var tree = $("#$this->id").jstree(true);

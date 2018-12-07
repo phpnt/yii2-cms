@@ -66,7 +66,7 @@ class ElementManageController extends Controller
         $modelDocumentSearch = new DocumentSearch();
         $modelDocumentSearch->is_folder = null;
         $modelDocumentSearch->parent_id = $id_folder;
-        $dataProviderDocumentSearch = $modelDocumentSearch->search(Yii::$app->request->queryParams);
+        $dataProviderDocumentSearch = $modelDocumentSearch->searchElement(Yii::$app->request->queryParams);
 
         return $this->renderAjax('_grid-elements-block', [
             'modelDocumentForm' => $modelDocumentForm,
@@ -223,9 +223,8 @@ class ElementManageController extends Controller
         $modelDocumentForm = DocumentForm::findOne($id_folder);
 
         $modelDocumentSearch = new DocumentSearch();
-        $modelDocumentSearch->is_folder = null;
         $modelDocumentSearch->parent_id = $id_folder;
-        $dataProviderDocumentSearch = $modelDocumentSearch->search(Yii::$app->request->queryParams);
+        $dataProviderDocumentSearch = $modelDocumentSearch->searchElement(Yii::$app->request->queryParams);
 
         return $this->renderAjax('_grid-elements-block', [
             'modelDocumentForm' => $modelDocumentForm,
