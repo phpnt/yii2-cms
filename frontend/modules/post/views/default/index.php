@@ -17,13 +17,6 @@ use common\widgets\ViewItems\ViewItems;
 $this->title = Yii::t('app', $page['title']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="main-default-index">
-    <div class="row">
-        <div class="col-md-12">
-            <?= Yii::t('app', $page['content']); ?>
-        </div>
-        <div class="col-md-12">
-            <?= ViewItems::widget(['page' => $page]); ?>
-        </div>
-    </div>
+<div class="post-default-index">
+    <?= ViewItems::widget(['page' => $page]); ?>
 </div>

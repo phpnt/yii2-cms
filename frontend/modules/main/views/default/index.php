@@ -8,15 +8,15 @@
  * Time: 8:43
  */
 
+use common\widgets\ViewItems\ViewItems;
+
 /* @var $this yii\web\View */
 /* @var $page array информация о странице */
+/* @var $dataItems array элементы страницы */
 
 $this->title = Yii::t('app', $page['title']);
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="main-default-index">
-    <div class="row">
-        <div class="col-md-12">
-            <?= Yii::t('app', $page['content']); ?>
-        </div>
-    </div>
+<div class="post-default-index">
+    <?= ViewItems::widget(['page' => $page]); ?>
 </div>

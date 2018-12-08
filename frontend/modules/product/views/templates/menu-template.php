@@ -12,6 +12,7 @@ use yii\widgets\Menu;
 /* @var $this \yii\web\View */
 /* @var $itemsMenu array */
 ?>
+<?php /* Отображение бокового меню */ ?>
 <div class="sidebar-nav">
     <?= Menu::widget([
         'items' => $itemsMenu,

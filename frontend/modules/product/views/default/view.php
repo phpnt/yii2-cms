@@ -8,8 +8,6 @@
  */
 
 use yii\helpers\Url;
-use common\widgets\Like\Like;
-use common\widgets\Basket\BasketButton;
 use common\widgets\ViewItems\ViewItems;
 
 /* @var $this yii\web\View */
@@ -34,15 +32,6 @@ if ($this->title != Yii::t('app', $parentItem['name'])) {
 $this->params['breadcrumbs'][] = Yii::t('app', $item['name']);
 ?>
 <div class="product-default-view">
-    <div class="row">
-        <div class="col-md-12">
-            <?= ViewItems::widget(['page' => $page, 'selectedPage' => $parentItem, 'selectedItem' => $item]); ?>
-        </div>
-        <div class="col-md-12 text-right">
-            <?= Like::widget(['document_id' => $item['id']]) ?>
-        </div>
-        <div class="col-md-12 text-right">
-            <?= BasketButton::widget(['document_id' => $item['id']]) ?>
-        </div>
-    </div>
+    <?= ViewItems::widget(['page' => $page, 'selectedPage' => $parentItem, 'selectedItem' => $item]); ?>
 </div>
+

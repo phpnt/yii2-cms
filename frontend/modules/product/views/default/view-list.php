@@ -21,8 +21,6 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-default-index">
-    <div class="col-md-12">
-        <?= ViewItems::widget(['page' => $page, 'selectedPage' => $selectedPage]); ?>
-    </div>
+<div class="post-default-view-list">
+    <?= ViewItems::widget(['page' => $page, 'selectedPage' => $selectedPage]); ?>
 </div>

@@ -2,6 +2,7 @@
 
 namespace frontend\modules\main\controllers;
 
+use common\models\Constants;
 use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
@@ -123,6 +124,58 @@ class DefaultController extends Controller
     {
         return $this->render('index', [
             'page' => $this->page,
+        ]);
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionViewList($folder)
+    {
+        $selectedPage = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => $folder,
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        return $this->render('view-list', [
+            'page' => $this->page,
+            'selectedPage' => $selectedPage,
+        ]);
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionView($alias)
+    {
+        $item = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => $alias,
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        $parentItem = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'id' => $item['parent_id'],
+                'status' => Constants::STATUS_DOC_ACTIVE
+            ])
+            ->one();
+
+        return $this->render('view', [
+            'page' => $this->page,
+            'parentItem' => $parentItem,
+            'item' => $item
         ]);
     }
 }

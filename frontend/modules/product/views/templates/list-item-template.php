@@ -15,6 +15,7 @@ use yii\helpers\Url;
 /* @var $fieldsManage \common\components\other\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
 ?>
+<?php /* Отображение элемента в списке */ ?>
 <a href="<?= Url::to(['/' . $page['alias'] . '/default/view', 'alias' => $item['alias']]) ?>" class="element-link">
     <div class="element-card">
         <?= Yii::t('app', $item['name']) ?><br>

@@ -14,12 +14,5 @@ use common\widgets\ViewItems\ViewItems;
 /* @var $page array информация о странице */
 ?>
 <div class="product-default-index">
-    <div class="row">
-        <div class="col-md-12">
-            <?= Yii::t('app', $page['content']); ?>
-        </div>
-        <div class="col-md-12">
-            <?= ViewItems::widget(['page' => $page]); ?>
-        </div>
-    </div>
+    <?= ViewItems::widget(['page' => $page]); ?>
 </div>

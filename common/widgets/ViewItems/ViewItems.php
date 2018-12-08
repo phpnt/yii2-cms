@@ -9,6 +9,7 @@
 
 namespace common\widgets\ViewItems;
 
+use Yii;
 use common\models\Constants;
 use yii\base\Widget;
 use yii\helpers\Url;
@@ -57,24 +58,27 @@ class ViewItems extends Widget
         }
 
         $folders = $this->getChildFolders($this->page['id']);
+        $itemsMenu = [];
 
         /* Если нет папок отображаем только элементы */
         if (!$folders && !$this->selectedPage && !$this->selectedItem) {
-            return $this->render('no_menu', [
+            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-list-template', [
+                'page' => $this->page,
                 'items' => $items,
-                'widget' => $this,
+                'itemsMenu' => $itemsMenu,
             ]);
         };
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if (!$folders && $this->selectedPage && $this->selectedItem) {
-            return $this->render('no_menu_element', [
-                'widget' => $this,
+            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-item-template', [
+                'page' => $this->page,
+                'item' => $this->selectedItem,
+                'itemsMenu' => $itemsMenu,
             ]);
         };
 
         /* Формируем меню */
-        $itemsMenu = [];
         foreach ($folders as $folder) {
             $class = '';
             if ($folder['id'] == $this->selectedPage['id']) {
@@ -83,7 +87,7 @@ class ViewItems extends Widget
                 $class = 'mm-active';
             }
             $itemsMenu[$folder['id']] = [
-                'label' => $folder['name'],
+                'label' => Yii::t('app', $folder['name']),
                 'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $folder['alias']]),
                 'options' => [
                     'class' => $class,
@@ -108,7 +112,7 @@ class ViewItems extends Widget
                             $class = 'mm-active';
                         };
                         $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
-                            'label' => $in_1_folder['name'],
+                            'label' => Yii::t('app', $in_1_folder['name']),
                             'url' => ['#'],
                         ];
                         foreach ($in_2_folders as $in_2_folder) {
@@ -124,7 +128,7 @@ class ViewItems extends Widget
                                 $class = 'active';
                             };
                             $itemsMenu[$folder['id']]['items'][$in_1_folder['id']]['items'][$in_2_folder['id']] = [
-                                'label' => $in_2_folder['name'],
+                                'label' => Yii::t('app', $in_2_folder['name']),
                                 'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $in_2_folder['alias']]),
                                 'options' => [
                                     'class' => $class,
@@ -137,7 +141,7 @@ class ViewItems extends Widget
                             $class = 'active';
                         };
                         $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
-                            'label' => $in_1_folder['name'],
+                            'label' => Yii::t('app', $in_1_folder['name']),
                             'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $in_1_folder['alias']]),
                             'options' => [
                                 'class' => $class,
@@ -150,16 +154,17 @@ class ViewItems extends Widget
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if ($this->selectedPage && $this->selectedItem) {
-            return $this->render('with_menu_element', [
+            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-item-template', [
+                'page' => $this->page,
+                'item' => $this->selectedItem,
                 'itemsMenu' => $itemsMenu,
-                'widget' => $this,
             ]);
         };
 
-        return $this->render('with_menu', [
+        return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-list-template', [
+            'page' => $this->page,
             'items' => $items,
             'itemsMenu' => $itemsMenu,
-            'widget' => $this,
         ]);
     }
 

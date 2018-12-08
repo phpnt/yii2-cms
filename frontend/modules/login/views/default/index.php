@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="login-default-index">
     <div class="row">
         <div class="col-md-12">
-            <?= $page['content'] ?>
+            <?= Yii::t('app', $page['content']) ?>
             <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
             ]); ?>
