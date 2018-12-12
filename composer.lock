@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "325eeb004bb8a31f8d03a059757e3eec",
+    "content-hash": "96bfb421b88b7a913b37ce0e829b4caa",
     "packages": [
         {
             "name": "2amigos/yii2-multi-select-widget",
@@ -316,7 +316,7 @@
             "version": "3.3.7",
             "source": {
                 "type": "git",
-                "url": "git@github.com:vakata/jstree.git",
+                "url": "https://github.com/vakata/jstree.git",
                 "reference": "bc5187e5826244dee5ebdc0e9db2e2652fefe928"
             },
             "dist": {
@@ -1339,6 +1339,50 @@
                 "yii2 wow"
             ],
             "time": "2017-04-12T06:44:45+00:00"
+        },
+        {
+            "name": "phpnt/youtube",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpnt/youtube.git",
+                "reference": "ee8d33f7dacf5ca1b511ddb24efe2a527b40b201"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpnt/youtube/zipball/ee8d33f7dacf5ca1b511ddb24efe2a527b40b201",
+                "reference": "ee8d33f7dacf5ca1b511ddb24efe2a527b40b201",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "phpnt\\youtube\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "phpNT",
+                    "email": "phpnt@phpnt.com",
+                    "homepage": "http://phpnt.com"
+                }
+            ],
+            "description": "Yii2 YouTube Widget",
+            "keywords": [
+                "phpnt",
+                "yii2",
+                "yii2 youtube",
+                "youtube"
+            ],
+            "time": "2018-12-09T17:40:38+00:00"
         },
         {
             "name": "studio-42/elfinder",
@@ -2903,16 +2947,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.0",
+            "version": "7.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "520723129e2b3fc1dc4c0953e43c9d40e1ecb352"
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/520723129e2b3fc1dc4c0953e43c9d40e1ecb352",
-                "reference": "520723129e2b3fc1dc4c0953e43c9d40e1ecb352",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c23d78776ad415d5506e0679723cb461d71f488f",
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f",
                 "shasum": ""
             },
             "require": {
@@ -2983,7 +3027,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-12-07T07:08:12+00:00"
+            "time": "2018-12-12T07:20:32+00:00"
         },
         {
             "name": "psr/http-message",

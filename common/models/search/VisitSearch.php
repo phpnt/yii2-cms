@@ -47,6 +47,10 @@ class VisitSearch extends VisitForm
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                // количество пунктов на странице
+                'pageSize' => 10,
+            ]
         ]);
 
         $this->load($params);

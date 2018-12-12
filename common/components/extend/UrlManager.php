@@ -176,15 +176,27 @@ class UrlManager extends BaseUrlManager
                 ->all();
         }
 
-        $i = 0;
         foreach ($navigation as $item) {
-            if ($i == 0) {
-                $rules[] = [
-                    'pattern' => '',
-                    'route' => $item['alias'] . '/default/index',
-                    'suffix' => ''
-                ];
-            }
+            $rules[] = [
+                'pattern' => 'profile/<controller>/<action>',
+                'route' => 'profile/default/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'login/<controller>/<action>',
+                'route' => 'login/default/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'signup/<controller>/<action>',
+                'route' => 'signup/default/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'basket/<controller>/<action>',
+                'route' => 'basket/default/<action>',
+                'suffix' => ''
+            ];
             $rules[] = [
                 'pattern' => 'bm/update',
                 'route' => 'bm/update',
@@ -201,36 +213,25 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => 'signup/default/confirm',
-                'route' => 'signup/default/confirm',
+                'pattern' => '<alias>/<parent>/<item_alias>',
+                'route' => 'control/default/view',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => $item['alias'] . '/<folder:[A-Za-z0-9-_]+>/<alias:[A-Za-z0-9-_]+>',
-                'route' => $item['alias'] . '/default/view',
+                'pattern' => '<alias>/<folder_alias>',
+                'route' => 'control/default/view-list',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => $item['alias'] . '/public/<alias:[A-Za-z0-9-_]+>',
-                'route' => $item['alias'] . '/default/view',
+                'pattern' => '<alias>',
+                'route' => 'control/default/index',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => $item['alias'] . '/<folder:[A-Za-z0-9-_]+>',
-                'route' => $item['alias'] . '/default/view-list',
+                'pattern' => '',
+                'route' => 'control/default/index',
                 'suffix' => ''
             ];
-            $rules[] = [
-                'pattern' => $item['alias'] . '',
-                'route' => $item['alias'] . '/default/index',
-                'suffix' => ''
-            ];
-            /*$rules[] = [
-                'pattern' => '<module>/<controller>/<action>',
-                'route' => '<module>/<controller>/<action>',
-                'suffix' => ''
-            ];*/
-            $i++;
         }
 
         $this->addRules($rules);

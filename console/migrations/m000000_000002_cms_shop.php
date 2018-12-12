@@ -164,8 +164,8 @@ class m000000_000002_cms_shop extends Migration
         $this->createTable('{{%template}}', [
             'id' => $this->primaryKey()->comment('ID'),
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
-            'description' => $this->text()->notNull()->comment(Yii::t('app', 'Описание')),
-            'path' => $this->string()->comment(Yii::t('app', 'Путь к файлу')),
+            'description' => $this->text()->notNull()->comment(Yii::t('app', 'Метка для шаблона')),
+            'mark' => $this->string()->notNull()->comment(Yii::t('app', 'Путь к файлу')),
             'status' => $this->smallInteger()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
         ] , $tableOptions);
 
@@ -173,7 +173,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('template_name_index', '{{%template}}', 'name');
 
         $this->importData('template',
-            ['id', 'name', 'description', 'path', 'status'],
+            ['id', 'name', 'description', 'mark', 'status'],
             fopen(__DIR__ . '/../../console/migrations/csv/template.csv', "r"));
 
         //Таблица документов document

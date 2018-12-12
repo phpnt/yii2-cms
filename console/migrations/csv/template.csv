@@ -1,2 +1,2 @@
-id;name;description;path;status
-1;"Шаблон для публикаций";"Шаблон для публикаций";;2
+id;name;description;mark;status
+1;Шаблон для статей;Шаблон для статей;article;2

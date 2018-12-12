@@ -29,14 +29,8 @@ return [
         'basket' => [
             'class' => 'frontend\modules\basket\Module',
         ],
-        'main' => [
-            'class' => 'frontend\modules\main\Module',
-        ],
-        'post' => [
-            'class' => 'frontend\modules\post\Module',
-        ],
-        'product' => [
-            'class' => 'frontend\modules\product\Module',
+        'control' => [
+            'class' => 'frontend\modules\control\Module',
         ],
         'login' => [
             'class' => 'frontend\modules\login\Module',

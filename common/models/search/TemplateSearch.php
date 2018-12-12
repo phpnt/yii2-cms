@@ -19,7 +19,7 @@ class TemplateSearch extends TemplateForm
     {
         return [
             [['id', 'status'], 'integer'],
-            [['name', 'description', 'path'], 'safe'],
+            [['name', 'description', 'mark'], 'safe'],
         ];
     }
 
@@ -65,7 +65,7 @@ class TemplateSearch extends TemplateForm
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'path', $this->path]);
+            ->andFilterWhere(['like', 'mark', $this->mark]);
 
         return $dataProvider;
     }

@@ -20,38 +20,36 @@ $this->title = Yii::t('app', $page['title']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="signup-default-index">
-    <div class="row">
-        <div class="col-md-12">
-            <?= Yii::t('app', $page['content']); ?>
-            <?php $form = ActiveForm::begin([
-                'id' => 'form-signup',
-            ]); ?>
+    <div class="col-md-12">
+        <?= Yii::t('app', $page['content']); ?>
+        <?php $form = ActiveForm::begin([
+            'id' => 'form-signup',
+        ]); ?>
 
-            <?= $form->field($modelSignupForm, 'first_name')->textInput([
-                'maxlength' => true,
-                'placeholder' => $modelSignupForm->getAttributeLabel('first_name')
-            ]);?>
+        <?= $form->field($modelSignupForm, 'first_name')->textInput([
+            'maxlength' => true,
+            'placeholder' => $modelSignupForm->getAttributeLabel('first_name')
+        ]);?>
 
-            <?= $form->field($modelSignupForm, 'last_name')->textInput([
-                'maxlength' => true,
-                'placeholder' => $modelSignupForm->getAttributeLabel('last_name')
-            ]);?>
+        <?= $form->field($modelSignupForm, 'last_name')->textInput([
+            'maxlength' => true,
+            'placeholder' => $modelSignupForm->getAttributeLabel('last_name')
+        ]);?>
 
-            <?= $form->field($modelSignupForm, 'email')->textInput([
-                'maxlength' => true,
-                'placeholder' => $modelSignupForm->getAttributeLabel('email')
-            ]);?>
+        <?= $form->field($modelSignupForm, 'email')->textInput([
+            'maxlength' => true,
+            'placeholder' => $modelSignupForm->getAttributeLabel('email')
+        ]);?>
 
-            <?= $form->field($modelSignupForm, 'password')->passwordInput([
-                'maxlength' => true,
-                'placeholder' => $modelSignupForm->getAttributeLabel('password')
-            ]); ?>
+        <?= $form->field($modelSignupForm, 'password')->passwordInput([
+            'maxlength' => true,
+            'placeholder' => $modelSignupForm->getAttributeLabel('password')
+        ]); ?>
 
-            <div class="form-group">
-                <?= Html::submitButton(Yii::t('app', 'Регистрация'), ['class' => 'btn btn-primary']) ?>
-            </div>
-
-            <?php ActiveForm::end(); ?>
+        <div class="form-group">
+            <?= Html::submitButton(Yii::t('app', 'Регистрация'), ['class' => 'btn btn-primary']) ?>
         </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>

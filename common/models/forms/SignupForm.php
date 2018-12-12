@@ -106,16 +106,16 @@ class SignupForm extends UserForm
                 '{DATE_1}' => Yii::$app->formatter->asDate(time()),
             ];
 
-            $template = Yii::$app->emailTemplate->getTemplate(Yii::t('app', $template['content']), $data);
+            $content = Yii::$app->emailTemplate->getTemplate(Yii::t('app', $template['content']), $data);
 
             return Yii::$app->mailer
                 ->compose(
                     ['html' => 'template-email'],
-                    ['template' => $template]
+                    ['template' => $content]
                 )
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::t('app', '{name} робот', ['name' => Yii::$app->name])])
                 ->setTo($this->email)
-                ->setSubject(Yii::t('app', 'Сброс пароля для {name}', ['name' => Yii::$app->name]))
+                ->setSubject(Yii::t('app', $template['name']) . Yii::$app->name)
                 ->send();
         } else {
             return Yii::$app->mailer->compose(

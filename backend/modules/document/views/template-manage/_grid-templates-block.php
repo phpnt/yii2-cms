@@ -148,6 +148,18 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             },
         ],
         [
+            'attribute' => 'mark',
+            'format' => 'raw',
+            'contentOptions' => [
+                'class' => 'vcenter',
+                //'style' => 'max-width: 100px !important; width: 100px !important;'
+            ],
+            'value' => function ($modelTemplateForm) {
+                /* @var $modelTemplateForm \common\models\forms\TemplateForm */
+                return Yii::t('app', $modelTemplateForm->mark);
+            },
+        ],
+        [
             'attribute' => 'status',
             'format' => 'raw',
             'contentOptions' => [

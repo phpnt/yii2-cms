@@ -22,9 +22,14 @@ use yii\helpers\Url;
         'options' => ['data-pjax' => true]
     ]); ?>
 
-    <div class="col-md-12">
+    <div class="col-md-6">
         <?= $form->field($modelTemplateForm, 'name')
             ->textInput(['placeholder' => $modelTemplateForm->getAttributeLabel('name')]) ?>
+    </div>
+
+    <div class="col-md-6">
+        <?= $form->field($modelTemplateForm, 'mark')
+            ->textInput(['placeholder' => $modelTemplateForm->getAttributeLabel('mark')]) ?>
     </div>
 
     <div class="col-md-12">

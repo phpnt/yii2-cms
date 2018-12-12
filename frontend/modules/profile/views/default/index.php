@@ -25,39 +25,37 @@ $this->params['breadcrumbs'][] = $this->title;
 $modelUserForm = Yii::$app->user->identity;
 ?>
 <div class="profile-default-index">
-    <div class="row">
-        <div class="col-md-12">
-            <?= Yii::t('app', $page['content']) ?>
-        </div>
-        <div class="col-md-12">
-            <?= DetailView::widget([
-                'model' => $modelUserForm,
-                'attributes' => [
-                    'id',
-                    'first_name',
-                    'last_name',
-                    'email:email',
-                    'created_at:date',
-                    'updated_at:date',
-                ],
-            ]) ?>
-        </div>
-        <div class="col-md-12 text-right">
-            <?php $form = ActiveForm::begin([
-                'id' => 'profile-form',
-                'action' => Url::to(['/'.$page['alias'].'/default/logout'])
-            ]); ?>
+    <div class="col-md-12">
+        <?= Yii::t('app', $page['content']) ?>
+    </div>
+    <div class="col-md-12">
+        <?= DetailView::widget([
+            'model' => $modelUserForm,
+            'attributes' => [
+                'id',
+                'first_name',
+                'last_name',
+                'email:email',
+                'created_at:date',
+                'updated_at:date',
+            ],
+        ]) ?>
+    </div>
+    <div class="col-md-12 text-right">
+        <?php $form = ActiveForm::begin([
+            'id' => 'profile-form',
+            'action' => Url::to(['/'.$page['alias'].'/default/logout'])
+        ]); ?>
 
-            <div class="form-group">
-                <?= Html::submitButton(Yii::t('app', 'Выйти'), [
-                    'class' => 'btn btn-primary',
-                    'name' => 'login-button']) ?>
-            </div>
+        <div class="form-group">
+            <?= Html::submitButton(Yii::t('app', 'Выйти'), [
+                'class' => 'btn btn-primary',
+                'name' => 'login-button']) ?>
+        </div>
 
-            <?php ActiveForm::end(); ?>
-        </div>
-        <div class="col-md-12 text-right">
-            <?= Like::widget(['document_id' => $page['id']]) ?>
-        </div>
+        <?php ActiveForm::end(); ?>
+    </div>
+    <div class="col-md-12 text-right">
+        <?= Like::widget(['document_id' => $page['id']]) ?>
     </div>
 </div>

@@ -17,8 +17,9 @@ use yii\helpers\Url;
 class ViewItems extends Widget
 {
     public $page;
-    public $selectedPage;
-    public $selectedItem;
+    public $template;
+    public $parent;
+    public $item;
 
     public $itemContainerClass = 'col-md-4';
     public $menuContainerClass = 'col-md-3';
@@ -35,12 +36,12 @@ class ViewItems extends Widget
 
     public function run()
     {
-        if ($this->selectedPage) {
+        if ($this->parent) {
             $items = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('document')
                 ->where([
-                    'parent_id' => $this->selectedPage['id'],
+                    'parent_id' => $this->parent['id'],
                     'status' => Constants::STATUS_DOC_ACTIVE,
                     'is_folder' => null
                 ])
@@ -57,38 +58,46 @@ class ViewItems extends Widget
                 ->all();
         }
 
+        //dd($this->parent);
+
         $folders = $this->getChildFolders($this->page['id']);
         $itemsMenu = [];
 
         /* Если нет папок отображаем только элементы */
-        if (!$folders && !$this->selectedPage && !$this->selectedItem) {
-            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-list-template', [
+        if (!$folders && !$this->parent && !$this->item) {
+            return $this->render('@frontend/views/templates/index', [
                 'page' => $this->page,
-                'items' => $items,
-                'itemsMenu' => $itemsMenu,
+                'template' => $this->template,
+                'parent' => false,
+                'itemsMenu' => false,
+                'item' => false,
+                'items' => $items ? $items : false,
             ]);
         };
 
         /* Если нет папок и выбран элемент отображаем только элемент */
-        if (!$folders && $this->selectedPage && $this->selectedItem) {
-            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-item-template', [
+        if (!$folders && $this->parent && $this->item) {
+            return $this->render('@frontend/views/templates/index', [
                 'page' => $this->page,
-                'item' => $this->selectedItem,
-                'itemsMenu' => $itemsMenu,
+                'template' => $this->template,
+                'parent' => $this->parent,
+                'itemsMenu' => false,
+                'item' => $this->item,
+                'items' => false,
             ]);
         };
 
         /* Формируем меню */
         foreach ($folders as $folder) {
             $class = '';
-            if ($folder['id'] == $this->selectedPage['id']) {
+            if ($folder['id'] == $this->parent['id']) {
                 $class = 'active';
-            } elseif ($folder['id'] == $this->selectedPage['parent_id']) {
+            } elseif ($folder['id'] == $this->parent['parent_id']) {
                 $class = 'mm-active';
             }
             $itemsMenu[$folder['id']] = [
                 'label' => Yii::t('app', $folder['name']),
-                'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $folder['alias']]),
+                'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $folder['alias']]),
                 'options' => [
                     'class' => $class,
                 ],
@@ -108,7 +117,7 @@ class ViewItems extends Widget
 
                     if ($in_2_folders) {
                         $class = '';
-                        if ($in_1_folder['id'] == $this->selectedPage['parent_id']) {
+                        if ($in_1_folder['id'] == $this->parent['parent_id']) {
                             $class = 'mm-active';
                         };
                         $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
@@ -124,12 +133,12 @@ class ViewItems extends Widget
                             ];
 
                             $class = '';
-                            if ($in_2_folder['id'] == $this->selectedPage['id']) {
+                            if ($in_2_folder['id'] == $this->parent['id']) {
                                 $class = 'active';
                             };
                             $itemsMenu[$folder['id']]['items'][$in_1_folder['id']]['items'][$in_2_folder['id']] = [
                                 'label' => Yii::t('app', $in_2_folder['name']),
-                                'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $in_2_folder['alias']]),
+                                'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $in_2_folder['alias']]),
                                 'options' => [
                                     'class' => $class,
                                 ],
@@ -137,12 +146,12 @@ class ViewItems extends Widget
                         }
                     } else {
                         $class = '';
-                        if ($in_1_folder['id'] == $this->selectedPage['id']) {
+                        if ($in_1_folder['id'] == $this->parent['id']) {
                             $class = 'active';
                         };
                         $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
                             'label' => Yii::t('app', $in_1_folder['name']),
-                            'url' => Url::to(['/' . $this->page['alias'] . '/default/view-list', 'folder' => $in_1_folder['alias']]),
+                            'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $in_1_folder['alias']]),
                             'options' => [
                                 'class' => $class,
                             ],
@@ -153,18 +162,24 @@ class ViewItems extends Widget
         }
 
         /* Если нет папок и выбран элемент отображаем только элемент */
-        if ($this->selectedPage && $this->selectedItem) {
-            return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-item-template', [
+        if ($this->parent && $this->item) {
+            return $this->render('@frontend/views/templates/index', [
                 'page' => $this->page,
-                'item' => $this->selectedItem,
+                'template' => $this->template,
+                'parent' => $this->parent ? $this->parent : false,
                 'itemsMenu' => $itemsMenu,
+                'item' => $this->item,
+                'items' => false,
             ]);
         };
 
-        return $this->render('@frontend/modules/'. $this->page['alias'] .'/views/templates/page-list-template', [
+        return $this->render('@frontend/views/templates/index', [
             'page' => $this->page,
-            'items' => $items,
+            'template' => $this->template,
+            'parent' => $this->parent ? $this->parent : false,
             'itemsMenu' => $itemsMenu,
+            'item' => false,
+            'items' => $items,
         ]);
     }
 

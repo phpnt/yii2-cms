@@ -170,6 +170,36 @@ a.desc:after {
 .m-b-xl {
     margin-bottom: 60px;
 }
+.p-t-xs {
+    padding-top: 5px;
+}
+.p-t-sm {
+    padding-top: 10px;
+}
+.p-t-md {
+    padding-top: 20px;
+}
+.p-t-lg {
+    padding-top: 40px;
+}
+.p-t-xl {
+    padding-top: 60px;
+}
+.p-b-zero {
+    padding-bottom: 0;
+}
+.p-b-sm {
+    padding-bottom: 10px;
+}
+.p-b-md {
+    padding-bottom: 20px;
+}
+.p-b-lg {
+    padding-bottom: 40px;
+}
+.p-b-xl {
+    padding-bottom: 60px;
+}
 .display-none {
     display: none;
 }

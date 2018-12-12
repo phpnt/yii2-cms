@@ -10,7 +10,7 @@ use Yii;
  * @property int $id ID
  * @property string $name Наименование
  * @property string $description Описание
- * @property string $path Путь к файлу
+ * @property string $mark Путь к файлу
  * @property int $status Статус
  *
  * @property Document[] $documents
@@ -32,10 +32,10 @@ class Template extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
+            [['name', 'description', 'mark'], 'required'],
             [['description'], 'string'],
             [['status'], 'integer'],
-            [['name', 'path'], 'string', 'max' => 255],
+            [['name', 'mark'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,7 +48,7 @@ class Template extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Наименование'),
             'description' => Yii::t('app', 'Описание'),
-            'path' => Yii::t('app', 'Путь к файлу'),
+            'mark' => Yii::t('app', 'Метка для шаблона'),
             'status' => Yii::t('app', 'Статус'),
         ];
     }
