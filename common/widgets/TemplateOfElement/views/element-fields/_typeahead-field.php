@@ -13,9 +13,12 @@
 /* @var $modelFieldForm \common\models\forms\FieldForm */
 /* @var $remoteUrl string */
 /* @var $attribute string */
+/* @var $inputNameId string */
 /* @var $changeAttribute string */
 /* @var $value string */
 /* @var $hiddenValue int */
+
+$containerSetCookie = 'container-' . $changeAttribute;
 ?>
 <?php $i = 0; ?>
 <div class="<?= $containerClass ?>">
@@ -31,7 +34,7 @@
         'name' => "DocumentForm[elements_fields][$modelFieldForm->id][$i]",
         'hiddenValue' => $hiddenValue,
         'options' => [
-            'id' => 'field-' . $modelFieldForm->id . '-' . $i,
+            'id' => $inputNameId,
             'name' => "DocumentForm[elements_fields][$modelFieldForm->id][$i]",
             'class' => 'typeahead form-control',
             'value' => $value,
@@ -51,10 +54,31 @@
         'typeaheadEvents' => [
             'typeahead:selected' => new \yii\web\JsExpression(
         'function(obj, datum, name) {
+                if ("' . $changeAttribute . '" == "id_geo_country") {
+                    // если выбрана страна очищаем поля региона и города
+                    $("#name_geo_region").val("");
+                    $("#id_geo_region").val("");
+                    $("#name_geo_city").val("");
+                    $("#id_geo_city").val("");
+                }
+                if ("' . $changeAttribute . '" == "id_geo_region") {
+                    // если выбран регион очищаем поля города
+                    $("#name_geo_city").val("");
+                    $("#id_geo_city").val("");
+                }
                 $("#' . $changeAttribute . '").val(datum.id);
+                $.pjax({
+                    type: "GET", 
+                    url: "/geo-manage/set-cookie?name=' . $changeAttribute . '&value=" + datum.id,
+                    container: "#' . $containerSetCookie . '",
+                    push: false,
+                    timeout: 20000,
+                    scrollTo: false
+                });
             }'),
         ],
     ])->label(Yii::t('app', $modelFieldForm->name)) ?>
+    <div id="<?= $containerSetCookie ?>"></div>
     <?php if (isset($modelDocumentForm->errors_fields[$modelFieldForm->id][$i])): ?>
         <?php $error = $modelDocumentForm->errors_fields[$modelFieldForm->id][$i]; ?>
         <?php $this->registerJs('addError("#group-' . $modelFieldForm->id . '-' . $i . '", "'.$error.'");') ?>

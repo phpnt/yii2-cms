@@ -61,27 +61,4 @@ class CountryController extends Controller
             'dataProviderGeoCountry' => $dataProviderGeoCountry,
         ]);
     }
-
-    /**
-     * TypeAHead для формы
-     */
-    public function actionGetCountry($query)
-    {
-        $manyGeoCountryForm = GeoCountryForm::find()
-            ->where(['like', 'name_ru', $query])
-            ->orWhere(['like', 'short_name', $query])
-            ->orderBy(['name_ru' => SORT_ASC])
-            ->all();
-
-        $result = [];
-        foreach ($manyGeoCountryForm as $modelGeoCountryForm) {
-            /* @var $modelGeoCountryForm GeoCountryForm */
-            $result[] = [
-                'id' => $modelGeoCountryForm->id_geo_country,
-                'name' => $modelGeoCountryForm->name_ru
-            ];
-        }
-
-        return $this->asJson($result);
-    }
 }

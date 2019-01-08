@@ -1,4 +1,4 @@
 id;first_name;last_name;auth_key;password_hash;password_reset_token;email_confirm_token;email;image;sex;birthday;phone;id_geo_country;id_geo_city;address;status;ip;created_at;updated_at;login_at
-1;Имя;Фамилия;yX7myde-4QVqu98TNnX4jhUIH3lJM-JS;$2y$13$cznWNPbx4sc8vgCwsGHrRu8JUnqVXaoZKBrUShJtNeS/3pWK9/u7S;;;admin@example.ru;;;;;;;;1;46.165.62.45;1535795897;1540884127;2018
+1;Имя;Фамилия;yX7myde-4QVqu98TNnX4jhUIH3lJM-JS;$2y$13$cznWNPbx4sc8vgCwsGHrRu8JUnqVXaoZKBrUShJtNeS/3pWK9/u7S;;;admin@example.ru;;;;;;;;1;46.165.62.45;1535795897;1540884127;2019
 2;Имя;Фамилия;7a9NrEIwx3_YhPAVxm1uuEOMzodSJJBI;$2y$13$QukKvWqJdEHpkeosr1thU.xIHt/zq4cI6uD1a9Q5l1i2Kb0fLEJHy;;;editor@example.ru;;;;;;;;1;46.165.62.45;1535795897;1540884140;2018
 3;Имя;Фамилия;oblghM4fm3QPKZvnL9skp6aC4M_enA82;$2y$13$yZR.1muogIbvCycwfswpcOW3Zh7BTY3b82wMAQeJsaU0MsbaHNygW;;;tester@example.ru;;;;;;;;1;46.165.62.45;1535795898;1540884157;2018

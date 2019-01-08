@@ -13,15 +13,12 @@ use yii\bootstrap\ButtonDropdown;
 use yii\helpers\Url;
 use backend\assets\TranslateAsset;
 use mihaildev\ckeditor\CKEditor;
-use common\models\Constants;
-use phpnt\ICheck\ICheck;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
+use common\widgets\TemplateOfElement\SetElementFields;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $modelDocumentForm \common\models\forms\DocumentForm */
-/* @var $fieldsManage \common\components\other\FieldsManage */
-$fieldsManage = Yii::$app->fieldsManage;
 ?>
 <div id="elements-form-block">
     <?php BootstrapSelectAsset::register($this) ?>
@@ -131,167 +128,10 @@ $fieldsManage = Yii::$app->fieldsManage;
     </div>
 
     <?php if (isset($modelDocumentForm->template)): ?>
-        <?php foreach ($modelDocumentForm->template->fields as $modelFieldForm): ?>
-            <?php /* @var $modelFieldForm \common\models\forms\FieldForm */ ?>
-            <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT): ?>
-                <?= $this->render('text-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_INT_RANGE): ?>
-                <?= $this->render('text-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
-                <?= $this->render('text-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_number',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT_RANGE): ?>
-                <?= $this->render('text-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_number',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_EMAIL ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_URL ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_SOCIAL ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_YOUTUBE): ?>
-                <?= $this->render('text-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_string',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_TEXT): ?>
-                <?= $this->render('textarea-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_string',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CHECKBOX): ?>
-                <?= $this->render('checkboxes-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_RADIO): ?>
-                <?= $this->render('radios-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_LIST): ?>
-                <?= $this->render('list-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                    'multiple' => false
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_LIST_MULTY): ?>
-                <?= $this->render('list-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_int',
-                    'modelFieldForm' => $modelFieldForm,
-                    'multiple' => true
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE): ?>
-                <?= $this->render('date-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'value_string',
-                    'attribute2' => 'input_date_to',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
-                <?= $this->render('date-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'attribute' => 'input_date_from',
-                    'attribute2' => 'input_date_to',
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY): ?>
-                <?php $id_geo_country = isset($modelDocumentForm->elements_fields[$modelFieldForm->id][0]) ? $modelDocumentForm->elements_fields[$modelFieldForm->id][0] : $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $modelDocumentForm->id); ?>
-                <?php $placeholder = $fieldsManage->getCountry($id_geo_country); ?>
-                <?= $this->render('typeahead-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'modelFieldForm' => $modelFieldForm,
-                    'remoteUrl' => '/geo/country/get-country?query=%QUERY',
-                    'attribute' => 'value_string',
-                    'changeAttribute' => 'id_geo_country',
-                    'value' => $placeholder,
-                    'hiddenValue' => $id_geo_country
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_REGION): ?>
-                <?php $id_geo_region = isset($modelDocumentForm->elements_fields[$modelFieldForm->id][0]) ? $modelDocumentForm->elements_fields[$modelFieldForm->id][0] : $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $modelDocumentForm->id); ?>
-                <?php $placeholder = $fieldsManage->getRegion($id_geo_region); ?>
-                <?= $this->render('typeahead-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'modelFieldForm' => $modelFieldForm,
-                    'remoteUrl' => '/geo/region/get-region?query=%QUERY',
-                    'attribute' => 'value_string',
-                    'changeAttribute' => 'id_geo_region',
-                    'value' => $placeholder,
-                    'hiddenValue' => $id_geo_region
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CITY): ?>
-                <?php $id_geo_city = isset($modelDocumentForm->elements_fields[$modelFieldForm->id][0]) ? $modelDocumentForm->elements_fields[$modelFieldForm->id][0] : $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $modelDocumentForm->id); ?>
-                <?php $placeholder = $fieldsManage->getCity($id_geo_city); ?>
-                <?= $this->render('typeahead-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'modelFieldForm' => $modelFieldForm,
-                    'remoteUrl' => '/geo/city/get-city?query=%QUERY',
-                    'attribute' => 'value_string',
-                    'changeAttribute' => 'id_geo_city',
-                    'value' => $placeholder,
-                    'hiddenValue' => $id_geo_city
-                ]); ?>
-            <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FILE ||
-                $modelFieldForm->type == Constants::FIELD_TYPE_FEW_FILES
-            ): ?>
-                <?= $this->render('file-field', [
-                    'containerClass' => 'col-md-12',
-                    'form' => $form,
-                    'modelDocumentForm' => $modelDocumentForm,
-                    'modelFieldForm' => $modelFieldForm,
-                ]); ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
+        <?= SetElementFields::widget([
+            'form' => $form,
+            'modelDocumentForm' => $modelDocumentForm,
+        ]); ?>
     <?php endif; ?>
 
     <div class="clearfix"></div>

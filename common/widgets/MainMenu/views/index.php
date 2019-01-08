@@ -15,8 +15,8 @@ use yii\helpers\Url;
 /* @var $widget \common\widgets\MainMenu\MainMenu */
 /* @var $site array */
 /* @var $navigation array */
-
-//dd(Yii::$app->hasModule('basket'));
+/* @var $fieldsManage \common\components\other\FieldsManage */
+$fieldsManage = Yii::$app->fieldsManage;
 ?>
 <?php
 NavBar::begin([
@@ -25,9 +25,6 @@ NavBar::begin([
     'options' => $widget->optoinsNavBar,
 ]);
 $items = [];
-
-//dd($navigation);
-//dd(Yii::$app->hasModule('mainsdf'));
 ?>
 <?php foreach ($navigation as $item): ?>
     <?php if ($item['alias'] == 'basket'): ?>
@@ -39,13 +36,71 @@ $items = [];
         ];
         ?>
     <?php elseif (Yii::$app->hasModule($item['alias'])): ?>
-        <?php
-        $items[] = [
-            'label' => Yii::t('app', $item['name']),
-            'url' => Url::to(['/' . $item['alias'] . '/default/index']),
-            'active' => Yii::$app->controller->module->id == $item['alias']
-        ];
-        ?>
+        <?php if ($item['alias'] == 'login'): ?>
+            <?php /* Если "Войти" */ ?>
+            <?php
+            $items[] = [
+                'label' => Yii::t('app', $item['name']),
+                'url' => false,
+                'options' => [
+                    'class' => 'cursor-pointer',
+                    'onclick' => '
+                        $.pjax({
+                            type: "POST",
+                            url: "'.Url::to(['/' . $item['alias'] . '/default/index']).'",
+                            container: "#pjaxModalUniversal",
+                            push: false,
+                            scrollTo: false
+                        })'
+                ]
+            ];
+            ?>
+        <?php elseif ($item['alias'] == 'signup'): ?>
+            <?php
+            $items[] = [
+                'label' => Yii::t('app', $item['name']),
+                'url' => false,
+                'options' => [
+                    'class' => 'cursor-pointer',
+                    'onclick' => '
+                        $.pjax({
+                            type: "POST",
+                            url: "'.Url::to(['/' . $item['alias'] . '/default/index']).'",
+                            container: "#pjaxModalUniversal",
+                            push: false,
+                            scrollTo: false
+                        })'
+                ]
+            ];
+            ?>
+        <?php elseif ($item['alias'] == 'geo'): ?>
+            <?php
+            $cityName = $fieldsManage->getCityName();
+            $items[] = [
+                'label' => $cityName ? $cityName : Yii::t('app', $item['name']),
+                'url' => false,
+                'options' => [
+                    'class' => 'cursor-pointer',
+                    'onclick' => '
+                        $.pjax({
+                            type: "POST",
+                            url: "'.Url::to(['/' . $item['alias'] . '/default/index']).'",
+                            container: "#pjaxModalUniversal",
+                            push: false,
+                            scrollTo: false
+                        })'
+                ]
+            ];
+            ?>
+        <?php else: ?>
+            <?php
+            $items[] = [
+                'label' => Yii::t('app', $item['name']),
+                'url' => Url::to(['/' . $item['alias'] . '/default/index']),
+                'active' => Yii::$app->controller->module->id == $item['alias']
+            ];
+            ?>
+        <?php endif; ?>
     <?php else: ?>
         <?php
         $items[] = [

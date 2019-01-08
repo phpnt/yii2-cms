@@ -1,1 +1,4 @@
 id;name;type;is_required;is_unique;min;max;params;template_id
+1;Страна;17;1;;;;;2
+2;Регион;16;1;;;;;2
+3;Город;15;1;;;;;2

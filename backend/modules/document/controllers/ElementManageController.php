@@ -263,7 +263,7 @@ class ElementManageController extends Controller
         );
 
         if ($modelValueFileForm->type == Constants::FIELD_TYPE_FILE) {
-            return $this->renderAjax('_file', ['modelValueFileForm' => null]);
+            return $this->renderAjax('@common/widgets/TemplateOfElement/views/element-fields/__file', ['modelValueFileForm' => null]);
         }
 
         $manyValueFileForm = ValueFileForm::findAll([
@@ -271,6 +271,6 @@ class ElementManageController extends Controller
             'document_id' => $modelValueFileForm->document_id,
         ]);
 
-        return $this->renderAjax('_files', ['manyValueFileForm' => $manyValueFileForm]);
+        return $this->renderAjax('@common/widgets/TemplateOfElement/views/element-fields/__files', ['manyValueFileForm' => $manyValueFileForm]);
     }
 }

@@ -61,27 +61,4 @@ class CityController extends Controller
             'dataProviderGeoCitySearch' => $dataProviderGeoCitySearch,
         ]);
     }
-
-    /**
-     * TypeAHead для формы
-     */
-    public function actionGetCity($query)
-    {
-        $manyGeoCityForm = GeoCityForm::find()
-            ->where(['like', 'name_ru', $query])
-            ->orWhere(['like', 'name_en', $query])
-            ->orderBy(['name_ru' => SORT_ASC])
-            ->all();
-
-        $result = [];
-        foreach ($manyGeoCityForm as $modelGeoCityForm) {
-            /* @var $modelGeoCityForm GeoCityForm */
-            $result[] = [
-                'id' => $modelGeoCityForm->id_geo_city,
-                'name' => $modelGeoCityForm->name_ru
-            ];
-        }
-
-        return $this->asJson($result);
-    }
 }

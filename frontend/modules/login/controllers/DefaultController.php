@@ -135,9 +135,20 @@ class DefaultController extends Controller
             return $this->goHome();
         }
 
-        return $this->render('index', [
+        if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        if ($modelLoginForm->errors) {
+            return $this->renderAjax('_login-form', [
+                'page' => $this->page,
+                'modelLoginForm' => $modelLoginForm,
+            ]);
+        }
+
+        return $this->renderAjax('login', [
             'page' => $this->page,
-            'modelLoginForm' => $modelLoginForm
+            'modelLoginForm' => $modelLoginForm,
         ]);
     }
 
@@ -148,30 +159,54 @@ class DefaultController extends Controller
      */
     public function actionRequestPasswordReset()
     {
+        if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
         $modelPasswordResetRequestForm = new PasswordResetRequestForm();
-        if ($modelPasswordResetRequestForm->load(Yii::$app->request->post()) && $modelPasswordResetRequestForm->validate()) {
-            if ($modelPasswordResetRequestForm->sendEmail()) {
-                Yii::$app->session->set(
-                    'message',
-                    [
-                        'type'      => 'success',
-                        'icon'      => 'glyphicon glyphicon-ok',
-                        'message'   => Yii::t('app', 'Проверьте ваш Емайл и следуйте дальнейшим инструкциям.'),
-                    ]
-                );
-                return $this->goHome();
-            } else {
-                Yii::$app->session->set(
-                    'message',
-                    [
-                        'type'      => 'danger',
-                        'icon'      => 'glyphicon glyphicon-ban',
-                        'message'   => Yii::t('app', 'Сожалеем, мы не смогли сбросить пароль для указанного адреса электронной почты'),
-                    ]
-                );
+        if ($modelPasswordResetRequestForm->load(Yii::$app->request->post())) {
+            if ($modelPasswordResetRequestForm->validate()) {
+                if ($modelPasswordResetRequestForm->sendEmail()) {
+                    Yii::$app->session->set(
+                        'message',
+                        [
+                            'type'      => 'success',
+                            'icon'      => 'glyphicon glyphicon-envelope',
+                            'message'   => ' '.Yii::t('app', 'Проверьте вашу электронную почту и следуйте дальнейшим инструкциям.'),
+                        ]
+                    );
+                    return $this->redirect(['index']);
+                } else {
+                    Yii::$app->session->set(
+                        'message',
+                        [
+                            'type'      => 'danger',
+                            'icon'      => 'glyphicon glyphicon-envelope',
+                            'message'   => ' '.Yii::t('app', 'К сожалению, мы не можем сбросить пароль для введенной электронной почты.'),
+                        ]
+                    );
+                    return $this->renderAjax('_request-password-reset-token-form', [
+                        'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
+                    ]);
+                }
             }
         }
-        return $this->render('requestPasswordResetToken', [
+
+        if ($modelPasswordResetRequestForm->errors) {
+            Yii::$app->session->set(
+                'message',
+                [
+                    'type'      => 'danger',
+                    'icon'      => 'glyphicon glyphicon-envelope',
+                    'message'   => $modelPasswordResetRequestForm->getFirstError('email'),
+                ]
+            );
+            return $this->renderAjax('_request-password-reset-token-form', [
+                'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
+            ]);
+        }
+
+        return $this->renderAjax('request-password-reset-token', [
             'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
         ]);
     }

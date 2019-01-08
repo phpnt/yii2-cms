@@ -1,0 +1,30 @@
+{
+    "name": "phpnt/yii2-oauth",
+    "description": "Yii2 OAuth 2.0",
+    "keywords": ["yii2", "phpnt", "oauth", "authclient"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "minimum-stability" : "dev",
+    "prefer-stable": true,
+    "support": {
+        "source": "https://github.com/phpnt/yii2-oauth"
+    },
+    "authors": [
+        {
+            "name": "phpNT",
+            "email": "phpnt@phpnt.com",
+            "homepage": "http://phpnt.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-authclient": "*",
+        "phpnt/bootstrap-notify": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "phpnt\\oAuth\\": ""
+        }
+    }
+}

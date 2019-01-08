@@ -7,6 +7,9 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'controllerMap' => [
+        'geo-manage' => \common\widgets\TemplateOfElement\controllers\GeoController::class,
+    ],
     'components' => [
         'fieldsManage' => \common\components\other\FieldsManage::class,
         'cache' => [

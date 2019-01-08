@@ -57,27 +57,4 @@ class RegionController extends Controller
             'dataProviderGeoRegionSearch' => $dataProviderGeoRegionSearch,
         ]);
     }
-
-    /**
-     * TypeAHead для формы
-     */
-    public function actionGetRegion($query)
-    {
-        $manyGeoRegionForm = GeoRegionForm::find()
-            ->where(['like', 'name_ru', $query])
-            ->orWhere(['like', 'name_en', $query])
-            ->orderBy(['name_ru' => SORT_ASC])
-            ->all();
-
-        $result = [];
-        foreach ($manyGeoRegionForm as $modelGeoRegionForm) {
-            /* @var $modelGeoRegionForm GeoRegionForm */
-            $result[] = [
-                'id' => $modelGeoRegionForm->id_geo_region,
-                'name' => $modelGeoRegionForm->name_ru
-            ];
-        }
-
-        return $this->asJson($result);
-    }
 }

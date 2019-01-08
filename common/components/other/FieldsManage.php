@@ -795,45 +795,16 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает название города
-    public function getCity($id_geo_city = null)
-    {
-        if ($id_geo_city) {
-            $data = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('geo_city')
-                ->where([
-                    'id_geo_city' => $id_geo_city,
-                ])
-                ->one();
-            if ($data) {
-                return $data['name_ru'];
-            }
-        }
-        return null;
-    }
-
-    // получает название региона
-    public function getRegion($id_geo_region = null)
-    {
-        if ($id_geo_region) {
-            $data = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('geo_region')
-                ->where([
-                    'id_geo_region' => $id_geo_region,
-                ])
-                ->one();
-            if ($data) {
-                return $data['name_ru'];
-            }
-        }
-        return null;
-    }
-
     // получает название страны
-    public function getCountry($id_geo_country = null)
+    public function getCountryName($id_geo_country = null)
     {
+        if (!$id_geo_country) {
+            $cookies = Yii::$app->request->cookies;
+            if (isset($cookies['id_geo_country'])) {
+                $id_geo_country = $cookies['id_geo_country']->value;
+            }
+        }
+
         if ($id_geo_country) {
             $data = (new \yii\db\Query())
                 ->select(['*'])
@@ -843,9 +814,105 @@ class FieldsManage extends Object
                 ])
                 ->one();
             if ($data) {
-                return $data['name_ru'];
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['short_name'];
+                }
             }
         }
+
+        return null;
+    }
+
+    // получает ID страны
+    public function getCountryId()
+    {
+        $cookies = Yii::$app->request->cookies;
+        if (isset($cookies['id_geo_country'])) {
+            return $cookies['id_geo_country']->value;
+        }
+
+        return null;
+    }
+
+    // получает название региона
+    public function getRegionName($id_geo_region = null)
+    {
+        if (!$id_geo_region) {
+            $cookies = Yii::$app->request->cookies;
+            if (isset($cookies['id_geo_region'])) {
+                $id_geo_region = $cookies['id_geo_region']->value;
+            }
+        }
+
+        if ($id_geo_region) {
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_region')
+                ->where([
+                    'id_geo_region' => $id_geo_region,
+                ])
+                ->one();
+            if ($data) {
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['name_en'];
+                }
+            }
+        }
+        return null;
+    }
+
+    // получает ID региона
+    public function getRegionId()
+    {
+        $cookies = Yii::$app->request->cookies;
+        if (isset($cookies['id_geo_region'])) {
+            return $cookies['id_geo_region']->value;
+        }
+
+        return null;
+    }
+
+    // получает название города
+    public function getCityName($id_geo_city = null)
+    {
+        if (!$id_geo_city) {
+            $cookies = Yii::$app->request->cookies;
+            if (isset($cookies['id_geo_city'])) {
+                $id_geo_city = $cookies['id_geo_city']->value;
+            }
+        }
+
+        if ($id_geo_city) {
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_city')
+                ->where([
+                    'id_geo_city' => $id_geo_city,
+                ])
+                ->one();
+            if ($data) {
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['name_en'];
+                }
+            }
+        }
+        return null;
+    }
+
+    // получает ID региона
+    public function getCityId()
+    {
+        $cookies = Yii::$app->request->cookies;
+        if (isset($cookies['id_geo_city'])) {
+            return $cookies['id_geo_city']->value;
+        }
+
         return null;
     }
 }

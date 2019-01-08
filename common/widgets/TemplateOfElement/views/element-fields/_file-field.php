@@ -46,7 +46,7 @@ switch ($modelFieldForm->type) {
 
         <?php $manyValueFileForm = $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $modelDocumentForm->id); ?>
         <?php if ($manyValueFileForm): ?>
-            <?= $this->render('_files', [
+            <?= $this->render('__files', [
                 'manyValueFileForm' => $manyValueFileForm
             ]) ?>
         <?php endif; ?>
@@ -68,7 +68,7 @@ switch ($modelFieldForm->type) {
 
         <?php $modelValueFileForm = $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $modelDocumentForm->id); ?>
         <?php if ($modelValueFileForm): ?>
-            <?= $this->render('_file', [
+            <?= $this->render('__file', [
                 'modelValueFileForm' => $modelValueFileForm
             ]) ?>
         <?php endif; ?>

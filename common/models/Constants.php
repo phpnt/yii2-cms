@@ -11,7 +11,7 @@ namespace common\models;
 class Constants
 {
     // Статусы пользователя
-    const STATUS_BLOCKED = 0;   // заблокирован
+    const STATUS_BLOCKED = 6;   // заблокирован
     const STATUS_ACTIVE = 1;    // активен
     const STATUS_WAIT = 2;      // ожидает подтверждения
 
@@ -21,7 +21,7 @@ class Constants
     const ACCESS_USER = 3;      // авторизованным пользователям
 
     // Статусы документов
-    const STATUS_DOC_BLOCKED = 0;   // заблокирован
+    const STATUS_DOC_BLOCKED = 6;   // заблокирован
     const STATUS_DOC_ACTIVE = 1;    // активен
     const STATUS_DOC_WAIT = 2;      // ожидает подтверждения
 

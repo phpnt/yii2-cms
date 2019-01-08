@@ -178,6 +178,11 @@ class UrlManager extends BaseUrlManager
 
         foreach ($navigation as $item) {
             $rules[] = [
+                'pattern' => 'geo-manage/<action>',
+                'route' => 'geo-manage/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
                 'pattern' => 'profile/<controller>/<action>',
                 'route' => 'profile/default/<action>',
                 'suffix' => ''
@@ -190,6 +195,11 @@ class UrlManager extends BaseUrlManager
             $rules[] = [
                 'pattern' => 'signup/<controller>/<action>',
                 'route' => 'signup/default/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'geo/<controller>/<action>',
+                'route' => 'geo/default/<action>',
                 'suffix' => ''
             ];
             $rules[] = [

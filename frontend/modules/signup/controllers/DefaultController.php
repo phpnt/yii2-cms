@@ -126,24 +126,36 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         // Уже авторизированных отправляем на домашнюю страницу
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $modelSignupForm = new SignupForm();
+
         if ($modelSignupForm->load(Yii::$app->request->post()) && $modelSignupForm->save()) {
             Yii::$app->session->set(
                 'message',
                 [
                     'type'      => 'success',
-                    'icon'      => 'glyphicon glyphicon-ok',
-                    'message'   => Yii::t('app', 'Ссылка с подтверждением регистрации отправлена на Email.'),
+                    'icon'      => 'glyphicon glyphicon-envelope',
+                    'message'   => ' '.Yii::t('app', 'Ссылка с подтверждением регистрации отправлена на Email.'),
                 ]
             );
             return $this->goHome();
         }
 
-        return $this->render('index', [
+        if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        if ($modelSignupForm->errors) {
+            return $this->renderAjax('_signup-form', [
+                'page' => $this->page,
+                'modelSignupForm' => $modelSignupForm,
+            ]);
+        }
+
+        return $this->renderAjax('signup', [
             'page' => $this->page,
             'modelSignupForm' => $modelSignupForm,
         ]);

@@ -18,18 +18,22 @@ use yii\bootstrap\ActiveForm;
 $this->title = Yii::t('app', 'Сброс пароля');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="row">
+    <div class="site-reset-password m-t-xl">
+        <div class="container">
+            <h1><?= Html::encode($this->title) ?></h1>
 
-    <p><?= Yii::t('app', 'Введите новый пароль') ?>:</p>
+            <p><?= Yii::t('app', 'Введите новый пароль') ?>:</p>
 
-    <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-    <?= $form->field($modelResetPasswordForm, 'password')->passwordInput(['autofocus' => true]) ?>
+            <?= $form->field($modelResetPasswordForm, 'password')->passwordInput(['autofocus' => true]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
+            <div class="form-group m-b-lg">
+                <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
 </div>

@@ -9,11 +9,9 @@ id;language;translation;hash
 12;en;"Password reset";5c07b484c90bf8decb52cc879eb069e4
 13;en;"Enter a new password";cfdf366a725805773088032ff7e36e63
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
-15;en;"Password reset request";892bb2958d9115a7c4297575ed01263d
-16;en;"Enter your email to get a password reset link.";a342f1a2fd08ebef4c548bcf75a90a6e
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
@@ -303,7 +301,6 @@ id;language;translation;hash
 309;en;"Payment State";61fa3ce1022731bdcf7bd59379701430
 310;en;"To the cart";244b4d6b2d2dedbc27472601f50474d6
 311;en;"Admin panel";48b7aa8290dbee9baa41d45b54a42e2c
-312;en;"Publishing Template";647cd61d5643dd133565458565063cc0
 313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
 314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe
 343;en;"Table ‘user’ users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
@@ -322,3 +319,27 @@ id;language;translation;hash
 356;en;"Table ‘visit’ statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
 357;en;"Table ‘like’ statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d
 358;en;"Further folder attachment is not yet provided.";86e9ac62aeba9635a69a7ada398b2009
+359;en;"Login using social network";66f07d66bce5516a2eb1ce7ddb7d2462
+360;en;"Check your email and follow the instructions.";d3df7db8ed72140d7ef8b5dd6bcd8599
+361;en;"Unfortunately, we cannot reset the password for the entered email.";2dfa79a461ec796659eca64d87b2adea
+362;en;"Enter your email address to reset your password.";ef1ccd06d43d92a7dfd6f5163b733a8e
+363;en;Choose;a350d508c6c05a7e9740efb88e8fb446
+364;en;"Template label";304e0a31a400af65d194e84240ee13f7
+365;en;"Authentication key";0d3666bbbd4179a422dfa0ba8f45f388
+366;en;"Key Page";d4277ac5a9a056b10c2bcacbed593ec9
+367;en;"User {email} is not authorized or blocked. If not authorized, check email or use the password recovery procedure.";f3cb4620bc6c2d6d9129a23e1d5b5ba3
+368;en;"Authorization successful";851831ddf0d8e364b419e938f641f598
+369;en;"A link with registration confirmation has been sent to {email}.";3da1a8c8022073eb5c7d8ac6f4d2a324
+370;en;"User {email} is blocked.";e404ea3644908e528c4baf80e8ace61e
+371;en;"Login key successfully added.";b7d2e82595788345c726e3750cc164ce
+372;en;"Login and password sent to {email}.";bb51366f5c305a78223ca60fc47827e7
+373;en;"This key is already assigned to another user of the site.";b29738cb1e1c80519c74389ce40a614b
+375;en;"Key not found";dd3539b2ce75cf497eb0444779e4d60d
+376;en;"You can not untie the only social network without filling email";63d99c4a7a7925302cc6b252da93af1e
+377;en;"You can not untie the only social network without filling password";b591cd4815937842abe314e19098f0d8
+378;en;"Login key removed";3f4862865c16c9ac9648357d08e65ec1
+379;en;"Location selection";d27d33e5ddb93dddc73eb3a2e1e84a18
+380;en;"Template for articles";8dc24e76d88e6d30cf44d10d77afdef6
+381;en;"Template to select a location";d722bcc2a915b0d79aca3146731a0d75
+382;en;"Valid fields are country, region, city. Used in the front-end main menu, in a modal window.";de83b53985af39bdd15971f62a845912
+383;en;"Forgot your password?";c358b1ad17d89961b7ffb83d32095821
