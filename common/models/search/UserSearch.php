@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\UserForm;
@@ -18,8 +17,8 @@ class UserSearch extends UserForm
     public function rules()
     {
         return [
-            [['id', 'sex', 'birthday', 'id_geo_country', 'id_geo_city', 'status', 'created_at', 'updated_at', 'login_at'], 'integer'],
-            [['first_name', 'last_name', 'auth_key', 'password_hash', 'password_reset_token', 'email_confirm_token', 'email', 'image', 'phone', 'address', 'ip', 'role'], 'safe'],
+            [['id', 'status', 'created_at', 'updated_at', 'login_at', 'document_id'], 'integer'],
+            [['email', 'auth_key', 'password_hash', 'password_reset_token', 'email_confirm_token', 'ip'], 'safe'],
         ];
     }
 
@@ -51,10 +50,6 @@ class UserSearch extends UserForm
 
         $this->load($params);
 
-        if ($this->role) {
-            $query->innerJoinWith(['authAssignments']);
-        }
-
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -64,28 +59,19 @@ class UserSearch extends UserForm
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sex' => $this->sex,
-            'birthday' => $this->birthday,
-            'id_geo_country' => $this->id_geo_country,
-            'id_geo_city' => $this->id_geo_city,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'login_at' => $this->login_at,
+            'document_id' => $this->document_id,
         ]);
 
-        $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name])
+        $query->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email_confirm_token', $this->email_confirm_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'phone', $this->phone])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'ip', $this->ip])
-            ->andFilterWhere(['like', 'auth_assignment.item_name', $this->role]);
+            ->andFilterWhere(['like', 'ip', $this->ip]);
 
         return $dataProvider;
     }

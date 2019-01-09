@@ -32,7 +32,7 @@ use phpnt\datepicker\BootstrapDatepicker;
 
     <div class="col-md-6">
         <?php if ($modelFieldForm->isNewRecord): ?>
-            <?= $form->field($modelFieldForm, 'type')->dropDownList($modelFieldForm->typeList,
+            <?= $form->field($modelFieldForm, 'type')->dropDownList($modelFieldForm->getTypeList(),
                 [
                     'class'  => 'form-control selectpicker',
                     'data' => [
@@ -54,7 +54,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 '
                 ]) ?>
         <?php else: ?>
-            <?= $form->field($modelFieldForm, 'type')->dropDownList($modelFieldForm->typeList,
+            <?= $form->field($modelFieldForm, 'type')->dropDownList($modelFieldForm->getTypeList(),
                 [
                     'class'  => 'form-control selectpicker disabled',
                     'disabled' => true,
@@ -64,34 +64,14 @@ use phpnt\datepicker\BootstrapDatepicker;
     </div>
 
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
-        $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT
+        $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_STRING
     ): ?>
         <div class="col-md-6">
             <?= $form->field($modelFieldForm, 'min')
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('min')]) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($modelFieldForm, 'max')
-                ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('max')]) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
-                'type'  => ICheck::TYPE_CHECBOX,
-                'style'  => ICheck::STYLE_FLAT,
-                'color'  => 'blue'                  // цвет
-            ])->label(false) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::className(), [
-                'type'  => ICheck::TYPE_CHECBOX,
-                'style'  => ICheck::STYLE_FLAT,
-                'color'  => 'blue'                  // цвет
-            ])->label(false) ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_STRING): ?>
-        <div class="col-md-12">
             <?= $form->field($modelFieldForm, 'max')
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('max')]) ?>
         </div>

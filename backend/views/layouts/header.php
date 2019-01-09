@@ -32,28 +32,13 @@ use common\widgets\LangSwitch\LangSwitch;
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php if ($modelUserForm->image): ?>
-                            <img src="/<?=$modelUserForm->image ?>" class="user-image"/>
-                        <?php else: ?>
                             <span class="glyphicon glyphicon-user"></span>
-                        <?php endif; ?>
-                        <span class="hidden-xs"><?=$modelUserForm->first_name?></span>
+                        <span class="hidden-xs"><?= $modelUserForm->email ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <?php if ($modelUserForm->image) { ?>
-                                <img src="/<?=$modelUserForm->image ?>" class="img-circle"/>
-                            <?php } else {
-                                if ($modelUserForm->sex === \common\models\Constants::SEX_FEMALE) {
-                                    echo "<img src='".$userAsset->baseUrl ."/image/female.png' class='img-circle'>";
-                                } else {
-                                    echo "<img src='".$userAsset->baseUrl ."/image/male.png' class='img-circle'>";
-                                }
-                            }?>
-                            <p>
-                                <?=$modelUserForm->first_name . " " . $modelUserForm->last_name?>
-                                <small><?=$modelUserForm->email?></small>
-                            </p>
+                            <img src="<?= $userAsset->baseUrl . '/image/male.png' ?>" class='img-circle'>
+                            <p><?= $modelUserForm->email ?></p>
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">

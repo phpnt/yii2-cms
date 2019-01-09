@@ -34,6 +34,7 @@ use Yii;
  * @property User $createdBy
  * @property User $updatedBy
  * @property Like[] $likes
+ * @property User[] $users
  * @property ValueFile[] $valueFiles
  * @property ValueInt[] $valueInts
  * @property ValueNumeric[] $valueNumerics
@@ -150,6 +151,14 @@ class Document extends \yii\db\ActiveRecord
     public function getLikes()
     {
         return $this->hasMany(Like::className(), ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['document_id' => 'id']);
     }
 
     /**

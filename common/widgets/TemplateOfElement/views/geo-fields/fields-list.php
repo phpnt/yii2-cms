@@ -12,7 +12,7 @@ use common\models\Constants;
 /* @var $this \yii\web\View */
 /* @var $widget \common\widgets\TemplateOfElement\SetGeoFields */
 /* @var $modelGeoTemplateForm \common\widgets\TemplateOfElement\forms\GeoTemplateForm */
-/* @var $fieldsManage \common\components\other\FieldsManage */
+/* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
 
 $form = $widget->form;

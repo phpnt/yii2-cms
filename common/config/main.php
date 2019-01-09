@@ -11,7 +11,7 @@ return [
         'geo-manage' => \common\widgets\TemplateOfElement\controllers\GeoController::class,
     ],
     'components' => [
-        'fieldsManage' => \common\components\other\FieldsManage::class,
+        'fieldsManage' => \common\widgets\TemplateOfElement\components\FieldsManage::class,
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

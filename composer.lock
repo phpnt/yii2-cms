@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2618fa6eedb416f47e919b9a923db716",
+    "content-hash": "dc4e92c43d671e38a53b7a8de825269f",
     "packages": [
         {
             "name": "2amigos/yii2-multi-select-widget",
@@ -1072,16 +1072,16 @@
         },
         {
             "name": "phpnt/yii2-datepicker",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpnt/yii2-datepicker.git",
-                "reference": "627dbb3024dfc53c68faba091151eab1c1a98d51"
+                "reference": "4e00ebda34c10ab4da8e363db599b68dda471970"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpnt/yii2-datepicker/zipball/627dbb3024dfc53c68faba091151eab1c1a98d51",
-                "reference": "627dbb3024dfc53c68faba091151eab1c1a98d51",
+                "url": "https://api.github.com/repos/phpnt/yii2-datepicker/zipball/4e00ebda34c10ab4da8e363db599b68dda471970",
+                "reference": "4e00ebda34c10ab4da8e363db599b68dda471970",
                 "shasum": ""
             },
             "require": {
@@ -1113,7 +1113,7 @@
                 "yii2",
                 "yii2 date picker"
             ],
-            "time": "2017-04-27T03:56:54+00:00"
+            "time": "2019-01-09T04:05:45+00:00"
         },
         {
             "name": "phpnt/yii2-icheck",

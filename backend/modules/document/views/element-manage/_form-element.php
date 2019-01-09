@@ -14,7 +14,7 @@ use yii\helpers\Url;
 use backend\assets\TranslateAsset;
 use mihaildev\ckeditor\CKEditor;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
-use common\widgets\TemplateOfElement\SetElementFields;
+use common\widgets\TemplateOfElement\SetDefaultFields;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -128,9 +128,10 @@ use common\widgets\TemplateOfElement\SetElementFields;
     </div>
 
     <?php if (isset($modelDocumentForm->template)): ?>
-        <?= SetElementFields::widget([
+        <?= SetDefaultFields::widget([
             'form' => $form,
-            'modelDocumentForm' => $modelDocumentForm,
+            'model' => $modelDocumentForm,
+            'modelName' => 'DocumentForm',
         ]); ?>
     <?php endif; ?>
 

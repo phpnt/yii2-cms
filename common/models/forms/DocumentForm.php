@@ -8,7 +8,7 @@
 
 namespace common\models\forms;
 
-use common\components\other\FieldsManage;
+use common\widgets\TemplateOfElement\components\FieldsManage;
 use common\components\validators\DocumentArrayValidator;
 use common\components\validators\DocumentNameValidator;
 use common\components\validators\DocumentRouteValidator;
@@ -410,6 +410,11 @@ class DocumentForm extends DocumentExtend
                                 $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) {
                                 if ($this->elements_fields[$key][$sub_key] < $field['min']) {
                                     $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не может быть меньше \"{min}\".', ['field' => $field['name'], 'min' => $field['min']]);
+                                }
+                            }
+                            if ($field['type'] == Constants::FIELD_TYPE_STRING) {
+                                if (iconv_strlen($this->elements_fields[$key][$sub_key]) < $field['min']) {
+                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не может быть меньше \"{strlen}\" символов.', ['field' => $field['name'], 'strlen' => $field['min']]);
                                 }
                             }
                             if ($field['type'] == Constants::FIELD_TYPE_DATE ||

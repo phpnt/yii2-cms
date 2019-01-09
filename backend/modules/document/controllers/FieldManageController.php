@@ -136,9 +136,9 @@ class FieldManageController extends Controller
      */
     public function actionUpdateField($id)
     {
-        if (!Yii::$app->request->isPjax) {
+        /*if (!Yii::$app->request->isPjax) {
             return $this->redirect(['index']);
-        }
+        }*/
 
         $modelFieldForm = FieldForm::findOne($id);
         $modelFieldForm->scenario = 'update-field';

@@ -62,14 +62,14 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                             'class' => 'text-info',
                             'title' => Yii::t('app', 'Просмотр пользователя'),
                             'onclick' => '
-                            $.pjax({
-                                type: "GET",
-                                url: "' . Url::to(['/user/manage/view-user', 'id' => $modelUserForm->id]) . '",
-                                container: "#pjaxModalUniversal",
-                                push: false,
-                                timeout: 10000,
-                                scrollTo: false
-                            })'
+                                $.pjax({
+                                    type: "GET",
+                                    url: "' . Url::to(['/user/manage/view-user', 'id' => $modelUserForm->id]) . '",
+                                    container: "#pjaxModalUniversal",
+                                    push: false,
+                                    timeout: 10000,
+                                    scrollTo: false
+                                })'
                         ]);
                     }
                     return false;
@@ -81,14 +81,14 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                             'class' => 'text-warning',
                             'title' => Yii::t('app', 'Изменить пользователя'),
                             'onclick' => '
-                            $.pjax({
-                                type: "GET",
-                                url: "' . Url::to(['/user/manage/update-user', 'id' => $modelUserForm->id]) . '",
-                                container: "#pjaxModalUniversal",
-                                push: false,
-                                timeout: 10000,
-                                scrollTo: false
-                            })'
+                                $.pjax({
+                                    type: "GET",
+                                    url: "' . Url::to(['/user/manage/update-user', 'id' => $modelUserForm->id]) . '",
+                                    container: "#pjaxModalUniversal",
+                                    push: false,
+                                    timeout: 10000,
+                                    scrollTo: false
+                                })'
                         ]);
                     }
                     return false;
@@ -115,7 +115,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             ],
         ],
         [
-            'attribute' => 'first_name',
+            'attribute' => 'email',
             'format' => 'raw',
             'contentOptions' => [
                 //'class' => 'vcenter',
@@ -124,11 +124,14 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             'headerOptions'   => ['class' => 'text-center'],
             'value' => function ($modelUserForm) {
                 /* @var $modelUserForm \common\models\forms\UserForm */
-                return $modelUserForm->first_name;
+                if (Yii::$app->user->can('admin')) {
+                    return $modelUserForm->email;
+                }
+                return Yii::t('app', 'У Вас нет прав для просмотра.');
             },
         ],
         [
-            'attribute' => 'last_name',
+            'attribute' => 'document_id',
             'format' => 'raw',
             'contentOptions' => [
                 //'class' => 'vcenter',
@@ -137,7 +140,10 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             'headerOptions'   => ['class' => 'text-center'],
             'value' => function ($modelUserForm) {
                 /* @var $modelUserForm \common\models\forms\UserForm */
-                return $modelUserForm->last_name;
+                if (Yii::$app->user->can('admin')) {
+                    return $modelUserForm->document_id;
+                }
+                return Yii::t('app', 'У Вас нет прав для просмотра.');
             },
         ],
         [
@@ -162,29 +168,6 @@ use phpnt\bootstrapNotify\BootstrapNotify;
         //'password_reset_token',
         //'email_confirm_token:email',
         [
-            'attribute' => 'email',
-            'format' => 'raw',
-            'contentOptions' => [
-                //'class' => 'vcenter',
-                //'style' => 'max-width: 100px !important; width: 100px !important;'
-            ],
-            'headerOptions'   => ['class' => 'text-center'],
-            'value' => function ($modelUserForm) {
-                /* @var $modelUserForm \common\models\forms\UserForm */
-                if (Yii::$app->user->can('admin')) {
-                    return $modelUserForm->email;
-                }
-                return Yii::t('app', 'У Вас нет прав для просмотра.');
-            },
-        ],
-        //'image',
-        //'sex',
-        //'birthday',
-        //'phone',
-        //'id_geo_country',
-        //'id_geo_city',
-        //'address',
-        [
             'attribute' => 'status',
             'format' => 'raw',
             'value' => function ($modelUserForm) {
@@ -200,10 +183,10 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                 ]]),
             'contentOptions' => ['style'=>'max-width: 120px !important; width: 120px !important;'],
         ],
-        //'ip',
-        //'created_at',
-        //'updated_at',
-        //'login_at',
+        'ip',
+        'created_at:date',
+        'updated_at:date',
+        'login_at:date',
     ],
 ]); ?>
 <?php

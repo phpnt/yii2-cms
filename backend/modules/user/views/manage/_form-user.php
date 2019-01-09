@@ -21,17 +21,12 @@ use yii\helpers\Url;
         'options' => ['data-pjax' => true]
     ]); ?>
 
-    <div class="col-md-6">
-        <?= $form->field($modelUserForm, 'first_name')
-            ->textInput(['placeholder' => $modelUserForm->getAttributeLabel('first_name')]) ?>
-    </div>
-
-    <div class="col-md-6">
-        <?= $form->field($modelUserForm, 'last_name')
-            ->textInput(['placeholder' => $modelUserForm->getAttributeLabel('last_name')]) ?>
-    </div>
-
     <div class="col-md-12">
+        <?= $form->field($modelUserForm, 'email')
+            ->textInput(['placeholder' => $modelUserForm->getAttributeLabel('email')]) ?>
+    </div>
+
+    <div class="col-md-6">
         <?= $form->field($modelUserForm, 'status')->dropDownList($modelUserForm->statusList,
             [
                 'class'  => 'form-control selectpicker',
@@ -41,11 +36,6 @@ use yii\helpers\Url;
                     'title' => '---'
                 ]
             ]) ?>
-    </div>
-
-    <div class="col-md-6">
-        <?= $form->field($modelUserForm, 'email')
-            ->textInput(['placeholder' => $modelUserForm->getAttributeLabel('email')]) ?>
     </div>
 
     <div class="col-md-6">
@@ -59,6 +49,8 @@ use yii\helpers\Url;
                 ]
             ]) ?>
     </div>
+
+    <div class="clearfix"></div>
 
     <div class="col-md-6">
         <?= $form->field($modelUserForm, 'password')

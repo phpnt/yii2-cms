@@ -12,20 +12,14 @@ use yii\db\Migration;
 class m000000_000002_cms_shop extends Migration
 {
     // Администратор по умолчанию
-    const ADMIN_FIRST_NAME = 'Имя_администратора';
-    const ADMIN_LAST_NAME = 'Фамилия_администратора';
     const ADMIN_EMAIL = 'admin@example.ru';
     const ADMIN_PASSWORD = 'admin';
 
     // Модератор по умолчанию
-    const MODERATOR_FIRST_NAME = 'Имя_модератора';
-    const MODERATOR_LAST_NAME = 'Фамилия_модератора';
     const MODERATOR_EMAIL = 'editor@example.ru';
     const MODERATOR_PASSWORD = 'editor';
 
     // Тестировщик по умолчанию
-    const TESTER_FIRST_NAME = 'Имя_тестировщика';
-    const TESTER_LAST_NAME = 'Фамилия_тестировщика';
     const TESTER_EMAIL = 'tester@example.ru';
     const TESTER_PASSWORD = 'tester';
 
@@ -39,37 +33,25 @@ class m000000_000002_cms_shop extends Migration
         //Таблица пользователей user
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey()->comment('ID'),
-            'first_name' => $this->string(100)->comment(Yii::t('app', 'Имя')),
-            'last_name' => $this->string(100)->comment(Yii::t('app', 'Фамилия')),
+            'email' => $this->string(100)->comment(Yii::t('app', 'Email')),
             'auth_key' => $this->string(32)->comment(Yii::t('app', 'Ключ авторизации')),
             'password_hash' => $this->string()->comment(Yii::t('app', 'Хеш пароля')),
             'password_reset_token' => $this->string()->comment(Yii::t('app', 'Токен восстановления пароля')),
             'email_confirm_token' => $this->string()->comment(Yii::t('app', 'Токен подтвердждения Email')),
-            'email' => $this->string(100)->comment(Yii::t('app', 'Email')),
-            'image' => $this->string()->comment(Yii::t('app', 'Фото')),
-            'sex' => $this->smallInteger()->comment(Yii::t('app', 'Пол')),
-            'birthday' => $this->integer()->comment(Yii::t('app', 'Дата рождения')),
-            'phone' => $this->string(100)->comment(Yii::t('app', 'Телефон')),
-            'id_geo_country' => $this->integer()->comment(Yii::t('app', 'Страна')),
-            'id_geo_city' => $this->integer()->comment(Yii::t('app', 'Город')),
-            'address' => $this->string()->comment(Yii::t('app', 'Адрес')),
             'status' => $this->smallInteger()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
             'ip' => $this->string(20)->comment(Yii::t('app', 'IP')),
             'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
             'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
             'login_at' => $this->integer()->comment(Yii::t('app', 'Авторизован')),
+            'document_id' => $this->integer()->comment(Yii::t('app', 'Профиль пользователя')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы пользователей user
-        $this->addForeignKey('user_geo_country_fk', '{{%user}}', 'id_geo_country', '{{%geo_country}}', 'id_geo_country', 'SET NULL', 'CASCADE');
-        $this->addForeignKey('user_geo_city_fk', '{{%user}}', 'id_geo_city', '{{%geo_city}}', 'id_geo_city', 'SET NULL', 'CASCADE');
-        $this->createIndex('user_name_index', '{{%user}}', ['first_name', 'last_name']);
         $this->createIndex('user_email_index', '{{%user}}', 'email');
         $this->createIndex('user_status_index', '{{%user}}', 'status');
 
         $this->importData('user',
-            ['id', 'first_name', 'last_name', 'auth_key', 'password_hash', 'password_reset_token', 'email_confirm_token', 'email', 'image', 'sex', 'birthday',
-                'phone', 'id_geo_country', 'id_geo_city', 'address', 'status', 'ip', 'created_at', 'updated_at', 'login_at'],
+            ['id', 'email', 'auth_key', 'password_hash', 'password_reset_token', 'email_confirm_token', 'status', 'ip', 'created_at', 'updated_at', 'login_at', 'document_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/user.csv', "r"));
 
         //Таблица авторизации пользователя user_oauth_key
@@ -200,6 +182,7 @@ class m000000_000002_cms_shop extends Migration
         ] , $tableOptions);
 
         //Индексы и ключи таблицы документов document
+        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_parent_id_fk', '{{%document}}', 'parent_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_template_id_fk', '{{%document}}', 'template_id', '{{%template}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_user_creator_pk', '{{%document}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
