@@ -32,19 +32,16 @@ class SignupForm extends UserForm
                 'message' => Yii::t('app', 'Данный Email уже зарегистрирован.')],  // Электронная почта должна быть уникальна
             ['email', 'email'], // Электронная почта
             [['password'], 'string', 'min' => 4],   // Пароль минимум 4 символа
-            [['sex', 'id_geo_country', 'id_geo_city', 'status'], 'integer'],    // Целочисленные значения
-            [['birthday', 'login_at'], 'safe'], // Безопасные аттрибуты
-            [['first_name', 'last_name', 'email', 'phone'], 'string', 'max' => 100],    // Строка (максимум 100 символов)
+            [['status'], 'integer'],    // Целочисленные значения
+            [['login_at'], 'safe'], // Безопасные аттрибуты
+            [['email'], 'string', 'max' => 100],    // Строка (максимум 100 символов)
             [['auth_key'], 'string', 'max' => 32],  // Строка (максимум 32 символа)
             [['ip'], 'string', 'max' => 20],    // Строка (максимуму 20 символов)
-            [['password_hash', 'password_reset_token', 'email_confirm_token', 'image', 'address'], 'string', 'max' => 255], // Строка (максимум 255 символов)
+            [['password_hash', 'password_reset_token', 'email_confirm_token'], 'string', 'max' => 255], // Строка (максимум 255 символов)
             ['status', 'in', 'range' => array_keys(self::getStatusArray())], // Статус должен быть из списка статусов
             ['status', 'default', 'value' => Constants::STATUS_WAIT],    // Статус после регистрации "Ожидает подтверждения"
-            ['sex', 'in', 'range' => array_keys(self::getSexArray())],  // Пол должен быть из гендерного списка
-            [['first_name', 'last_name', 'email', 'phone', 'address'], 'filter', 'filter' => 'trim'],   // Обрезаем строки по краям
-            [['last_name', 'password_reset_token', 'email_confirm_token',
-                'image', 'sex', 'phone', 'id_geo_country', 'id_geo_city', 'address',
-                'auth_key', 'password_hash', 'email', 'ip', 'login_at'], 'default', 'value' => null],   // По умолчанию значение = null
+            [['email', 'password'], 'filter', 'filter' => 'trim'],   // Обрезаем строки по краям
+            [['password_reset_token', 'email_confirm_token', 'auth_key', 'password_hash', 'email', 'ip', 'login_at'], 'default', 'value' => null],   // По умолчанию значение = null
         ];
     }
 
@@ -101,7 +98,7 @@ class SignupForm extends UserForm
 
         if ($template) {
             $data = [
-                '{NAME_1}' => $this->first_name,
+                '{NAME_1}' => $this->email,
                 '{URL_1}' => Yii::$app->urlManager->createAbsoluteUrl(['/signup/default/confirm', 'token' => $this->email_confirm_token]),
                 '{DATE_1}' => Yii::$app->formatter->asDate(time()),
             ];
@@ -115,7 +112,7 @@ class SignupForm extends UserForm
                 )
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::t('app', '{name} робот', ['name' => Yii::$app->name])])
                 ->setTo($this->email)
-                ->setSubject(Yii::t('app', $template['name']) . Yii::$app->name)
+                ->setSubject(Yii::t('app', $template['name']) . ' ' . Yii::$app->name)
                 ->send();
         } else {
             return Yii::$app->mailer->compose(

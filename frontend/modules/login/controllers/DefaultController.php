@@ -140,13 +140,13 @@ class DefaultController extends Controller
         }
 
         if ($modelLoginForm->errors) {
-            return $this->renderAjax('_login-form', [
+            return $this->renderAjax('@frontend/views/templates/login/_login-form', [
                 'page' => $this->page,
                 'modelLoginForm' => $modelLoginForm,
             ]);
         }
 
-        return $this->renderAjax('login', [
+        return $this->renderAjax('@frontend/views/templates/login/login', [
             'page' => $this->page,
             'modelLoginForm' => $modelLoginForm,
         ]);
@@ -185,7 +185,7 @@ class DefaultController extends Controller
                             'message'   => ' '.Yii::t('app', 'К сожалению, мы не можем сбросить пароль для введенной электронной почты.'),
                         ]
                     );
-                    return $this->renderAjax('_request-password-reset-token-form', [
+                    return $this->renderAjax('@frontend/views/templates/login/_request-password-reset-token-form', [
                         'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
                     ]);
                 }
@@ -201,12 +201,12 @@ class DefaultController extends Controller
                     'message'   => $modelPasswordResetRequestForm->getFirstError('email'),
                 ]
             );
-            return $this->renderAjax('_request-password-reset-token-form', [
+            return $this->renderAjax('@frontend/views/templates/login/_request-password-reset-token-form', [
                 'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
             ]);
         }
 
-        return $this->renderAjax('request-password-reset-token', [
+        return $this->renderAjax('@frontend/views/templates/login/request-password-reset-token', [
             'modelPasswordResetRequestForm' => $modelPasswordResetRequestForm,
         ]);
     }
@@ -236,7 +236,7 @@ class DefaultController extends Controller
             );
             return $this->goHome();
         }
-        return $this->render('resetPassword', [
+        return $this->render('@frontend/views/templates/login/resetPassword', [
             'modelResetPasswordForm' => $modelResetPasswordForm,
         ]);
     }

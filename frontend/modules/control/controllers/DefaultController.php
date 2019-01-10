@@ -144,7 +144,7 @@ class DefaultController extends Controller
                 ->one();
         }
 
-        return $this->render('index', [
+        return $this->render('@frontend/views/templates/control/index', [
             'page' => $this->page,
             'template' => $template,
         ]);
@@ -177,7 +177,7 @@ class DefaultController extends Controller
                 ->one();
         }
 
-        return $this->render('view-list', [
+        return $this->render('@frontend/views/templates/control/view-list', [
             'page' => $this->page,
             'template' => $template,
             'parent' => $parent,
@@ -220,7 +220,7 @@ class DefaultController extends Controller
                 ->one();
         }
 
-        return $this->render('view', [
+        return $this->render('@frontend/views/templates/control/view', [
             'page' => $this->page,
             'template' => $template,
             'parent' => $parent,

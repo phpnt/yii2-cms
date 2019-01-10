@@ -122,9 +122,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        /*if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
+        if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
             return $this->goHome();
-        }*/
+        }
 
         $modelGeoTemplateForm = GeoTemplateForm::findOne(['mark' => 'geo']);
 
@@ -133,13 +133,13 @@ class DefaultController extends Controller
         }
 
         if ($modelGeoTemplateForm->errors) {
-            return $this->renderAjax('_geo-form', [
+            return $this->renderAjax('@frontend/views/templates/geo/_geo-form', [
                 'page' => $this->page,
                 'modelGeoTemplateForm' => $modelGeoTemplateForm,
             ]);
         }
 
-        return $this->renderAjax('geo', [
+        return $this->renderAjax('@frontend/views/templates/geo/geo', [
             'page' => $this->page,
             'modelGeoTemplateForm' => $modelGeoTemplateForm,
         ]);

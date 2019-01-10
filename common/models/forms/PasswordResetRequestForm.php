@@ -95,7 +95,7 @@ class PasswordResetRequestForm extends Model
                 )
                 ->setFrom([Yii::$app->params['supportEmail'] => Yii::t('app', '{name} робот', ['name' => Yii::$app->name])])
                 ->setTo($this->email)
-                ->setSubject(Yii::t('app', $template['name']) . Yii::$app->name)
+                ->setSubject(Yii::t('app', $template['name']) . ' ' . Yii::$app->name)
                 ->send();
         } else {
             return Yii::$app->mailer

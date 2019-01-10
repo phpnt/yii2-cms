@@ -65,7 +65,7 @@ class ViewItems extends Widget
 
         /* Если нет папок отображаем только элементы */
         if (!$folders && !$this->parent && !$this->item) {
-            return $this->render('@frontend/views/templates/index', [
+            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => false,
@@ -77,7 +77,7 @@ class ViewItems extends Widget
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if (!$folders && $this->parent && $this->item) {
-            return $this->render('@frontend/views/templates/index', [
+            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => $this->parent,
@@ -163,7 +163,7 @@ class ViewItems extends Widget
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if ($this->parent && $this->item) {
-            return $this->render('@frontend/views/templates/index', [
+            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => $this->parent ? $this->parent : false,
@@ -173,7 +173,7 @@ class ViewItems extends Widget
             ]);
         };
 
-        return $this->render('@frontend/views/templates/index', [
+        return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
             'page' => $this->page,
             'template' => $this->template,
             'parent' => $this->parent ? $this->parent : false,

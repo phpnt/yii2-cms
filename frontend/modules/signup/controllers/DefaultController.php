@@ -149,13 +149,13 @@ class DefaultController extends Controller
         }
 
         if ($modelSignupForm->errors) {
-            return $this->renderAjax('_signup-form', [
+            return $this->renderAjax('@frontend/views/templates/signup/_signup-form', [
                 'page' => $this->page,
                 'modelSignupForm' => $modelSignupForm,
             ]);
         }
 
-        return $this->renderAjax('signup', [
+        return $this->renderAjax('@frontend/views/templates/signup/signup', [
             'page' => $this->page,
             'modelSignupForm' => $modelSignupForm,
         ]);

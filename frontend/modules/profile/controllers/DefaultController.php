@@ -155,7 +155,7 @@ class DefaultController extends Controller
             ->orderBy(['position' => SORT_ASC])
             ->all();
 
-        return $this->render('index', [
+        return $this->render('@frontend/views/templates/profile/index', [
             'page' => $this->page,
             'modelProfileTemplateForm' => $modelProfileTemplateForm,
             'manyProfiles' => $manyProfiles

@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
@@ -343,3 +343,18 @@ id;language;translation;hash
 381;en;"Template to select a location";d722bcc2a915b0d79aca3146731a0d75
 382;en;"Valid fields are country, region, city. Used in the front-end main menu, in a modal window.";de83b53985af39bdd15971f62a845912
 383;en;"Forgot your password?";c358b1ad17d89961b7ffb83d32095821
+384;en;"Update the profile";1aea452667ecaf021aa30928c51b1114
+385;en;"Create the profile";9b8688fed1a4321696f58f4fc123ae03
+386;en;"Fill out the profile";1edfa68a67732ab11eca62e911899d9f
+387;en;"The field ""{field}"" cannot be less than ""{strlen}"" characters.";c35d845baf0fa427437beab336f7d23b
+388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
+389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
+390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
+391;en;"User Profile 2";668f66684944db1066fe52fa98491a8b
+392;en;Age;381955bf909367fe7956a4848716488d
+393;en;"A template for the user\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+394;en;"A template for the user\'s profile 2";52918d5d40a1ce3613ad84f91dd1031e
+397;en;"You must create a new view for the elements of the template {temp}.";f3628ed64581c7a98bd9356e2f85e3cf
+398;en;"You need to create a new view for the selected element of the {temp} template.";a45d7487ac95d6a1b97471e60a4f0713
+399;en;"You need to create a new view for the template menu {temp}.";960ac1e4a7e71b5f56f197eb47dfa8e0
+400;en;Author;df6e7c42cadb83f18544c135cbb1303c
