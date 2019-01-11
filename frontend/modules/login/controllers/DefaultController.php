@@ -2,14 +2,17 @@
 
 namespace frontend\modules\login\controllers;
 
+use common\models\Constants;
 use common\models\forms\LoginForm;
 use common\models\forms\PasswordResetRequestForm;
 use common\models\forms\ResetPasswordForm;
+use common\models\forms\UserForm;
 use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
 use yii\base\InvalidArgumentException;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
@@ -131,8 +134,26 @@ class DefaultController extends Controller
         }
 
         $modelLoginForm = new LoginForm();
-        if ($modelLoginForm->load(Yii::$app->request->post()) && $modelLoginForm->login()) {
-            return $this->goHome();
+        if ($modelLoginForm->load(Yii::$app->request->post())/* && $modelLoginForm->login()*/) {
+            $user = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('user')
+                ->where(['email' => $modelLoginForm->email])
+                ->one();
+            if ($user['status'] == Constants::STATUS_WAIT) {
+                Yii::$app->session->set(
+                    'message',
+                    [
+                        'type'      => 'success',
+                        'icon'      => 'glyphicon glyphicon-ok',
+                        'message'   => Yii::t('app', 'Необходимо подтвердить ваш емайл.'),
+                    ]
+                );
+                return $this->redirect(Url::to(['/signup/default/confirm-email', 'user_id' => $user['id']]));
+            }
+            if ($modelLoginForm->login()) {
+                return $this->goHome();
+            }
         }
 
         if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {

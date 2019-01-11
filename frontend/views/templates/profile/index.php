@@ -43,6 +43,19 @@ $modelUserForm = Yii::$app->user->identity;
         ]) ?>
     <?php endif; ?>
 
+    <?php
+    /* @var $modelUserForm \common\models\forms\UserForm */
+    if (isset($modelUserForm->document)): ?>
+        <div class="col-md-12">
+            <?php
+            /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+            $fieldsManage = Yii::$app->fieldsManage;
+            $templateData = $fieldsManage->getData($modelUserForm->document_id, $modelUserForm->document->parent->template_id);
+            p($templateData);
+            ?>
+        </div>
+    <?php endif; ?>
+
     <div class="col-md-12">
         <?= DetailView::widget([
             'model' => $modelUserForm,
@@ -51,7 +64,20 @@ $modelUserForm = Yii::$app->user->identity;
                 'email:email',
                 'created_at:date',
                 'updated_at:date',
-                'document_id',
+                [
+                    'attribute' => 'document_id',
+                    'format' => 'raw',
+                    'value' => call_user_func(function ($modelUserForm) {
+                        /* @var $modelUserForm \common\models\forms\UserForm */
+                        if (isset($modelUserForm->document)) {
+                            return $modelUserForm->document->template->name;
+                        }
+                        return null;
+                    }, $modelUserForm),
+                    'captionOptions' => [
+                        'style' => 'width: 50% !important;'
+                    ]
+                ],
             ],
         ]) ?>
     </div>

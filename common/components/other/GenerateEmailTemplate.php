@@ -38,6 +38,14 @@ class GenerateEmailTemplate extends Object
 
         $i = 0;
         while ($i < $counter) {
+            if (isset($data['{PASS_'.$i.'}'])) {
+                $template = str_replace(['{PASS_'.$i.'}'], $data['{PASS_'.$i.'}'], $template);
+            }
+            $i++;
+        }
+
+        $i = 0;
+        while ($i < $counter) {
             if (isset($data['{URL_'.$i.'}'])) {
                 $template = str_replace(['{URL_'.$i.'}'], $data['{URL_'.$i.'}'], $template);
             }

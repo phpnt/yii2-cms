@@ -12,7 +12,6 @@ use yii\helpers\Html;
 use phpnt\ICheck\ICheck;
 use phpnt\bootstrapNotify\BootstrapNotify;
 use phpnt\animateCss\AnimateCssAsset;
-use phpnt\bootstrapSelect\BootstrapSelectAsset;
 
 /* @var $this yii\web\View */
 /* @var $page array */
@@ -20,7 +19,6 @@ use phpnt\bootstrapSelect\BootstrapSelectAsset;
 /* @var $form ActiveForm */
 
 AnimateCssAsset::register($this);
-BootstrapSelectAsset::register($this);
 ?>
 <div id="elements-form-block">
     <?= BootstrapNotify::widget() ?>
@@ -63,6 +61,7 @@ BootstrapSelectAsset::register($this);
         </div>
 
         <?php ActiveForm::end(); ?>
+
         <?php
         $js = <<< JS
         $('#form').on('beforeSubmit', function () { 
@@ -80,7 +79,7 @@ BootstrapSelectAsset::register($this);
                     processData: false
                 })
                 .done(function(data) {
-                    
+                    console.log('ok');
                 })
                 .fail(function () {
                     // request failed

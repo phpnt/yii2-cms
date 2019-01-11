@@ -9,7 +9,7 @@
 namespace common\widgets\oAuth\oauth;
 
 use common\models\Constants;
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация с помощью Вконтакте
@@ -17,15 +17,8 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class VKontakte extends \yii\authclient\clients\VKontakte
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-
-    public $gender      = 'gender';
     public $female      = 1;
     public $male        = 2;
-
-    public $status          = 'status';
 
     public function init()
     {
@@ -78,16 +71,17 @@ class VKontakte extends \yii\authclient\clients\VKontakte
         $attributes = array_shift($attributes['response']);
 
         $return_attributes = [
-            'User' => [
-                $this->first_name   => $attributes['first_name'],
-                $this->last_name    => $attributes['last_name'],
-                $this->gender       => $this->normalizeSex()[$attributes['sex']],
-                $this->email        => isset($attributes['email']) ? $attributes['email'] : null,
-                $this->status       => isset($attributes['email']) ? Constants::STATUS_ACTIVE : Constants::STATUS_WAIT
+            'OAuthForm' => [
+                'email'         => isset($attributes['email']) ? $attributes['email'] : $attributes['id'] . '_' . UserOauthKeyForm::getAvailableClients()['vkontakte'],
+                'first_name'    => $attributes['first_name'],
+                'last_name'     => $attributes['last_name'],
+                'gender'        => $this->normalizeSex()[$attributes['sex']],
+                'status'        => isset($attributes['email']) ? Constants::STATUS_ACTIVE : Constants::STATUS_WAIT,
+                'role'          => 'user',
             ],
-            'provider_user_id' => $attributes['uid'],
-            'provider_id' => UserOauthKey::getAvailableClients()['vkontakte'],
-            'page' => $attributes['uid'],
+            'provider_user_id' => $attributes['id'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['vkontakte'],
+            'page' => 'id' . $attributes['id'],
         ];
 
         return $return_attributes;

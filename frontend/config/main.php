@@ -24,6 +24,7 @@ return [
     'controllerMap' => [
         'bm' => \common\widgets\Basket\controllers\BmController::class,
         'like' => \common\widgets\Like\controllers\LikeController::class,
+        'auth' => \common\widgets\oAuth\controllers\AuthController::class,
     ],
     'modules' => [
         'basket' => [
@@ -48,59 +49,6 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-        ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'google' => [
-                    // https://console.developers.google.com/project
-                    // http://itwillok.com/auth/index?authclient=google
-                    'class' => 'common\widgets\oAuth\oauth\Google',
-                    'clientId' => '---',
-                    'clientSecret' => '---',
-                ],
-                'yandex' => [
-                    // https://oauth.yandex.ru/client/new
-                    // http://itwillok.com/auth/index?authclient=yandex
-                    'class' => 'common\widgets\oAuth\oauth\Yandex',
-                    'clientId' => '---',
-                    'clientSecret' => '---',
-                ],
-                'facebook' => [
-                    // https://developers.facebook.com/apps
-                    // http://itwillok.com/auth/index?authclient=facebook
-                    'class'         => 'common\widgets\oAuth\oauth\Facebook',
-                    'clientId'      => '---',
-                    'clientSecret'  => '---',
-                ],
-                'vkontakte' => [
-                    // https://vk.com/editapp?act=create
-                    // http://itwillok.com/auth/index?authclient=vkontacte
-                    'class'         => 'common\widgets\oAuth\oauth\VKontakte',
-                    'clientId'      => '---',
-                    'clientSecret'  => '---',
-                ],
-                'twitter' => [
-                    // https://dev.twitter.com/apps/new
-                    // http://itwillok.com/auth/index?authclient=twitter
-                    'class' => 'common\widgets\oAuth\oauth\Twitter',
-                    'consumerKey' => '---',
-                    'consumerSecret' => '---',
-                ],
-                /*'linkedin' => [
-                    // https://www.linkedin.com/developer/apps/
-                    'class' => 'phpnt\oAuth\oauth\LinkedIn',
-                    'clientId' => '---',
-                    'clientSecret' => '---',
-                ],
-                'github' => [
-                    // https://github.com/settings/applications/new
-                    'class' => 'phpnt\oAuth\oauth\GitHub',
-                    'clientId' => '---',
-                    'clientSecret' => '---',
-                    'scope' => 'user:email, user'
-                ],*/
-            ]
         ],
         'user' => [
             'identityClass' => \common\models\forms\UserForm::class,
@@ -137,6 +85,7 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'ignoreLanguageUrlPatterns' => [
+                '#^auth/#' => '#^auth/#',
                 '#^geo-manage/#' => '#^geo-manage/#',
             ],
         ],

@@ -56,6 +56,17 @@ class SignupForm extends UserForm
         return $labels;
     }
 
+    public function beforeValidate()
+    {
+        parent::beforeValidate();
+
+        if (!$this->password) {
+            $this->password = Yii::$app->security->generateRandomString(8);
+        }
+
+        return true;
+    }
+
     /**
      * Генерация ключа авторизации, токена подтверждения регистрации
      * и хеширование пароля перед сохранением
@@ -83,9 +94,11 @@ class SignupForm extends UserForm
     {
         parent::afterSave($insert, $changedAttributes);
 
-        $auth = Yii::$app->authManager;
-        $role = $auth->getRole('user');
-        $auth->assign($role, $this->id);
+        if ($insert) {
+            $auth = Yii::$app->authManager;
+            $role = $auth->getRole('user');
+            $auth->assign($role, $this->id);
+        }
 
         $template = (new \yii\db\Query())
             ->select(['*'])
@@ -99,6 +112,7 @@ class SignupForm extends UserForm
         if ($template) {
             $data = [
                 '{NAME_1}' => $this->email,
+                '{PASS_1}' => $this->password,
                 '{URL_1}' => Yii::$app->urlManager->createAbsoluteUrl(['/signup/default/confirm', 'token' => $this->email_confirm_token]),
                 '{DATE_1}' => Yii::$app->formatter->asDate(time()),
             ];

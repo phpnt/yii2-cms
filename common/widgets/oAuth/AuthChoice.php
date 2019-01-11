@@ -23,7 +23,6 @@ use yii\authclient\ClientInterface;
  * отображения
  *
  * Class AuthChoice
- * @package app\modules\users\components
  */
 class AuthChoice extends \yii\authclient\widgets\AuthChoice
 {
@@ -45,7 +44,6 @@ class AuthChoice extends \yii\authclient\widgets\AuthChoice
             ]);
         $text = Html::tag('span', $text, [
             'class' => 'auth-icon ' . $client->getName(),
-            //'style' => 'padding-right: 50px;',
         ]);
 
         if (!array_key_exists('class', $htmlOptions)) {
@@ -88,11 +86,9 @@ class AuthChoice extends \yii\authclient\widgets\AuthChoice
      */
     protected function renderMainContent()
     {
-        //echo Html::beginTag('div', ['class' => 'row']);
         foreach ($this->getClients() as $externalService) {
             $this->clientLink($externalService);
         }
-        //echo Html::endTag('div');
     }
 
 }

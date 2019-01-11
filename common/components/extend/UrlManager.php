@@ -178,6 +178,16 @@ class UrlManager extends BaseUrlManager
 
         foreach ($navigation as $item) {
             $rules[] = [
+                'pattern' => 'auth/<action>',
+                'route' => 'auth/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'site/<action>',
+                'route' => 'site/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
                 'pattern' => 'geo-manage/<action>',
                 'route' => 'geo-manage/<action>',
                 'suffix' => ''

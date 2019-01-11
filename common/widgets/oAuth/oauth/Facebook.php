@@ -9,7 +9,7 @@
 namespace common\widgets\oAuth\oauth;
 
 use common\models\Constants;
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация через Facebook
@@ -17,16 +17,8 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class Facebook extends \yii\authclient\clients\Facebook
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-    public $avatar      = 'avatar';
-
-    public $gender      = 'gender';
     public $female      = 1;
     public $male        = 2;
-
-    public $status          = 'status';
 
     /**
      * Размеры Popap-окна
@@ -70,15 +62,16 @@ class Facebook extends \yii\authclient\clients\Facebook
         ]);
 
         $return_attributes = [
-            'User' => [
-                $this->email        => $attributes['email'],
-                $this->first_name   => $attributes['first_name'],
-                $this->last_name    => $attributes['last_name'],
-                $this->gender       => $this->normalizeSex()[$attributes['gender']],
-                $this->status       => Constants::STATUS_ACTIVE
+            'OAuthForm' => [
+                'email'         => $attributes['email'],
+                'first_name'    => $attributes['first_name'],
+                'last_name'     => $attributes['last_name'],
+                'gender'        => $this->normalizeSex()[$attributes['gender']],
+                'status'        => Constants::STATUS_ACTIVE,
+                'role'          => 'user',
             ],
             'provider_user_id' => $attributes['id'],
-            'provider_id' => UserOauthKey::getAvailableClients()['facebook'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['facebook'],
             'page' => $attributes['id'],
         ];
 

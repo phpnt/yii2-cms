@@ -2,6 +2,7 @@
 
 namespace frontend\modules\signup\controllers;
 
+use common\models\Constants;
 use common\models\forms\EmailConfirm;
 use common\models\forms\SignupForm;
 use common\models\forms\UserForm;
@@ -43,6 +44,10 @@ class DefaultController extends Controller
                     [
                         'allow' => true,
                         'roles' => Yii::$app->userAccess->getUserAccess($this->page['access'])
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' =>['confirm-email']
                     ],
                 ],
             ],
@@ -189,5 +194,54 @@ class DefaultController extends Controller
         }
 
         return $this->goHome();
+    }
+
+    /**
+     * Форма подтверждение электронной почты, если при регистрации через соц. сеть он отсутствовал
+     * @param $user_id - id пользователя
+     * @return \yii\web\Response
+     * @throws BadRequestHttpException
+     */
+    public function actionConfirmEmail($user_id)
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $this->layout = '/main';
+
+        $modelSignupForm = SignupForm::findOne([
+            'id' => $user_id,
+            'status' => Constants::STATUS_WAIT
+        ]);
+        $modelSignupForm->email = null;
+
+        if (!$modelSignupForm) {
+            Yii::$app->session->set(
+                'message',
+                [
+                    'type'      => 'danger',
+                    'icon'      => 'glyphicon glyphicon-ban',
+                    'message'   => Yii::t('app', 'Пользователь не найден.'),
+                ]
+            );
+        };
+
+        if ($modelSignupForm->load(Yii::$app->request->post()) && $modelSignupForm->save()) {
+            Yii::$app->session->set(
+                'message',
+                [
+                    'type'      => 'success',
+                    'icon'      => 'glyphicon glyphicon-envelope',
+                    'message'   => ' '.Yii::t('app', 'Ссылка с подтверждением регистрации отправлена на Email.'),
+                ]
+            );
+            return $this->goHome();
+        }
+
+        return $this->render('@frontend/views/templates/signup/confirm-email', [
+            'page' => $this->page,
+            'modelSignupForm' => $modelSignupForm,
+        ]);
     }
 }

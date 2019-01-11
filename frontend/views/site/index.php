@@ -6,3 +6,7 @@
  * Date: 22.09.2018
  * Time: 17:49
  */
+
+use phpnt\bootstrapNotify\BootstrapNotify;
+
+echo BootstrapNotify::widget() ?>

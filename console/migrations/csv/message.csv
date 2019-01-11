@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
@@ -27,7 +27,6 @@ id;language;translation;hash
 33;en;"<p> Hello, {EMAIL_1}! </p> <p> Please follow the link below to reset your password. </p> <p> <a href=""{URL_1}""> Password reset </a > </p> <p> {DATE_1} </p>";4aa27d2bda4f5a388a253cde6f7db16d
 34;en;Basket;e35dc54d37374bc9db91e407ece6630a
 35;en;"Language switching";88a3b5fd0105bb1fa3803ea43fc82fed
-36;en;"<p> Hello {NAME_1}! </p> <p> Please confirm your email address, follow the link. </p> <p> <a href=""{URL_1}""> activation </a> </p> <p> If you have not registered on our website, simply delete this letter. </p> <p> {DATE_1} </p>";82e9ce3f7a12c61feda2e79f30c9b71a
 37;en;Continent;33d28aa40c8fa04f38c6201bd4bee849
 38;en;"Russian name";33d28aa40c8fa04f38c6201bd4bee849
 39;en;Latitude;640cb44caed9c9aac510f8fd6d1fc240
@@ -325,19 +324,8 @@ id;language;translation;hash
 362;en;"Enter your email address to reset your password.";ef1ccd06d43d92a7dfd6f5163b733a8e
 363;en;Choose;a350d508c6c05a7e9740efb88e8fb446
 364;en;"Template label";304e0a31a400af65d194e84240ee13f7
-365;en;"Authentication key";0d3666bbbd4179a422dfa0ba8f45f388
-366;en;"Key Page";d4277ac5a9a056b10c2bcacbed593ec9
-367;en;"User {email} is not authorized or blocked. If not authorized, check email or use the password recovery procedure.";f3cb4620bc6c2d6d9129a23e1d5b5ba3
-368;en;"Authorization successful";851831ddf0d8e364b419e938f641f598
-369;en;"A link with registration confirmation has been sent to {email}.";3da1a8c8022073eb5c7d8ac6f4d2a324
-370;en;"User {email} is blocked.";e404ea3644908e528c4baf80e8ace61e
 371;en;"Login key successfully added.";b7d2e82595788345c726e3750cc164ce
-372;en;"Login and password sent to {email}.";bb51366f5c305a78223ca60fc47827e7
 373;en;"This key is already assigned to another user of the site.";b29738cb1e1c80519c74389ce40a614b
-375;en;"Key not found";dd3539b2ce75cf497eb0444779e4d60d
-376;en;"You can not untie the only social network without filling email";63d99c4a7a7925302cc6b252da93af1e
-377;en;"You can not untie the only social network without filling password";b591cd4815937842abe314e19098f0d8
-378;en;"Login key removed";3f4862865c16c9ac9648357d08e65ec1
 379;en;"Location selection";d27d33e5ddb93dddc73eb3a2e1e84a18
 380;en;"Template for articles";8dc24e76d88e6d30cf44d10d77afdef6
 381;en;"Template to select a location";d722bcc2a915b0d79aca3146731a0d75
@@ -352,9 +340,19 @@ id;language;translation;hash
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
 391;en;"User Profile 2";668f66684944db1066fe52fa98491a8b
 392;en;Age;381955bf909367fe7956a4848716488d
-393;en;"A template for the user\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
-394;en;"A template for the user\'s profile 2";52918d5d40a1ce3613ad84f91dd1031e
+393;en;"A template for the user\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+394;en;"A template for the user\\'s profile 2";52918d5d40a1ce3613ad84f91dd1031e
 397;en;"You must create a new view for the elements of the template {temp}.";f3628ed64581c7a98bd9356e2f85e3cf
 398;en;"You need to create a new view for the selected element of the {temp} template.";a45d7487ac95d6a1b97471e60a4f0713
 399;en;"You need to create a new view for the template menu {temp}.";960ac1e4a7e71b5f56f197eb47dfa8e0
 400;en;Author;df6e7c42cadb83f18544c135cbb1303c
+401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
+402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
+403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
+404;en;"Confirm Email";a598e54373c140569741f616c306fc9e
+405;en;"User Agreement";c4fcbd532a7c14926d2a1e58e82af4be
+406;en;"Privacy policy";c4fcbd532a7c14926d2a1e58e82af4be
+407;en;"Login was successful.";11db9e0455a32a05f02774d810d4778f
+408;en;"Login key successfully added. You must confirm your email.";c9a3ef5b1a0ba7c0e13c3d2630d5420e
+409;en;"	
+<p>Hello, {NAME_1}!</p> <p>Please verify email address mail follow the link.</p> <p>Login: {EMAIL_1}</p> <p>Password: {PASS_1}</p> <p><a href=""{URL_1}"">activation</a></p> <p>If you are not registered on our site, then simply delete this email.</p> <p>{DATE_1}</p>";1645462e0b9daf11083007144561172d

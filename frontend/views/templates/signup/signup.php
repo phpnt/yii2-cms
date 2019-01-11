@@ -7,14 +7,17 @@
 
 use yii\bootstrap\Modal;
 use common\widgets\oAuth\AuthChoice;
+
+$header = isset(Yii::$app->authClientCollection) ? '<div class="col-md-12 m-b-sm">' . Yii::t('app', 'Войти используя социальную сеть') . ':</div>'.AuthChoice::widget([
+        'baseAuthUrl' => ['/auth/index'],
+        'popupMode' => false
+    ]) : '<div class="col-md-12 text-center">' . Yii::t('app', 'Регистрация пользователя') . '</div>';
 ?>
 <?php
 Modal::begin([
     'id' => 'users-signup',
     'size' => 'modal-md',
-    'header' => '<div class="m-b-sm">'.Yii::t('app', 'Войти используя социальную сеть').':</div>'.AuthChoice::widget([
-            'baseAuthUrl' => ['/auth/index'],
-        ]),
+    'header' => $header,
     'clientOptions' => ['show' => true],
     'options' => [],
 ]);

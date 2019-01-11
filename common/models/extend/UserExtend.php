@@ -11,6 +11,7 @@ namespace common\models\extend;
 use common\models\Constants;
 use common\models\forms\AuthAssignmentForm;
 use common\models\forms\AuthItemForm;
+use common\models\forms\DocumentForm;
 use common\models\forms\GeoCityForm;
 use common\models\forms\GeoCountryForm;
 use common\models\forms\UserOauthKeyForm;
@@ -32,8 +33,7 @@ use yii\web\IdentityInterface;
  * @property AuthAssignmentForm[] $authAssignments
  * @property AuthItemForm[] $itemNames
  * @property UserOauthKeyForm[] $keys
- * @property GeoCityForm $geoCity
- * @property GeoCountryForm $geoCountry
+ * @property DocumentForm $document
  */
 
 class UserExtend extends User implements IdentityInterface
@@ -115,6 +115,14 @@ class UserExtend extends User implements IdentityInterface
             Constants::SEX_MALE =>  Yii::t('app', 'Мужской'),
             Constants::SEX_FEMALE => Yii::t('app', 'Женский'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocument()
+    {
+        return $this->hasOne(DocumentForm::className(), ['id' => 'document_id']);
     }
 
     /**

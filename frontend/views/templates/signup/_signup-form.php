@@ -16,7 +16,6 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 /* @var $page array */
 /* @var $modelSignupForm \common\models\forms\SignupForm */
 /* @var $key integer */
-
 ?>
 <div id="elements-form-block">
     <?= BootstrapNotify::widget() ?>

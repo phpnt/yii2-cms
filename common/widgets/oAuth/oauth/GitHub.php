@@ -8,7 +8,8 @@
 
 namespace common\widgets\oAuth\oauth;
 
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\Constants;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация через GitHub
@@ -16,17 +17,6 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class GitHub extends \yii\authclient\clients\GitHub
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-    public $avatar      = 'avatar';
-
-    public $gender      = 'gender';
-    public $female      = 1;
-    public $male        = 2;
-
-    public $status          = 'status';
-    public $statusActive    = 1;
     /**
      * Размеры Popap-окна
      * @return array
@@ -61,6 +51,7 @@ class GitHub extends \yii\authclient\clients\GitHub
     protected function initUserAttributes()
     {
         $attributes = $this->api('user', 'GET');
+
         $emails = $this->api('user/emails', 'GET');
 
         $verifiedEmail = '';
@@ -72,15 +63,16 @@ class GitHub extends \yii\authclient\clients\GitHub
         }
 
         $return_attributes = [
-            'User' => [
-                $this->email        => $verifiedEmail,
-                $this->first_name   => $attributes['login'],
-                $this->avatar       => $attributes['avatar_url'],
-                $this->gender       => $this->male,
-                $this->status       => $this->statusActive
+            'OAuthForm' => [
+                'email'         => $verifiedEmail,
+                'first_name'    => $attributes['login'],
+                'last_name'     => $attributes['avatar_url'],
+                'gender'        => null,
+                'status'        => Constants::STATUS_ACTIVE,
+                'role'          => 'user',
             ],
             'provider_user_id' => $attributes['id'],
-            'provider_id' => UserOauthKey::getAvailableClients()['github'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['github'],
             'page' => $attributes['login'],
         ];
 

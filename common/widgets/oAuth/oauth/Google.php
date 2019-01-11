@@ -9,7 +9,7 @@
 namespace common\widgets\oAuth\oauth;
 
 use common\models\Constants;
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация через Google plus
@@ -17,16 +17,9 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class Google extends \yii\authclient\clients\Google
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-    public $avatar      = 'avatar';
-
-    public $gender      = 'gender';
     public $female      = 1;
     public $male        = 2;
 
-    public $status      = 'status';
     /**
      * Размеры Popap-окна
      * @return array
@@ -75,15 +68,16 @@ class Google extends \yii\authclient\clients\Google
         $attributes = $this->api('people/me', 'GET');
 
         $return_attributes = [
-            'User' => [
-                $this->email        => $attributes['emails'][0]['value'],
-                $this->first_name   => $attributes['name']['givenName'],
-                $this->last_name    => $attributes['name']['familyName'],
-                $this->gender       => isset($attributes['gender']) ? $this->normalizeSex()[$attributes['gender']] : '',
-                $this->status       => Constants::STATUS_ACTIVE
+            'OAuthForm' => [
+                'email'         => $attributes['emails'][0]['value'],
+                'first_name'    => $attributes['name']['givenName'],
+                'last_name'     => $attributes['name']['familyName'],
+                'gender'        => isset($attributes['gender']) ? $this->normalizeSex()[$attributes['gender']] : '',
+                'status'        => Constants::STATUS_ACTIVE,
+                'role'          => 'user',
             ],
             'provider_user_id' => $attributes['id'],
-            'provider_id' => UserOauthKey::getAvailableClients()['google'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['google'],
             'page' => $attributes['id'],
         ];
         return $return_attributes;

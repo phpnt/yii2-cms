@@ -9,7 +9,7 @@
 namespace common\widgets\oAuth\oauth;
 
 use common\models\Constants;
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация с помощью Яндекса
@@ -17,16 +17,8 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class Yandex extends \yii\authclient\clients\Yandex
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-    public $avatar      = 'avatar';
-
-    public $gender      = 'gender';
     public $female      = 1;
     public $male        = 2;
-
-    public $status      = 'status';
 
     /**
      * Размеры Popap-окна
@@ -63,15 +55,16 @@ class Yandex extends \yii\authclient\clients\Yandex
         $attributes =  $this->api('info', 'GET');
 
         $return_attributes = [
-            'User' => [
-                $this->email        => $attributes['emails'][0],
-                $this->first_name   => $attributes['first_name'],
-                $this->last_name    => $attributes['last_name'],
-                $this->gender       => $this->normalizeSex()[$attributes['sex']],
-                $this->status       => Constants::STATUS_ACTIVE
+            'OAuthForm' => [
+                'email'        => $attributes['emails'][0],
+                'first_name'   => $attributes['first_name'],
+                'last_name'    => $attributes['last_name'],
+                'gender'       => $this->normalizeSex()[$attributes['sex']],
+                'status'        => Constants::STATUS_ACTIVE,
+                'role'          => 'user',
             ],
             'provider_user_id' => $attributes['id'],
-            'provider_id' => UserOauthKey::getAvailableClients()['yandex'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['yandex'],
             'page' => null,
         ];
 

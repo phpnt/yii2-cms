@@ -9,7 +9,7 @@
 namespace common\widgets\oAuth\oauth;
 
 use common\models\Constants;
-use common\widgets\oAuth\models\UserOauthKey;
+use common\models\forms\UserOauthKeyForm;
 
 /**
  * Авторизация с помощью Twitter
@@ -17,15 +17,8 @@ use common\widgets\oAuth\models\UserOauthKey;
  */
 class Twitter extends \yii\authclient\clients\Twitter
 {
-    public $email       = 'email';
-    public $first_name  = 'first_name';
-    public $last_name   = 'last_name';
-
-    public $gender      = 'gender';
     public $female      = 1;
     public $male        = 2;
-
-    public $status      = 'status';
 
     /**
      * Размеры Popap-окна
@@ -51,15 +44,16 @@ class Twitter extends \yii\authclient\clients\Twitter
         $fullName = explode(' ', $attributes['name']);
 
         $return_attributes = [
-            'User' => [
-                $this->email        => '',
-                $this->first_name   => isset($fullName[0]) ? $fullName[0] : null,
-                $this->last_name    => isset($fullName[1]) ? $fullName[1] : null,
-                $this->gender       => $this->male,
-                $this->status       => Constants::STATUS_WAIT
+            'OAuthForm' => [
+                'email'         => $attributes['id'] . '_' . time(),
+                'first_name'    => isset($fullName[0]) ? $fullName[0] : null,
+                'last_name'     => isset($fullName[1]) ? $fullName[1] : null,
+                'gender'        => null,
+                'status'        => Constants::STATUS_WAIT,
+                'role'          => 'user',
             ],
             'provider_user_id' => $attributes['id'],
-            'provider_id' => UserOauthKey::getAvailableClients()['twitter'],
+            'provider_id' => UserOauthKeyForm::getAvailableClients()['twitter'],
             'page' => $attributes['screen_name'],
         ];
 

@@ -301,7 +301,7 @@ class m000000_000002_cms_shop extends Migration
             'title' => $this->string()->notNull()->comment(Yii::t('app', 'Название')),
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Имя файла')),
             'extension' => $this->string()->notNull()->comment(Yii::t('app', 'Расширение')),
-            'size' => $this->integer()->notNull()->comment(Yii::t('app', 'Размер')),
+            'size' => $this->integer()->comment(Yii::t('app', 'Размер')),
             'path' => $this->string()->notNull()->comment(Yii::t('app', 'Путь к файлу')),
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
