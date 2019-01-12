@@ -233,6 +233,37 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
+                'pattern' => '<id_geo_city>/<alias>',
+                'route' => 'control/default/index',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => '<id_geo_city>/<alias>/<parent>/<item_alias>',
+                'route' => 'control/default/view',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => '<id_geo_city>/<alias>/<folder_alias>',
+                'route' => 'control/default/view-list',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => '<id_geo_city>/<alias>',
+                'route' => 'control/default/index',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => '<id_geo_city>',
+                'route' => 'control/default/index',
+                'suffix' => ''
+            ];
+
+            $rules[] = [
+                'pattern' => '<alias>',
+                'route' => 'control/default/index',
+                'suffix' => ''
+            ];
+            $rules[] = [
                 'pattern' => '<alias>/<parent>/<item_alias>',
                 'route' => 'control/default/view',
                 'suffix' => ''
@@ -301,16 +332,43 @@ class UrlManager extends BaseUrlManager
     }
 
     /**
+     * Возвращает сформированный Url
+     *
      * @inheritdoc
      */
     public function createUrl($params)
     {
         if ($this->ignoreLanguageUrlPatterns) {
+            // маршруты при которых url не меняется
             $params = (array) $params;
             $route = trim($params[0], '/');
             foreach ($this->ignoreLanguageUrlPatterns as $pattern => $v) {
                 if (preg_match($pattern, $route)) {
-                    return parent::createUrl($params);
+                    $url = parent::createUrl($params);
+                    return $url;
+                }
+            }
+        }
+
+        if ($params[0] == 'control/default/index') {
+            // если модуль control
+            // узнаем выбрал ли город
+            $session = Yii::$app->session;
+            $id_geo_city = $session->get('id_geo_city');
+            if (!$id_geo_city) {
+                $cookiesRequest = Yii::$app->request->cookies;
+                if (isset($cookiesRequest['id_geo_city'])) {
+                    $id_geo_city = $cookiesRequest['id_geo_city']->value;
+                }
+            }
+
+            if ($id_geo_city) {
+                $cityValue = [
+                    'id_geo_city' => $id_geo_city
+                ];
+
+                if (!isset($params['id_geo_city'])) {
+                    $params = $params + $cityValue;
                 }
             }
         }
@@ -340,7 +398,7 @@ class UrlManager extends BaseUrlManager
             // Unless a language was explicitely specified in the parameters we can return a URL without any prefix
             // for the default language, if suffixes are disabled for the default language. In any other case we
             // always add the suffix, e.g. to create "reset" URLs that explicitely contain the default language.
-            if (!$languageRequired && !$this->enableDefaultLanguageUrlCode && $language===$this->getDefaultLanguage()) {
+            if (!$languageRequired && !$this->enableDefaultLanguageUrlCode && $language === $this->getDefaultLanguage()) {
                 return  $url;
             } else {
                 $key = array_search($language, $this->languages);
@@ -376,7 +434,8 @@ class UrlManager extends BaseUrlManager
                 return $needleLength ? substr_replace($url, "$needle/$language", 0, $needleLength) : "/$language$url";
             }
         } else {
-            return parent::createUrl($params);
+            $url = parent::createUrl($params);
+            return $url;
         }
     }
 
@@ -403,7 +462,9 @@ class UrlManager extends BaseUrlManager
             }
         }
         $pattern = implode('|', $parts);
+
         if (preg_match("#^($pattern)\b(/?)#i", $pathInfo, $m)) {
+            // если переходим по ссылке, но не выбираем язык
             $request->setPathInfo(mb_substr($pathInfo, mb_strlen($m[1].$m[2])));
             $code = $m[1];
             if (isset($this->languages[$code])) {
@@ -451,6 +512,7 @@ class UrlManager extends BaseUrlManager
         } else {
             $language = null;
             if ($this->enableLanguagePersistence) {
+                // при выборе нового языка достаем его из сессий и кук
                 $language = Yii::$app->session->get($this->languageSessionKey);
                 $language!==null && Yii::trace("Found persisted language '$language' in session.", __METHOD__);
                 if ($language===null) {
@@ -543,6 +605,7 @@ class UrlManager extends BaseUrlManager
     protected function redirectToLanguage($language)
     {
         $result = parent::parseRequest($this->_request);
+
         if ($result === false) {
             throw new NotFoundHttpException(Yii::t('yii', 'Страница не найдена.'));
         }

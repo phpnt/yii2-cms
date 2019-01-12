@@ -19,7 +19,7 @@ use common\widgets\TemplateOfElement\SetGeoFields;
 <div id="elements-form-block">
     <?= BootstrapNotify::widget() ?>
     <?php $form = ActiveForm::begin([
-        'id' => 'form',
+        'id' => 'form-geo',
         'action' => Url::to(['/geo/default/index']),
         'options' => ['data-pjax' => true]
     ]); ?>
@@ -34,19 +34,22 @@ use common\widgets\TemplateOfElement\SetGeoFields;
 
         <div class="col-sm-12">
             <div class="form-group text-center">
-                <?= Html::submitButton(Yii::t('app', 'Выбрать'), ['class' => 'btn btn-primary text-uppercase full-width']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Выбрать'), [
+                    'id' => 'submit-geo',
+                    'class' => 'btn btn-primary text-uppercase full-width',
+                ]) ?>
             </div>
         </div>
     </div>
     <?php ActiveForm::end(); ?>
     <?php
     $js = <<< JS
-        $('#form').on('beforeSubmit', function () { 
+        $('#form-geo').on('beforeSubmit', function () { 
             var form = $(this);
                 $.pjax({
                     type: form.attr('method'),
                     url: form.attr('action'),
-                    data: new FormData($('#form')[0]),
+                    data: new FormData($('#form-geo')[0]),
                     container: "#elements-form-block",
                     push: false,
                     scrollTo: false,

@@ -7,6 +7,7 @@ use common\widgets\TemplateOfElement\forms\GeoTemplateForm;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
@@ -129,7 +130,7 @@ class DefaultController extends Controller
         $modelGeoTemplateForm = GeoTemplateForm::findOne(['mark' => 'geo']);
 
         if ($modelGeoTemplateForm->load(Yii::$app->request->post()) && $modelGeoTemplateForm->validate()) {
-            return $this->goHome();
+            return $this->redirect(Url::to(['/control/default/index', 'id_geo_city' => $modelGeoTemplateForm->id_geo_city]));
         }
 
         if ($modelGeoTemplateForm->errors) {

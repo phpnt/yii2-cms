@@ -37,6 +37,7 @@ $containerSetCookie = 'container-' . $changeAttribute;
             'id' => $inputNameId,
             'name' => "GeoTemplateForm[elements_fields][$modelFieldForm->id][$i]",
             'class' => 'typeahead form-control',
+            'autocomplete' => 'off',
             'value' => $value,
         ],
         'bloodhound' => [
@@ -50,21 +51,29 @@ $containerSetCookie = 'container-' . $changeAttribute;
         'typeahead' => [
             'name' => 'name',
             'display' => 'name',
+            'hint' => false
         ],
         'typeaheadEvents' => [
             'typeahead:selected' => new \yii\web\JsExpression(
         'function(obj, datum, name) {
                 if ("' . $changeAttribute . '" == "id_geo_country") {
                     // если выбрана страна очищаем поля региона и города
-                    $("#name_geo_region").val("");
+                    $( "#name_geo_region" ).val("");
                     $("#id_geo_region").val("");
                     $("#name_geo_city").val("");
                     $("#id_geo_city").val("");
+                    $("#submit-geo").click();
                 }
                 if ("' . $changeAttribute . '" == "id_geo_region") {
                     // если выбран регион очищаем поля города
                     $("#name_geo_city").val("");
                     $("#id_geo_city").val("");
+                    $("#submit-geo").click();
+                }
+                if ("' . $changeAttribute . '" == "id_geo_city") {
+                    // если выбран город
+                    $(".field-name_geo_city").removeClass("has-error");
+                    $(".help-block-error").empty();
                 }
                 $("#' . $changeAttribute . '").val(datum.id);
                 $.pjax({

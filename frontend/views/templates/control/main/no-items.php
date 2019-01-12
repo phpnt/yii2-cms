@@ -12,7 +12,9 @@
 
 $this->title = Yii::t('app', $page['title']);
 
-$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
+if ($page['alias'] != 'main') {
+    $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
+}
 ?>
 <div class="index">
     <div class="col-md-12">

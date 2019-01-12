@@ -60,6 +60,8 @@ class TypeaheadField extends  InputWidget
         var typeahead = $typeahead;
         typeahead.source = bloodhound;
 
+        console.log(typeahead);
+        
         $('#$id').typeahead(null, typeahead); 
 JS;
         $view->registerJs($js);

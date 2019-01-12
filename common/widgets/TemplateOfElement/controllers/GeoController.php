@@ -52,10 +52,16 @@ class GeoController extends Controller
      */
     public function actionGetRegion($query, $lang)
     {
-        $cookies = Yii::$app->request->cookies;
-
-        if (isset($cookies['id_geo_country'])) {
-            $id_geo_country = $cookies['id_geo_country']->value;
+        $session = Yii::$app->session;
+        $id_geo_country = $session->get('id_geo_country');
+        if (!$id_geo_country) {
+            $cookiesRequest = Yii::$app->request->cookies;
+            if (isset($cookiesRequest['id_geo_country'])) {
+                $id_geo_country = $cookiesRequest['id_geo_country']->value;
+            }
+        }
+        
+        if (isset($id_geo_country) && $id_geo_country) {
             $manyGeoRegionForm = GeoRegionForm::find()
                 ->where(['id_geo_country' => $id_geo_country])
                 ->andWhere(['like', 'name_ru', $query])
@@ -101,11 +107,23 @@ class GeoController extends Controller
      */
     public function actionGetCity($query, $lang)
     {
-        $cookies = Yii::$app->request->cookies;
+        $session = Yii::$app->session;
+        $cookiesRequest = Yii::$app->request->cookies;
+        $id_geo_country = $session->get('id_geo_country');
+        if (!$id_geo_country) {
+            if (isset($cookiesRequest['id_geo_country'])) {
+                $id_geo_country = $cookiesRequest['id_geo_country']->value;
+            }
+        }
 
-        if (isset($cookies['id_geo_region'])) {
-            // если определен регион
-            $id_geo_region = $cookies['id_geo_region']->value;
+        $id_geo_region = $session->get('id_geo_region');
+        if (!$id_geo_region) {
+            if (isset($cookiesRequest['id_geo_region'])) {
+                $id_geo_region = $cookiesRequest['id_geo_region']->value;
+            }
+        }
+
+        if (isset($id_geo_region) && $id_geo_region) {
             $manyGeoCityForm = GeoCityForm::find()
                 ->where(['id_geo_region' => $id_geo_region])
                 ->andWhere(['like', 'name_ru', $query])
@@ -119,9 +137,8 @@ class GeoController extends Controller
                     ->orderBy(['name_ru' => SORT_ASC])
                     ->all();
             }
-        } elseif (!isset($cookies['id_geo_region']) && isset($cookies['id_geo_country'])) {
+        } elseif (!isset($id_geo_region) && !$id_geo_region && isset($id_geo_country) && $id_geo_country) {
             // если не определен регион, но определена страна
-            $id_geo_country = $cookies['id_geo_country']->value;
             $regions = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('geo_region')
@@ -209,6 +226,9 @@ class GeoController extends Controller
                 $cookiesResponse->remove('id_geo_city');
             }
         }
+
+        $session = Yii::$app->session;
+        $session->set($name, $value);
 
         $cookiesResponse->add(new \yii\web\Cookie([
             'name' => $name,

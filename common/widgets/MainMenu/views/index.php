@@ -15,13 +15,14 @@ use yii\helpers\Url;
 /* @var $widget \common\widgets\MainMenu\MainMenu */
 /* @var $site array */
 /* @var $navigation array */
-/* @var $fieldsManage \common\components\other\FieldsManage */
+/* @var $id_geo_city int */
+/* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
 ?>
 <?php
 NavBar::begin([
     'brandLabel' => $site['annotation'],
-    'brandUrl' => Yii::$app->homeUrl,
+    'brandUrl' => Url::to(['/control/default/index', 'id_geo_city' => $id_geo_city]),
     'options' => $widget->optoinsNavBar,
 ]);
 $items = [];
@@ -101,7 +102,7 @@ $items = [];
             ];
             ?>
         <?php endif; ?>
-    <?php else: ?>
+    <?php elseif ($item['alias'] != 'main'): ?>
         <?php
         $items[] = [
             'label' => Yii::t('app', $item['name']),

@@ -64,6 +64,7 @@ class MainMenu extends Widget
 
         // узнаем используется мультиязычность или нет
         foreach ($navigation as $key => $item) {
+            // выпадающий список переключения языков
             if ($item['alias'] == 'i18n') {
                 unset($navigation[$key]);
 
@@ -84,6 +85,7 @@ class MainMenu extends Widget
                         'label' => $this->label($language),
                         'url'   => $params,
                     ];
+                    //d($params);
                 }
 
                 /* @var $item array */
@@ -101,10 +103,26 @@ class MainMenu extends Widget
             }
         }
 
+        $id_geo_city = Yii::$app->request->get('id_geo_city');
+
+        if (!Yii::$app->request->get('id_geo_city')) {
+            // если модуль control
+            // узнаем выбрал ли город
+            $session = Yii::$app->session;
+            $id_geo_city = $session->get('id_geo_city');
+            if (!$id_geo_city) {
+                $cookiesRequest = Yii::$app->request->cookies;
+                if (isset($cookiesRequest['id_geo_city'])) {
+                    $id_geo_city = $cookiesRequest['id_geo_city']->value;
+                }
+            }
+        }
+
         return $this->render('index', [
             'widget' => $this,
             'site' => $site,
             'navigation' => $navigation,
+            'id_geo_city' => $id_geo_city
         ]);
     }
 

@@ -78,6 +78,19 @@ class GeoTemplateForm extends TemplateForm
                         $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" обязательно для заполнения.', ['field' => $field['name']]);
                     }
                 }
+
+                foreach ($forms_field as $sub_key => $item) {
+                    // назначаем значения
+                    if ($field['type'] == Constants::FIELD_TYPE_COUNTRY) {
+                        $this->id_geo_country = $item;
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_REGION) {
+                        $this->id_geo_region = $item;
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_CITY) {
+                        $this->id_geo_city = $item;
+                    }
+                }
             }
         }
 
