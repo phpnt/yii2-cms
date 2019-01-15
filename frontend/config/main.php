@@ -81,11 +81,13 @@ return [
                 'ru' => 'Русский',
                 'en' => 'English',
             ],
+            'defaultCity' => '524901',    // Москва
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'ignoreLanguageUrlPatterns' => [
                 '#^auth/#' => '#^auth/#',
+                '#^geo/#' => '#^geo/#',
                 '#^geo-manage/#' => '#^geo-manage/#',
             ],
         ],

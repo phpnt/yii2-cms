@@ -205,29 +205,33 @@ class GeoController extends Controller
      */
     public function actionSetCookie($name, $value = null)
     {
+        $session = Yii::$app->session;
         $cookiesResponse = Yii::$app->response->cookies;
         $cookiesRequest = Yii::$app->request->cookies;
 
         if (isset($cookiesRequest[$name])) {
+            $session->remove($name);
             $cookiesResponse->remove($name);
         }
 
         if ($name == 'id_geo_country') {
             // если выбрана новая страна, удаляем из кук регион и город
+            $session->remove('id_geo_region');
             if (isset($cookiesRequest['id_geo_region'])) {
                 $cookiesResponse->remove('id_geo_region');
             }
+            $session->remove('id_geo_city');
             if (isset($cookiesRequest['id_geo_city'])) {
                 $cookiesResponse->remove('id_geo_city');
             }
         } elseif ($name == 'id_geo_region') {
             // если выбран новаый регион, удаляем из кук город
+            $session->remove('id_geo_city');
             if (isset($cookiesRequest['id_geo_city'])) {
                 $cookiesResponse->remove('id_geo_city');
             }
         }
 
-        $session = Yii::$app->session;
         $session->set($name, $value);
 
         $cookiesResponse->add(new \yii\web\Cookie([

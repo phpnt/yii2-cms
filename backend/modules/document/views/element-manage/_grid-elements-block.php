@@ -138,6 +138,9 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                 'headerOptions'   => ['class' => 'text-center'],
                 'value' => function ($modelDocumentForm) {
                     /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                    if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
+                        return Yii::t('app', 'Нет доступа');
+                    }
                     return Yii::t('app', $modelDocumentForm->name);
                 },
             ],

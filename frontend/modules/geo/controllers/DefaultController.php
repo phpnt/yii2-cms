@@ -52,6 +52,8 @@ class DefaultController extends Controller
      */
     public function beforeAction($action)
     {
+        Yii::$app->language = $this->getLang();
+
         try {
             parent::beforeAction($action);
         } catch (BadRequestHttpException $e) {
@@ -144,5 +146,26 @@ class DefaultController extends Controller
             'page' => $this->page,
             'modelGeoTemplateForm' => $modelGeoTemplateForm,
         ]);
+    }
+
+    /**
+     * Взвращает текущий язык
+     * */
+    public function getLang() {
+        $session = Yii::$app->session;
+        $lang = $session->get('_language');
+
+        if (!$lang) {
+            $cookiesRequest = Yii::$app->request->cookies;
+            if (isset($cookiesRequest['_language'])) {
+                $lang = $cookiesRequest['_language']->value;
+            }
+        }
+
+        if (!$lang) {
+            $lang = Yii::$app->language;
+        }
+
+        return $lang;
     }
 }

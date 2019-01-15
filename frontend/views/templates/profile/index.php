@@ -120,7 +120,7 @@ $modelUserForm = Yii::$app->user->identity;
     <div class="col-md-12 text-right">
         <?php $form = ActiveForm::begin([
             'id' => 'profile-form',
-            'action' => Url::to(['/'.$page['alias'].'/default/logout'])
+            'action' => Url::to(['/profile/default/logout'])
         ]); ?>
 
         <div class="form-group">

@@ -22,7 +22,7 @@ $fieldsManage = Yii::$app->fieldsManage;
 <?php
 NavBar::begin([
     'brandLabel' => $site['annotation'],
-    'brandUrl' => Url::to(['/control/default/index', 'id_geo_city' => $id_geo_city]),
+    'brandUrl' => Url::to([Yii::$app->homeUrl]),
     'options' => $widget->optoinsNavBar,
 ]);
 $items = [];
@@ -76,7 +76,7 @@ $items = [];
             ?>
         <?php elseif ($item['alias'] == 'geo'): ?>
             <?php
-            $cityName = $fieldsManage->getCityName();
+            $cityName = $fieldsManage->getCityName($id_geo_city);
             $items[] = [
                 'label' => $cityName ? $cityName : Yii::t('app', $item['name']),
                 'url' => false,

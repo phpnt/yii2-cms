@@ -45,6 +45,9 @@ Modal::begin([
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelDocumentForm) {
                             /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                            if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
+                                return Yii::t('app', 'Нет доступа');
+                            }
                             return $modelDocumentForm->name;
                         }, $modelDocumentForm),
                         'captionOptions' => [
@@ -100,6 +103,9 @@ Modal::begin([
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelDocumentForm) {
                             /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                            if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
+                                return Yii::t('app', 'Нет доступа');
+                            }
                             return $modelDocumentForm->createdBy->email;
                         }, $modelDocumentForm),
                         'captionOptions' => [
@@ -111,6 +117,9 @@ Modal::begin([
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelDocumentForm) {
                             /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                            if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
+                                return Yii::t('app', 'Нет доступа');
+                            }
                             return $modelDocumentForm->updatedBy->email;
                         }, $modelDocumentForm),
                         'captionOptions' => [

@@ -112,6 +112,7 @@ class SignupForm extends UserForm
         if ($template) {
             $data = [
                 '{NAME_1}' => $this->email,
+                '{EMAIL_1}' => $this->email,
                 '{PASS_1}' => $this->password,
                 '{URL_1}' => Yii::$app->urlManager->createAbsoluteUrl(['/signup/default/confirm', 'token' => $this->email_confirm_token]),
                 '{DATE_1}' => Yii::$app->formatter->asDate(time()),

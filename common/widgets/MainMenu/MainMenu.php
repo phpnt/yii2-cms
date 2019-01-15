@@ -103,18 +103,14 @@ class MainMenu extends Widget
             }
         }
 
-        $id_geo_city = Yii::$app->request->get('id_geo_city');
-
-        if (!Yii::$app->request->get('id_geo_city')) {
-            // если модуль control
-            // узнаем выбрал ли город
-            $session = Yii::$app->session;
-            $id_geo_city = $session->get('id_geo_city');
-            if (!$id_geo_city) {
-                $cookiesRequest = Yii::$app->request->cookies;
-                if (isset($cookiesRequest['id_geo_city'])) {
-                    $id_geo_city = $cookiesRequest['id_geo_city']->value;
-                }
+        // если модуль control
+        // узнаем выбрал ли город
+        $session = Yii::$app->session;
+        $id_geo_city = $session->get('id_geo_city');
+        if (!$id_geo_city) {
+            $cookiesRequest = Yii::$app->request->cookies;
+            if (isset($cookiesRequest['id_geo_city'])) {
+                $id_geo_city = $cookiesRequest['id_geo_city']->value;
             }
         }
 

@@ -22,6 +22,11 @@ use yii\helpers\Url;
 
 class UrlManager extends BaseUrlManager
 {
+    /*
+     * Город по умолчанию
+     * */
+    public $defaultCity;
+
     /**
      * @var array list of available language codes. More specific patterns should come first, e.g. 'en_us'
      * before 'en'. This can also contain mapping of <url_value> => <language>, e.g. 'english' => 'en'.
@@ -31,12 +36,13 @@ class UrlManager extends BaseUrlManager
     public $langLabels = [];
 
     /**
+     * включает специальные ссылки для локали и гео
      * @var bool whether to enable locale URL specific features
      */
     public $enableLocaleUrls = true;
 
     /**
-     * @var bool whether the default language should use an URL code like any other configured language.
+     * @var bool Должен ли язык по умолчанию использовать код URL, как любой другой настроенный язык.
      *
      * By default this is `false`, so for URLs without a language code the default language is assumed.
      * In addition any request to an URL that contains the default language code will be redirected to
@@ -52,20 +58,20 @@ class UrlManager extends BaseUrlManager
     public $enableDefaultLanguageUrlCode = false;
 
     /**
-     * @var bool whether to detect the app language from the HTTP headers (i.e. browser settings).
+     * @var bool Определять ли язык приложения из заголовков HTTP (то есть настроек браузера).
      * Default is `true`.
      */
     public $enableLanguageDetection = true;
 
     /**
-     * @var bool whether to store the detected language in session and (optionally) a cookie. If this
-     * is `true` (default) and a returning user tries to access any URL without a language prefix,
-     * he'll be redirected to the respective stored language URL (e.g. /some/page -> /fr/some/page).
+     * @var bool Сохранять ли обнаруженный язык в сессии и (необязательно) куки.
+     * Если да `true` (по умолчанию) и возвращающийся пользователь пытается получить доступ к любому URL без языкового префикса,
+     * он будет перенаправлен на соответствующий сохраненный язык URL (e.g. /some/page -> /fr/some/page).
      */
     public $enableLanguagePersistence = true;
 
     /**
-     * @var bool whether to keep upper case language codes in URL. Default is `false` wich will e.g.
+     * @var bool Сохранять ли коды языков верхнего регистра в URL. По умолчанию установлено значение `false`, например,
      * redirect `de-AT` to `de-at`.
      */
     public $keepUppercaseLanguageCode = false;
@@ -115,6 +121,11 @@ class UrlManager extends BaseUrlManager
     protected $_defaultLanguage;
 
     /**
+     * @var string город по умолчанию
+     */
+    protected $_defaultCity;
+
+    /**
      * @inheritdoc
      */
     public $enablePrettyUrl = true;
@@ -125,6 +136,8 @@ class UrlManager extends BaseUrlManager
      * language. If no such parameter is used, the currently detected application language is used.
      */
     public $languageParam = 'language';
+
+    public $cityParam = 'id_geo_city';
 
     /**
      * @var \yii\web\Request
@@ -233,32 +246,6 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => '<id_geo_city>/<alias>',
-                'route' => 'control/default/index',
-                'suffix' => ''
-            ];
-            $rules[] = [
-                'pattern' => '<id_geo_city>/<alias>/<parent>/<item_alias>',
-                'route' => 'control/default/view',
-                'suffix' => ''
-            ];
-            $rules[] = [
-                'pattern' => '<id_geo_city>/<alias>/<folder_alias>',
-                'route' => 'control/default/view-list',
-                'suffix' => ''
-            ];
-            $rules[] = [
-                'pattern' => '<id_geo_city>/<alias>',
-                'route' => 'control/default/index',
-                'suffix' => ''
-            ];
-            $rules[] = [
-                'pattern' => '<id_geo_city>',
-                'route' => 'control/default/index',
-                'suffix' => ''
-            ];
-
-            $rules[] = [
                 'pattern' => '<alias>',
                 'route' => 'control/default/index',
                 'suffix' => ''
@@ -293,6 +280,7 @@ class UrlManager extends BaseUrlManager
             }
         }
         $this->_defaultLanguage = Yii::$app->language;
+        $this->_defaultCity = $this->defaultCity;
     }
 
     /**
@@ -305,6 +293,15 @@ class UrlManager extends BaseUrlManager
     }
 
     /**
+     * @return string возвращает город по умолчанию, до изменения данным компонентом.
+     */
+    public function getDefaultCity()
+    {
+        return $this->_defaultCity;
+    }
+
+    /**
+     * Выполняется первая
      * @inheritdoc
      */
     public function parseRequest($request)
@@ -312,6 +309,7 @@ class UrlManager extends BaseUrlManager
         if ($this->enableLocaleUrls && $this->languages) {
             $process = true;
             if ($this->ignoreLanguageUrlPatterns) {
+                // маршруты, которые игнорируются
                 $pathInfo = $request->getPathInfo();
                 foreach ($this->ignoreLanguageUrlPatterns as $k => $pattern) {
                     if (preg_match($pattern, $pathInfo)) {
@@ -321,128 +319,20 @@ class UrlManager extends BaseUrlManager
                 }
             }
             if ($process && !$this->_processed) {
+                // обработка ссылки
                 $this->_processed = true;
                 $this->processLocaleUrl($request);
             }
         }
 
-
-
         return parent::parseRequest($request);
     }
 
     /**
-     * Возвращает сформированный Url
-     *
-     * @inheritdoc
-     */
-    public function createUrl($params)
-    {
-        if ($this->ignoreLanguageUrlPatterns) {
-            // маршруты при которых url не меняется
-            $params = (array) $params;
-            $route = trim($params[0], '/');
-            foreach ($this->ignoreLanguageUrlPatterns as $pattern => $v) {
-                if (preg_match($pattern, $route)) {
-                    $url = parent::createUrl($params);
-                    return $url;
-                }
-            }
-        }
-
-        if ($params[0] == 'control/default/index') {
-            // если модуль control
-            // узнаем выбрал ли город
-            $session = Yii::$app->session;
-            $id_geo_city = $session->get('id_geo_city');
-            if (!$id_geo_city) {
-                $cookiesRequest = Yii::$app->request->cookies;
-                if (isset($cookiesRequest['id_geo_city'])) {
-                    $id_geo_city = $cookiesRequest['id_geo_city']->value;
-                }
-            }
-
-            if ($id_geo_city) {
-                $cityValue = [
-                    'id_geo_city' => $id_geo_city
-                ];
-
-                if (!isset($params['id_geo_city'])) {
-                    $params = $params + $cityValue;
-                }
-            }
-        }
-
-        if ($this->enableLocaleUrls && $this->languages) {
-            $params = (array) $params;
-
-            if (isset($params[$this->languageParam])) {
-                $language = $params[$this->languageParam];
-                unset($params[$this->languageParam]);
-                $languageRequired = true;
-            } else {
-                $language = Yii::$app->language;
-                $languageRequired = false;
-            }
-
-            // Do not use prefix for default language to prevent unnecessary redirect if there's no persistence and no detection
-            if (
-                $languageRequired && $language===$this->getDefaultLanguage() &&
-                !$this->enableDefaultLanguageUrlCode && !$this->enableLanguagePersistence && !$this->enableLanguageDetection
-            ) {
-                $languageRequired = false;
-            }
-
-            $url = parent::createUrl($params);
-
-            // Unless a language was explicitely specified in the parameters we can return a URL without any prefix
-            // for the default language, if suffixes are disabled for the default language. In any other case we
-            // always add the suffix, e.g. to create "reset" URLs that explicitely contain the default language.
-            if (!$languageRequired && !$this->enableDefaultLanguageUrlCode && $language === $this->getDefaultLanguage()) {
-                return  $url;
-            } else {
-                $key = array_search($language, $this->languages);
-                if (is_string($key)) {
-                    $language = $key;
-                }
-                if (!$this->keepUppercaseLanguageCode) {
-                    $language = strtolower($language);
-                }
-                // Remove any trailing slashes unless one is configured as suffix
-                if ($this->suffix!=='/') {
-                    if (count($params)!==1) {
-                        $url = preg_replace('#/\?#', '?', $url);
-                    } else {
-                        $url = rtrim($url, '/');
-                    }
-                }
-
-                // /foo/bar -> /de/foo/bar
-                // /base/url/foo/bar -> /base/url/de/foo/bar
-                // /base/index.php/foo/bar -> /base/index.php/de/foo/bar
-                // http://www.example.com/base/url/foo/bar -> http://www.example.com/base/de/foo/bar
-                $needle = $this->showScriptName ? $this->getScriptUrl() : $this->getBaseUrl();
-                // Check for server name URL
-                if (strpos($url, '://')!==false) {
-                    if (($pos = strpos($url, '/', 8))!==false || ($pos = strpos($url, '?', 8))!==false) {
-                        $needle = substr($url, 0, $pos) . $needle;
-                    } else {
-                        $needle = $url . $needle;
-                    }
-                }
-                $needleLength = strlen($needle);
-                return $needleLength ? substr_replace($url, "$needle/$language", 0, $needleLength) : "/$language$url";
-            }
-        } else {
-            $url = parent::createUrl($params);
-            return $url;
-        }
-    }
-
-    /**
-     * Checks for a language or locale parameter in the URL and rewrites the pathInfo if found.
-     * If no parameter is found it will try to detect the language from persistent storage (session /
-     * cookie) or from browser settings.
+     * Выполняется вторая
+     * Проверяет параметр языка или локали в URL и перезаписывает pathInfo, если найден.
+     * Если параметр не найден, он попытается определить язык из постоянного хранилища (сессия /
+     * куки) или из настроек браузера.
      *
      * @var \yii\web\Request $request
      */
@@ -464,26 +354,45 @@ class UrlManager extends BaseUrlManager
         $pattern = implode('|', $parts);
 
         if (preg_match("#^($pattern)\b(/?)#i", $pathInfo, $m)) {
-            // если переходим по ссылке, но не выбираем язык
-            $request->setPathInfo(mb_substr($pathInfo, mb_strlen($m[1].$m[2])));
+            // если язык изменился
+            $substr = mb_substr($pathInfo, mb_strlen($m[1].$m[2]));
+
+            /*
+             * Если выбран город, т.е. путь равен <id_geo_city>/<путь> ... / .., удаляем id_geo_city/
+             * Пишем гео данные в сессии и куки
+             * */
+            $pathArray = explode('/', $substr);
+            $id_geo_city = $this->defaultCity;
+            if (is_numeric($pathArray[0])) {
+                $substr = $this->setGeo($pathArray[0], $substr);
+                $id_geo_city = $pathArray[0];
+            } else {
+                $substr = $this->setGeo($id_geo_city, $substr);
+            }
+
+            // Устанавливает информацию о пути текущего запроса.
+            $request->setPathInfo($substr);
             $code = $m[1];
+
             if (isset($this->languages[$code])) {
                 // Replace alias with language code
                 $language = $this->languages[$code];
             } else {
                 // lowercase language, uppercase country
                 list($language,$country) = $this->matchCode($code);
-                if ($country!==null) {
-                    if ($code==="$language-$country" && !$this->keepUppercaseLanguageCode) {
+                if ($country !== null) {
+                    if ($code === "$language-$country" && !$this->keepUppercaseLanguageCode) {
+                        // Сохранять ли коды языков верхнего регистра в URL.
                         $this->redirectToLanguage(strtolower($code));   // Redirect ll-CC to ll-cc
                     } else {
                         $language = "$language-$country";
                     }
                 }
-                if ($language===null) {
+                if ($language === null) {
                     $language = $code;
                 }
             }
+
             Yii::$app->language = $language;
             Yii::trace("Language code found in URL. Setting application language to '$language'.", __METHOD__);
             if ($this->enableLanguagePersistence) {
@@ -506,69 +415,95 @@ class UrlManager extends BaseUrlManager
 
             // "Reset" case: We called e.g. /fr/demo/page so the persisted language was set back to "fr".
             // Now we can redirect to the URL without language prefix, if default prefixes are disabled.
-            if (!$this->enableDefaultLanguageUrlCode && $language===$this->_defaultLanguage) {
-                $this->redirectToLanguage('');
+
+            if (!$this->enableDefaultLanguageUrlCode && $language === $this->_defaultLanguage && $id_geo_city === $this->defaultCity) {
+                // если язык по умолчанию и город по умолчанию
+                $this->redirectToLanguage('', $id_geo_city);
             }
         } else {
-            $language = null;
-            if ($this->enableLanguagePersistence) {
-                // при выборе нового языка достаем его из сессий и кук
-                $language = Yii::$app->session->get($this->languageSessionKey);
-                $language!==null && Yii::trace("Found persisted language '$language' in session.", __METHOD__);
-                if ($language===null) {
-                    $language = $request->getCookies()->getValue($this->languageCookieName);
-                    $language!==null && Yii::trace("Found persisted language '$language' in cookie.", __METHOD__);
-                }
-            }
-            if ($language===null && $this->enableLanguageDetection) {
+            /*
+             * Если выбран город, т.е. путь равен <id_geo_city>/<путь> ... / .., удаляем id_geo_city/
+             * Пишем гео данные в сессии и куки
+             * если язык не изменился
+             * */
+            $substr = $pathInfo;
+            $pathArray = explode('/', $substr);
+            $id_geo_city = $this->defaultCity;
+            if (is_numeric($pathArray[0])) {
+                $substr = $this->setGeo($pathArray[0], $substr);
+                $id_geo_city = $pathArray[0];
+                $request->setPathInfo($substr);
+            } else {
+                $substr = $this->setGeo($id_geo_city, $substr);
+                $request->setPathInfo($substr);
+            };
+
+            $language = $this->_defaultLanguage;
+
+            if ($language === null && $this->enableLanguageDetection) {
+                // $this->enableLanguageDetection - Определять язык приложения из заголовков HTTP (то есть настроек браузера).
                 foreach ($request->getAcceptableLanguages() as $acceptable) {
                     list($language,$country) = $this->matchCode($acceptable);
-                    if ($language!==null) {
-                        $language = $country===null ? $language : "$language-$country";
-                        Yii::trace("Detected browser language '$language'.", __METHOD__);
+                    if ($language !== null) {
+                        $language = $country === null ? $language : "$language-$country";
+                        Yii::trace("Обнаружен язык браузера '$language'.", __METHOD__);
                         break;
                     }
                 }
             }
-            if ($language===null || $language===$this->_defaultLanguage) {
+            if ($language === null || $language === $this->_defaultLanguage) {
                 if (!$this->enableDefaultLanguageUrlCode) {
-                    return;
+                    // $this->enableDefaultLanguageUrlCode -> Должен язык по умолчанию использовать код URL, как любой другой настроенный язык.
+                    // Скрываем язык по умолчанию.
+                    if ($id_geo_city === $this->defaultCity) {
+                        return '';
+                    } else {
+                        return $id_geo_city;
+                    }
                 } else {
+                    // $this->enableDefaultLanguageUrlCode -> Должен язык по умолчанию использовать код URL, как любой другой настроенный язык.
+                    // Отображаем язык по умолчанию.
                     $language = $this->_defaultLanguage;
                 }
             }
-            // #35: Only redirect if a valid language was found
-            if ($this->matchCode($language)===[null, null]) {
-                return;
+
+            // #35: Перенаправлять только в том случае, если был найден правильный язык
+            if ($this->matchCode($language) === [null, null]) {
+                return '';
             }
 
             $key = array_search($language, $this->languages);
             if ($key && is_string($key)) {
                 $language = $key;
             }
-            $this->redirectToLanguage($this->keepUppercaseLanguageCode ? $language : strtolower($language));
+
+            // Если сохранять коды языков верхнего регистра в URL, отправляем язык как если, иначе переводим в нижний регистр
+            $language = $this->keepUppercaseLanguageCode ? $language : strtolower($language);
+            $this->redirectToLanguage($language, $id_geo_city);
         }
     }
 
     /**
-     * Tests whether the given code matches any of the configured languages.
+     * Выполняется третья, если используется язык отличный от языка по умолчанию
      *
-     * If the code is a single language code, and matches either
+     * Проверяет, соответствует ли данный код любому из настроенных языков.
      *
-     *  - an exact language as configured (ll)
-     *  - a language with a country wildcard (ll-*)
+     * Если код является кодом одного языка и соответствует
      *
-     * this language code is returned.
+     *  - точный язык в соответствии с настройками (ll)
+     *  - язык со знаком страны (ll- *)
      *
-     * If the code also contains a country code, and matches either
+     * этот код языка возвращается.
      *
-     *  - an exact language/country code as configured (ll-CC)
-     *  - a language with a country wildcard (ll-*)
+     * Если код также содержит код страны и соответствует
      *
-     * the code with uppercase country is returned. If only the language part matches
-     * a configured language, that language is returned.
+     *  - точный язык / код страны в соответствии с настройкой (ll-CC)
+     *  - язык со знаком страны (ll- *)
      *
-     * @param string $code the code to match
+     * код с заглавной страной возвращается. Если только языковая часть совпадает
+     * с настроенным языком, этот язык возвращается.
+     *
+     * @param string $code код для соответствия
      * @return array of [language, country], [language, null] or [null, null] if no match
      */
     protected function matchCode($code)
@@ -596,29 +531,33 @@ class UrlManager extends BaseUrlManager
     }
 
     /**
-     * Redirect to the current URL with given language code applied
+     * Выполняется четвертая
+     * Перенаправить на текущий URL с указанным языковым кодом
      *
-     * @param string $language the language code to add. Can also be empty to not add any language code.
+     * @param string $language код языка для добавления. Также может быть пустым, чтобы не добавлять код языка.
      * @throws NotFoundHttpException
      * @throws Exception
      */
-    protected function redirectToLanguage($language)
+    protected function redirectToLanguage($language, $id_geo_city)
     {
         $result = parent::parseRequest($this->_request);
 
         if ($result === false) {
             throw new NotFoundHttpException(Yii::t('yii', 'Страница не найдена.'));
         }
-        list ($route, $params) = $result;
+
+        list($route, $params) = $result;
+
         if($language){
             $params[$this->languageParam] = $language;
         }
+
         // See Yii Issues #8291 and #9161:
         $params = $params + $this->_request->getQueryParams();
         array_unshift($params, $route);
         $url = $this->createUrl($params);
         // Required to prevent double slashes on generated URLs
-        if ($this->suffix==='/' && $route==='') {
+        if ($this->suffix === '/' && $route === '') {
             $url = rtrim($url, '/').'/';
         }
         Yii::trace("Redirecting to $url.", __METHOD__);
@@ -630,5 +569,211 @@ class UrlManager extends BaseUrlManager
         } else {
             Yii::$app->end();
         }
+    }
+
+    /**
+     * Выполняется пятая
+     * Как URL должен выглядеть
+     * Возвращает сформированный Url
+     *
+     * @inheritdoc
+     */
+    public function createUrl($params)
+    {
+        if ($this->ignoreLanguageUrlPatterns) {
+            // маршруты при которых url не меняется
+            $params = (array) $params;
+            $route = trim($params[0], '/');
+            foreach ($this->ignoreLanguageUrlPatterns as $pattern => $v) {
+                if (preg_match($pattern, $route)) {
+                    $url = parent::createUrl($params);
+                    return $url;
+                }
+            }
+        }
+
+        if ($this->enableLocaleUrls && $this->languages) {
+            // если специальные маршруты включены и есть выбор языков
+            $params = (array) $params;
+
+            if (isset($params[$this->languageParam])) {
+                $language = $params[$this->languageParam];
+                unset($params[$this->languageParam]);
+                $languageRequired = true;
+            } else {
+                $language = Yii::$app->language;
+                $languageRequired = false;
+            }
+
+            if (isset($params[$this->cityParam])) {
+                $id_geo_city = $params[$this->cityParam];
+                unset($params[$this->cityParam]);
+            } else {
+                $session = Yii::$app->session;
+                // ищем id_geo_city сесиях и куки
+                $id_geo_city = $session->get('id_geo_city');
+                if ($id_geo_city === null) {
+                    $cookiesRequest = Yii::$app->request->cookies;
+                    if (isset($cookiesRequest['id_geo_city'])) {
+                        $id_geo_city = $cookiesRequest['id_geo_city']->value;
+                    }
+                }
+                if (!$id_geo_city) {
+                    $id_geo_city = $this->defaultCity;
+                }
+            }
+
+            // Не используйте префикс для языка по умолчанию, чтобы предотвратить ненужное перенаправление, если нет постоянства и нет обнаружения
+            if (
+                $languageRequired && $language === $this->getDefaultLanguage() &&
+                !$this->enableDefaultLanguageUrlCode && !$this->enableLanguagePersistence && !$this->enableLanguageDetection
+            ) {
+                $languageRequired = false;
+            }
+
+            $url = parent::createUrl($params);
+
+            // Если в параметрах явно не указан язык, мы можем вернуть URL без префикса
+            // для языка по умолчанию, если суффиксы отключены для языка по умолчанию. В любом другом случае мы
+            // всегда добавляйте суффикс, например создать «reset» URL, которые явно содержат язык по умолчанию.
+            if (!$languageRequired && !$this->enableDefaultLanguageUrlCode && $language === $this->getDefaultLanguage() && $id_geo_city === $this->getDefaultCity()) {
+                // если язык и город по умолчанию
+                return $url;
+            } elseif ($language === $this->getDefaultLanguage() && $id_geo_city != $this->getDefaultCity()) {
+                // если язык по умолчанию, а город не по умолчанию
+                return '/'.$id_geo_city.$url;
+            } else {
+                // если язык не по умолчанию и город не по умолчанию или
+                // если язык не по умолчанию, а город по умолчанию
+                $key = array_search($language, $this->languages);
+                if (is_string($key)) {
+                    $language = $key;
+                }
+                // Язык в нижний регистр
+                if (!$this->keepUppercaseLanguageCode) {
+                    $language = strtolower($language);
+                }
+
+                if ($id_geo_city != $this->defaultCity) {
+                    $language = $language . '/' . $id_geo_city;
+                }
+
+                // Удалить все косые черты, если они не настроены как суффикс
+                if ($this->suffix !== '/') {
+                    if (count($params) !== 1) {
+                        $url = preg_replace('#/\?#', '?', $url);
+                    } else {
+                        $url = rtrim($url, '/');
+                    }
+                }
+
+                // /foo/bar -> /de/foo/bar
+                // /base/url/foo/bar -> /base/url/de/foo/bar
+                // /base/index.php/foo/bar -> /base/index.php/de/foo/bar
+                // http://www.example.com/base/url/foo/bar -> http://www.example.com/base/de/foo/bar
+                $needle = $this->showScriptName ? $this->getScriptUrl() : $this->getBaseUrl();
+                // Check for server name URL
+                if (strpos($url, '://')!==false) {
+                    if (($pos = strpos($url, '/', 8))!==false || ($pos = strpos($url, '?', 8))!==false) {
+                        $needle = substr($url, 0, $pos) . $needle;
+                    } else {
+                        $needle = $url . $needle;
+                    }
+                }
+                $needleLength = strlen($needle);
+                $needleLength = $needleLength ? substr_replace($url, "$needle/$language", 0, $needleLength) : "/$language$url";
+                return $needleLength;
+            }
+        } else {
+            $url = parent::createUrl($params);
+            return $url;
+        }
+    }
+
+    /**
+     * Функция установки города.
+     * Запись в сессии и куки
+     * @param string $id_geo_city Передает ID города
+     * @param string $substr Текущий путь
+     * @return string Текущий маршрут
+     * */
+    protected function setGeo($id_geo_city, $substr) {
+        $session = Yii::$app->session;
+        $id_geo_city_storage = $session->get('id_geo_city');
+
+        if (!$id_geo_city_storage) {
+            $cookiesRequest = Yii::$app->request->cookies;
+            if (isset($cookiesRequest['id_geo_city'])) {
+                $id_geo_city_storage = $cookiesRequest['id_geo_city']->value;
+            }
+        }
+
+        if ($id_geo_city_storage != $id_geo_city) {
+            $city = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_city')
+                ->where(['id_geo_city' => $id_geo_city])
+                ->one();
+
+            if ($city) {
+                Yii::$app->session['id_geo_city'] = $city['id_geo_city'];
+                $cookie = new Cookie(array_merge(
+                    ['httpOnly' => true],
+                    $this->languageCookieOptions,
+                    [
+                        'name' => 'id_geo_city',
+                        'value' => $city['id_geo_city'],
+                        'expire' => time() + (int)$this->languageCookieDuration,
+                    ]
+                ));
+                Yii::$app->getResponse()->getCookies()->add($cookie);
+
+                $region = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('geo_region')
+                    ->where(['id_geo_region' => $city['id_geo_region']])
+                    ->one();
+
+                if ($region) {
+                    Yii::$app->session['id_geo_region'] = $region['id_geo_region'];
+                    $cookie = new Cookie(array_merge(
+                        ['httpOnly' => true],
+                        $this->languageCookieOptions,
+                        [
+                            'name' => 'id_geo_region',
+                            'value' => $region['id_geo_region'],
+                            'expire' => time() + (int)$this->languageCookieDuration,
+                        ]
+                    ));
+                    Yii::$app->getResponse()->getCookies()->add($cookie);
+
+                    $country = (new \yii\db\Query())
+                        ->select(['*'])
+                        ->from('geo_country')
+                        ->where(['id_geo_country' => $region['id_geo_country']])
+                        ->one();
+
+                    if ($country) {
+                        Yii::$app->session['id_geo_country'] = $country['id_geo_country'];
+                        $cookie = new Cookie(array_merge(
+                            ['httpOnly' => true],
+                            $this->languageCookieOptions,
+                            [
+                                'name' => 'id_geo_country',
+                                'value' => $country['id_geo_country'],
+                                'expire' => time() + (int)$this->languageCookieDuration,
+                            ]
+                        ));
+                        Yii::$app->getResponse()->getCookies()->add($cookie);
+                    }
+                }
+            }
+        }
+
+        // Устанавливаем путь, удаляя ID города
+        $substr = str_replace($id_geo_city . '/', '', $substr);
+        $substr = str_replace($id_geo_city, '', $substr);
+
+        return $substr;
     }
 }
