@@ -135,6 +135,10 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/']);
+        }
+
         /* @var $modelUserForm UserForm */
         $modelUserForm = Yii::$app->user->identity;
 

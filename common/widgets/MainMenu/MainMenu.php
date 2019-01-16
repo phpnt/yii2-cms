@@ -114,7 +114,7 @@ class MainMenu extends Widget
             }
         }
 
-        return $this->render('index', [
+        return $this->render('@frontend/views/templates/main-menu/index', [
             'widget' => $this,
             'site' => $site,
             'navigation' => $navigation,

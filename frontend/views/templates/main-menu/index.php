@@ -85,7 +85,7 @@ $items = [];
                     'onclick' => '
                         $.pjax({
                             type: "POST",
-                            url: "'.Url::to(['/' . $item['alias'] . '/default/index']).'",
+                            url: "'.Url::to(['/' . $item['alias'] . '/default/index', 'lang' => Yii::$app->language]).'",
                             container: "#pjaxModalUniversal",
                             push: false,
                             scrollTo: false

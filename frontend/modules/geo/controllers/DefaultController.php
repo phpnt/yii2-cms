@@ -52,8 +52,6 @@ class DefaultController extends Controller
      */
     public function beforeAction($action)
     {
-        Yii::$app->language = $this->getLang();
-
         try {
             parent::beforeAction($action);
         } catch (BadRequestHttpException $e) {
@@ -123,8 +121,12 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($lang = null)
     {
+        if ($lang) {
+            Yii::$app->language = $lang;
+        }
+
         if (!Yii::$app->request->isPjax || !Yii::$app->request->isAjax) {
             return $this->goHome();
         }
@@ -148,24 +150,4 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * Взвращает текущий язык
-     * */
-    public function getLang() {
-        $session = Yii::$app->session;
-        $lang = $session->get('_language');
-
-        if (!$lang) {
-            $cookiesRequest = Yii::$app->request->cookies;
-            if (isset($cookiesRequest['_language'])) {
-                $lang = $cookiesRequest['_language']->value;
-            }
-        }
-
-        if (!$lang) {
-            $lang = Yii::$app->language;
-        }
-
-        return $lang;
-    }
 }
