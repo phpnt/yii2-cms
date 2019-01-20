@@ -10,8 +10,11 @@ use Yii;
  * @property int $id ID
  * @property string $name Наименование
  * @property string $description Описание
- * @property string $mark Путь к файлу
+ * @property string $mark Метка для шаблона
  * @property int $status Статус
+ * @property int $add_rating Разрешена оценка элемента
+ * @property int $add_comments Разрешены комментарии к элементу
+ * @property int $i18n Режим перевода
  *
  * @property Document[] $documents
  * @property Field[] $fields
@@ -34,7 +37,7 @@ class Template extends \yii\db\ActiveRecord
         return [
             [['name', 'description', 'mark'], 'required'],
             [['description'], 'string'],
-            [['status'], 'integer'],
+            [['status', 'add_rating', 'add_comments', 'i18n'], 'integer'],
             [['name', 'mark'], 'string', 'max' => 255],
         ];
     }
@@ -50,6 +53,9 @@ class Template extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Описание'),
             'mark' => Yii::t('app', 'Метка для шаблона'),
             'status' => Yii::t('app', 'Статус'),
+            'add_rating' => Yii::t('app', 'Разрешена оценка элемента'),
+            'add_comments' => Yii::t('app', 'Разрешены комментарии к элементу'),
+            'i18n' => Yii::t('app', 'Режим перевода'),
         ];
     }
 

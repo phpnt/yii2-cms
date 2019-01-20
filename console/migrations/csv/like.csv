@@ -1,2 +1,1 @@
-id;created_at;document_id;ip;user_agent;user_id
-1;1547003954;7;46.165.62.45;"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3642.0 Safari/537.36";1
+id;like;dislike;stars;created_at;document_id;comment_id;ip;user_agent;user_id

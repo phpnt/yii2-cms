@@ -177,8 +177,8 @@ class DefaultController extends Controller
         $modelUserForm = Yii::$app->user->identity;
 
         $modelProfileTemplateForm = new ProfileTemplateForm();
-        $modelProfileTemplateForm->name = $modelUserForm->email;
-        $modelProfileTemplateForm->alias = $modelUserForm->email;
+        $modelProfileTemplateForm->name = $modelUserForm->id . '_' . time();
+        $modelProfileTemplateForm->alias = $modelUserForm->id . '_' . time();
         $modelProfileTemplateForm->status = Constants::STATUS_ACTIVE;
         $modelProfileTemplateForm->created_by = $modelUserForm->id;
         $modelProfileTemplateForm->updated_by = $modelUserForm->id;

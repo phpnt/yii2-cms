@@ -241,8 +241,13 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => 'like/update',
-                'route' => 'like/update',
+                'pattern' => 'rating/<action>',
+                'route' => 'rating/<action>',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'comment/<action>',
+                'route' => 'comment/<action>',
                 'suffix' => ''
             ];
             $rules[] = [

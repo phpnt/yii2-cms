@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\DocumentForm;
@@ -19,7 +18,7 @@ class DocumentSearch extends DocumentForm
     {
         return [
             [['id', 'status', 'is_folder', 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
-            [['name', 'alias', 'route', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content'], 'safe'],
+            [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content'], 'safe'],
         ];
     }
 
@@ -74,7 +73,6 @@ class DocumentSearch extends DocumentForm
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'route', $this->route])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'meta_keywords', $this->meta_keywords])
             ->andFilterWhere(['like', 'meta_description', $this->meta_description])
@@ -123,7 +121,6 @@ class DocumentSearch extends DocumentForm
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'route', $this->route])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'meta_keywords', $this->meta_keywords])
             ->andFilterWhere(['like', 'meta_description', $this->meta_description])

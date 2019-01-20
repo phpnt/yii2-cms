@@ -1,5 +1,11 @@
 name;type;description;rule_name;data;created_at;updated_at
-admin;1;Администратор;;;1535796441;1540823716
+admin;1;Администратор;;;1535796441;1547977092
+comment/manage/create-comment;2;"comment/manage/create-comment (создание комментариев)";;;1547977028;1547977028
+comment/manage/delete-comment;2;"comment/manage/delete-comment (удаление комментариев)";;;1547977054;1547977054
+comment/manage/index;2;"comment/manage/index (просмотр списка комментариев)";;;1547976886;1547976940
+comment/manage/refresh-comment;2;"comment/manage/refresh-comment (обновление комментариев)";;;1547976974;1547976974
+comment/manage/update-comment;2;"comment/manage/update-comment (изменение комментариев)";;;1547977000;1547977000
+comment/manage/view-comment;2;"comment/manage/view-comment (просмотр комментариев)";;;1547976925;1547976925
 document/basket/index;2;"document/basket/index (просмотр таблицы корзины)";;;1540823696;1540823696
 document/basket/view-basket;2;"document/basket/view-basket (просмотр элемента корзины)";;;1540823662;1540823662
 document/element-manage/confirm-delete-element;2;"document/element-manage/confirm-delete-element (подтверждение удаления элемента)";;;1540722333;1540722333
@@ -61,7 +67,7 @@ role/manage/update-auth-rule;2;"role/manage/update-auth-rule (изменять правила R
 role/manage/view-auth-item;2;"role/manage/view-auth-item (просмотр роли или разрешения)";;;1540724956;1540724956
 role/manage/view-auth-rule;2;"role/manage/view-auth-rule (просмотр правила RBAC)";;;1540725962;1540725962
 settings/statistic/index;2;"settings/statistic/index (просмотр статистики)";;;1540727296;1540727296
-tester;1;Тестировщик;;;1535796441;1541091703
+tester;1;Тестировщик;;;1535796441;1547977078
 user;1;Пользователь;;;1540790541;1540790541
 user/manage/confirm-delete-user;2;"user/manage/confirm-delete-user (подтверждение удаления пользователя)";;;1540723339;1540723339
 user/manage/create-user;2;"user/manage/create-user (создавать пользователей)";;;1540723068;1540723068

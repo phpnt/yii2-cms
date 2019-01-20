@@ -51,7 +51,6 @@ class DocumentForm extends DocumentExtend
         $items[] = [['name', 'alias'], 'trim', 'on' => ['create-folder', 'update-folder', 'create-element', 'update-element']];
         $items[] = ['name', DocumentNameValidator::className()];
         $items[] = ['alias', 'unique'];
-        $items[] = ['route', DocumentRouteValidator::className()];
         $items[] = ['elements_fields', DocumentArrayValidator::className()];
         $items[] = [['errors_fields', 'value_array'], 'each', 'rule' => ['integer'], 'on' => ['create-element', 'update-element']];
         $items[] = ['value_int', 'integer', 'on' => ['create-element', 'update-element']];

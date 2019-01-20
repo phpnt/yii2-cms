@@ -1,0 +1,13 @@
+.comment-item {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fbfbfb;
+}
+.comment-sub-item {
+    margin-left: 20px !important;
+}
+.block-comments-height {
+
+}

@@ -3,6 +3,7 @@
 namespace frontend\modules\control\controllers;
 
 use common\models\Constants;
+use common\models\extend\UserExtend;
 use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
@@ -58,6 +59,23 @@ class DefaultController extends Controller
      */
     public function beforeAction($action)
     {
+        if (!Yii::$app->user->isGuest) {
+            /* @var $user UserExtend */
+            $user = Yii::$app->user->identity;
+            if ($user->status == Constants::STATUS_BLOCKED) {
+                Yii::$app->user->logout();
+                Yii::$app->session->set(
+                    'message',
+                    [
+                        'type' => 'danger',
+                        'icon' => 'glyphicon glyphicon-ban',
+                        'message' => Yii::t('app', 'Ваш аккаунт заблокирован.'),
+                    ]
+                );
+            }
+        }
+
+
         if (Yii::$app->request->get('alias')) {
             $alias = Yii::$app->request->get('alias');
         } else {

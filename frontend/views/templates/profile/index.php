@@ -11,7 +11,6 @@ use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\widgets\DetailView;
-use common\widgets\Like\Like;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
 
 /* @var $this yii\web\View */
@@ -130,9 +129,6 @@ $modelUserForm = Yii::$app->user->identity;
         </div>
 
         <?php ActiveForm::end(); ?>
-    </div>
-    <div class="col-md-12 text-right">
-        <?= Like::widget(['document_id' => $page['id']]) ?>
     </div>
 </div>
 

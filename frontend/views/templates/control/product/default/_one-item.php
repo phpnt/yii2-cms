@@ -11,7 +11,7 @@
 /* @var $page array Главная страница меню */
 /* @var $parent array Родительская папка */
 /* @var $item array Выбранный элемент */
-/* @var $fieldsManage \common\components\other\FieldsManage */
+/* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
 $templateData = $fieldsManage->getData($item['id'], $item['template_id']);
 ?>

@@ -21,9 +21,14 @@ class Constants
     const ACCESS_USER = 3;      // авторизованным пользователям
 
     // Статусы документов
-    const STATUS_DOC_BLOCKED = 6;   // заблокирован
     const STATUS_DOC_ACTIVE = 1;    // активен
     const STATUS_DOC_WAIT = 2;      // ожидает подтверждения
+    const STATUS_DOC_BLOCKED = 6;   // заблокирован
+
+    // Статусы I18n
+    const STATUS_I18N_ALL = 1;      // переводить все
+    const STATUS_I18N_NAMES = 2;    // переводить только названия полей
+    const STATUS_I18N_BLOCKED = 6;  // запретить перевод
 
     // Пол пользователя
     const SEX_FEMALE    = 1;

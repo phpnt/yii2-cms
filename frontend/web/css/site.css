@@ -2,6 +2,10 @@ html,
 body {
     height: 100%;
 }
+.hidden {
+    visibility: hidden;
+    display: none;
+}
 .cursor-pointer {
     cursor: pointer;
 }

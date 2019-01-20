@@ -8,7 +8,7 @@
  */
 
 use yii\helpers\Url;
-use common\widgets\Like\Like;
+use common\widgets\Like\Rating;
 
 /* @var $this yii\web\View */
 /* @var $page array информация о странице */
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $item['name']);
             ]); ?>
         </div>
         <div class="col-md-12 text-right">
-            <?= Like::widget(['document_id' => $item['id']]) ?>
+            <?= Rating::widget(['document_id' => $item['id']]) ?>
         </div>
     </div>
 </div>

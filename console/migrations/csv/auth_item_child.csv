@@ -1,4 +1,12 @@
 parent;child
+admin;comment/manage/create-comment
+admin;comment/manage/delete-comment
+admin;comment/manage/index
+tester;comment/manage/index
+admin;comment/manage/refresh-comment
+admin;comment/manage/update-comment
+admin;comment/manage/view-comment
+tester;comment/manage/view-comment
 admin;document/basket/index
 tester;document/basket/index
 admin;document/basket/view-basket
@@ -34,6 +42,7 @@ admin;document/manage/get-root
 tester;document/manage/get-root
 admin;document/manage/index
 tester;document/manage/index
+admin;document/manage/refresh-templates
 tester;document/manage/refresh-templates
 admin;document/template-manage/create-template
 admin;document/template-manage/delete-template

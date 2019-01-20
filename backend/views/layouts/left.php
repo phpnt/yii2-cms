@@ -10,6 +10,7 @@
 
 use yii\helpers\Url;
 use yii\widgets\Menu;
+use common\widgets\UncheckedComments\UncheckedComments;
 
 /* @var $this yii\web\View */ 
 ?>
@@ -64,6 +65,12 @@ use yii\widgets\Menu;
                             ],
                         ],
                         'active' => Yii::$app->controller->module->id == 'user' || Yii::$app->controller->module->id == 'role',
+                    ],
+                    [
+                        'label' => '<i class="fas fa-comment-alt"></i><span> ' . Yii::t('app', 'Комментарии') . '</span>' . UncheckedComments::widget(),
+                        'url' => ['/comment/manage/index'],
+                        'options' => ['class' => 'treeview'],
+                        //'visible' => Yii::$app->user->can('comment/manage/index')
                     ],
                     [
                         'label' => '<i class="fa fa-map"></i><span> '.Yii::t('app', 'Гео').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
@@ -131,6 +138,7 @@ use yii\widgets\Menu;
                                     'models[19]' => \common\models\search\MessageSearch::class,
                                     'models[20]' => \common\models\search\SourceMessageSearch::class,
                                     'models[21]' => \common\models\search\BasketSearch::class,
+                                    'models[22]' => \common\models\search\CommentSearch::class,
                                     'with_header' => true
                                 ]),
                                 'options' => ['class' => 'treeview'],

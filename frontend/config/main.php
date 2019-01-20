@@ -23,8 +23,9 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'controllerMap' => [
         'bm' => \common\widgets\Basket\controllers\BmController::class,
-        'like' => \common\widgets\Like\controllers\LikeController::class,
         'auth' => \common\widgets\oAuth\controllers\AuthController::class,
+        'rating' => \common\widgets\Rating\controllers\RatingController::class,
+        'comment' => \common\widgets\Comment\controllers\CommentController::class,
     ],
     'modules' => [
         'basket' => [

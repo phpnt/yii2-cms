@@ -146,16 +146,21 @@ class m000000_000002_cms_shop extends Migration
         $this->createTable('{{%template}}', [
             'id' => $this->primaryKey()->comment('ID'),
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
-            'description' => $this->text()->notNull()->comment(Yii::t('app', 'Метка для шаблона')),
-            'mark' => $this->string()->notNull()->comment(Yii::t('app', 'Путь к файлу')),
-            'status' => $this->smallInteger()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
+            'description' => $this->text()->notNull()->comment(Yii::t('app', 'Описание')),
+            'mark' => $this->string()->notNull()->comment(Yii::t('app', 'Метка для шаблона')),
+            'status' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
+            'add_rating' => $this->boolean()->comment(Yii::t('app', 'Разрешена оценка элемента')),
+            'add_comments' => $this->boolean()->comment(Yii::t('app', 'Разрешены комментарии к элементу')),
+            'i18n' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_I18N_ALL)->comment(Yii::t('app', 'Режим перевода')), // 1 - перевод названия и значения,
+                                                                                                                                                            // 2 - перевод названия,
+                                                                                                                                                            // 6 - перевод отключен
         ] , $tableOptions);
 
         //Индексы и ключи таблицы шаблонов template
         $this->createIndex('template_name_index', '{{%template}}', 'name');
 
         $this->importData('template',
-            ['id', 'name', 'description', 'mark', 'status'],
+            ['id', 'name', 'description', 'mark', 'status', 'add_rating', 'add_comments', 'i18n'],
             fopen(__DIR__ . '/../../console/migrations/csv/template.csv', "r"));
 
         //Таблица документов document
@@ -163,7 +168,6 @@ class m000000_000002_cms_shop extends Migration
             'id' => $this->primaryKey()->comment('ID'),
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
             'alias' => $this->string()->notNull()->comment(Yii::t('app', 'Алиас')),
-            'route' => $this->string()->comment(Yii::t('app', 'Маршрут')),
             'title' => $this->string()->comment(Yii::t('app', 'Заголовок')),
             'meta_keywords' => $this->text()->comment(Yii::t('app', 'Мета ключи')),
             'meta_description' => $this->text()->comment(Yii::t('app', 'Мета описание')),
@@ -193,7 +197,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('document_status_index', '{{%document}}', 'status');
 
         $this->importData('document',
-            ['id', 'name', 'alias', 'route', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
+            ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
                 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
 
@@ -335,11 +339,38 @@ class m000000_000002_cms_shop extends Migration
             ['id', 'created_at', 'document_id', 'ip', 'user_agent', 'user_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/visit.csv', "r"));
 
+        //Таблица комментариев
+        $this->createTable('{{%comment}}', [
+            'id' => $this->primaryKey()->comment('ID'),
+            'text' => $this->text()->notNull()->comment('Комментарий'),
+            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
+            'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
+            'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
+            'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
+            'parent_id' => $this->integer()->comment(Yii::t('app', 'Ответ на коммментарий')),
+            'status' => $this->boolean()->defaultValue(Constants::STATUS_DOC_WAIT)->comment(Yii::t('app', 'Статус комментария')),
+            'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
+            'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
+        ], $tableOptions);
+
+        //Индексы и ключи таблицы комментариев
+        $this->addForeignKey('comment_document_id_fk', '{{%comment}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('comment_user_fk', '{{%comment}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('comment_comment_fk', '{{%comment}}', 'parent_id', '{{%comment}}', 'id', 'CASCADE', 'CASCADE');
+
+        $this->importData('comment',
+            ['id', 'text', 'document_id', 'ip', 'user_agent', 'user_id', 'parent_id', 'status', 'created_at', 'updated_at'],
+            fopen(__DIR__ . '/../../console/migrations/csv/comment.csv', "r"));
+
         //Таблица просмотров документов visit
         $this->createTable('{{%like}}', [
             'id' => $this->primaryKey()->comment('ID'),
+            'like' => $this->boolean()->comment(Yii::t('app', 'Нравиться')),
+            'dislike' => $this->boolean()->comment(Yii::t('app', 'Не нравиться')),
+            'stars' => $this->smallInteger(3)->comment(Yii::t('app', 'Количество звезд')),
             'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
-            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
+            'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
+            'comment_id' => $this->integer()->comment(Yii::t('app', 'Комментарий')),
             'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
             'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
             'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
@@ -347,13 +378,14 @@ class m000000_000002_cms_shop extends Migration
 
         //Индексы и ключи таблицы таблицы просмотров документов visit
         $this->addForeignKey('like_document_id_fk', '{{%like}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('like_comment_id_fk', '{{%like}}', 'comment_id', '{{%comment}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('like_user_fk', '{{%like}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
 
         $this->importData('like',
-            ['id', 'created_at', 'document_id', 'ip', 'user_agent', 'user_id'],
+            ['id', 'like', 'dislike', 'stars', 'created_at', 'document_id', 'comment_id', 'ip', 'user_agent', 'user_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/like.csv', "r"));
 
-        //Таблица просмотров документов visit
+        //Таблица корзины
         $this->createTable('{{%basket}}', [
             'id' => $this->primaryKey()->comment('ID'),
             'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
@@ -365,14 +397,13 @@ class m000000_000002_cms_shop extends Migration
             'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
         ], $tableOptions);
 
-        //Индексы и ключи таблицы таблицы просмотров документов visit
+        //Индексы и ключи таблицы корзины
         $this->addForeignKey('basket_document_id_fk', '{{%basket}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('basket_user_fk', '{{%basket}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
 
         $this->importData('basket',
             ['id', 'created_at', 'document_id', 'quantity', 'status', 'ip', 'user_agent', 'user_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/basket.csv', "r"));
-
     }
 
     public function down()

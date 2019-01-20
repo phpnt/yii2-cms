@@ -31,7 +31,9 @@ ProductTempAsset::register($this);
                 <?= Yii::t('app', $item['content']) ?>
             </div>
             <?php if ($item['template_id']): ?>
+            <div class="col-md-12">
                 <?php p($templateData) ?>
+            </div>
             <?php endif; ?>
         </div>
     </div>

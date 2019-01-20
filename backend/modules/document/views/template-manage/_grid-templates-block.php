@@ -180,6 +180,26 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             //'contentOptions' => ['style'=>'max-width: 20px !important; width: 20px !important;'],
         ],
         [
+            'attribute' => 'i18n',
+            'format' => 'raw',
+            'contentOptions' => [
+                'class' => 'text-center vcenter',
+                'style' => 'max-width: 100px !important; width: 130px !important;'
+            ],
+            'value' => function ($modelTemplateForm) {
+                /* @var $modelTemplateForm \common\models\forms\TemplateForm */
+                return $modelTemplateForm->getStatusi18nItem();
+            },
+            'filter' => Html::activeDropDownList($modelTemplateSearch, 'i18n', $modelTemplateSearch->getStatusi18nList(), [
+                'class'  => 'form-control selectpicker',
+                'data' => [
+                    'style' => 'btn-default',
+                    'live-search' => 'false',
+                    'title' => '---'
+                ]]),
+            //'contentOptions' => ['style'=>'max-width: 20px !important; width: 20px !important;'],
+        ],
+        [
             'label' => Yii::t('app', 'Поля'),
             'format' => 'raw',
             'contentOptions' => function ($modelTemplateForm, $key, $index, $column){

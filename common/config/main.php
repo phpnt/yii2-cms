@@ -12,6 +12,7 @@ return [
     ],
     'components' => [
         'fieldsManage' => \common\widgets\TemplateOfElement\components\FieldsManage::class,
+        'commentsManage' => \common\widgets\Comment\components\CommentManage::class,
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

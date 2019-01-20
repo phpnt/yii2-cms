@@ -17,6 +17,9 @@ return [
         'csv-manager' => \common\widgets\GetCsv\controllers\CsvManagerController::class,
     ],
     'modules' => [
+        'comment' => [
+            'class' => 'backend\modules\comment\Module',
+        ],
         'document' => [
             'class' => 'backend\modules\document\Module',
         ],

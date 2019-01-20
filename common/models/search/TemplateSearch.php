@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\TemplateForm;
@@ -18,7 +17,7 @@ class TemplateSearch extends TemplateForm
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status', 'add_rating', 'add_comments', 'i18n'], 'integer'],
             [['name', 'description', 'mark'], 'safe'],
         ];
     }
@@ -61,6 +60,9 @@ class TemplateSearch extends TemplateForm
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'add_rating' => $this->add_rating,
+            'add_comments' => $this->add_comments,
+            'i18n' => $this->i18n,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

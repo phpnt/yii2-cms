@@ -9,6 +9,7 @@
 
 namespace common\models\extend;
 
+use common\models\Constants;
 use Yii;
 use common\models\forms\MessageForm;
 use common\models\SourceMessage;
@@ -96,103 +97,157 @@ class SourceMessageExtend extends SourceMessage
             ->all();
 
         foreach ($documents as $document) {
-            if ($document['name']) {
-                $messages['app'][] = $document['name'];
-                $this->locations['app'][] = [
-                    md5($document['name']) => 'Table "document" field "name", ID = ' . $document['id']
-                ];
-            }
-            if ($document['title']) {
-                $messages['app'][] = $document['title'];
-                $this->locations['app'][] = [
-                    md5($document['title']) => 'Table "document" field "title", ID = ' . $document['id']
-                ];
-            }
-            if ($document['annotation']) {
-                $messages['app'][] = $document['annotation'];
-                $this->locations['app'][] = [
-                    md5($document['annotation']) => 'Table "document" field "annotation", ID = ' . $document['id']
-                ];
-            }
-            if ($document['content']) {
-                $messages['app'][] = $document['content'];
-                $this->locations['app'][] = [
-                    md5($document['content']) => 'Table "document" field "content", ID = ' . $document['id']
-                ];
-            }
-        }
+            // извлекаем все шаблоны и переводим в зависимости от режима
+            $template = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('template')
+                ->where(['id' => $document['template_id']])
+                ->one();
 
-        $fields = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('field')
-            ->all();
+            if ($template && $template['i18n'] == Constants::STATUS_I18N_NAMES) {
+                // если переводим только название полей
+                // перводим документ
+                if ($document['name']) {
+                    $messages['app'][] = $document['name'];
+                    $this->locations['app'][] = [
+                        md5($document['name']) => 'Table "document" field "name", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['title']) {
+                    $messages['app'][] = $document['title'];
+                    $this->locations['app'][] = [
+                        md5($document['title']) => 'Table "document" field "title", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['annotation']) {
+                    $messages['app'][] = $document['annotation'];
+                    $this->locations['app'][] = [
+                        md5($document['annotation']) => 'Table "document" field "annotation", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['content']) {
+                    $messages['app'][] = $document['content'];
+                    $this->locations['app'][] = [
+                        md5($document['content']) => 'Table "document" field "content", ID = ' . $document['id']
+                    ];
+                }
 
-        foreach ($fields as $field) {
-            if ($field['name']) {
-                $messages['app'][] = $field['name'];
-                $this->locations['app'][] = [
-                    md5($field['name']) => 'Table "field" field "name", ID = ' . $field['id']
-                ];
-            }
-        }
+                // переводим шаблон
+                if ($template['name']) {
+                    $messages['app'][] = $template['name'];
+                    $this->locations['app'][] = [
+                        md5($template['name']) => 'Table "template" field "name", ID = ' . $template['id']
+                    ];
+                }
+                if ($template['description']) {
+                    $messages['app'][] = $template['description'];
+                    $this->locations['app'][] = [
+                        md5($template['description']) => 'Table "template" field "description", ID = ' . $template['id']
+                    ];
+                }
 
-        $templates = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('template')
-            ->all();
+                // переводим название полей
+                $templateFields = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('field')
+                    ->where(['template_id' => $template['id']])
+                    ->all();
 
-        foreach ($templates as $template) {
-            if ($template['name']) {
-                $messages['app'][] = $template['name'];
-                $this->locations['app'][] = [
-                    md5($template['name']) => 'Table "template" field "name", ID = ' . $template['id']
-                ];
-            }
-            if ($template['description']) {
-                $messages['app'][] = $template['description'];
-                $this->locations['app'][] = [
-                    md5($template['description']) => 'Table "template" field "description", ID = ' . $template['id']
-                ];
-            }
-        }
+                foreach ($templateFields as $templateField) {
+                    if ($templateField['name']) {
+                        $messages['app'][] = $templateField['name'];
+                        $this->locations['app'][] = [md5($templateField['name']) => 'Table "field" field "name", ID = ' . $templateField['id']];
+                    }
+                }
+            } elseif ($template && $template['i18n'] == Constants::STATUS_I18N_ALL) {
+                // если переводим все
+                // перводим документ
+                if ($document['name']) {
+                    $messages['app'][] = $document['name'];
+                    $this->locations['app'][] = [
+                        md5($document['name']) => 'Table "document" field "name", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['title']) {
+                    $messages['app'][] = $document['title'];
+                    $this->locations['app'][] = [
+                        md5($document['title']) => 'Table "document" field "title", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['annotation']) {
+                    $messages['app'][] = $document['annotation'];
+                    $this->locations['app'][] = [
+                        md5($document['annotation']) => 'Table "document" field "annotation", ID = ' . $document['id']
+                    ];
+                }
+                if ($document['content']) {
+                    $messages['app'][] = $document['content'];
+                    $this->locations['app'][] = [
+                        md5($document['content']) => 'Table "document" field "content", ID = ' . $document['id']
+                    ];
+                }
 
-        $valueStrings = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('value_string')
-            ->all();
+                // переводим шаблон
+                if ($template['name']) {
+                    $messages['app'][] = $template['name'];
+                    $this->locations['app'][] = [
+                        md5($template['name']) => 'Table "template" field "name", ID = ' . $template['id']
+                    ];
+                }
+                if ($template['description']) {
+                    $messages['app'][] = $template['description'];
+                    $this->locations['app'][] = [
+                        md5($template['description']) => 'Table "template" field "description", ID = ' . $template['id']
+                    ];
+                }
 
-        foreach ($valueStrings as $valueString) {
-            if ($valueString['title']) {
-                $messages['app'][] = $valueString['title'];
-                $this->locations['app'][] = [
-                    md5($valueString['title']) => 'Table "value_string" field "title", ID = ' . $valueString['id']
-                ];
-            }
-            if ($valueString['value']) {
-                $messages['app'][] = $valueString['value'];
-                $this->locations['app'][] = [
-                    md5($valueString['value']) => 'Table "value_string" field "value", ID = ' . $valueString['id']
-                ];
-            }
-        }
+                // переводим название полей
+                $templateFields = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('field')
+                    ->where(['template_id' => $template['id']])
+                    ->all();
 
-        $valueTexts = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('value_text')
-            ->all();
+                foreach ($templateFields as $templateField) {
+                    if ($templateField['name']) {
+                        $messages['app'][] = $templateField['name'];
+                        $this->locations['app'][] = [md5($templateField['name']) => 'Table "field" field "name", ID = ' . $templateField['id']];
+                    }
+                }
 
-        foreach ($valueTexts as $valueText) {
-            if ($valueText['title']) {
-                $messages['app'][] = $valueText['title'];
-                $this->locations['app'][] = [
-                    md5($valueText['title']) => 'Table "value_text" field "title", ID = ' . $valueText['id']
-                ];
-            }
-            if ($valueText['value']) {
-                $messages['app'][] = $valueText['value'];
-                $this->locations['app'][] = [
-                    md5($valueText['value']) => 'Table "value_text" field "value", ID = ' . $valueText['id']
-                ];
+                // переводим значения
+                // далее переводим значения
+                $valueStrings = (new \yii\db\Query())
+                    ->join('LEFT JOIN', 'field', 'field.id = value_string.field_id')
+                    ->select(['value_string.id', 'value_string.value'])
+                    ->from('value_string')
+                    ->where(['template_id' => $template['id']])
+                    ->all();
+
+                foreach ($valueStrings as $valueString) {
+                    if ($valueString['value']) {
+                        $messages['app'][] = $valueString['value'];
+                        $this->locations['app'][] = [
+                            md5($valueString['value']) => 'Table "value_string" field "value", ID = ' . $valueString['id']
+                        ];
+                    }
+                }
+
+                $valueTexts = (new \yii\db\Query())
+                    ->join('LEFT JOIN', 'field', 'field.id = value_text.field_id')
+                    ->select(['value_text.id', 'value_text.value'])
+                    ->from('value_text')
+                    ->where(['template_id' => $template['id']])
+                    ->all();
+
+                foreach ($valueTexts as $valueText) {
+                    if ($valueText['value']) {
+                        $messages['app'][] = $valueText['value'];
+                        $this->locations['app'][] = [
+                            md5($valueText['value']) => 'Table "value_text" field "value", ID = ' . $valueText['id']
+                        ];
+                    }
+                }
             }
         }
 
@@ -202,9 +257,6 @@ class SourceMessageExtend extends SourceMessage
                 $result['app'][] = $message;
             }
         }
-
-        /*d($this->locations);
-        dd([$messages, $db, $sourceMessageTable, $messageTable, $this->config['removeUnused'], $this->config['languages']]);*/
 
         return $this->saveMessagesToDb(
             $result,

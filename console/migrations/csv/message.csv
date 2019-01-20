@@ -11,22 +11,12 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
-21;en;<h1>Home</h1>;e604f600c301a0bed1be9f9feca6cd8e
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
-24;en;Products;9acb74ee03f1df38fb38636a7cef6ed1
-25;en;<h1>Products</h1>;dadfc91bbd7fab3f36e766c59148c509
-26;en;<h1>Login</h1>;82b181bdfa5f6089c12922587887dca9
-27;en;"<h1> Registration </h1>";0031f8f4f2f1e19b38ae80066c131444
 28;en;Profile;7af840354f55cbf87bd5b372a6d45816
-29;en;<h1>Profile</h1>;c6a855395e4a10d3ca1ea7d42242855c
-30;en;"Letter Templates";b052698835a60f4a714dd2d9cb8a9b1b
-31;en;"Confirmation of registration";22ae9fcac7c7ea800dc68e2902b43cce
-33;en;"<p> Hello, {EMAIL_1}! </p> <p> Please follow the link below to reset your password. </p> <p> <a href=""{URL_1}""> Password reset </a > </p> <p> {DATE_1} </p>";4aa27d2bda4f5a388a253cde6f7db16d
 34;en;Basket;e35dc54d37374bc9db91e407ece6630a
-35;en;"Language switching";88a3b5fd0105bb1fa3803ea43fc82fed
 37;en;Continent;33d28aa40c8fa04f38c6201bd4bee849
 38;en;"Russian name";33d28aa40c8fa04f38c6201bd4bee849
 39;en;Latitude;640cb44caed9c9aac510f8fd6d1fc240
@@ -50,7 +40,6 @@ id;language;translation;hash
 57;en;Position;abb94531a6c33b78c0f8992aa717715a
 58;en;Name;6cb8dd96f1462e60152473ba7ce00313
 59;en;Alias;0fe533a611fad1be6443b6570001a57c
-60;en;Route;cd0d5765e0d6af202e62c6185e8b3808
 61;en;Title;c81f9909a1cf133b0355e3450821d64f
 62;en;"Meta keys";c66df2fcedc82d6ef7db45a1ab922be1
 63;en;"Meta description";a50198e04575a69ce9f4e0d835a75caf
@@ -185,7 +174,6 @@ id;language;translation;hash
 194;en;"Enable PHP ""zip"" extension or install ZipArchive on the server.";45d70682bceb06624860cf58e647e815
 195;en;"Models not transferred.";45d70682bceb06624860cf58e647e815
 196;en;"Choose a city";fb0fd91dc2639400cd0817a9f377a6a6
-197;en;"Likes {likes}";4a7a7bf3ca4aad99aea1264824488a05
 198;en;"Create folder";ccd6a22e30f4e69e88d61ba396bd45e1
 199;en;"View folder";67da7c5dfdf89eeec875671479f0700f
 200;en;"Update folder";1350e44c743b79a192d46dfc12deb47e
@@ -327,7 +315,6 @@ id;language;translation;hash
 371;en;"Login key successfully added.";b7d2e82595788345c726e3750cc164ce
 373;en;"This key is already assigned to another user of the site.";b29738cb1e1c80519c74389ce40a614b
 379;en;"Location selection";d27d33e5ddb93dddc73eb3a2e1e84a18
-380;en;"Template for articles";8dc24e76d88e6d30cf44d10d77afdef6
 381;en;"Template to select a location";d722bcc2a915b0d79aca3146731a0d75
 382;en;"Valid fields are country, region, city. Used in the front-end main menu, in a modal window.";de83b53985af39bdd15971f62a845912
 383;en;"Forgot your password?";c358b1ad17d89961b7ffb83d32095821
@@ -340,8 +327,8 @@ id;language;translation;hash
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
 391;en;"User Profile 2";668f66684944db1066fe52fa98491a8b
 392;en;Age;381955bf909367fe7956a4848716488d
-393;en;"A template for the user\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
-394;en;"A template for the user\\'s profile 2";52918d5d40a1ce3613ad84f91dd1031e
+393;en;"A template for the user\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+394;en;"A template for the user\\\\\\\\\\\'s profile 2";52918d5d40a1ce3613ad84f91dd1031e
 397;en;"You must create a new view for the elements of the template {temp}.";f3628ed64581c7a98bd9356e2f85e3cf
 398;en;"You need to create a new view for the selected element of the {temp} template.";a45d7487ac95d6a1b97471e60a4f0713
 399;en;"You need to create a new view for the template menu {temp}.";960ac1e4a7e71b5f56f197eb47dfa8e0
@@ -354,5 +341,44 @@ id;language;translation;hash
 406;en;"Privacy policy";c4fcbd532a7c14926d2a1e58e82af4be
 407;en;"Login was successful.";11db9e0455a32a05f02774d810d4778f
 408;en;"Login key successfully added. You must confirm your email.";c9a3ef5b1a0ba7c0e13c3d2630d5420e
-409;en;"	
-<p>Hello, {NAME_1}!</p> <p>Please verify email address mail follow the link.</p> <p>Login: {EMAIL_1}</p> <p>Password: {PASS_1}</p> <p><a href=""{URL_1}"">activation</a></p> <p>If you are not registered on our site, then simply delete this email.</p> <p>{DATE_1}</p>";1645462e0b9daf11083007144561172d
+413;en;"Add a comment";b547b15ee2e7bdd844ecc694ea843e4c
+414;en;Cancel;8dfd95b02b94bacd43e1b45038698c19
+415;en;"Comments can be posted only by registered users.";b8617d7aaaa78028b84e9e40792381d3
+416;en;"No access";a2141479bc5667f65a3b587c88b54e8b
+417;en;Like;7f03e5b57cb52afcd0c67f3a02c9dfea
+418;en;"Do not like";28080f460db7f85766ddfafc9a4efe5e
+419;en;"Number of stars";de3eec213076253239ab19132fed95fb
+420;en;Comment;ea2b040dbbffbbc71818a415d32fbdf6
+421;en;"Item evaluation allowed";3d1bfabce33f796c7333597c71086c3b
+422;en;"Allow comments to an item";30d0a8ba5d8c2ddf7c5464d914a3120f
+423;en;"Reply to comment";b14bb0f3c780ecaba9bc0d906b73b396
+424;en;Checked;3a117c25034f8a8bf6f9786907ebe62f
+425;en;Reply;706b5864ef3d02ad1c065dea86e694a6
+426;en;Update;2cdf05f4dc927309ded93af82d3d73cc
+427;en;Delete;7d037c7196de7933475c555379223ac2
+428;en;"Delete comment";f7b9a1ded760b72d6eeb5375a5fe4487
+429;en;"Translation mode";f5223299b279c770fbb373f147c39f9c
+430;en;Total;9d0e24b7a7143f86d2e4ea5d6f84229d
+431;en;"Names only";f229183900e887ff1110711d2c48b235
+432;en;"Do not translate";e370b68e1630b87d617963bf6a09297c
+433;en;"Your account has been blocked.";9c5158df55b912bf17547ab71abe17df
+436;en;"Votes {votes_number}";ee478205b16a49d6262313a8bdd58a48
+437;en;I18n;34808b466fec0426e62e81f0949a69be
+438;en;"Create Comment";94e67d00e75f2b4b93cfe328104da6e0
+439;en;"Update Comment";29877b79303bd765d220397df0ec7a4b
+440;en;"View Comment";d01d9ae0dd475e8ae1430f54acc17e6d
+441;en;"Comment management";67fd9f41033acfc9c0d735fb5fb742bf
+442;en;"Export comments to CSV";54ea1887ce8c873771a6c11b468f97c9
+443;en;Comments;5e18186107cdc28e261b1abcaf86b12d
+444;en;"Table ‘comment’. User comments.";330a55b0df31d57670ffedf50cc98c35
+445;en;ID;188b7446c7408bda2433a085b20caf12
+446;en;ISO2;dd4b49d30d78363658dcfae356d63d65
+447;en;"	
+ISO3";1beabc17db64e2215a7c43c2771697cb
+448;en;"	
+Email";a141319a35bd8e3b3e98c3be2742c51d
+449;en;IP;edd5da5f6d95e7c8e36cf0f87e63699c
+450;en;"The name of the role or permissions";cc1bad7fe76b41d4eb40a0d12fa1a212
+451;en;"	
+ISO";22db36a32f555823be33e8455f61ab4d
+452;en;"Comment status";7c4ddd1b79829ab03e0ea5817591d15f

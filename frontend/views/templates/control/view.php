@@ -8,7 +8,8 @@
  */
 
 use common\widgets\ViewItems\ViewItems;
-use common\widgets\Like\Like;
+use common\widgets\Rating\Rating;
+use common\widgets\Comment\Comment;
 use common\widgets\Basket\BasketButton;
 
 /* @var $this yii\web\View */
@@ -19,17 +20,24 @@ use common\widgets\Basket\BasketButton;
 ?>
 <div class="<?= $page['alias']; ?>-view">
     <?= ViewItems::widget(['page' => $page, 'template' => $template, 'parent' => $parent, 'item' => $item]); ?>
-    <?php if ($page['alias'] == 'product'): ?>
+    <?php if ($template['add_rating']): ?>
         <div class="col-md-12 text-right">
-            <?= Like::widget(['document_id' => $item['id']]) ?>
+            <?= Rating::widget([
+                'document_id' => $item['id'],
+                'like' => true,             // показывать кнопку "Нравиться"
+                'dislike' => true,          // показывать кнопку "Не нравиться"
+                'percentage' => true,       // показывать процентный рейтинг
+                'stars_number' => 10,         // кол-во звезд в процентном рейтинге (от 2 до 10)
+                'access_guests' => true,    // разрешены не авторизованным пользователям
+            ]) ?>
         </div>
-        <div class="col-md-12 text-right">
-            <?= BasketButton::widget(['document_id' => $item['id']]) ?>
-        </div>
-    <?php else: ?>
-        <div class="col-md-12 text-right">
-            <?= Like::widget(['document_id' => $item['id']]) ?>
-        </div>
+    <?php endif; ?>
+    <?php if ($template['add_comments']): ?>
+        <?= Comment::widget([
+            'document_id' => $item['id'],
+            'access_answers' => true,   // разрешены ответы на комментарии
+            'access_guests' => false,   // разрешены не авторизованным пользователя
+        ]) ?>
     <?php endif; ?>
 </div>
 

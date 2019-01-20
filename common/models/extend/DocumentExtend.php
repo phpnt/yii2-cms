@@ -208,6 +208,7 @@ class DocumentExtend extends Document
     public function getTemplatesList()
     {
         $manyDocumentExtend = TemplateForm::find()
+            ->where(['status' => Constants::STATUS_DOC_ACTIVE])
             ->all();
 
         return ArrayHelper::map($manyDocumentExtend, 'id', 'name');

@@ -10,7 +10,6 @@ use Yii;
  * @property int $id ID
  * @property string $name Наименование
  * @property string $alias Алиас
- * @property string $route Маршрут
  * @property string $title Заголовок
  * @property string $meta_keywords Мета ключи
  * @property string $meta_description Мета описание
@@ -28,6 +27,7 @@ use Yii;
  * @property int $access Доступ
  *
  * @property Basket[] $baskets
+ * @property Comment[] $comments
  * @property Document $parent
  * @property Document[] $documents
  * @property Template $template
@@ -61,7 +61,7 @@ class Document extends \yii\db\ActiveRecord
             [['name', 'alias', 'created_by', 'updated_by'], 'required'],
             [['meta_keywords', 'meta_description', 'annotation', 'content'], 'string'],
             [['status', 'is_folder', 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
-            [['name', 'alias', 'route', 'title'], 'string', 'max' => 255],
+            [['name', 'alias', 'title'], 'string', 'max' => 255],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -78,7 +78,6 @@ class Document extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Наименование'),
             'alias' => Yii::t('app', 'Алиас'),
-            'route' => Yii::t('app', 'Маршрут'),
             'title' => Yii::t('app', 'Заголовок'),
             'meta_keywords' => Yii::t('app', 'Мета ключи'),
             'meta_description' => Yii::t('app', 'Мета описание'),
@@ -103,6 +102,14 @@ class Document extends \yii\db\ActiveRecord
     public function getBaskets()
     {
         return $this->hasMany(Basket::className(), ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['document_id' => 'id']);
     }
 
     /**

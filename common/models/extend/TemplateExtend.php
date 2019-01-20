@@ -17,6 +17,8 @@ use common\models\Template;
 /**
  * @property array $statusList
  * @property array $statusItem
+ * @property array $statusI18nList
+ * @property array $statusI18nItem
  *
  * @property DocumentForm[] $documents
  * @property FieldForm[] $fields
@@ -51,6 +53,39 @@ class TemplateExtend extends Template
                 break;
             case Constants::STATUS_DOC_BLOCKED:
                 return '<span class="label label-danger">'.$this->getStatusList()[Constants::STATUS_DOC_BLOCKED].'</span>';
+                break;
+        }
+        return false;
+    }
+
+    /**
+     * Возвращает массив статусов перевода
+     * @property $with_null boolean
+     * @return array
+     */
+    public function getStatusI18nList()
+    {
+        return [
+            Constants::STATUS_I18N_ALL =>  Yii::t('app', 'Переводить все'),
+            Constants::STATUS_I18N_NAMES => Yii::t('app', 'Только названия'),
+            Constants::STATUS_I18N_BLOCKED => Yii::t('app', 'Не переводить'),
+        ];
+    }
+
+    /**
+     * Возвращает статус перевода
+     */
+    public function getStatusI18nItem()
+    {
+        switch ($this->i18n) {
+            case Constants::STATUS_I18N_ALL:
+                return '<span class="label label-primary">'.$this->getStatusI18nList()[Constants::STATUS_I18N_ALL].'</span>';
+                break;
+            case Constants::STATUS_I18N_NAMES:
+                return '<span class="label label-primary">'.$this->getStatusI18nList()[Constants::STATUS_I18N_NAMES].'</span>';
+                break;
+            case Constants::STATUS_I18N_BLOCKED:
+                return '<span class="label label-primary">'.$this->getStatusI18nList()[Constants::STATUS_I18N_BLOCKED].'</span>';
                 break;
         }
         return false;

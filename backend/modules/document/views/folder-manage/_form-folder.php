@@ -70,11 +70,6 @@ TranslateAsset::register($this);
 
     <div class="clearfix"></div>
 
-    <!--<div class="col-md-4">
-        <?/*= $form->field($modelDocumentForm, 'route')
-            ->textInput(['placeholder' => $modelDocumentForm->getAttributeLabel('route')]) */?>
-    </div>-->
-
     <div class="col-md-4">
         <?= $form->field($modelDocumentForm, 'access')->dropDownList($modelDocumentForm->accessList,
             [

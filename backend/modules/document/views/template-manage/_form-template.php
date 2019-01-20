@@ -10,6 +10,7 @@
 use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use phpnt\ICheck\ICheck;
 
 /* @var $this yii\web\View */
 /* @var $modelTemplateForm \common\models\forms\TemplateForm */
@@ -37,9 +38,52 @@ use yii\helpers\Url;
             ->textarea(['placeholder' => $modelTemplateForm->getAttributeLabel('description')]) ?>
     </div>
 
-    <div class="col-md-2">
-        <?/*= $form->field($modelTemplateForm, 'path')
-            ->textInput(['placeholder' => $modelTemplateForm->getAttributeLabel('path')]) */?>
+    <div class="col-md-6">
+        <?= $form->field($modelTemplateForm, 'status')->dropDownList($modelTemplateForm->statusList,
+            [
+                'class'  => 'form-control selectpicker',
+                'data' => [
+                    'style' => 'btn-default',
+                    'live-search' => 'false',
+                    'title' => '---'
+                ]
+            ]) ?>
+    </div>
+
+    <div class="col-md-6">
+        <?= $form->field($modelTemplateForm, 'i18n')->dropDownList($modelTemplateForm->statusI18nList,
+            [
+                'class'  => 'form-control selectpicker',
+                'data' => [
+                    'style' => 'btn-default',
+                    'live-search' => 'false',
+                    'title' => '---'
+                ]
+            ]) ?>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <?= $form->field($modelTemplateForm, 'add_rating', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+            'type'  => ICheck::TYPE_CHECBOX,
+            'style'  => ICheck::STYLE_SQUARE,
+            'color'  => 'blue',
+            'options' => [
+                'checked' => $modelTemplateForm->add_rating
+            ]
+        ])->label(false) ?>
+    </div>
+
+    <div class="col-md-12">
+        <?= $form->field($modelTemplateForm, 'add_comments', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+            'type'  => ICheck::TYPE_CHECBOX,
+            'style'  => ICheck::STYLE_SQUARE,
+            'color'  => 'blue',
+            'options' => [
+                'checked' => $modelTemplateForm->add_comments
+            ]
+        ])->label(false) ?>
     </div>
 
     <div class="clearfix"></div>
@@ -53,6 +97,7 @@ use yii\helpers\Url;
     $id_grid_refresh = '#pjax-grid-templates-block';
 
     $js = <<< JS
+        $('.selectpicker').selectpicker({});
         $('#form').on('beforeSubmit', function () { 
             var form = $(this);
                 $.pjax({
