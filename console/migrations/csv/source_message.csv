@@ -1,380 +1,409 @@
 id;category;message;location;hash
-1;app;"Ссылка с подтверждением регистрации отправлена на Email.";"[""frontend/modules/signup/controllers/DefaultController.php"",""frontend/modules/profile/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-2;app;"Email успешно подтвержден.";"[""frontend/modules/signup/controllers/DefaultController.php"",""frontend/modules/profile/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-3;app;Регистрация;"[""frontend/modules/signup/views/default/index.php"",""frontend/modules/profile/views/auth/signup.php"",""Table \"document\" field \"name\", ID = 6"",""Table \"document\" field \"title\", ID = 6""]";bcef2555d5a228ae8e9f5326507f87cd
-4;app;"Проверьте ваш Емайл и следуйте дальнейшим инструкциям.";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-5;app;"Сожалеем, мы не смогли сбросить пароль для указанного адреса электронной почты";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-6;app;"Новый пароль сохранен.";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-7;app;Выйти;"[""frontend/modules/profile/views/default/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-12;app;"Сброс пароля";"[""frontend/modules/login/views/default/resetPassword.php"",""Table \"document\" field \"name\", ID = 10"",""Table \"document\" field \"title\", ID = 10""]";bcef2555d5a228ae8e9f5326507f87cd
-13;app;"Введите новый пароль";"[""frontend/modules/login/views/default/resetPassword.php""]";bcef2555d5a228ae8e9f5326507f87cd
-14;app;Сохранить;"[""frontend/modules/login/views/default/resetPassword.php""]";bcef2555d5a228ae8e9f5326507f87cd
-17;app;Отправить;"[""frontend/modules/login/views/default/requestPasswordResetToken.php""]";bcef2555d5a228ae8e9f5326507f87cd
-18;app;Войти;"[""frontend/modules/login/views/default/index.php"",""Table \"document\" field \"name\", ID = 5"",""Table \"document\" field \"title\", ID = 5""]";bcef2555d5a228ae8e9f5326507f87cd
-19;app;"Я забыл свой пароль";"[""frontend/modules/login/views/default/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-20;app;"Главная страница";"[""Table \"document\" field \"name\", ID = 2"",""Table \"document\" field \"title\", ID = 2""]";bcef2555d5a228ae8e9f5326507f87cd
-22;app;Публикации;"[""Table \"document\" field \"name\", ID = 3"",""Table \"document\" field \"title\", ID = 3""]";bcef2555d5a228ae8e9f5326507f87cd
+1;app;"Ссылка с подтверждением регистрации отправлена на Email.";"[""frontend/modules/signup/controllers/DefaultController.php"",""frontend/modules/profile/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+2;app;"Email успешно подтвержден.";"[""frontend/modules/signup/controllers/DefaultController.php"",""frontend/modules/profile/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+3;app;Регистрация;"[""frontend/modules/signup/views/default/index.php"",""frontend/modules/profile/views/auth/signup.php"",""Table \"document\" field \"name\", ID = 6"",""Table \"document\" field \"title\", ID = 6""]";7b1760fbbcb617e0905d8ba00fe339d2
+4;app;"Проверьте ваш Емайл и следуйте дальнейшим инструкциям.";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+5;app;"Сожалеем, мы не смогли сбросить пароль для указанного адреса электронной почты";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+6;app;"Новый пароль сохранен.";"[""frontend/modules/profile/controllers/AuthController.php"",""frontend/modules/login/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+7;app;Выйти;"[""frontend/modules/profile/views/default/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+12;app;"Сброс пароля";"[""frontend/modules/login/views/default/resetPassword.php"",""Table \"document\" field \"name\", ID = 10"",""Table \"document\" field \"title\", ID = 10""]";7b1760fbbcb617e0905d8ba00fe339d2
+13;app;"Введите новый пароль";"[""frontend/modules/login/views/default/resetPassword.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+14;app;Сохранить;"[""frontend/modules/login/views/default/resetPassword.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+17;app;Отправить;"[""frontend/modules/login/views/default/requestPasswordResetToken.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+18;app;Войти;"[""frontend/modules/login/views/default/index.php"",""Table \"document\" field \"name\", ID = 5"",""Table \"document\" field \"title\", ID = 5""]";7b1760fbbcb617e0905d8ba00fe339d2
+19;app;"Я забыл свой пароль";"[""frontend/modules/login/views/default/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+20;app;"Главная страница";"[""Table \"document\" field \"name\", ID = 2"",""Table \"document\" field \"title\", ID = 2""]";7b1760fbbcb617e0905d8ba00fe339d2
+22;app;Публикации;"[""Table \"document\" field \"name\", ID = 3"",""Table \"document\" field \"title\", ID = 3""]";7b1760fbbcb617e0905d8ba00fe339d2
 23;app;"<h1>Публикации</h1>
-";"[""Table \"document\" field \"content\", ID = 3""]";bcef2555d5a228ae8e9f5326507f87cd
-28;app;Профиль;"[""Table \"document\" field \"name\", ID = 7"",""Table \"document\" field \"title\", ID = 7""]";bcef2555d5a228ae8e9f5326507f87cd
-34;app;Корзина;"[""Table \"document\" field \"name\", ID = 11"",""Table \"document\" field \"title\", ID = 11""]";bcef2555d5a228ae8e9f5326507f87cd
-37;app;Континент;"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-38;app;"Русское название";"[""common/models/GeoCountry.php"",""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";bcef2555d5a228ae8e9f5326507f87cd
-39;app;Широта;"[""common/models/GeoCountry.php"",""common/models/GeoCity.php""]";bcef2555d5a228ae8e9f5326507f87cd
-40;app;Долгота;"[""common/models/GeoCountry.php"",""common/models/GeoCity.php""]";bcef2555d5a228ae8e9f5326507f87cd
-41;app;"Временная зона";"[""common/models/GeoCountry.php"",""common/models/GeoRegion.php""]";bcef2555d5a228ae8e9f5326507f87cd
-42;app;"Короткое название";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-43;app;"Длинное название";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-44;app;"Цифровой код";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-45;app;Участник;"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-46;app;"Телефонный код";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-47;app;"Доменная зона";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-48;app;"Количество цифр в телефонном номере";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-49;app;Валюта;"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-50;app;"Система измерения";"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-51;app;Активный;"[""common/models/GeoCountry.php""]";bcef2555d5a228ae8e9f5326507f87cd
-52;app;Название;"[""common/models/ValueString.php"",""common/models/AuthItem.php"",""common/models/ValueText.php"",""common/models/AuthRule.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-53;app;Значение;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-54;app;Тип;"[""common/models/ValueString.php"",""common/models/AuthItem.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-55;app;Документ;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/Visit.php"",""common/models/ValueInt.php"",""common/models/Like.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-56;app;Поле;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-57;app;Позиция;"[""common/models/ValueString.php"",""common/models/Document.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";bcef2555d5a228ae8e9f5326507f87cd
-58;app;Наименование;"[""common/models/Document.php"",""common/models/Field.php"",""common/models/Template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-59;app;Алиас;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-61;app;Заголовок;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-62;app;"Мета ключи";"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-63;app;"Мета описание";"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-64;app;Аннотация;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-65;app;Содержание;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-66;app;Статус;"[""common/models/Document.php"",""common/models/User.php"",""common/models/Template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-67;app;Папка?;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-68;app;Родитель;"[""common/models/Document.php"",""common/models/AuthItemChild.php""]";bcef2555d5a228ae8e9f5326507f87cd
-69;app;Шаблон;"[""common/models/Document.php"",""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-70;app;"Время создания";"[""common/models/Document.php"",""common/models/AuthItem.php"",""common/models/AuthRule.php"",""common/models/AuthAssignment.php"",""common/models/User.php"",""common/models/Like.php""]";bcef2555d5a228ae8e9f5326507f87cd
-71;app;"Время изменения";"[""common/models/Document.php"",""common/models/AuthItem.php"",""common/models/AuthRule.php"",""common/models/AuthAssignment.php"",""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-72;app;Создал;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-73;app;Изменил;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-74;app;Доступ;"[""common/models/Document.php""]";bcef2555d5a228ae8e9f5326507f87cd
-75;app;Пользователь;"[""common/models/UserOauthKey.php"",""common/models/Visit.php"",""common/models/AuthAssignment.php"",""common/models/Like.php""]";bcef2555d5a228ae8e9f5326507f87cd
-76;app;Провайдер;"[""common/models/UserOauthKey.php""]";bcef2555d5a228ae8e9f5326507f87cd
-77;app;"Прользователь провайдера";"[""common/models/UserOauthKey.php""]";bcef2555d5a228ae8e9f5326507f87cd
-78;app;Страница;"[""common/models/UserOauthKey.php""]";bcef2555d5a228ae8e9f5326507f87cd
-79;app;Описание;"[""common/models/AuthItem.php"",""common/models/Template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-80;app;Правило;"[""common/models/AuthItem.php""]";bcef2555d5a228ae8e9f5326507f87cd
-81;app;Данные;"[""common/models/AuthItem.php"",""common/models/AuthRule.php""]";bcef2555d5a228ae8e9f5326507f87cd
-82;app;"Тип поля";"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-83;app;Обязательное;"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-84;app;Уникальное;"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-85;app;"Минимальное значение";"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-86;app;"Максимальное значение";"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-87;app;"Дополнительные параметры";"[""common/models/Field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-88;app;Дочерний;"[""common/models/AuthItemChild.php""]";bcef2555d5a228ae8e9f5326507f87cd
-89;app;"Пользователь с введем адресом электронной почты не зарегистрирован";"[""common/models/forms/PasswordResetRequestForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-90;app;"Электронная почта";"[""common/models/forms/PasswordResetRequestForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-91;app;"{name} робот";"[""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/SignupForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-92;app;"Сброс пароля для {name}";"[""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/SignupForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-93;app;Фото;"[""common/models/forms/UserForm.php"",""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-94;app;Пароль;"[""common/models/forms/UserForm.php"",""common/models/forms/SignupForm.php"",""common/models/forms/LoginForm.php"",""common/models/forms/ResetPasswordForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-95;app;"Подтверждение пароля";"[""common/models/forms/UserForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-96;app;Роль;"[""common/models/forms/UserForm.php"",""common/models/extend/AuthItemExtend.php"",""common/models/extend/AuthItemExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-97;app;"Данный Email уже зарегистрирован.";"[""common/models/forms/SignupForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-98;app;"Подтверждение регистрации на сайте";"[""common/models/forms/SignupForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-99;app;"Отсутствует код подтверждения.";"[""common/models/forms/EmailConfirm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-100;app;"Неверный токен.";"[""common/models/forms/EmailConfirm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-101;app;"Минимальная дата";"[""common/models/forms/FieldForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-102;app;"Максимальная дата";"[""common/models/forms/FieldForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-103;app;"Расширение файлов";"[""common/models/forms/FieldForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-104;app;"Список не может быть пустым.";"[""common/models/forms/FieldForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-105;app;"Список разрешений";"[""common/models/forms/AuthItemForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-106;app;"Запомнить меня";"[""common/models/forms/LoginForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-107;app;"Неправильная введен Email или Пароль.";"[""common/models/forms/LoginForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-108;app;"Аккаунт не подтвержден. Проверьте Email.";"[""common/models/forms/LoginForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-109;app;"Аккаунт заблокирован. Свяжитель с администратором.";"[""common/models/forms/LoginForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-110;app;"Поле ""{field}"" обязательно для заполнения.";"[""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-111;app;"Поле ""{field}"" не является email адресом.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-112;app;"Поле ""{field}"" не является ссылкой.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-113;app;"Поле ""{field}"" не является YuoTube ссылкой.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-114;app;"Файлы могут иметь следующие расширения {extentions}";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-115;app;"Поле ""{field}"" не может быть меньше ""{min}"".";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-116;app;"Поле ""{field}"" не может быть меньше ""{date}"".";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-117;app;"Поле ""{field}"" не может быть больше ""{max}"".";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-118;app;"Поле ""{field}"" должно содержать не более ""{strlen}"" символов.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-119;app;"Поле ""{field}"" не может быть больше ""{date}"".";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-120;app;"Поле ""{field}"" не может содержать больше ""{files}"" файлов.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-121;app;"Поле ""{field}"" должно быть уникальным.";"[""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-122;app;"Токен сброса не может быть пустым.";"[""common/models/forms/ResetPasswordForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-123;app;"Не верный токен сброса пароля.";"[""common/models/forms/ResetPasswordForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-124;app;"Английское название";"[""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";bcef2555d5a228ae8e9f5326507f87cd
-125;app;ОКАТО;"[""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";bcef2555d5a228ae8e9f5326507f87cd
-126;app;Регион;"[""common/models/GeoCity.php"",""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-127;app;"Категория сообщения";"[""common/models/SourceMessage.php""]";bcef2555d5a228ae8e9f5326507f87cd
-128;app;Сообщение;"[""common/models/SourceMessage.php""]";bcef2555d5a228ae8e9f5326507f87cd
-129;app;Местонахождение;"[""common/models/SourceMessage.php""]";bcef2555d5a228ae8e9f5326507f87cd
-130;app;"Хеш сообщения";"[""common/models/SourceMessage.php""]";bcef2555d5a228ae8e9f5326507f87cd
-132;app;"Данные браузера";"[""common/models/Visit.php"",""common/models/Like.php""]";bcef2555d5a228ae8e9f5326507f87cd
-133;app;Имя;"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-134;app;Фамилия;"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-135;app;"Ключ авторизации";"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-136;app;"Хеш пароля";"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-137;app;"Токен восстановления пароля";"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-138;app;"Токен подтвердждения Email";"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-139;app;Пол;"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-140;app;"Дата рождения";"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-141;app;Телефон;"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-142;app;Страна;"[""common/models/User.php"",""common/models/GeoRegion.php"",""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-143;app;Город;"[""common/models/User.php"",""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-144;app;Адрес;"[""common/models/User.php"",""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-145;app;Авторизован;"[""common/models/User.php""]";bcef2555d5a228ae8e9f5326507f87cd
-146;app;"Имя файла";"[""common/models/ValueFile.php""]";bcef2555d5a228ae8e9f5326507f87cd
-147;app;Расширение;"[""common/models/ValueFile.php""]";bcef2555d5a228ae8e9f5326507f87cd
-148;app;Размер;"[""common/models/ValueFile.php""]";bcef2555d5a228ae8e9f5326507f87cd
-149;app;"Путь к файлу";"[""common/models/ValueFile.php"",""common/models/Template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-150;app;"Целое число";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-151;app;"Диапазон целых чисел";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-152;app;"Число с дробью";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-153;app;"Диапазон чисел с дробью";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-154;app;Строка;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-155;app;Текст;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-156;app;Чекбокс;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-157;app;Радиокнопка;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-158;app;Список;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-159;app;"Список с мультивыбором";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-160;app;Цена;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-161;app;Дата;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-162;app;"Диапазон дат";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-163;app;"Эл. почта";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-164;app;Ссылка;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-165;app;"Страница соц. сети";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-166;app;"Видео YouTube";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-167;app;Файл;"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-168;app;"Несколько файлов";"[""common/models/extend/FieldExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-169;app;Разрешение;"[""common/models/extend/AuthItemExtend.php"",""common/models/extend/AuthItemExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-170;app;"Авторизованный пользователь";"[""common/models/extend/DocumentExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-171;app;"Все пользователи";"[""common/models/extend/DocumentExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-172;app;Гости;"[""common/models/extend/DocumentExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-173;app;"Не подтвержден";"[""common/models/extend/DocumentExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-174;app;Опубликован;"[""common/models/extend/DocumentExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-175;app;Заблокирован;"[""common/models/extend/DocumentExtend.php"",""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-176;app;Активен;"[""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-177;app;"Не активен";"[""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-178;app;Мужской;"[""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-179;app;Женский;"[""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-180;app;"Поиск по токену не поддерживается.";"[""common/models/extend/UserExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-181;app;"Язык перевода";"[""common/models/Message.php""]";bcef2555d5a228ae8e9f5326507f87cd
-182;app;Перевод;"[""common/models/Message.php""]";bcef2555d5a228ae8e9f5326507f87cd
-183;app;"Хеш перевода";"[""common/models/Message.php""]";bcef2555d5a228ae8e9f5326507f87cd
-184;app;"Это имя уже используется в данной папке.";"[""common/components/validators/DocumentNameValidator.php""]";bcef2555d5a228ae8e9f5326507f87cd
-185;app;"Дополнительные поля должны являться массивом.";"[""common/components/validators/DocumentArrayValidator.php""]";bcef2555d5a228ae8e9f5326507f87cd
-186;app;"Этот маршрут уже используется в данной папке.";"[""common/components/validators/DocumentRouteValidator.php""]";bcef2555d5a228ae8e9f5326507f87cd
-187;app;"Этот алиас уже используется в данной папке.";"[""common/components/validators/DocumentAliasValidator.php""]";bcef2555d5a228ae8e9f5326507f87cd
-188;app;Здравствуйте;"[""common/mail/password-reset-token.php"",""common/mail/confirm-email.php""]";bcef2555d5a228ae8e9f5326507f87cd
-189;app;"Перейдите по ссылке ниже, чтобы сбросить ваш пароль";"[""common/mail/password-reset-token.php""]";bcef2555d5a228ae8e9f5326507f87cd
-190;app;"Для подтверждения адреса и первичной авторизации пройдите по ссылке";"[""common/mail/confirm-email.php""]";bcef2555d5a228ae8e9f5326507f87cd
-192;app;Ошибка!;"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-193;app;"У вас недостаточно прав.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-194;app;"Включите разширение PHP ""zip"" или установите ZipArchive на сервере.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-195;app;"Модели не переданы.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-196;app;"Выберите город";"[""common/widgets/Fields/FieldCity.php""]";bcef2555d5a228ae8e9f5326507f87cd
-198;app;"Создать папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";bcef2555d5a228ae8e9f5326507f87cd
-199;app;"Просмотр папки";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";bcef2555d5a228ae8e9f5326507f87cd
-200;app;"Изменить папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";bcef2555d5a228ae8e9f5326507f87cd
-201;app;"Удалить папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";bcef2555d5a228ae8e9f5326507f87cd
-202;app;"Отсутствуют обязательные свойства ""getRootUrl"" или ""getChildUrl"" или массив элементов ""items"".";"[""common/widgets/JsTreeWidget/views/folders-and-elements.php""]";bcef2555d5a228ae8e9f5326507f87cd
-203;app;"Отсутствуюет массив элементов ""items"".";"[""common/widgets/JsTreeWidget/views/folders.php""]";bcef2555d5a228ae8e9f5326507f87cd
-204;app;"Если Вы не регистрировались на нашем сайте, то просто удалите это письмо.";"[""common/mail/confirm-email.php""]";bcef2555d5a228ae8e9f5326507f87cd
-206;app;Успешно;"[""backend/modules/user/controllers/ManageController.php"",""backend/modules/user/controllers/ManageController.php"",""backend/modules/user/controllers/ManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/i18n/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""common/widgets/Basket/controllers/BmController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-207;app;"Вход на сайт";"[""backend/modules/user/views/auth/login.php""]";bcef2555d5a228ae8e9f5326507f87cd
-208;app;"Авторизуйтесь, чтобы перейти к панели управления сайтом.";"[""backend/modules/user/views/auth/login.php""]";bcef2555d5a228ae8e9f5326507f87cd
-209;app;"Удалить пользователя?";"[""backend/modules/user/views/manage/confirm-delete-user.php""]";bcef2555d5a228ae8e9f5326507f87cd
-210;app;Да;"[""backend/modules/user/views/manage/confirm-delete-user.php"",""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/template-manage/confirm-delete-template.php"",""backend/modules/document/views/folder-manage/confirm-delete-folder.php"",""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/confirm-delete-auth-item.php"",""backend/modules/role/views/manage/confirm-delete-auth-item-child.php""]";bcef2555d5a228ae8e9f5326507f87cd
-211;app;Нет;"[""backend/modules/user/views/manage/confirm-delete-user.php"",""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/template-manage/confirm-delete-template.php"",""backend/modules/document/views/folder-manage/confirm-delete-folder.php"",""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/confirm-delete-auth-item.php"",""backend/modules/role/views/manage/confirm-delete-auth-item-child.php""]";bcef2555d5a228ae8e9f5326507f87cd
-212;app;"Создать пользователя";"[""backend/modules/user/views/manage/modal-user.php"",""backend/modules/user/views/manage/_grid-user-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-213;app;"Изменить пользователя";"[""backend/modules/user/views/manage/modal-user.php"",""backend/modules/user/views/manage/_grid-user-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-214;app;"Просмотр пользователя";"[""backend/modules/user/views/manage/_grid-user-block.php"",""backend/modules/document/views/basket/_grid-basket-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-215;app;"Удалить пользователя";"[""backend/modules/user/views/manage/_grid-user-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-216;app;"У Вас нет прав для просмотра.";"[""backend/modules/user/views/manage/_grid-user-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-217;app;"Просмотр роли или разрешения";"[""backend/modules/user/views/manage/view-user.php"",""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/view-auth-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-218;app;"Менеджер пользователей";"[""backend/modules/user/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-219;app;"Экспорт пользователей, их ролей и соц. ключей в CSV";"[""backend/modules/user/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-220;app;Пользователи;"[""backend/modules/user/views/manage/index.php"",""backend/views/layouts/left.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-221;app;"Внимание!!! Папка содержит элементы, удалите сперва их.";"[""backend/modules/document/controllers/FolderManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-222;app;"Создать элемент";"[""backend/modules/document/views/element-manage/modal-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-223;app;"Изменить элемент";"[""backend/modules/document/views/element-manage/modal-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-224;app;От;"[""backend/modules/document/views/element-manage/text-field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-225;app;До;"[""backend/modules/document/views/element-manage/text-field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-226;app;"Удалить элемент";"[""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-227;app;"Просмотр элемента";"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/element-manage/view-element.php""]";bcef2555d5a228ae8e9f5326507f87cd
-228;app;Просмотров;"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/folder-manage/view-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-229;app;Лайков;"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/folder-manage/view-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-230;app;"Для создания и отображения документов, необходимо выбрать папку.";"[""backend/modules/document/views/element-manage/_grid-elements-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-231;app;"Удалить файл?";"[""backend/modules/document/views/element-manage/_files.php"",""backend/modules/document/views/element-manage/_file.php""]";bcef2555d5a228ae8e9f5326507f87cd
-232;app;"Удалить элемент?";"[""backend/modules/document/views/element-manage/_files.php"",""backend/modules/document/views/element-manage/_file.php""]";bcef2555d5a228ae8e9f5326507f87cd
-233;app;"Повторить название";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-234;app;Сформировать;"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-235;app;"Из названия";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-236;app;"Из заголовка";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";bcef2555d5a228ae8e9f5326507f87cd
-237;app;"Создать шаблон";"[""backend/modules/document/views/template-manage/modal-template.php"",""backend/modules/document/views/template-manage/_grid-templates-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-238;app;"Изменить шаблон";"[""backend/modules/document/views/template-manage/modal-template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-239;app;"Просмотр шаблона";"[""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/template-manage/view-template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-240;app;Поля;"[""backend/modules/document/views/template-manage/_grid-templates-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-241;app;"Добавить поле";"[""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/field-manager/modal-field.php"",""backend/modules/document/views/field-manage/modal-field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-242;app;"Удалить шаблон";"[""backend/modules/document/views/template-manage/confirm-delete-template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-243;app;"Просмотр элемента корзины";"[""backend/modules/document/views/basket/view-basket.php""]";bcef2555d5a228ae8e9f5326507f87cd
-244;app;"Нет прав для просмотра.";"[""backend/modules/document/views/basket/_grid-basket-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-245;app;"Менеджер корзины";"[""backend/modules/document/views/basket/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-246;app;"Экспорт корзины в CSV";"[""backend/modules/document/views/basket/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-247;app;"Изменить поле";"[""backend/modules/document/views/field-manager/modal-field.php"",""backend/modules/document/views/field-manage/modal-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-248;app;"Удалить поле";"[""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-249;app;Значения;"[""backend/modules/document/views/field-manage/_form-field.php""]";bcef2555d5a228ae8e9f5326507f87cd
-250;app;"Просмотр поля";"[""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";bcef2555d5a228ae8e9f5326507f87cd
-251;app;"Менеджер документов";"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-252;app;"Экспорт всех шаблонов и документов в CSV";"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-253;app;Папки;"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-254;app;Документы;"[""backend/modules/document/views/manage/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-255;app;Шаблоны;"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-256;app;"Новых сообщений:";"[""backend/modules/i18n/controllers/ManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-257;app;"Удаленных сообщений:";"[""backend/modules/i18n/controllers/ManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-258;app;"Кеш успешно очищен.";"[""backend/modules/i18n/controllers/ManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-259;app;Ошибка;"[""backend/modules/i18n/controllers/ManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-260;app;"Управление I18n";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-261;app;"Экспорт I18n в CSV";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-262;app;"Поиск новых сообщений";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-263;app;"Очистить кеш";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-264;app;Все;"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-265;app;"Не переведенные.";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-266;app;Категория;"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-267;app;"Вышеупомянутая ошибка возникла, когда веб-сервер обрабатывал ваш запрос.";"[""backend/modules/main/views/manage/error.php""]";bcef2555d5a228ae8e9f5326507f87cd
-268;app;"Если вы считаете, что это ошибка сервера, пожалуйста, свяжитесь с нами <strong>{email}</strong>. Спасибо.";"[""backend/modules/main/views/manage/error.php""]";bcef2555d5a228ae8e9f5326507f87cd
-269;app;"Рабочий стол";"[""backend/modules/main/views/manage/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-270;app;"Удалить правило";"[""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/_grid-auth-rule-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-271;app;"Создать правило";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/modal-auth-rule.php""]";bcef2555d5a228ae8e9f5326507f87cd
-272;app;"Просмотр правила";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/view-auth-rule.php""]";bcef2555d5a228ae8e9f5326507f87cd
-273;app;"Изменить правило";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/modal-auth-rule.php""]";bcef2555d5a228ae8e9f5326507f87cd
-274;app;"Удалить роль или разрешение?";"[""backend/modules/role/views/manage/confirm-delete-auth-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-275;app;"Просмотр наследования RBAC";"[""backend/modules/role/views/manage/view-auth-item-child.php""]";bcef2555d5a228ae8e9f5326507f87cd
-276;app;"Создать наследование RBAC";"[""backend/modules/role/views/manage/modal-auth-item-child.php"",""backend/modules/role/views/manage/_grid-auth-item-child-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-277;app;"Изменить наследование RBAC";"[""backend/modules/role/views/manage/modal-auth-item-child.php""]";bcef2555d5a228ae8e9f5326507f87cd
-278;app;"Удалить наследование RBAC";"[""backend/modules/role/views/manage/confirm-delete-auth-item-child.php"",""backend/modules/role/views/manage/_grid-auth-item-child-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-279;app;"Изменить роль или разрешение";"[""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/modal-auth-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-280;app;"Удалить роль или разрешение";"[""backend/modules/role/views/manage/_grid-auth-item-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-282;app;"Роли и допуски";"[""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-283;app;"Экспорт RBAC в CSV";"[""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-284;app;"Все роли и разрешения";"[""backend/modules/role/views/manage/index.php"",""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-285;app;"Создать роль или разрешение";"[""backend/modules/role/views/manage/index.php"",""backend/modules/role/views/manage/modal-auth-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-286;app;"Наследование ролей";"[""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-287;app;"Правила для пользователей";"[""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-288;app;"Управление странами";"[""backend/modules/geo/views/country/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-289;app;"Экспорт стран в CSV";"[""backend/modules/geo/views/country/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-290;app;Страны;"[""backend/modules/geo/views/country/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-291;app;"Управление городами";"[""backend/modules/geo/views/city/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-292;app;"Экспорт городов в CSV";"[""backend/modules/geo/views/city/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-293;app;Города;"[""backend/modules/geo/views/city/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-294;app;"Управление регионами";"[""backend/modules/geo/views/region/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-295;app;"Экспорт регионов в CSV";"[""backend/modules/geo/views/region/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-296;app;Регионы;"[""backend/modules/geo/views/region/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-297;app;Статистика;"[""backend/modules/settings/views/statistic/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-298;app;"Статистика посещений";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-299;app;"Экспорт статистики посещений в CSV";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-300;app;"Оценка пользователей";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-301;app;"Экспорт оценок пользователей в CSV";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-302;app;"Роли и права";"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-303;app;Гео;"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-304;app;Настройки;"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-305;app;"Экспорт всей БД в CSV";"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-306;app;"Файловый менеджер";"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-307;app;"Папки и элементы";"[""backend/views/layouts/header.php""]";bcef2555d5a228ae8e9f5326507f87cd
-308;app;Количество;"[""common/models/Basket.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-309;app;"Статус оплаты";"[""common/models/Basket.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-310;app;"В корзину";"[""common/widgets/Basket/views/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-311;app;"Панель администрирования";"[""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-313;app;"У вас нет доступа к этой странице";"[""backend/modules/user/controllers/ManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/ManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/BasketController.php"",""backend/modules/i18n/controllers/ManageController.php"",""backend/modules/main/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/geo/controllers/RegionController.php"",""backend/modules/geo/controllers/CityController.php"",""backend/modules/geo/controllers/CountryController.php"",""backend/modules/settings/controllers/StatisticController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-314;app;"Маршрут к действию контроллера.";"[""backend/modules/role/views/manage/_form-auth-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-343;app;"Таблица ‘user’ пользователи. Отображает всех пользователей сайта.";"[""backend/modules/user/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-344;app;"Пользователь не зарегистрирован.";"[""backend/modules/document/views/basket/_grid-basket-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-345;app;"Таблица ‘basket’ корзина. Отображает добавленные в корзину товары, их количество и пользователей, которые их заказали.";"[""backend/modules/document/views/basket/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-346;app;"Таблица ‘document’ документы. Папки CMS. Отображает основную структуру сайта. Нажатие правой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления этой папки. Нажатие левой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления элементов этой папки.";"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-347;app;"Таблица ‘document’ документы. Элементы определенной папки. Это могут быть публикации, товары, шаблоны писем или собственные элементы, используемые на сайте. Чтобы создать, редактировать, просматривать, удалять элементы, выберите папку.";"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-348;app;"Таблица ‘template’ шаблоны. содержит шаблоны для элементов. Шаблоны назначаются папкам и применяются к элементам этих папок.";"[""backend/modules/document/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-349;app;"Таблицы ‘source_message’ исходный текст и категория, и ‘message’ их перевод. Управление мультиязычностью.";"[""backend/modules/i18n/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-350;app;"Создание и редактирование новых ролей и разрешений. Назначение разрешений для используемых ролей.";"[""backend/modules/role/views/manage/_grid-auth-item-block.php""]";bcef2555d5a228ae8e9f5326507f87cd
-351;app;"Таблицы ‘auth_item, auth_item_child’ RBAC.";"[""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-352;app;"Таблица ‘auth_rule’ RBAC правила.";"[""backend/modules/role/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-353;app;"Таблица ‘geo_country’ страны. Содержит список стран и информацию о них.";"[""backend/modules/geo/views/country/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-354;app;"Таблица ‘geo_city’ города. Содержит список городов и информацию о них.";"[""backend/modules/geo/views/city/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-355;app;"Таблица ‘geo_region’ регионы. Содержит список регионов и информацию о них.";"[""backend/modules/geo/views/region/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-356;app;"Таблица ‘visit’ статистика посещений.";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-357;app;"Таблица ‘like’ статистика оценок.";"[""backend/modules/settings/views/statistic/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-358;app;"Дальнейшее вложение папок пока не предусмотрено.";"[""backend/modules/document/controllers/FolderManageController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-359;app;"Войти используя социальную сеть";"[""frontend/modules/signup/views/default/signup.php"",""frontend/modules/login/views/default/login.php""]";bcef2555d5a228ae8e9f5326507f87cd
-360;app;"Проверьте вашу электронную почту и следуйте дальнейшим инструкциям.";"[""frontend/modules/login/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-361;app;"К сожалению, мы не можем сбросить пароль для введенной электронной почты.";"[""frontend/modules/login/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-362;app;"Введите адрес электронной почты, для сброса пароля";"[""frontend/modules/login/views/default/_request-password-reset-token-form.php""]";bcef2555d5a228ae8e9f5326507f87cd
-363;app;Выбрать;"[""frontend/modules/geo/views/default/_geo-form.php""]";bcef2555d5a228ae8e9f5326507f87cd
-364;app;"Метка для шаблона";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-371;app;"Ключ входа успешно добавлен.";"[""common/widgets/oAuth/controllers/AuthController.php"",""common/widgets/oAuth/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-373;app;"Данный ключ уже закреплен за другим пользователем сайта.";"[""common/widgets/oAuth/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-379;app;"Выбор местоположения";"[""Table \"document\" field \"name\", ID = 13""]";bcef2555d5a228ae8e9f5326507f87cd
-381;app;"Шаблон для выбора местоположения";"[""Table \"template\" field \"name\", ID = 2""]";bcef2555d5a228ae8e9f5326507f87cd
-382;app;"Допустимые поля: страна, регион, город. Используется в главном меню фронтенда, в модальном окне.";"[""Table \"template\" field \"description\", ID = 2""]";bcef2555d5a228ae8e9f5326507f87cd
-383;app;"Забыли пароль?";"[""frontend/modules/login/views/default/_login-form.php""]";bcef2555d5a228ae8e9f5326507f87cd
-384;app;"Изменить профиль";"[""frontend/views/templates/profile/index.php"",""frontend/views/templates/profile/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-385;app;"Создать профиль";"[""frontend/views/templates/profile/index.php"",""frontend/views/templates/profile/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-386;app;"Заполните профиль";"[""frontend/views/templates/profile/profile.php""]";bcef2555d5a228ae8e9f5326507f87cd
-387;app;"Поле ""{field}"" не может быть меньше ""{strlen}"" символов.";"[""common/models/forms/DocumentForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-388;app;"Профиль пользователя";"[""common/models/User.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-389;app;"Выберите профиль";"[""common/widgets/TemplateOfElement/forms/ProfileTemplateForm.php""]";bcef2555d5a228ae8e9f5326507f87cd
-390;app;"Профиль пользователя 1";"[""Table \"document\" field \"name\", ID = 14""]";bcef2555d5a228ae8e9f5326507f87cd
-391;app;"Профиль пользователя 2";"[""Table \"document\" field \"name\", ID = 15""]";bcef2555d5a228ae8e9f5326507f87cd
-392;app;Возраст;"[""Table \"field\" field \"name\", ID = 10""]";bcef2555d5a228ae8e9f5326507f87cd
-393;app;"Шаблон для профиля пользователя 1";"[""Table \"template\" field \"name\", ID = 3"",""Table \"template\" field \"description\", ID = 3""]";bcef2555d5a228ae8e9f5326507f87cd
-394;app;"Шаблон для профиля пользователя 2";"[""Table \"template\" field \"name\", ID = 4"",""Table \"template\" field \"description\", ID = 4""]";bcef2555d5a228ae8e9f5326507f87cd
-397;app;"Необходимо создать новое представление для элементов шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/items.php"",""frontend/web/assets/6d0efe92/control/product/items.php"",""frontend/web/assets/6d0efe92/control/post/items.php"",""frontend/web/assets/7c6aeb25/control/main/items.php"",""frontend/web/assets/7c6aeb25/control/product/items.php"",""frontend/web/assets/7c6aeb25/control/post/items.php"",""frontend/views/templates/control/main/items.php"",""frontend/views/templates/control/product/items.php"",""frontend/views/templates/control/post/items.php""]";bcef2555d5a228ae8e9f5326507f87cd
-398;app;"Необходимо создать новое представление для выбранного элемента шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/main/selected-item.php"",""frontend/web/assets/6d0efe92/control/product/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/product/selected-item.php"",""frontend/web/assets/6d0efe92/control/post/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/post/selected-item.php"",""frontend/web/assets/7c6aeb25/control/main/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/main/selected-item.php"",""frontend/web/assets/7c6aeb25/control/product/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/product/selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/selected-item.php"",""frontend/views/templates/control/main/sidebar-selected-item.php"",""frontend/views/templates/control/main/selected-item.php"",""frontend/views/templates/control/product/sidebar-selected-item.php"",""frontend/views/templates/control/product/selected-item.php"",""frontend/views/templates/control/post/sidebar-selected-item.php"",""frontend/views/templates/control/post/selected-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-399;app;"Необходимо создать новое представление для меню шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/_sidebar-content-items.php"",""frontend/web/assets/6d0efe92/control/product/_sidebar-content-items.php"",""frontend/web/assets/6d0efe92/control/post/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/main/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/product/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/post/_sidebar-content-items.php"",""frontend/views/templates/control/main/_sidebar-content-items.php"",""frontend/views/templates/control/product/_sidebar-content-items.php"",""frontend/views/templates/control/post/_sidebar-content-items.php""]";bcef2555d5a228ae8e9f5326507f87cd
-400;app;Автор;"[""frontend/web/assets/6d0efe92/control/post/youtube/_sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/post/youtube/_item-of-list.php"",""frontend/web/assets/6d0efe92/control/post/youtube/__sidebar-item-of-list.php"",""frontend/web/assets/6d0efe92/control/post/youtube/_one-item.php"",""frontend/web/assets/c604fc3e/_sidebar-selected-item.php"",""frontend/web/assets/c604fc3e/_item-of-list.php"",""frontend/web/assets/c604fc3e/__sidebar-item-of-list.php"",""frontend/web/assets/c604fc3e/_one-item.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_item-of-list.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/__sidebar-item-of-list.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_one-item.php"",""frontend/views/templates/control/post/youtube/_sidebar-selected-item.php"",""frontend/views/templates/control/post/youtube/_item-of-list.php"",""frontend/views/templates/control/post/youtube/__sidebar-item-of-list.php"",""frontend/views/templates/control/post/youtube/_one-item.php""]";bcef2555d5a228ae8e9f5326507f87cd
-401;app;"Пользователь не найден.";"[""frontend/modules/signup/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-402;app;"Необходимо подтвердить ваш емайл.";"[""frontend/modules/login/controllers/DefaultController.php"",""common/widgets/oAuth/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-403;app;"Регистрация пользователя";"[""frontend/web/assets/5e2f12aa/signup/signup.php"",""frontend/web/assets/5e2f12aa/login/login.php"",""frontend/views/templates/signup/signup.php"",""frontend/views/templates/login/login.php""]";bcef2555d5a228ae8e9f5326507f87cd
-404;app;"Подтвердить емайл";"[""frontend/web/assets/5e2f12aa/signup/confirm-email.php"",""frontend/views/templates/signup/confirm-email.php""]";bcef2555d5a228ae8e9f5326507f87cd
-405;app;"Пользовательское соглашение";"[""frontend/views/site/user-agreement.php""]";bcef2555d5a228ae8e9f5326507f87cd
-406;app;"Политика конфиденциальности";"[""frontend/views/site/privacy-policy.php""]";bcef2555d5a228ae8e9f5326507f87cd
-407;app;"Авторизация прошла успешно.";"[""common/widgets/oAuth/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-408;app;"Ключ входа успешно добавлен. Необходимо подтвердить ваш емайл.";"[""common/widgets/oAuth/controllers/AuthController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-413;app;"Добавить комментарий";"[""frontend/views/templates/comment/_button-add-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-414;app;Отмена;"[""frontend/views/templates/comment/_form-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-415;app;"Комментарии могут оставлять только зарегистрированные пользователи.";"[""frontend/views/templates/comment/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-416;app;"Нет доступа";"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/element-manage/view-element.php"",""backend/modules/document/views/element-manage/view-element.php"",""backend/modules/document/views/element-manage/view-element.php""]";bcef2555d5a228ae8e9f5326507f87cd
-417;app;Нравиться;"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-418;app;"Не нравиться";"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-419;app;"Количество звезд";"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-420;app;Комментарий;"[""common/models/Like.php"",""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-421;app;"Разрешена оценка элемента";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-422;app;"Разрешены комментарии к элементу";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-423;app;"Ответ на коммментарий";"[""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-424;app;Проверен;"[""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-425;app;Ответить;"[""frontend/views/templates/comment/__buttons-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-426;app;Редактировать;"[""frontend/views/templates/comment/__buttons-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-427;app;Удалить;"[""frontend/views/templates/comment/__buttons-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-428;app;"Удалить комментарий";"[""frontend/views/templates/comment/confirm-delete-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-429;app;"Режим перевода";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-430;app;Всего;"[""common/models/extend/TemplateExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-431;app;"Только названия";"[""common/models/extend/TemplateExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-432;app;"Не переводить";"[""common/models/extend/TemplateExtend.php""]";bcef2555d5a228ae8e9f5326507f87cd
-433;app;"Ваш аккаунт заблокирован.";"[""frontend/modules/control/controllers/DefaultController.php""]";bcef2555d5a228ae8e9f5326507f87cd
-436;app;"Голосов {votes_number}";"[""frontend/views/templates/rating/percentage.php""]";bcef2555d5a228ae8e9f5326507f87cd
-437;app;I18n;"[""backend/modules/i18n/views/manage/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-438;app;"Создать комментарий";"[""backend/modules/comment/views/manage/modal-comment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-439;app;"Изменить комментарий";"[""backend/modules/comment/views/manage/modal-comment.php"",""backend/modules/comment/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-440;app;"Просмотр комментария";"[""backend/modules/comment/views/manage/view-comment.php"",""backend/modules/comment/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-441;app;"Управление комментариями";"[""backend/modules/comment/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-442;app;"Экспорт комментариев в CSV";"[""backend/modules/comment/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-443;app;Комментарии;"[""backend/modules/comment/views/manage/index.php"",""backend/views/layouts/left.php""]";bcef2555d5a228ae8e9f5326507f87cd
-444;app;"Таблица ‘comment’. Комментарии пользователей.";"[""backend/modules/comment/views/manage/index.php""]";bcef2555d5a228ae8e9f5326507f87cd
-445;app;ID;"[""common/models/GeoCountry.php"",""common/models/ValueString.php"",""common/models/Document.php"",""common/models/UserOauthKey.php"",""common/models/Field.php"",""common/models/ValueText.php"",""common/models/GeoCity.php"",""common/models/SourceMessage.php"",""common/models/Visit.php"",""common/models/ValueInt.php"",""common/models/User.php"",""common/models/Like.php"",""common/models/ValueFile.php"",""common/models/GeoRegion.php"",""common/models/ValueNumeric.php"",""common/models/Template.php"",""common/models/Message.php"",""common/models/Basket.php"",""common/models/Comment.php"",""console/migrations/m000000_000001_create_geo_tables.php"",""console/migrations/m000000_000001_create_geo_tables.php"",""console/migrations/m000000_000001_create_geo_tables.php""]";bcef2555d5a228ae8e9f5326507f87cd
-446;app;ISO2;"[""common/models/GeoCountry.php"",""console/migrations/m000000_000001_create_geo_tables.php""]";bcef2555d5a228ae8e9f5326507f87cd
-447;app;ISO3;"[""common/models/GeoCountry.php"",""console/migrations/m000000_000001_create_geo_tables.php""]";bcef2555d5a228ae8e9f5326507f87cd
-448;app;Email;"[""common/models/forms/LoginForm.php"",""common/models/User.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-449;app;IP;"[""common/models/Visit.php"",""common/models/User.php"",""common/models/Like.php"",""common/models/Basket.php"",""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php"",""console/migrations/m000000_000002_cms_shop.php"",""console/migrations/m000000_000002_cms_shop.php"",""console/migrations/m000000_000002_cms_shop.php"",""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
-450;app;"Название роли или разрешения";"[""common/models/AuthAssignment.php""]";bcef2555d5a228ae8e9f5326507f87cd
-451;app;ISO;"[""common/models/GeoRegion.php"",""console/migrations/m000000_000001_create_geo_tables.php""]";bcef2555d5a228ae8e9f5326507f87cd
-452;app;"Статус комментария";"[""console/migrations/m000000_000002_cms_shop.php""]";bcef2555d5a228ae8e9f5326507f87cd
+";"[""Table \"document\" field \"content\", ID = 3""]";7b1760fbbcb617e0905d8ba00fe339d2
+28;app;Профиль;"[""Table \"document\" field \"name\", ID = 7"",""Table \"document\" field \"title\", ID = 7""]";7b1760fbbcb617e0905d8ba00fe339d2
+34;app;Корзина;"[""Table \"document\" field \"name\", ID = 11"",""Table \"document\" field \"title\", ID = 11""]";7b1760fbbcb617e0905d8ba00fe339d2
+37;app;Континент;"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+38;app;"Русское название";"[""common/models/GeoCountry.php"",""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+39;app;Широта;"[""common/models/GeoCountry.php"",""common/models/GeoCity.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+40;app;Долгота;"[""common/models/GeoCountry.php"",""common/models/GeoCity.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+41;app;"Временная зона";"[""common/models/GeoCountry.php"",""common/models/GeoRegion.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+42;app;"Короткое название";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+43;app;"Длинное название";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+44;app;"Цифровой код";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+45;app;Участник;"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+46;app;"Телефонный код";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+47;app;"Доменная зона";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+48;app;"Количество цифр в телефонном номере";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+49;app;Валюта;"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+50;app;"Система измерения";"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+51;app;Активный;"[""common/models/GeoCountry.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+52;app;Название;"[""common/models/ValueString.php"",""common/models/AuthItem.php"",""common/models/ValueText.php"",""common/models/AuthRule.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+53;app;Значение;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+54;app;Тип;"[""common/models/ValueString.php"",""common/models/AuthItem.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+55;app;Документ;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/Visit.php"",""common/models/ValueInt.php"",""common/models/Like.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+56;app;Поле;"[""common/models/ValueString.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+57;app;Позиция;"[""common/models/ValueString.php"",""common/models/Document.php"",""common/models/ValueText.php"",""common/models/ValueInt.php"",""common/models/ValueFile.php"",""common/models/ValueNumeric.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+58;app;Наименование;"[""common/models/Document.php"",""common/models/Field.php"",""common/models/Template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+59;app;Алиас;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+61;app;Заголовок;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+62;app;"Мета ключи";"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+63;app;"Мета описание";"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+64;app;Аннотация;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+65;app;Содержание;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+66;app;Статус;"[""common/models/Document.php"",""common/models/User.php"",""common/models/Template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+67;app;Папка?;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+68;app;Родитель;"[""common/models/Document.php"",""common/models/AuthItemChild.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+69;app;Шаблон;"[""common/models/Document.php"",""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+70;app;"Время создания";"[""common/models/Document.php"",""common/models/AuthItem.php"",""common/models/AuthRule.php"",""common/models/AuthAssignment.php"",""common/models/User.php"",""common/models/Like.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+71;app;"Время изменения";"[""common/models/Document.php"",""common/models/AuthItem.php"",""common/models/AuthRule.php"",""common/models/AuthAssignment.php"",""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+72;app;Создал;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+73;app;Изменил;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+74;app;Доступ;"[""common/models/Document.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+75;app;Пользователь;"[""common/models/UserOauthKey.php"",""common/models/Visit.php"",""common/models/AuthAssignment.php"",""common/models/Like.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+76;app;Провайдер;"[""common/models/UserOauthKey.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+77;app;"Прользователь провайдера";"[""common/models/UserOauthKey.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+78;app;Страница;"[""common/models/UserOauthKey.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+79;app;Описание;"[""common/models/AuthItem.php"",""common/models/Template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+80;app;Правило;"[""common/models/AuthItem.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+81;app;Данные;"[""common/models/AuthItem.php"",""common/models/AuthRule.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+82;app;"Тип поля";"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+83;app;Обязательное;"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+84;app;Уникальное;"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+85;app;"Минимальное значение";"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+86;app;"Максимальное значение";"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+87;app;"Дополнительные параметры";"[""common/models/Field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+88;app;Дочерний;"[""common/models/AuthItemChild.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+89;app;"Пользователь с введем адресом электронной почты не зарегистрирован";"[""common/models/forms/PasswordResetRequestForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+90;app;"Электронная почта";"[""common/models/forms/PasswordResetRequestForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+91;app;"{name} робот";"[""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/SignupForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+92;app;"Сброс пароля для {name}";"[""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/PasswordResetRequestForm.php"",""common/models/forms/SignupForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+93;app;Фото;"[""common/models/forms/UserForm.php"",""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+94;app;Пароль;"[""common/models/forms/UserForm.php"",""common/models/forms/SignupForm.php"",""common/models/forms/LoginForm.php"",""common/models/forms/ResetPasswordForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+95;app;"Подтверждение пароля";"[""common/models/forms/UserForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+96;app;Роль;"[""common/models/forms/UserForm.php"",""common/models/extend/AuthItemExtend.php"",""common/models/extend/AuthItemExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+97;app;"Данный Email уже зарегистрирован.";"[""common/models/forms/SignupForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+98;app;"Подтверждение регистрации на сайте";"[""common/models/forms/SignupForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+99;app;"Отсутствует код подтверждения.";"[""common/models/forms/EmailConfirm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+100;app;"Неверный токен.";"[""common/models/forms/EmailConfirm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+101;app;"Минимальная дата";"[""common/models/forms/FieldForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+102;app;"Максимальная дата";"[""common/models/forms/FieldForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+103;app;"Расширение файлов";"[""common/models/forms/FieldForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+104;app;"Список не может быть пустым.";"[""common/models/forms/FieldForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+105;app;"Список разрешений";"[""common/models/forms/AuthItemForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+106;app;"Запомнить меня";"[""common/models/forms/LoginForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+107;app;"Неправильная введен Email или Пароль.";"[""common/models/forms/LoginForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+108;app;"Аккаунт не подтвержден. Проверьте Email.";"[""common/models/forms/LoginForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+109;app;"Аккаунт заблокирован. Свяжитель с администратором.";"[""common/models/forms/LoginForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+110;app;"Поле ""{field}"" обязательно для заполнения.";"[""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+111;app;"Поле ""{field}"" не является email адресом.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+112;app;"Поле ""{field}"" не является ссылкой.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+113;app;"Поле ""{field}"" не является YuoTube ссылкой.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+114;app;"Файлы могут иметь следующие расширения {extentions}";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+115;app;"Поле ""{field}"" не может быть меньше ""{min}"".";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+116;app;"Поле ""{field}"" не может быть меньше ""{date}"".";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+117;app;"Поле ""{field}"" не может быть больше ""{max}"".";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+118;app;"Поле ""{field}"" должно содержать не более ""{strlen}"" символов.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+119;app;"Поле ""{field}"" не может быть больше ""{date}"".";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+120;app;"Поле ""{field}"" не может содержать больше ""{files}"" файлов.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+121;app;"Поле ""{field}"" должно быть уникальным.";"[""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php"",""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+122;app;"Токен сброса не может быть пустым.";"[""common/models/forms/ResetPasswordForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+123;app;"Не верный токен сброса пароля.";"[""common/models/forms/ResetPasswordForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+124;app;"Английское название";"[""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+125;app;ОКАТО;"[""common/models/GeoCity.php"",""common/models/GeoRegion.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+126;app;Регион;"[""common/models/GeoCity.php"",""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+127;app;"Категория сообщения";"[""common/models/SourceMessage.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+128;app;Сообщение;"[""common/models/SourceMessage.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+129;app;Местонахождение;"[""common/models/SourceMessage.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+130;app;"Хеш сообщения";"[""common/models/SourceMessage.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+132;app;"Данные браузера";"[""common/models/Visit.php"",""common/models/Like.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+133;app;Имя;"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+134;app;Фамилия;"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+135;app;"Ключ авторизации";"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+136;app;"Хеш пароля";"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+137;app;"Токен восстановления пароля";"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+138;app;"Токен подтвердждения Email";"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+139;app;Пол;"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+140;app;"Дата рождения";"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+141;app;Телефон;"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+142;app;Страна;"[""common/models/User.php"",""common/models/GeoRegion.php"",""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+143;app;Город;"[""common/models/User.php"",""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+144;app;Адрес;"[""common/models/User.php"",""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+145;app;Авторизован;"[""common/models/User.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+146;app;"Имя файла";"[""common/models/ValueFile.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+147;app;Расширение;"[""common/models/ValueFile.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+148;app;Размер;"[""common/models/ValueFile.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+149;app;"Путь к файлу";"[""common/models/ValueFile.php"",""common/models/Template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+150;app;"Целое число";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+151;app;"Диапазон целых чисел";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+152;app;"Число с дробью";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+153;app;"Диапазон чисел с дробью";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+154;app;Строка;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+155;app;Текст;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+156;app;Чекбокс;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+157;app;Радиокнопка;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+158;app;Список;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+159;app;"Список с мультивыбором";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+160;app;Цена;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+161;app;Дата;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+162;app;"Диапазон дат";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+163;app;"Эл. почта";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+164;app;Ссылка;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+165;app;"Страница соц. сети";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+166;app;"Видео YouTube";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+167;app;Файл;"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+168;app;"Несколько файлов";"[""common/models/extend/FieldExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+169;app;Разрешение;"[""common/models/extend/AuthItemExtend.php"",""common/models/extend/AuthItemExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+170;app;"Авторизованный пользователь";"[""common/models/extend/DocumentExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+171;app;"Все пользователи";"[""common/models/extend/DocumentExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+172;app;Гости;"[""common/models/extend/DocumentExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+173;app;"Не подтвержден";"[""common/models/extend/DocumentExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+174;app;Опубликован;"[""common/models/extend/DocumentExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+175;app;Заблокирован;"[""common/models/extend/DocumentExtend.php"",""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+176;app;Активен;"[""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+177;app;"Не активен";"[""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+178;app;Мужской;"[""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+179;app;Женский;"[""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+180;app;"Поиск по токену не поддерживается.";"[""common/models/extend/UserExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+181;app;"Язык перевода";"[""common/models/Message.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+182;app;Перевод;"[""common/models/Message.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+183;app;"Хеш перевода";"[""common/models/Message.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+184;app;"Это имя уже используется в данной папке.";"[""common/components/validators/DocumentNameValidator.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+185;app;"Дополнительные поля должны являться массивом.";"[""common/components/validators/DocumentArrayValidator.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+186;app;"Этот маршрут уже используется в данной папке.";"[""common/components/validators/DocumentRouteValidator.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+187;app;"Этот алиас уже используется в данной папке.";"[""common/components/validators/DocumentAliasValidator.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+188;app;Здравствуйте;"[""common/mail/password-reset-token.php"",""common/mail/confirm-email.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+189;app;"Перейдите по ссылке ниже, чтобы сбросить ваш пароль";"[""common/mail/password-reset-token.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+190;app;"Для подтверждения адреса и первичной авторизации пройдите по ссылке";"[""common/mail/confirm-email.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+192;app;Ошибка!;"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+193;app;"У вас недостаточно прав.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+194;app;"Включите разширение PHP ""zip"" или установите ZipArchive на сервере.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+195;app;"Модели не переданы.";"[""common/widgets/GetCsv/controllers/CsvManagerController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+196;app;"Выберите город";"[""common/widgets/Fields/FieldCity.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+198;app;"Создать папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+199;app;"Просмотр папки";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+200;app;"Изменить папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+201;app;"Удалить папку";"[""common/widgets/JsTreeWidget/FoldersJsTreeWidget.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+202;app;"Отсутствуют обязательные свойства ""getRootUrl"" или ""getChildUrl"" или массив элементов ""items"".";"[""common/widgets/JsTreeWidget/views/folders-and-elements.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+203;app;"Отсутствуюет массив элементов ""items"".";"[""common/widgets/JsTreeWidget/views/folders.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+204;app;"Если Вы не регистрировались на нашем сайте, то просто удалите это письмо.";"[""common/mail/confirm-email.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+206;app;Успешно;"[""backend/modules/user/controllers/ManageController.php"",""backend/modules/user/controllers/ManageController.php"",""backend/modules/user/controllers/ManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/i18n/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""common/widgets/Basket/controllers/BmController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+207;app;"Вход на сайт";"[""backend/modules/user/views/auth/login.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+208;app;"Авторизуйтесь, чтобы перейти к панели управления сайтом.";"[""backend/modules/user/views/auth/login.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+209;app;"Удалить пользователя?";"[""backend/modules/user/views/manage/confirm-delete-user.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+210;app;Да;"[""backend/modules/user/views/manage/confirm-delete-user.php"",""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/template-manage/confirm-delete-template.php"",""backend/modules/document/views/folder-manage/confirm-delete-folder.php"",""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/confirm-delete-auth-item.php"",""backend/modules/role/views/manage/confirm-delete-auth-item-child.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+211;app;Нет;"[""backend/modules/user/views/manage/confirm-delete-user.php"",""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/template-manage/confirm-delete-template.php"",""backend/modules/document/views/folder-manage/confirm-delete-folder.php"",""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/confirm-delete-auth-item.php"",""backend/modules/role/views/manage/confirm-delete-auth-item-child.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+212;app;"Создать пользователя";"[""backend/modules/user/views/manage/modal-user.php"",""backend/modules/user/views/manage/_grid-user-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+213;app;"Изменить пользователя";"[""backend/modules/user/views/manage/modal-user.php"",""backend/modules/user/views/manage/_grid-user-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+214;app;"Просмотр пользователя";"[""backend/modules/user/views/manage/_grid-user-block.php"",""backend/modules/document/views/basket/_grid-basket-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+215;app;"Удалить пользователя";"[""backend/modules/user/views/manage/_grid-user-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+216;app;"У Вас нет прав для просмотра.";"[""backend/modules/user/views/manage/_grid-user-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+217;app;"Просмотр роли или разрешения";"[""backend/modules/user/views/manage/view-user.php"",""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/view-auth-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+218;app;"Менеджер пользователей";"[""backend/modules/user/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+219;app;"Экспорт пользователей, их ролей и соц. ключей в CSV";"[""backend/modules/user/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+220;app;Пользователи;"[""backend/modules/user/views/manage/index.php"",""backend/views/layouts/left.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+221;app;"Внимание!!! Папка содержит элементы, удалите сперва их.";"[""backend/modules/document/controllers/FolderManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+222;app;"Создать элемент";"[""backend/modules/document/views/element-manage/modal-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+223;app;"Изменить элемент";"[""backend/modules/document/views/element-manage/modal-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+224;app;От;"[""backend/modules/document/views/element-manage/text-field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+225;app;До;"[""backend/modules/document/views/element-manage/text-field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+226;app;"Удалить элемент";"[""backend/modules/document/views/element-manage/confirm-delete-element.php"",""backend/modules/document/views/element-manage/_grid-elements-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+227;app;"Просмотр элемента";"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/element-manage/view-element.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+228;app;Просмотров;"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/folder-manage/view-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+229;app;Лайков;"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/folder-manage/view-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+230;app;"Для создания и отображения документов, необходимо выбрать папку.";"[""backend/modules/document/views/element-manage/_grid-elements-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+231;app;"Удалить файл?";"[""backend/modules/document/views/element-manage/_files.php"",""backend/modules/document/views/element-manage/_file.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+232;app;"Удалить элемент?";"[""backend/modules/document/views/element-manage/_files.php"",""backend/modules/document/views/element-manage/_file.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+233;app;"Повторить название";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+234;app;Сформировать;"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+235;app;"Из названия";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+236;app;"Из заголовка";"[""backend/modules/document/views/element-manage/_form-element.php"",""backend/modules/document/views/folder-manage/_form-folder.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+237;app;"Создать шаблон";"[""backend/modules/document/views/template-manage/modal-template.php"",""backend/modules/document/views/template-manage/_grid-templates-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+238;app;"Изменить шаблон";"[""backend/modules/document/views/template-manage/modal-template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+239;app;"Просмотр шаблона";"[""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/template-manage/view-template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+240;app;Поля;"[""backend/modules/document/views/template-manage/_grid-templates-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+241;app;"Добавить поле";"[""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/template-manage/_grid-templates-block.php"",""backend/modules/document/views/field-manager/modal-field.php"",""backend/modules/document/views/field-manage/modal-field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+242;app;"Удалить шаблон";"[""backend/modules/document/views/template-manage/confirm-delete-template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+243;app;"Просмотр элемента корзины";"[""backend/modules/document/views/basket/view-basket.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+244;app;"Нет прав для просмотра.";"[""backend/modules/document/views/basket/_grid-basket-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+245;app;"Менеджер корзины";"[""backend/modules/document/views/basket/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+246;app;"Экспорт корзины в CSV";"[""backend/modules/document/views/basket/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+247;app;"Изменить поле";"[""backend/modules/document/views/field-manager/modal-field.php"",""backend/modules/document/views/field-manage/modal-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+248;app;"Удалить поле";"[""backend/modules/document/views/field-manage/confirm-delete-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+249;app;Значения;"[""backend/modules/document/views/field-manage/_form-field.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+250;app;"Просмотр поля";"[""backend/modules/document/views/field-manage/view-field.php"",""backend/modules/document/views/field-manage/__fields_of_template.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+251;app;"Менеджер документов";"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+252;app;"Экспорт всех шаблонов и документов в CSV";"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+253;app;Папки;"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+254;app;Документы;"[""backend/modules/document/views/manage/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+255;app;Шаблоны;"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+256;app;"Новых сообщений:";"[""backend/modules/i18n/controllers/ManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+257;app;"Удаленных сообщений:";"[""backend/modules/i18n/controllers/ManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+258;app;"Кеш успешно очищен.";"[""backend/modules/i18n/controllers/ManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+259;app;Ошибка;"[""backend/modules/i18n/controllers/ManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+260;app;"Управление I18n";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+261;app;"Экспорт I18n в CSV";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+262;app;"Поиск новых сообщений";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+263;app;"Очистить кеш";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+264;app;Все;"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+265;app;"Не переведенные.";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+266;app;Категория;"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+267;app;"Вышеупомянутая ошибка возникла, когда веб-сервер обрабатывал ваш запрос.";"[""backend/modules/main/views/manage/error.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+268;app;"Если вы считаете, что это ошибка сервера, пожалуйста, свяжитесь с нами <strong>{email}</strong>. Спасибо.";"[""backend/modules/main/views/manage/error.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+269;app;"Рабочий стол";"[""backend/modules/main/views/manage/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+270;app;"Удалить правило";"[""backend/modules/role/views/manage/confirm-delete-auth-rule.php"",""backend/modules/role/views/manage/_grid-auth-rule-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+271;app;"Создать правило";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/modal-auth-rule.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+272;app;"Просмотр правила";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/view-auth-rule.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+273;app;"Изменить правило";"[""backend/modules/role/views/manage/_grid-auth-rule-block.php"",""backend/modules/role/views/manage/modal-auth-rule.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+274;app;"Удалить роль или разрешение?";"[""backend/modules/role/views/manage/confirm-delete-auth-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+275;app;"Просмотр наследования RBAC";"[""backend/modules/role/views/manage/view-auth-item-child.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+276;app;"Создать наследование RBAC";"[""backend/modules/role/views/manage/modal-auth-item-child.php"",""backend/modules/role/views/manage/_grid-auth-item-child-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+277;app;"Изменить наследование RBAC";"[""backend/modules/role/views/manage/modal-auth-item-child.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+278;app;"Удалить наследование RBAC";"[""backend/modules/role/views/manage/confirm-delete-auth-item-child.php"",""backend/modules/role/views/manage/_grid-auth-item-child-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+279;app;"Изменить роль или разрешение";"[""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/modal-auth-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+280;app;"Удалить роль или разрешение";"[""backend/modules/role/views/manage/_grid-auth-item-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+282;app;"Роли и допуски";"[""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+283;app;"Экспорт RBAC в CSV";"[""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+284;app;"Все роли и разрешения";"[""backend/modules/role/views/manage/index.php"",""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+285;app;"Создать роль или разрешение";"[""backend/modules/role/views/manage/index.php"",""backend/modules/role/views/manage/modal-auth-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+286;app;"Наследование ролей";"[""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+287;app;"Правила для пользователей";"[""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+288;app;"Управление странами";"[""backend/modules/geo/views/country/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+289;app;"Экспорт стран в CSV";"[""backend/modules/geo/views/country/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+290;app;Страны;"[""backend/modules/geo/views/country/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+291;app;"Управление городами";"[""backend/modules/geo/views/city/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+292;app;"Экспорт городов в CSV";"[""backend/modules/geo/views/city/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+293;app;Города;"[""backend/modules/geo/views/city/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+294;app;"Управление регионами";"[""backend/modules/geo/views/region/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+295;app;"Экспорт регионов в CSV";"[""backend/modules/geo/views/region/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+296;app;Регионы;"[""backend/modules/geo/views/region/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+297;app;Статистика;"[""backend/modules/settings/views/statistic/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+298;app;"Статистика посещений";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+299;app;"Экспорт статистики посещений в CSV";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+300;app;"Оценка пользователей";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+301;app;"Экспорт оценок пользователей в CSV";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+302;app;"Роли и права";"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+303;app;Гео;"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+304;app;Настройки;"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+305;app;"Экспорт всей БД в CSV";"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+306;app;"Файловый менеджер";"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+307;app;"Папки и элементы";"[""backend/views/layouts/header.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+308;app;Количество;"[""common/models/Basket.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+309;app;"Статус оплаты";"[""common/models/Basket.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+310;app;"В корзину";"[""common/widgets/Basket/views/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+311;app;"Панель администрирования";"[""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+313;app;"У вас нет доступа к этой странице";"[""backend/modules/user/controllers/ManageController.php"",""backend/modules/document/controllers/TemplateManageController.php"",""backend/modules/document/controllers/ManageController.php"",""backend/modules/document/controllers/FolderManageController.php"",""backend/modules/document/controllers/FieldManageController.php"",""backend/modules/document/controllers/ElementManageController.php"",""backend/modules/document/controllers/BasketController.php"",""backend/modules/i18n/controllers/ManageController.php"",""backend/modules/main/controllers/ManageController.php"",""backend/modules/role/controllers/ManageController.php"",""backend/modules/geo/controllers/RegionController.php"",""backend/modules/geo/controllers/CityController.php"",""backend/modules/geo/controllers/CountryController.php"",""backend/modules/settings/controllers/StatisticController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+314;app;"Маршрут к действию контроллера.";"[""backend/modules/role/views/manage/_form-auth-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+343;app;"Таблица ‘user’ пользователи. Отображает всех пользователей сайта.";"[""backend/modules/user/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+344;app;"Пользователь не зарегистрирован.";"[""backend/modules/document/views/basket/_grid-basket-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+345;app;"Таблица ‘basket’ корзина. Отображает добавленные в корзину товары, их количество и пользователей, которые их заказали.";"[""backend/modules/document/views/basket/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+346;app;"Таблица ‘document’ документы. Папки CMS. Отображает основную структуру сайта. Нажатие правой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления этой папки. Нажатие левой кнопки мыши на выбранной папки – для создания, редактирования, просмотра, удаления элементов этой папки.";"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+347;app;"Таблица ‘document’ документы. Элементы определенной папки. Это могут быть публикации, товары, шаблоны писем или собственные элементы, используемые на сайте. Чтобы создать, редактировать, просматривать, удалять элементы, выберите папку.";"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+348;app;"Таблица ‘template’ шаблоны. содержит шаблоны для элементов. Шаблоны назначаются папкам и применяются к элементам этих папок.";"[""backend/modules/document/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+349;app;"Таблицы ‘source_message’ исходный текст и категория, и ‘message’ их перевод. Управление мультиязычностью.";"[""backend/modules/i18n/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+350;app;"Создание и редактирование новых ролей и разрешений. Назначение разрешений для используемых ролей.";"[""backend/modules/role/views/manage/_grid-auth-item-block.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+351;app;"Таблицы ‘auth_item, auth_item_child’ RBAC.";"[""backend/modules/role/views/manage/_grid-auth-item-block.php"",""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+352;app;"Таблица ‘auth_rule’ RBAC правила.";"[""backend/modules/role/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+353;app;"Таблица ‘geo_country’ страны. Содержит список стран и информацию о них.";"[""backend/modules/geo/views/country/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+354;app;"Таблица ‘geo_city’ города. Содержит список городов и информацию о них.";"[""backend/modules/geo/views/city/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+355;app;"Таблица ‘geo_region’ регионы. Содержит список регионов и информацию о них.";"[""backend/modules/geo/views/region/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+356;app;"Таблица ‘visit’ статистика посещений.";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+357;app;"Таблица ‘like’ статистика оценок.";"[""backend/modules/settings/views/statistic/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+358;app;"Дальнейшее вложение папок пока не предусмотрено.";"[""backend/modules/document/controllers/FolderManageController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+359;app;"Войти используя социальную сеть";"[""frontend/modules/signup/views/default/signup.php"",""frontend/modules/login/views/default/login.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+360;app;"Проверьте вашу электронную почту и следуйте дальнейшим инструкциям.";"[""frontend/modules/login/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+361;app;"К сожалению, мы не можем сбросить пароль для введенной электронной почты.";"[""frontend/modules/login/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+362;app;"Введите адрес электронной почты, для сброса пароля";"[""frontend/modules/login/views/default/_request-password-reset-token-form.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+363;app;Выбрать;"[""frontend/modules/geo/views/default/_geo-form.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+364;app;"Метка для шаблона";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+371;app;"Ключ входа успешно добавлен.";"[""common/widgets/oAuth/controllers/AuthController.php"",""common/widgets/oAuth/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+373;app;"Данный ключ уже закреплен за другим пользователем сайта.";"[""common/widgets/oAuth/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+379;app;"Выбор местоположения";"[""Table \"document\" field \"name\", ID = 13""]";7b1760fbbcb617e0905d8ba00fe339d2
+381;app;"Шаблон для выбора местоположения";"[""Table \"template\" field \"name\", ID = 2""]";7b1760fbbcb617e0905d8ba00fe339d2
+382;app;"Допустимые поля: страна, регион, город. Используется в главном меню фронтенда, в модальном окне.";"[""Table \"template\" field \"description\", ID = 2""]";7b1760fbbcb617e0905d8ba00fe339d2
+383;app;"Забыли пароль?";"[""frontend/modules/login/views/default/_login-form.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+384;app;"Изменить профиль";"[""frontend/views/templates/profile/index.php"",""frontend/views/templates/profile/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+385;app;"Создать профиль";"[""frontend/views/templates/profile/index.php"",""frontend/views/templates/profile/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+386;app;"Заполните профиль";"[""frontend/views/templates/profile/profile.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+387;app;"Поле ""{field}"" не может быть меньше ""{strlen}"" символов.";"[""common/models/forms/DocumentForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+388;app;"Профиль пользователя";"[""common/models/User.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+389;app;"Выберите профиль";"[""common/widgets/TemplateOfElement/forms/ProfileTemplateForm.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+390;app;"Профиль пользователя 1";"[""Table \"document\" field \"name\", ID = 14""]";7b1760fbbcb617e0905d8ba00fe339d2
+391;app;"Профиль пользователя 2";"[""Table \"document\" field \"name\", ID = 15""]";7b1760fbbcb617e0905d8ba00fe339d2
+392;app;Возраст;"[""Table \"field\" field \"name\", ID = 10""]";7b1760fbbcb617e0905d8ba00fe339d2
+393;app;"Шаблон для профиля пользователя 1";"[""Table \"template\" field \"name\", ID = 3"",""Table \"template\" field \"description\", ID = 3""]";7b1760fbbcb617e0905d8ba00fe339d2
+394;app;"Шаблон для профиля пользователя 2";"[""Table \"template\" field \"name\", ID = 4"",""Table \"template\" field \"description\", ID = 4""]";7b1760fbbcb617e0905d8ba00fe339d2
+397;app;"Необходимо создать новое представление для элементов шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/items.php"",""frontend/web/assets/6d0efe92/control/product/items.php"",""frontend/web/assets/6d0efe92/control/post/items.php"",""frontend/web/assets/7c6aeb25/control/main/items.php"",""frontend/web/assets/7c6aeb25/control/product/items.php"",""frontend/web/assets/7c6aeb25/control/post/items.php"",""frontend/views/templates/control/main/items.php"",""frontend/views/templates/control/product/items.php"",""frontend/views/templates/control/post/items.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+398;app;"Необходимо создать новое представление для выбранного элемента шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/main/selected-item.php"",""frontend/web/assets/6d0efe92/control/product/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/product/selected-item.php"",""frontend/web/assets/6d0efe92/control/post/sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/post/selected-item.php"",""frontend/web/assets/7c6aeb25/control/main/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/main/selected-item.php"",""frontend/web/assets/7c6aeb25/control/product/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/product/selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/selected-item.php"",""frontend/views/templates/control/main/sidebar-selected-item.php"",""frontend/views/templates/control/main/selected-item.php"",""frontend/views/templates/control/product/sidebar-selected-item.php"",""frontend/views/templates/control/product/selected-item.php"",""frontend/views/templates/control/post/sidebar-selected-item.php"",""frontend/views/templates/control/post/selected-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+399;app;"Необходимо создать новое представление для меню шаблона {temp}.";"[""frontend/web/assets/6d0efe92/control/main/_sidebar-content-items.php"",""frontend/web/assets/6d0efe92/control/product/_sidebar-content-items.php"",""frontend/web/assets/6d0efe92/control/post/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/main/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/product/_sidebar-content-items.php"",""frontend/web/assets/7c6aeb25/control/post/_sidebar-content-items.php"",""frontend/views/templates/control/main/_sidebar-content-items.php"",""frontend/views/templates/control/product/_sidebar-content-items.php"",""frontend/views/templates/control/post/_sidebar-content-items.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+400;app;Автор;"[""frontend/web/assets/6d0efe92/control/post/youtube/_sidebar-selected-item.php"",""frontend/web/assets/6d0efe92/control/post/youtube/_item-of-list.php"",""frontend/web/assets/6d0efe92/control/post/youtube/__sidebar-item-of-list.php"",""frontend/web/assets/6d0efe92/control/post/youtube/_one-item.php"",""frontend/web/assets/c604fc3e/_sidebar-selected-item.php"",""frontend/web/assets/c604fc3e/_item-of-list.php"",""frontend/web/assets/c604fc3e/__sidebar-item-of-list.php"",""frontend/web/assets/c604fc3e/_one-item.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_sidebar-selected-item.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_item-of-list.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/__sidebar-item-of-list.php"",""frontend/web/assets/7c6aeb25/control/post/youtube/_one-item.php"",""frontend/views/templates/control/post/youtube/_sidebar-selected-item.php"",""frontend/views/templates/control/post/youtube/_item-of-list.php"",""frontend/views/templates/control/post/youtube/__sidebar-item-of-list.php"",""frontend/views/templates/control/post/youtube/_one-item.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+401;app;"Пользователь не найден.";"[""frontend/modules/signup/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+402;app;"Необходимо подтвердить ваш емайл.";"[""frontend/modules/login/controllers/DefaultController.php"",""common/widgets/oAuth/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+403;app;"Регистрация пользователя";"[""frontend/web/assets/5e2f12aa/signup/signup.php"",""frontend/web/assets/5e2f12aa/login/login.php"",""frontend/views/templates/signup/signup.php"",""frontend/views/templates/login/login.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+404;app;"Подтвердить емайл";"[""frontend/web/assets/5e2f12aa/signup/confirm-email.php"",""frontend/views/templates/signup/confirm-email.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+405;app;"Пользовательское соглашение";"[""frontend/views/site/user-agreement.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+406;app;"Политика конфиденциальности";"[""frontend/views/site/privacy-policy.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+407;app;"Авторизация прошла успешно.";"[""common/widgets/oAuth/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+408;app;"Ключ входа успешно добавлен. Необходимо подтвердить ваш емайл.";"[""common/widgets/oAuth/controllers/AuthController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+413;app;"Добавить комментарий";"[""frontend/views/templates/comment/_button-add-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+414;app;Отмена;"[""frontend/views/templates/comment/_form-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+415;app;"Комментарии могут оставлять только зарегистрированные пользователи.";"[""frontend/views/templates/comment/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+416;app;"Нет доступа";"[""backend/modules/document/views/element-manage/_grid-elements-block.php"",""backend/modules/document/views/element-manage/view-element.php"",""backend/modules/document/views/element-manage/view-element.php"",""backend/modules/document/views/element-manage/view-element.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+417;app;Нравиться;"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+418;app;"Не нравиться";"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+419;app;"Количество звезд";"[""common/models/Like.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+420;app;Комментарий;"[""common/models/Like.php"",""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+421;app;"Разрешена оценка элемента";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+422;app;"Разрешены комментарии к элементу";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+423;app;"Ответ на коммментарий";"[""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+424;app;Проверен;"[""common/models/Comment.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+425;app;Ответить;"[""frontend/views/templates/comment/__buttons-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+426;app;Редактировать;"[""frontend/views/templates/comment/__buttons-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+427;app;Удалить;"[""frontend/views/templates/comment/__buttons-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+428;app;"Удалить комментарий";"[""frontend/views/templates/comment/confirm-delete-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+429;app;"Режим перевода";"[""common/models/Template.php"",""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+431;app;"Только названия";"[""common/models/extend/TemplateExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+432;app;"Не переводить";"[""common/models/extend/TemplateExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+433;app;"Ваш аккаунт заблокирован.";"[""frontend/modules/control/controllers/DefaultController.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+436;app;"Голосов {votes_number}";"[""frontend/views/templates/rating/percentage.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+438;app;"Создать комментарий";"[""backend/modules/comment/views/manage/modal-comment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+439;app;"Изменить комментарий";"[""backend/modules/comment/views/manage/modal-comment.php"",""backend/modules/comment/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+440;app;"Просмотр комментария";"[""backend/modules/comment/views/manage/view-comment.php"",""backend/modules/comment/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+441;app;"Управление комментариями";"[""backend/modules/comment/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+442;app;"Экспорт комментариев в CSV";"[""backend/modules/comment/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+443;app;Комментарии;"[""backend/modules/comment/views/manage/index.php"",""backend/views/layouts/left.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+444;app;"Таблица ‘comment’. Комментарии пользователей.";"[""backend/modules/comment/views/manage/index.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+450;app;"Название роли или разрешения";"[""common/models/AuthAssignment.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+452;app;"Статус комментария";"[""console/migrations/m000000_000002_cms_shop.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+453;app;"Переводить все";"[""common/models/extend/TemplateExtend.php""]";7b1760fbbcb617e0905d8ba00fe339d2
+454;app;"<h1>Главная страница</h1>
+";"[""Table \"document\" field \"content\", ID = 2""]";7b1760fbbcb617e0905d8ba00fe339d2
+455;app;Товары;"[""Table \"document\" field \"name\", ID = 4"",""Table \"document\" field \"title\", ID = 4""]";7b1760fbbcb617e0905d8ba00fe339d2
+456;app;"<h1>Товары</h1>
+";"[""Table \"document\" field \"content\", ID = 4""]";7b1760fbbcb617e0905d8ba00fe339d2
+457;app;"<h1>Войти</h1>
+";"[""Table \"document\" field \"content\", ID = 5""]";7b1760fbbcb617e0905d8ba00fe339d2
+458;app;"<h1>Регистрация</h1>
+";"[""Table \"document\" field \"content\", ID = 6""]";7b1760fbbcb617e0905d8ba00fe339d2
+459;app;"<h1>Профиль</h1>
+";"[""Table \"document\" field \"content\", ID = 7""]";7b1760fbbcb617e0905d8ba00fe339d2
+460;app;"Шаблоны писем";"[""Table \"document\" field \"name\", ID = 8"",""Table \"document\" field \"title\", ID = 8""]";7b1760fbbcb617e0905d8ba00fe339d2
+461;app;"Подтверждение регистрации";"[""Table \"document\" field \"name\", ID = 9"",""Table \"document\" field \"title\", ID = 9""]";7b1760fbbcb617e0905d8ba00fe339d2
+462;app;"<p>Здравствуйте, {NAME_1}!</p>
+
+<p>Пожалуйста, для подтверждения адреса эл. почты пройдите по ссылке.</p>
+
+<p>Логин: {EMAIL_1}</p>
+
+<p>Пароль: {PASS_1}</p>
+
+<p><a href=""{URL_1}"">активация</a></p>
+
+<p>Если Вы не регистрировались у на нашем сайте, то просто удалите это письмо.</p>
+
+<p>{DATE_1}</p>
+";"[""Table \"document\" field \"content\", ID = 9""]";7b1760fbbcb617e0905d8ba00fe339d2
+463;app;"<p>Здравствуйте, {EMAIL_1}!</p>
+
+<p>Пожалуйста, перейдите по ссылке ниже, чтобы сбросить ваш пароль.</p>
+
+<p><a href=""{URL_1}"">Сброс пароля</a></p>
+
+<p>{DATE_1}</p>
+";"[""Table \"document\" field \"content\", ID = 10""]";7b1760fbbcb617e0905d8ba00fe339d2
+464;app;"Переключение языков";"[""Table \"document\" field \"name\", ID = 12"",""Table \"document\" field \"title\", ID = 12""]";7b1760fbbcb617e0905d8ba00fe339d2

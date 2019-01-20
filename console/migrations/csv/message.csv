@@ -358,12 +358,10 @@ id;language;translation;hash
 427;en;Delete;7d037c7196de7933475c555379223ac2
 428;en;"Delete comment";f7b9a1ded760b72d6eeb5375a5fe4487
 429;en;"Translation mode";f5223299b279c770fbb373f147c39f9c
-430;en;Total;9d0e24b7a7143f86d2e4ea5d6f84229d
 431;en;"Names only";f229183900e887ff1110711d2c48b235
 432;en;"Do not translate";e370b68e1630b87d617963bf6a09297c
 433;en;"Your account has been blocked.";9c5158df55b912bf17547ab71abe17df
 436;en;"Votes {votes_number}";ee478205b16a49d6262313a8bdd58a48
-437;en;I18n;34808b466fec0426e62e81f0949a69be
 438;en;"Create Comment";94e67d00e75f2b4b93cfe328104da6e0
 439;en;"Update Comment";29877b79303bd765d220397df0ec7a4b
 440;en;"View Comment";d01d9ae0dd475e8ae1430f54acc17e6d
@@ -371,14 +369,17 @@ id;language;translation;hash
 442;en;"Export comments to CSV";54ea1887ce8c873771a6c11b468f97c9
 443;en;Comments;5e18186107cdc28e261b1abcaf86b12d
 444;en;"Table ‘comment’. User comments.";330a55b0df31d57670ffedf50cc98c35
-445;en;ID;188b7446c7408bda2433a085b20caf12
-446;en;ISO2;dd4b49d30d78363658dcfae356d63d65
-447;en;"	
-ISO3";1beabc17db64e2215a7c43c2771697cb
-448;en;"	
-Email";a141319a35bd8e3b3e98c3be2742c51d
-449;en;IP;edd5da5f6d95e7c8e36cf0f87e63699c
 450;en;"The name of the role or permissions";cc1bad7fe76b41d4eb40a0d12fa1a212
-451;en;"	
-ISO";22db36a32f555823be33e8455f61ab4d
-452;en;"Comment status";7c4ddd1b79829ab03e0ea5817591d15f
+452;en;"Comment status";f51903b5be4153ae3f50ea87ea6c937c
+453;en;"Translate all";c5ec1dff985f5c36e5fe289bd0145684
+454;en;"Main Page";44f3f9d2dff2e8a35fccf96fdb975c54
+455;en;Product;44f3f9d2dff2e8a35fccf96fdb975c54
+456;en;<h1>Product</h1>;1ebfde33f0911e4aa122a4f41d252960
+457;en;<h1>Login</h1>;a31eeb8b50db6a53d0b19a1dfefc3a77
+458;en;<h1>Registration</h1>;1a5316520b51eabbe478f3be298bfb9d
+459;en;<h1>Profile</h1>;3b4e6d38c1596b44c525edb99ba34f87
+460;en;"Letter Templates";6ef7c4194017ee25a99af719d006c060
+461;en;"Confirmation of registration";480611c9a267678436db21220a7c102b
+462;en;"<p>Hello, {NAME_1}!</p> <p>Please verify email address mail follow the link.</p> <p>Login: {EMAIL_1}</p> <p>Password: {PASS_1}</p> <p><a href=""{URL_1}"">activation</a></p> <p>If you are not registered on our site, then simply delete this email.</p> <p>{DATE_1}</p>";e894ff5cc0596caccf7bcbcfb3da75a2
+463;en;"<p>Hello, {EMAIL_1}!</p> <p>Please follow the link below to reset your password.</p> <p><a href=""{URL_1}"">Password reset </a></p> <p>{DATE_1}</p>";e894ff5cc0596caccf7bcbcfb3da75a2
+464;en;"Language switching";31255223407c0c5b564c831e92c92f06
