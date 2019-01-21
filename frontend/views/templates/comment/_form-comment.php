@@ -15,13 +15,14 @@ use mihaildev\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $document_id int */
 /* @var $comment_id int */
+/* @var $access_answers boolean */
 /* @var $modelCommentForm \common\models\forms\CommentForm */
 ?>
 <div id="block-item-comment">
     <div class="row">
         <?php $form = ActiveForm::begin([
             'id' => 'form-comment',
-            'action' => $modelCommentForm->isNewRecord ? Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]) : Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]),
+            'action' => $modelCommentForm->isNewRecord ? Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) : Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]),
             'options' => ['data-pjax' => true]
         ]); ?>
 
@@ -58,7 +59,7 @@ use mihaildev\ckeditor\CKEditor;
 
         <?php ActiveForm::end(); ?>
         <?php
-        $url_refresh = Url::to(['/comment/refresh-comment', 'document_id' => $document_id]);
+        $url_refresh = Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]);
         $block_refresh = '#block-comment-' . $document_id;
 
         $js = <<< JS

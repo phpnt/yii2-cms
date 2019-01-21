@@ -13,6 +13,7 @@ use frontend\views\templates\comment\assets\CommentTempAsset;
 /* @var $this yii\web\View */
 /* @var $document_id int */
 /* @var $comments array */
+/* @var $access_answers boolean */
 
 CommentTempAsset::register($this);
 ?>
@@ -26,6 +27,7 @@ CommentTempAsset::register($this);
             <?= $this->render('_comments-list', [
                 'document_id' => $document_id,
                 'comments' => $comments,
+                'access_answers' => $access_answers
             ]) ?>
         </div>
     </div>
@@ -34,6 +36,7 @@ CommentTempAsset::register($this);
         <div id="block-comment-add-form-<?= $document_id ?>">
             <?= $this->render('_button-new-comment', [
                 'document_id' => $document_id,
+                'access_answers' => $access_answers,
             ]) ?>
         </div>
     </div>

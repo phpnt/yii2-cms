@@ -27,7 +27,7 @@ ProductTempAsset::register($this);
         <a href="<?= Url::to(['/control/default/view', 'alias' => $page['alias'], 'parent' => $page['alias'], 'item_alias' => $item['alias']]) ?>" class="item-link">
             <div class="item-card">
                 <div class="text-center p-t-xs">
-                    <h3><?= Yii::t('app', $item['name']) ?></h3>
+                    <?= Yii::t('app', $item['name']) ?>
                 </div>
                 <div class="col-md-12">
                     <?= Yii::t('app', $item['annotation']) ?>

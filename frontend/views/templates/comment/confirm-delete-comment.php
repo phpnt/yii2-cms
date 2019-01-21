@@ -31,7 +31,7 @@ Modal::begin([
                 $("#universal-modal").modal("hide");
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]) . '",
+                    url: "' . Url::to(['/comment/delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
                     container: "#block-comment-' . $document_id . '",
                     timeout: 10000,
                     push: false,

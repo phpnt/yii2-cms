@@ -33,7 +33,7 @@ YoutubeTempAsset::register($this);
                 <?php if ($item['template_id']): ?>
                     <?php foreach ($templateData as $field): ?>
                         <?php if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE): ?>
-                            <?php $preview = $youTubeData->getPreview($field['value']); ?>
+                            <?php $preview = $youTubeData->getPreview($field['value'], null, 'medium'); ?>
                             <?= Html::img($preview['url'], [
                                 'class' => 'full-width'
                             ]); ?>
@@ -41,7 +41,7 @@ YoutubeTempAsset::register($this);
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <div class="text-center p-t-xs">
-                    <h3><?= Yii::t('app', $item['name']) ?></h3>
+                    <?= Yii::t('app', $item['name']) ?>
                 </div>
                 <?php if ($item['template_id']): ?>
                     <?php foreach ($templateData as $field): ?>

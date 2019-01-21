@@ -42,7 +42,7 @@ YoutubeTempAsset::register($this);
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <div class="text-center p-t-xs">
-                    <h3><?= Yii::t('app', $item['name']) ?></h3>
+                    <?= Yii::t('app', $item['name']) ?>
                 </div>
                 <?php if ($item['template_id']): ?>
                     <?php foreach ($templateData as $field): ?>

@@ -10,6 +10,7 @@
 /* @var $this yii\web\View */
 /* @var $document_id int */
 /* @var $comments array */
+/* @var $access_answers boolean */
 /* @var $commentsManage \common\widgets\Comment\components\CommentManage */
 
 $commentsManage = Yii::$app->commentsManage;
@@ -25,6 +26,7 @@ $commentsManage = Yii::$app->commentsManage;
                 'document_id' => $document_id,
                 'comment_id' => $comment['id'],
                 'user_id' => $comment['user_id'],
+                'access_answers' => $access_answers,
             ]) ?>
         </div>
         <?php $commentsIn = $commentsManage->getChilds($comment['id']); ?>
@@ -33,6 +35,7 @@ $commentsManage = Yii::$app->commentsManage;
                 <?= $this->render('_comments-list', [
                     'document_id' => $document_id,
                     'comments' => $commentsIn,
+                    'access_answers' => $access_answers,
                 ]) ?>
             </div>
         <?php endif; ?>

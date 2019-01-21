@@ -36,7 +36,6 @@ use common\widgets\Basket\BasketButton;
         <?= Comment::widget([
             'document_id' => $item['id'],
             'access_answers' => true,   // разрешены ответы на комментарии
-            'access_guests' => false,   // разрешены не авторизованным пользователя
         ]) ?>
     <?php endif; ?>
 </div>

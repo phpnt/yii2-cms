@@ -14,19 +14,22 @@ use yii\helpers\Url;
 /* @var $document_id int */
 /* @var $comment_id int */
 /* @var $user_id int */
+/* @var $access_answers boolean */
 ?>
-<?= Html::a(Yii::t('app', 'Ответить'), 'javascript:void(0)',
-    [
-        'onclick' => '
-            $.pjax({
-                type: "GET",
-                url: "' . Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]) . '",
-                container: "#block-comment-update-form-' . $comment_id . '",
-                push: false,
-                timeout: 10000,
-                scrollTo: false
-            })'
-    ]) ?>
+<?php if ($access_answers): ?>
+    <?= Html::a(Yii::t('app', 'Ответить'), 'javascript:void(0)',
+        [
+            'onclick' => '
+                $.pjax({
+                    type: "GET",
+                    url: "' . Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
+                    container: "#block-comment-update-form-' . $comment_id . '",
+                    push: false,
+                    timeout: 10000,
+                    scrollTo: false
+                })'
+        ]) ?>
+<?php endif; ?>
     &nbsp;
 <?php if ($user_id == Yii::$app->user->id): ?>
     <?= Html::a(Yii::t('app', 'Редактировать'), 'javascript:void(0)',
@@ -34,7 +37,7 @@ use yii\helpers\Url;
             'onclick' => '
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]) . '",
+                    url: "' . Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
                     container: "#block-comment-update-form-' . $comment_id . '",
                     push: false,
                     timeout: 10000,
@@ -47,7 +50,7 @@ use yii\helpers\Url;
             'onclick' => '
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/confirm-delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id]) . '",
+                    url: "' . Url::to(['/comment/confirm-delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
                     container: "#pjaxModalUniversal",
                     push: false,
                     timeout: 10000,
