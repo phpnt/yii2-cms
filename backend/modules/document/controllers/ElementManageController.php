@@ -58,7 +58,7 @@ class ElementManageController extends Controller
     public function actionRefreshElements($id_folder)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id_folder);
@@ -82,7 +82,7 @@ class ElementManageController extends Controller
     public function actionCreateElement($id_folder)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id_folder);
@@ -123,7 +123,7 @@ class ElementManageController extends Controller
     public function actionUpdateElement($id_document, $id_folder)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id_document);
@@ -160,7 +160,7 @@ class ElementManageController extends Controller
     public function actionViewElement($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id);

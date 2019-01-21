@@ -66,17 +66,6 @@ Modal::begin([
                         ]
                     ],
                     [
-                        'attribute' => 'route',
-                        'format' => 'raw',
-                        'value' => call_user_func(function ($modelDocumentForm) {
-                            /* @var $modelDocumentForm \common\models\forms\DocumentForm */
-                            return $modelDocumentForm->route;
-                        }, $modelDocumentForm),
-                        'captionOptions' => [
-                            'style' => 'width: 50% !important;'
-                        ]
-                    ],
-                    [
                         'attribute' => 'created_at',
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelDocumentForm) {

@@ -56,7 +56,7 @@ class TemplateManageController extends Controller
     public function actionRefreshTemplates()
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateSearch = new TemplateSearch();
@@ -75,7 +75,7 @@ class TemplateManageController extends Controller
     public function actionCreateTemplate()
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateForm = new TemplateForm();
@@ -111,7 +111,7 @@ class TemplateManageController extends Controller
     public function actionUpdateTemplate($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateForm = TemplateForm::findOne($id);
@@ -147,7 +147,7 @@ class TemplateManageController extends Controller
     public function actionViewTemplate($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateForm = TemplateForm::findOne($id);
@@ -164,7 +164,7 @@ class TemplateManageController extends Controller
     public function actionConfirmDeleteTemplate($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         return $this->renderAjax('confirm-delete-template', [
@@ -181,7 +181,7 @@ class TemplateManageController extends Controller
     public function actionDeleteTemplate($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateForm = TemplateForm::findOne($id);

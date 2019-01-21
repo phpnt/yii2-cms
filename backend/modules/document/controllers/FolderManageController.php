@@ -55,9 +55,9 @@ class FolderManageController extends Controller
      */
     public function actionViewElements($id_folder)
     {
-        /*if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
-        }*/
+        if (!Yii::$app->request->isPjax) {
+            return $this->redirect(['/document/manage/index']);
+        }
 
         $modelDocumentForm = DocumentForm::findOne($id_folder);
 
@@ -79,7 +79,7 @@ class FolderManageController extends Controller
     public function actionRefreshFolders()
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentSearchFolder = new DocumentSearch();
@@ -98,9 +98,9 @@ class FolderManageController extends Controller
      */
     public function actionCreateFolder($parent_id = null)
     {
-        /*if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
-        }*/
+        if (!Yii::$app->request->isPjax) {
+            return $this->redirect(['/document/manage/index']);
+        }
 
         $lastFolder = false;
 
@@ -168,7 +168,7 @@ class FolderManageController extends Controller
     public function actionUpdateFolder($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id);
@@ -205,7 +205,7 @@ class FolderManageController extends Controller
     public function actionViewFolder($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id);
@@ -222,7 +222,7 @@ class FolderManageController extends Controller
     public function actionConfirmDeleteFolder($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         return $this->renderAjax('confirm-delete-folder', [
@@ -239,7 +239,7 @@ class FolderManageController extends Controller
     public function actionDeleteFolder($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelDocumentForm = DocumentForm::findOne($id);

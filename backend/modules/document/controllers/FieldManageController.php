@@ -56,7 +56,7 @@ class FieldManageController extends Controller
     public function actionRefreshFields($template_id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelTemplateForm = TemplateForm::findOne($template_id);
@@ -74,7 +74,7 @@ class FieldManageController extends Controller
     public function actionRefreshFieldForm($id = null)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         if ($id) {
@@ -100,7 +100,7 @@ class FieldManageController extends Controller
     public function actionCreateField($template_id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelFieldForm = new FieldForm();
@@ -136,9 +136,9 @@ class FieldManageController extends Controller
      */
     public function actionUpdateField($id)
     {
-        /*if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
-        }*/
+        if (!Yii::$app->request->isPjax) {
+            return $this->redirect(['/document/manage/index']);
+        }
 
         $modelFieldForm = FieldForm::findOne($id);
         $modelFieldForm->scenario = 'update-field';
@@ -173,7 +173,7 @@ class FieldManageController extends Controller
     public function actionViewField($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelFieldForm = FieldForm::findOne($id);
@@ -190,7 +190,7 @@ class FieldManageController extends Controller
     public function actionConfirmDeleteField($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelFieldForm = FieldForm::findOne($id);
@@ -210,7 +210,7 @@ class FieldManageController extends Controller
     public function actionDeleteField($id)
     {
         if (!Yii::$app->request->isPjax) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/document/manage/index']);
         }
 
         $modelFieldForm = FieldForm::findOne($id);
