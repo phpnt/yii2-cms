@@ -40,9 +40,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= BootstrapNotify::widget() ?>
-        <div class="row">
-            <?= $content ?>
-        </div>
+        <?= $content ?>
     </div>
 </div>
 <footer class="footer">

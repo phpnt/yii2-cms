@@ -326,7 +326,9 @@ class FieldsManage extends Object
     }
 
 
-    // записывает модель
+    /**
+     * Записывает модель
+     * */
     private function saveModel($fields, $model) {
         foreach ($fields as $item) {
             $model->value = $item;
@@ -336,7 +338,9 @@ class FieldsManage extends Object
         }
     }
 
-    // получение значений
+    /**
+     * Получение значений
+     * */
     public function getValue($field_id, $type, $document_id)
     {
         if ($type == Constants::FIELD_TYPE_INT ||
@@ -377,7 +381,23 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает поля и значения документа с шаблоном
+    /*
+     * Возвращает значение по имени
+     * */
+    public function getValueByName($name, $templateData)
+    {
+        foreach ($templateData as $item) {
+            if ($item['title'] == $name) {
+                return $item['value'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Получает поля и значения документа с шаблоном
+     * */
     public function getData($document_id, $template_id)
     {
         $modelTemplateForm = TemplateForm::findOne($template_id);
@@ -385,7 +405,6 @@ class FieldsManage extends Object
         $result = [];
 
         if (isset($modelTemplateForm->fields)) {
-            //d($modelTemplateForm->fields);
             $i = 0;
             foreach ($modelTemplateForm->fields as $modelFieldForm) {
                 /* @var $modelFieldForm FieldForm */
@@ -656,7 +675,9 @@ class FieldsManage extends Object
         return $result;
     }
 
-    // получает значение целого
+    /**
+     * Получает значение целого
+     */
     public function getInt($field_id, $document_id)
     {
         $modelValueIntForm = ValueIntForm::findOne([
@@ -670,7 +691,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение диапазона целых чисел и чекбоксов
+    /**
+     * Получает значение диапазона целых чисел и чекбоксов
+     */
     public function getIntRange($field_id, $document_id)
     {
         $manyValueIntForm = ValueIntForm::findAll([
@@ -689,7 +712,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение дробного
+    /**
+     * Получает значение дробного
+     */
     public function getNum($field_id, $document_id)
     {
         $modelValueNumericForm = ValueNumericForm::findOne([
@@ -702,7 +727,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение диапазона целых чисел
+    /**
+     * Получает значение диапазона целых чисел
+     */
     public function getNumRange($field_id, $document_id)
     {
         $manyValueNumericForm = ValueNumericForm::findAll([
@@ -721,7 +748,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение строки
+    /**
+     * Получает значение строки
+     */
     public function getStr($field_id, $document_id)
     {
         $modelValueStringForm = ValueStringForm::findOne([
@@ -734,7 +763,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение диапазона дат
+    /**
+     * Получает значение диапазона дат
+     */
     public function getDateRange($field_id, $document_id)
     {
         $manyValueNumericForm = ValueStringForm::findAll([
@@ -753,7 +784,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение текста
+    /**
+     * Получает значение текста
+     */
     public function getText($field_id, $document_id)
     {
         $modelValueTextForm = ValueTextForm::findOne([
@@ -767,7 +800,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение текста
+    /**
+     * Получает файл
+     */
     public function getFile($field_id, $document_id)
     {
         $modelValueFileForm = ValueFileForm::findOne([
@@ -781,7 +816,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает значение текста
+    /**
+     * Получает файлы
+     */
     public function getFewFiles($field_id, $document_id)
     {
         $manyValueFileForm = ValueFileForm::findAll([
@@ -795,7 +832,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает название страны
+    /**
+     * Получает название страны по ID
+    */
     public function getCountryName($id_geo_country = null)
     {
         if (!$id_geo_country) {
@@ -825,7 +864,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает ID страны
+    /**
+     * Получает ID страны
+     */
     public function getCountryId()
     {
         $cookies = Yii::$app->request->cookies;
@@ -865,7 +906,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает ID региона
+    /**
+     * Получает ID региона
+    */
     public function getRegionId()
     {
         $cookies = Yii::$app->request->cookies;
@@ -876,7 +919,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает название города
+    /**
+     * Получает название города
+     */
     public function getCityName($id_geo_city = null)
     {
         if (!$id_geo_city) {
@@ -905,7 +950,9 @@ class FieldsManage extends Object
         return null;
     }
 
-    // получает ID региона
+    /**
+     * Получает ID региона
+     */
     public function getCityId()
     {
         $cookies = Yii::$app->request->cookies;
