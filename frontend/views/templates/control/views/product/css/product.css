@@ -1,0 +1,11 @@
+/* Стили элемента списка */
+.list-item-product .header-height {
+    height: 60px;
+}
+.list-item-product .item-link {
+    color: #000 !important;
+}
+.list-item-product .item-link:hover {
+    color: #000 !important;
+    text-decoration: none;
+}

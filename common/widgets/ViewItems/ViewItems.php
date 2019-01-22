@@ -29,9 +29,64 @@ class ViewItems extends Widget
     public $optionsItems = ['class' => 'full-width'];
     public $linkOptions = [];
 
+    protected $tree = [];        // дерево элемента
+
     public function init()
     {
         parent::init();
+
+        // находим дерево элемента
+        if ($this->item) {
+            $parent = $this->item['parent_id'];
+            for ($i = 0; $i < 10; $i++) {
+                $data = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('document')
+                    ->where([
+                        'id' => $parent,
+                    ])
+                    ->one();
+
+                if ($data) {
+                    $this->tree[] = $data;
+                    $parent = $data['parent_id'];
+                }
+            }
+        } elseif ($this->parent) {
+            $parent = $this->parent['parent_id'];
+            for ($i = 0; $i < 10; $i++) {
+                $data = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('document')
+                    ->where([
+                        'id' => $parent,
+                    ])
+                    ->one();
+
+                if ($data) {
+                    $this->tree[] = $data;
+                    $parent = $data['parent_id'];
+                }
+            }
+        } else {
+            $parent = $this->page['parent_id'];
+            for ($i = 0; $i < 10; $i++) {
+                $data = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('document')
+                    ->where([
+                        'id' => $parent,
+                    ])
+                    ->one();
+
+                if ($data) {
+                    $this->tree[] = $data;
+                    $parent = $data['parent_id'];
+                }
+            }
+        }
+        array_pop($this->tree);
+        $this->tree = array_reverse($this->tree);
     }
 
     public function run()
@@ -58,32 +113,32 @@ class ViewItems extends Widget
                 ->all();
         }
 
-        //dd($this->parent);
-
         $folders = $this->getChildFolders($this->page['id']);
         $itemsMenu = [];
 
         /* Если нет папок отображаем только элементы */
         if (!$folders && !$this->parent && !$this->item) {
-            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
+            return $this->render('@frontend/views/templates/control/views/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => false,
                 'itemsMenu' => false,
                 'item' => false,
                 'items' => $items ? $items : false,
+                'tree' => $this->tree,
             ]);
         };
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if (!$folders && $this->parent && $this->item) {
-            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
+            return $this->render('@frontend/views/templates/control/views/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => $this->parent,
                 'itemsMenu' => false,
                 'item' => $this->item,
                 'items' => false,
+                'tree' => $this->tree,
             ]);
         };
 
@@ -163,23 +218,25 @@ class ViewItems extends Widget
 
         /* Если нет папок и выбран элемент отображаем только элемент */
         if ($this->parent && $this->item) {
-            return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
+            return $this->render('@frontend/views/templates/control/views/index', [
                 'page' => $this->page,
                 'template' => $this->template,
                 'parent' => $this->parent ? $this->parent : false,
                 'itemsMenu' => $itemsMenu,
                 'item' => $this->item,
                 'items' => false,
+                'tree' => $this->tree,
             ]);
         };
 
-        return $this->render('@frontend/views/templates/control/' . $this->page['alias'] . '/index', [
+        return $this->render('@frontend/views/templates/control/views/index', [
             'page' => $this->page,
             'template' => $this->template,
             'parent' => $this->parent ? $this->parent : false,
             'itemsMenu' => $itemsMenu,
             'item' => false,
             'items' => $items,
+            'tree' => $this->tree,
         ]);
     }
 
