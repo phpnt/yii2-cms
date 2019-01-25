@@ -24,7 +24,7 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionRefreshComment($document_id)
+    public function actionRefreshComment($document_id, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax) {
             return $this->goHome();
@@ -43,6 +43,7 @@ class CommentController extends Controller
         return $this->renderAjax('@frontend/views/templates/comment/index', [
             'document_id' => $document_id,
             'comments' => $comments,
+            'access_answers' => $access_answers,
         ]);
     }
 
@@ -52,7 +53,7 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionCreateComment($document_id, $comment_id = null)
+    public function actionCreateComment($document_id, $comment_id = null, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -78,7 +79,8 @@ class CommentController extends Controller
         return $this->renderAjax('@frontend/views/templates/comment/_form-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
-            'modelCommentForm' => $modelCommentForm
+            'modelCommentForm' => $modelCommentForm,
+            'access_answers' => $access_answers,
         ]);
     }
 
@@ -88,7 +90,7 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionUpdateComment($document_id, $comment_id)
+    public function actionUpdateComment($document_id, $comment_id, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -124,7 +126,8 @@ class CommentController extends Controller
         return $this->renderAjax('@frontend/views/templates/comment/_form-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
-            'modelCommentForm' => $modelCommentForm
+            'modelCommentForm' => $modelCommentForm,
+            'access_answers' => $access_answers,
         ]);
     }
 
@@ -132,7 +135,7 @@ class CommentController extends Controller
      * Подтверждение удаления комментария
      * @return string
      */
-    public function actionConfirmDeleteComment($document_id, $comment_id)
+    public function actionConfirmDeleteComment($document_id, $comment_id, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->redirect(['index']);
@@ -141,6 +144,7 @@ class CommentController extends Controller
         return $this->renderAjax('@frontend/views/templates/comment/confirm-delete-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
+            'access_answers' => $access_answers,
         ]);
     }
 
@@ -150,7 +154,7 @@ class CommentController extends Controller
      * @return string
      * @throws ErrorException
      */
-    public function actionDeleteComment($document_id, $comment_id)
+    public function actionDeleteComment($document_id, $comment_id, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->redirect(['index']);
@@ -201,6 +205,7 @@ class CommentController extends Controller
         return $this->renderAjax('@frontend/views/templates/comment/index', [
             'document_id' => $document_id,
             'comments' => $comments,
+            'access_answers' => $access_answers,
         ]);
     }
 }

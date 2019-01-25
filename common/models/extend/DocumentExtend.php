@@ -35,6 +35,7 @@ use yii\helpers\ArrayHelper;
  * @property int $likedDocument
  *
  * @property DocumentForm $parent
+ * @property DocumentForm $child
  * @property DocumentForm[] $childs
  * @property DocumentForm[] $documents
  * @property TemplateForm $template
@@ -244,6 +245,14 @@ class DocumentExtend extends Document
     public function getParent()
     {
         return $this->hasOne(DocumentForm::className(), ['id' => 'parent_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChild()
+    {
+        return $this->hasOne(DocumentForm::class, ['parent_id' => 'id'])->where(['is_folder' => null]);
     }
 
     /**

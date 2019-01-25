@@ -40,6 +40,7 @@ class Comment extends Widget
         return $this->render('@frontend/views/templates/comment/index', [
             'document_id' => $this->document_id,
             'comments' => $comments,
+            'access_answers' => $this->access_answers
         ]);
     }
 }

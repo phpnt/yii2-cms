@@ -14,6 +14,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $document_id int */
 /* @var $comment_id int */
+/* @var $access_answers int */
 ?>
 <?php
 Modal::begin([

@@ -147,6 +147,21 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.m-l-xs {
+    margin-left: 5px;
+}
+.m-l-sm {
+    margin-left: 10px;
+}
+.m-l-md {
+    margin-left: 20px;
+}
+.m-l-lg {
+    margin-left: 40px;
+}
+.m-l-xl {
+    margin-left: 60px;
+}
 .m-t-xs {
     margin-top: 5px;
 }
@@ -177,6 +192,36 @@ a.desc:after {
 .m-b-xl {
     margin-bottom: 60px;
 }
+.m-r-xs {
+    margin-right: 5px;
+}
+.m-r-sm {
+    margin-right: 10px;
+}
+.m-r-md {
+    margin-right: 20px;
+}
+.m-r-lg {
+    margin-right: 40px;
+}
+.m-r-xl {
+    margin-right: 60px;
+}
+.p-l-xs {
+    padding-left: 5px;
+}
+.p-l-sm {
+    padding-left: 10px;
+}
+.p-l-md {
+    padding-left: 20px;
+}
+.p-l-lg {
+    padding-left: 40px;
+}
+.p-l-xl {
+    padding-left: 60px;
+}
 .p-t-xs {
     padding-top: 5px;
 }
@@ -206,6 +251,21 @@ a.desc:after {
 }
 .p-b-xl {
     padding-bottom: 60px;
+}
+.p-r-xs {
+    padding-right: 5px;
+}
+.p-r-sm {
+    padding-right: 10px;
+}
+.p-r-md {
+    padding-right: 20px;
+}
+.p-r-lg {
+    padding-right: 40px;
+}
+.p-r-xl {
+    padding-right: 60px;
 }
 .display-none {
     display: none;

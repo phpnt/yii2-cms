@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc4e92c43d671e38a53b7a8de825269f",
+    "content-hash": "d32534005e0e51ced6b46a55546ec40b",
     "packages": [
         {
             "name": "2amigos/yii2-multi-select-widget",
@@ -378,7 +378,7 @@
             "version": "0.9.12",
             "source": {
                 "type": "git",
-                "url": "git@github.com:lou/multi-select.git",
+                "url": "https://github.com/lou/multi-select.git",
                 "reference": "344dc6cfe0f9c3b3ee66e88bed7bfc7cc1adbb3a"
             },
             "dist": {
@@ -442,6 +442,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/rochal/jQuery-slimScroll/zipball/cf39d364e777ef95574c30c42d3b85cb2bf325d3",
                 "reference": "cf39d364e777ef95574c30c42d3b85cb2bf325d3",
+                "shasum": null
+            },
+            "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/summernote",
+            "version": "v0.8.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/summernote/summernote.git",
+                "reference": "93c893cdaa976dd5ca6355b75165571618657c7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/summernote/summernote/zipball/93c893cdaa976dd5ca6355b75165571618657c7c",
+                "reference": "93c893cdaa976dd5ca6355b75165571618657c7c",
                 "shasum": null
             },
             "type": "bower-asset"

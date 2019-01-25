@@ -134,31 +134,6 @@ class SourceMessageExtend extends SourceMessage
                 if ($template && $template['i18n'] == Constants::STATUS_I18N_NAMES) {
                     // если переводим только название полей
                     // перводим документ
-                    if ($document['name']) {
-                        $messages['app'][] = $document['name'];
-                        $this->locations['app'][] = [
-                            md5($document['name']) => 'Table "document" field "name", ID = ' . $document['id']
-                        ];
-                    }
-                    if ($document['title']) {
-                        $messages['app'][] = $document['title'];
-                        $this->locations['app'][] = [
-                            md5($document['title']) => 'Table "document" field "title", ID = ' . $document['id']
-                        ];
-                    }
-                    if ($document['annotation']) {
-                        $messages['app'][] = $document['annotation'];
-                        $this->locations['app'][] = [
-                            md5($document['annotation']) => 'Table "document" field "annotation", ID = ' . $document['id']
-                        ];
-                    }
-                    if ($document['content']) {
-                        $messages['app'][] = $document['content'];
-                        $this->locations['app'][] = [
-                            md5($document['content']) => 'Table "document" field "content", ID = ' . $document['id']
-                        ];
-                    }
-
                     // переводим шаблон
                     if ($template['name']) {
                         $messages['app'][] = $template['name'];
@@ -281,7 +256,7 @@ class SourceMessageExtend extends SourceMessage
 
         $result = [];
         foreach ($messages['app'] as $message) {
-            if (preg_match("/[а-яё]/iu", $message)) {
+            if (preg_match("/[a-zA-Z]/iu", $message)) {
                 $result['app'][] = $message;
             }
         }

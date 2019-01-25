@@ -27,7 +27,6 @@ use mihaildev\ckeditor\CKEditor;
         ]); ?>
 
         <div class="col-md-12">
-            <?/*= $form->field($modelCommentForm, 'text')->textarea([]); */?>
             <?= $form->field($modelCommentForm, 'text')->widget(CKEditor::class,[
                 'options' => [
                     'class' => 'hidden',

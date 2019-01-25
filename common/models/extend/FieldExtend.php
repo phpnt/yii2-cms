@@ -107,7 +107,7 @@ class FieldExtend extends Field
     {
         return [
             Constants::FILE_EXT_JPEG =>  'jpeg',
-            Constants::FILE_EXT_JPG =>  'png',
+            Constants::FILE_EXT_JPG =>  'jpg',
             Constants::FILE_EXT_PNG =>  'png',
             Constants::FILE_EXT_PSD =>  'psd',
             Constants::FILE_EXT_PDF =>  'pdf',

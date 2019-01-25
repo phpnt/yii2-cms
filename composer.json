@@ -33,6 +33,7 @@
         "mihaildev/yii2-ckeditor": "*",
         "bower-asset/jstree-bootstrap-theme": "*",
         "bower-asset/typeahead.js": "*",
+        "bower-asset/summernote": "*",
         "studio-42/elfinder": "*",
         "2amigos/yii2-multi-select-widget" : "*"
     },

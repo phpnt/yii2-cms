@@ -22,12 +22,14 @@ $commentsManage = Yii::$app->commentsManage;
             <p><?= Yii::$app->formatter->asDate($comment['updated_at']) ?></p>
         </div>
         <div id="block-comment-update-form-<?= $comment['id'] ?>" class="m-b-md text-right">
-            <?= $this->render('__buttons-comment', [
-                'document_id' => $document_id,
-                'comment_id' => $comment['id'],
-                'user_id' => $comment['user_id'],
-                'access_answers' => $access_answers,
-            ]) ?>
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <?= $this->render('__buttons-comment', [
+                    'document_id' => $document_id,
+                    'comment_id' => $comment['id'],
+                    'user_id' => $comment['user_id'],
+                    'access_answers' => $access_answers,
+                ]) ?>
+            <?php endif; ?>
         </div>
         <?php $commentsIn = $commentsManage->getChilds($comment['id']); ?>
         <?php if ($commentsIn): ?>

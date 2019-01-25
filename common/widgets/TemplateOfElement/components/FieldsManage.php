@@ -386,9 +386,11 @@ class FieldsManage extends Object
      * */
     public function getValueByName($name, $templateData)
     {
-        foreach ($templateData as $item) {
-            if ($item['title'] == $name) {
-                return $item['value'];
+        if ($templateData) {
+            foreach ($templateData as $item) {
+                if ($item['title'] == $name) {
+                    return $item['value'];
+                }
             }
         }
 
