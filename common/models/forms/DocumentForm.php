@@ -119,6 +119,76 @@ class DocumentForm extends DocumentExtend
         if (($this->scenario == 'create-element' || $this->scenario == 'update-element') && isset($this->template)) {
             $this->saveFields();
         }
+
+        /* Удаление не используемых изображений в редакторе Summernote */
+        $images = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('value_file')
+            ->where([
+                'title' => Yii::$app->user->id . '-annotation',
+                'document_id' => null,
+            ])
+            ->orWhere([
+                'title' => Yii::$app->user->id . '-annotation',
+                'document_id' => $this->id
+            ])
+            ->all();
+
+        $lostFiles = [];
+        foreach ($images as $image) {
+            $result = strstr($this->annotation, $image['path']);
+            if ($result) {
+                $modelImageForm = ImageForm::findOne($image['id']);
+                $modelImageForm->document_id = $this->id;
+                if (!$modelImageForm->save()) {
+                    dd($modelImageForm->errors);
+                }
+            } else {
+                $lostFiles[] = [
+                    'id' => $image['id'],
+                    'path' => $image['path'],
+                ];
+            }
+        }
+
+        /* Удаление не используемых изображений в редакторе Summernote */
+        $images = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('value_file')
+            ->where([
+                'title' => Yii::$app->user->id . '-content',
+                'document_id' => null,
+            ])
+            ->orWhere([
+                'title' => Yii::$app->user->id . '-content',
+                'document_id' => $this->id])
+            ->all();
+
+        foreach ($images as $image) {
+            $result = strstr($this->content, $image['path']);
+            if ($result) {
+                $modelImageForm = ImageForm::findOne($image['id']);
+                $modelImageForm->document_id = $this->id;
+                if (!$modelImageForm->save()) {
+                    dd($modelImageForm->errors);
+                }
+            } else {
+                $lostFiles[] = [
+                    'id' => $image['id'],
+                    'path' => $image['path'],
+                ];
+            }
+        }
+
+        $lostFilesIds = [];
+        if ($lostFiles) {
+            foreach ($lostFiles as $file) {
+                if (file_exists(Yii::getAlias('@frontend/web' . $file['path'])))
+                    unlink(Yii::getAlias('@frontend/web' . $file['path']));
+                $lostFilesIds[] = $file['id'];
+            }
+            ImageForm::deleteAll(['id' => $lostFilesIds]);
+        }
     }
 
     /**

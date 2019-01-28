@@ -10,7 +10,7 @@
 use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
-use mihaildev\ckeditor\CKEditor;
+use phpnt\summernote\SummernoteWidget;
 
 /* @var $this yii\web\View */
 /* @var $document_id int */
@@ -26,15 +26,43 @@ use mihaildev\ckeditor\CKEditor;
             'options' => ['data-pjax' => true]
         ]); ?>
 
-        <div class="col-md-12">
-            <?= $form->field($modelCommentForm, 'text')->widget(CKEditor::class,[
+        <div class="col-md-12 text-left">
+            <?= $form->field($modelCommentForm, 'text')->widget(SummernoteWidget::class,[
                 'options' => [
+                    'id' => 'summernote' . $modelCommentForm->id,
                     'class' => 'hidden',
                 ],
-                'editorOptions' => [
-                    'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                    'inline' => false,  //по умолчанию false
-                    'height' => 100,
+                'i18n' => true,             // переводить на другие языки
+                'codemirror' => true,       // использовать CodeMirror (оформленный редактор кода)
+                'emoji' => true,             // включить эмоджи
+                'widgetOptions' => [
+                    /* Настройка панели */
+                    'placeholder' => Yii::t('app', 'Ваш комментарий.'),
+                    'height' => 200,
+                    'tabsize' => 2,
+                    'minHeight' => 200,
+                    'maxHeight' => 200,
+                    'focus' => false,
+                    'disableResizeImage' => true,
+                    'disableResize' => true,
+                    'popover' => false,
+                    /* Панель управления */
+                    'toolbar' => [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        /*['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['paragraph']],
+                        ['height', ['height']],
+                        ['misc', ['codeview']],*/
+                    ],
+                    'callbacks' => [
+                        'onFocus' => new \yii\web\JsExpression(
+                            'function (data) {
+                                console.log(data);
+                            }'
+                        )
+                    ],
                 ],
             ])->label(false); ?>
         </div>
@@ -60,7 +88,6 @@ use mihaildev\ckeditor\CKEditor;
         <?php
         $url_refresh = Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]);
         $block_refresh = '#block-comment-' . $document_id;
-
         $js = <<< JS
         $('#form-comment').on('beforeSubmit', function () { 
             var form = $(this);

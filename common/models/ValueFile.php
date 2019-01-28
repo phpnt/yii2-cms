@@ -37,7 +37,7 @@ class ValueFile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'name', 'extension', 'size', 'path', 'type', 'document_id', 'field_id'], 'required'],
+            [['title', 'name', 'extension', 'path'], 'required'],
             [['size', 'type', 'document_id', 'field_id', 'position'], 'integer'],
             [['title', 'name', 'extension', 'path'], 'string', 'max' => 255],
             [['document_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['document_id' => 'id']],

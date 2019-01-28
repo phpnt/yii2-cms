@@ -12,7 +12,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\ButtonDropdown;
 use yii\helpers\Url;
 use backend\assets\TranslateAsset;
-use mihaildev\ckeditor\CKEditor;
+use phpnt\summernote\SummernoteWidget;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
 use common\widgets\TemplateOfElement\SetDefaultFields;
 
@@ -92,23 +92,77 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
     <div class="clearfix"></div>
 
     <div class="col-md-6">
-        <?= $form->field($modelDocumentForm, 'annotation')->widget(CKEditor::className(),[
-            'editorOptions' => [
-                'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                'inline' => false,  //по умолчанию false
-                'height' => 300
+        <?= $form->field($modelDocumentForm, 'annotation')->widget(SummernoteWidget::class,[
+            'options' => [
+                'id' => 'summernote-annotation-' . $modelDocumentForm->id,
+                'class' => 'hidden',
             ],
-        ]); ?>
+            'i18n' => true,             // переводить на другие языки
+            'codemirror' => true,       // использовать CodeMirror (оформленный редактор кода)
+            'emoji' => true,            // включить эмоджи
+            'widgetOptions' => [
+                /* Настройка панели */
+                'placeholder' => Yii::t('app', 'Введите текст'),
+                'height' => 200,
+                'tabsize' => 2,
+                'minHeight' => 200,
+                'maxHeight' => 200,
+                'focus' => false,
+                'dialogsInBody' => true,
+                'enterHtml' => '<div><br></div>',
+                /* Панель управления */
+                'toolbar' => [
+                    ['font', ['fontname', 'fontsize', 'color', 'forecolor', 'backcolor', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['insert', ['picture', 'link', 'video', 'table', 'hr']],
+                    ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                    ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
+                ],
+                'callbacks' => [
+                    'onImageUpload' => new \yii\web\JsExpression(
+                        'function (images) {
+                            uploadImage(images, "#summernote-annotation-' . $modelDocumentForm->id .'", "' . Yii::$app->user->id . '-annotation" );
+                        }'
+                    ),
+                ],
+            ],
+        ])->label(false); ?>
     </div>
 
     <div class="col-md-6">
-        <?= $form->field($modelDocumentForm, 'content')->widget(CKEditor::className(),[
-            'editorOptions' => [
-                'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                'inline' => false,  //по умолчанию false
-                'height' => 300
+        <?= $form->field($modelDocumentForm, 'content')->widget(SummernoteWidget::class,[
+            'options' => [
+                'id' => 'summernote-content-' . $modelDocumentForm->id,
+                'class' => 'hidden',
             ],
-        ]); ?>
+            'i18n' => true,             // переводить на другие языки
+            'codemirror' => true,       // использовать CodeMirror (оформленный редактор кода)
+            'emoji' => true,            // включить эмоджи
+            'widgetOptions' => [
+                /* Настройка панели */
+                'placeholder' => Yii::t('app', 'Введите текст'),
+                'height' => 200,
+                'tabsize' => 2,
+                'minHeight' => 200,
+                'maxHeight' => 200,
+                'focus' => false,
+                'dialogsInBody' => true,
+                'enterHtml' => '<div><br></div>',
+                /* Панель управления */
+                'toolbar' => [
+                    ['font', ['fontname', 'fontsize', 'color', 'forecolor', 'backcolor', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['insert', ['picture', 'link', 'video', 'table', 'hr']],
+                    ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                    ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
+                ],
+                'callbacks' => [
+                    'onImageUpload' => new \yii\web\JsExpression(
+                        'function (images) {
+                            uploadImage(images, "#summernote-content-' . $modelDocumentForm->id .'", "' . Yii::$app->user->id . '-content" );
+                        }'
+                    ),
+                ],
+            ],
+        ])->label(false); ?>
     </div>
 
     <div class="clearfix"></div>
@@ -142,6 +196,44 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
     </div>
     <?php ActiveForm::end(); ?>
     <?php
+    $url_frontend = Yii::$app->frontendUrl->url;
+    $url_upload = Url::to(['/image/upload-summernote']);
+
+    $js = <<< JS
+       function uploadImage(images, id, title) {
+            console.log(images);
+            var data = new FormData();
+            var ins = images.length;
+            for (var x = 0; x < ins; x++) {
+                data.append("ImageForm[images][]", images[x]);
+            }
+            data.append("ImageForm[title]", title);
+            $.ajax({
+                url: "$url_upload",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: "post",
+                success: function(data) {
+                    console.log(data.urls);
+                    var i = 0;
+                        //console.log(element);
+                    data.urls.forEach(function(element) {
+                        console.log(element);
+                        var imageLoad = $('<img style="width: 100%;">').attr('src', "$url_frontend" + element);
+                        $(id).summernote("insertNode", imageLoad[0]);
+                    });
+                    $(".modal").css("overflow", "auto");
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+       } 
+JS;
+    $this->registerJs($js);
+
     $url_refresh = Url::to(['element-manage/refresh-elements', 'id_folder' => $modelDocumentForm->parent_id]);
     $id_grid_refresh = '#pjax-grid-elements-block';
 

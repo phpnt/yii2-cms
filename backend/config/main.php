@@ -15,6 +15,7 @@ return [
     'controllerMap' => [
         'elfinder' => \common\widgets\Elfinder\controllers\ElfinderController::class,
         'csv-manager' => \common\widgets\GetCsv\controllers\CsvManagerController::class,
+        'fieldsManage' => \common\widgets\TemplateOfElement\components\FieldsManage::class,
     ],
     'modules' => [
         'comment' => [
@@ -43,6 +44,7 @@ return [
         ],
     ],
     'components' => [
+        'frontendUrl' => \common\components\other\FrontendUrl::class,
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],

@@ -9,12 +9,9 @@
 
 use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
-use yii\bootstrap\ButtonDropdown;
 use yii\helpers\Url;
 use backend\assets\TranslateAsset;
-use mihaildev\ckeditor\CKEditor;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
-use common\widgets\TemplateOfElement\SetDefaultFields;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */

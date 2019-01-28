@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d32534005e0e51ced6b46a55546ec40b",
+    "content-hash": "e59523dc86a316380ff3318411891dab",
     "packages": [
         {
             "name": "2amigos/yii2-multi-select-widget",
@@ -431,22 +431,6 @@
             "type": "bower-asset"
         },
         {
-            "name": "bower-asset/slimscroll",
-            "version": "v1.3.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rochal/jQuery-slimScroll.git",
-                "reference": "cf39d364e777ef95574c30c42d3b85cb2bf325d3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rochal/jQuery-slimScroll/zipball/cf39d364e777ef95574c30c42d3b85cb2bf325d3",
-                "reference": "cf39d364e777ef95574c30c42d3b85cb2bf325d3",
-                "shasum": null
-            },
-            "type": "bower-asset"
-        },
-        {
             "name": "bower-asset/summernote",
             "version": "v0.8.11",
             "source": {
@@ -486,7 +470,7 @@
             "version": "1.1.2",
             "source": {
                 "type": "git",
-                "url": "git@github.com:matthieua/WOW.git",
+                "url": "https://github.com/matthieua/WOW.git",
                 "reference": "535597ab3d6dfe3f7bfd76281c991e042fdeca25"
             },
             "dist": {
@@ -797,57 +781,6 @@
                 "image processing"
             ],
             "time": "2017-05-16T10:31:22+00:00"
-        },
-        {
-            "name": "mihaildev/yii2-ckeditor",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MihailDev/yii2-ckeditor.git",
-                "reference": "d20aa7f6bcf610fee226d6eb15212a279875bf87"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MihailDev/yii2-ckeditor/zipball/d20aa7f6bcf610fee226d6eb15212a279875bf87",
-                "reference": "d20aa7f6bcf610fee226d6eb15212a279875bf87",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "asset-installer-paths": {
-                    "npm-asset-library": "vendor/npm",
-                    "bower-asset-library": "vendor/bower"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "mihaildev\\ckeditor\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Mihail",
-                    "email": "mihail.kucher@gmail.com",
-                    "homepage": "https://github.com/MihailDev",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Yii2 CKEditor",
-            "homepage": "https://github.com/MihailDev/yii2-ckeditor",
-            "keywords": [
-                "CKEditor",
-                "editor",
-                "wysiwyg",
-                "yii"
-            ],
-            "time": "2014-11-19T22:04:08+00:00"
         },
         {
             "name": "phpnt/admin-lte",
@@ -1266,28 +1199,29 @@
             "time": "2017-04-11T17:33:05+00:00"
         },
         {
-            "name": "phpnt/yii2-slimscroll",
+            "name": "phpnt/yii2-summernote",
             "version": "0.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpnt/yii2-slimscroll.git",
-                "reference": "419166af4879b7bc8822f7bcdebd1bb2fc267d1b"
+                "url": "https://github.com/phpnt/yii2-summernote.git",
+                "reference": "7838ba8026f873709752aea03585d589c283ce88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpnt/yii2-slimscroll/zipball/419166af4879b7bc8822f7bcdebd1bb2fc267d1b",
-                "reference": "419166af4879b7bc8822f7bcdebd1bb2fc267d1b",
+                "url": "https://api.github.com/repos/phpnt/yii2-summernote/zipball/7838ba8026f873709752aea03585d589c283ce88",
+                "reference": "7838ba8026f873709752aea03585d589c283ce88",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/slimscroll": "*",
+                "bower-asset/summernote": "*",
                 "php": ">=5.4.0",
+                "phpnt/font-awesome": "*",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
-                    "phpnt\\slimscroll\\": ""
+                    "phpnt\\summernote\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1301,14 +1235,17 @@
                     "homepage": "http://phpnt.com"
                 }
             ],
-            "description": "Yii2 slimscroll",
+            "description": "Yii2 Summernote",
             "keywords": [
                 "phpnt",
-                "slimscroll",
-                "yii2",
-                "yii2 slimscroll"
+                "summernote",
+                "summernote emoji",
+                "text editor",
+                "web editor",
+                "wysiwyg",
+                "yii2"
             ],
-            "time": "2017-04-12T04:35:52+00:00"
+            "time": "2019-01-27T03:34:11+00:00"
         },
         {
             "name": "phpnt/yii2-wow",

@@ -9,6 +9,7 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'controllerMap' => [
         'geo-manage' => \common\widgets\TemplateOfElement\controllers\GeoController::class,
+        'image' => \common\widgets\ImageManager\controllers\ImageController::class,
     ],
     'components' => [
         'fieldsManage' => \common\widgets\TemplateOfElement\components\FieldsManage::class,
