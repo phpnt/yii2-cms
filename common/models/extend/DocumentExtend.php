@@ -27,6 +27,7 @@ use yii\helpers\ArrayHelper;
  * @property string $folder
  * @property array $templatesList
  * @property array $parentsList
+ * @property array $positionsList
  * @property array $statusList
  * @property array $statusItem
  * @property string $allFolders
@@ -86,9 +87,9 @@ class DocumentExtend extends Document
      */
     public function getAllFolders()
     {
-        $manyDocumentForm = self::findAll(
-            ['is_folder' => 1]
-        );
+        $manyDocumentForm = self::find()->where(['is_folder' => 1])
+            ->orderBy(['position' => SORT_ASC])
+            ->all();
 
         $data = [];
 
@@ -98,7 +99,7 @@ class DocumentExtend extends Document
             $data[$modelDocumentForm->id]['text'] = Yii::t('app', $modelDocumentForm->name) . ' ' . $modelDocumentForm->statusItem;
             $data[$modelDocumentForm->id]['icon'] = 'fa fa-folder';
             $data[$modelDocumentForm->id]['state'] = [
-                'opened' => true
+                'opened' => $modelDocumentForm->id == 1 ? true : false
             ];
         }
 
@@ -237,6 +238,25 @@ class DocumentExtend extends Document
         }
 
         return ArrayHelper::map($manyDocumentExtend, 'id', 'name');
+    }
+
+    /**
+     * Возвращает список всех папок, в текущем каталоге
+     * @return array
+     */
+    public function getPositionsList()
+    {
+        $folders = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'parent_id' => $this->parent_id,
+            ])
+            ->andWhere(['!=', 'id', $this->id])
+            ->orderBy(['position' => SORT_ASC])
+            ->all();
+
+        return ArrayHelper::map($folders, 'id', 'name');
     }
 
     /**

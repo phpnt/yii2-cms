@@ -13,7 +13,7 @@ use Yii;
  * @property int $type Тип
  * @property int $document_id Документ
  * @property int $field_id Поле
- * @property int $position Позиция
+ * @property int $position Позиция (после)
  *
  * @property Document $document
  * @property Field $field
@@ -54,7 +54,7 @@ class ValueInt extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Тип'),
             'document_id' => Yii::t('app', 'Документ'),
             'field_id' => Yii::t('app', 'Поле'),
-            'position' => Yii::t('app', 'Позиция'),
+            'position' => Yii::t('app', 'Позиция (после)'),
         ];
     }
 

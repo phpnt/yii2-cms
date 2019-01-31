@@ -82,7 +82,7 @@ TranslateAsset::register($this);
             ]) ?>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-4">
         <?= $form->field($modelDocumentForm, 'status')->dropDownList($modelDocumentForm->statusList,
             [
                 'class'  => 'form-control selectpicker',
@@ -94,19 +94,7 @@ TranslateAsset::register($this);
             ]) ?>
     </div>
 
-    <div class="col-md-2">
-        <?= $form->field($modelDocumentForm, 'parent_id')->dropDownList($modelDocumentForm->parentsList,
-            [
-                'class'  => 'form-control selectpicker',
-                'data' => [
-                    'style' => 'btn-default',
-                    'live-search' => 'false',
-                    'title' => '---'
-                ]
-            ]) ?>
-    </div>
-
-    <div class="col-md-2">
+    <div class="col-md-4">
         <?= $form->field($modelDocumentForm, 'template_id')->dropDownList($modelDocumentForm->templatesList,
             [
                 'class'  => 'form-control selectpicker',
@@ -118,10 +106,33 @@ TranslateAsset::register($this);
             ]) ?>
     </div>
 
-    <div class="col-md-2">
-        <?= $form->field($modelDocumentForm, 'position')
-            ->textInput(['placeholder' => $modelDocumentForm->getAttributeLabel('position')]) ?>
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <?/*= $form->field($modelDocumentForm, 'parent_id')->dropDownList($modelDocumentForm->parentsList,
+            [
+                'class'  => 'form-control selectpicker',
+                'data' => [
+                    'style' => 'btn-default',
+                    'live-search' => 'false',
+                    'title' => '---'
+                ]
+            ]) */?>
     </div>
+
+    <?php if ($modelDocumentForm->parent_id != null): ?>
+        <div class="col-md-12">
+            <?= $form->field($modelDocumentForm, 'position')->dropDownList($modelDocumentForm->positionsList,
+                [
+                    'class'  => 'form-control selectpicker',
+                    'data' => [
+                        'style' => 'btn-default',
+                        'live-search' => 'false',
+                        'title' => '---'
+                    ]
+                ]) ?>
+        </div>
+    <?php endif; ?>
 
     <div class="clearfix"></div>
 
@@ -212,6 +223,11 @@ TranslateAsset::register($this);
     </div>
 
     <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <?= $form->field($modelDocumentForm, 'parent_id')->hiddenInput()
+            ->label(false) ?>
+    </div>
 
     <div class="form-group text-center">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary text-uppercase']) ?>

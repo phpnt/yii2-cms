@@ -102,6 +102,10 @@ $items = [];
             ];
             ?>
         <?php endif; ?>
+    <?php elseif ($item['alias'] == 'i18n'): ?>
+        <?php
+        $items[] = $widget->langMenu;
+        ?>
     <?php elseif ($item['alias'] != 'main'): ?>
         <?php
         $items[] = [
@@ -112,9 +116,9 @@ $items = [];
         ?>
     <?php endif; ?>
 <?php endforeach;
-if ($widget->langMenu) {
+/*if ($widget->langMenu) {
     $items[] = $widget->langMenu;
-}
+}*/
 ?>
 <?= Nav::widget([
     'options' => $widget->optoinsNav,

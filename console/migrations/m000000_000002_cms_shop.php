@@ -181,7 +181,7 @@ class m000000_000002_cms_shop extends Migration
             'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
             'created_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Создал')),
             'updated_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Изменил')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
             'access' => $this->smallInteger(1)->defaultValue(Constants::ACCESS_USER)->comment(Yii::t('app', 'Доступ')),     // см в Constants
         ] , $tableOptions);
 
@@ -229,7 +229,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы значений дат дополнительных полей
@@ -249,7 +249,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы числовых значений дополнительных полей
@@ -269,7 +269,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы строковых значений дополнительных полей
@@ -289,7 +289,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы текстовых значений дополнительных полей
@@ -310,7 +310,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы файлов

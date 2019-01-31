@@ -66,7 +66,7 @@ class MainMenu extends Widget
         foreach ($navigation as $key => $item) {
             // выпадающий список переключения языков
             if ($item['alias'] == 'i18n') {
-                unset($navigation[$key]);
+                //unset($navigation[$key]);
 
                 $route = Yii::$app->controller->route;
                 $params = $_GET;
@@ -85,7 +85,6 @@ class MainMenu extends Widget
                         'label' => $this->label($language),
                         'url'   => $params,
                     ];
-                    //d($params);
                 }
 
                 /* @var $item array */

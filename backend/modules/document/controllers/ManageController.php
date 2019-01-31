@@ -52,13 +52,11 @@ class ManageController extends Controller
 
         $modelDocumentSearchFolder = new DocumentSearch();
         $modelDocumentSearchFolder->is_folder = 1;
-        $dataProviderDocumentSearchFolders = $modelDocumentSearchFolder->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'modelTemplateSearch' => $modelTemplateSearch,
             'dataProviderTemplateSearch' => $dataProviderTemplateSearch,
             'modelDocumentSearchFolder' => $modelDocumentSearchFolder,
-            'dataProviderDocumentSearchFolders' => $dataProviderDocumentSearchFolders,
         ]);
     }
 

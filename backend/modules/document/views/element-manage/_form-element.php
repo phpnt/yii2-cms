@@ -72,7 +72,7 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
 
     <div class="clearfix"></div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <?= $form->field($modelDocumentForm, 'status')->dropDownList($modelDocumentForm->statusList,
             [
                 'class'  => 'form-control selectpicker',
@@ -85,8 +85,8 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
     </div>
 
     <div class="col-md-6">
-        <?= $form->field($modelDocumentForm, 'position')
-            ->textInput(['placeholder' => $modelDocumentForm->getAttributeLabel('position')]) ?>
+        <?/*= $form->field($modelDocumentForm, 'position')
+            ->textInput(['placeholder' => $modelDocumentForm->getAttributeLabel('position')]) */?>
     </div>
 
     <div class="clearfix"></div>

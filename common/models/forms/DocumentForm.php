@@ -104,6 +104,71 @@ class DocumentForm extends DocumentExtend
     {
         parent::beforeSave($insert);
 
+        /* Если позиция не указана, ставим номер по умолчанию */
+        if (!$this->position && $this->parent_id) {
+            $this->position = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where(['parent_id' => $this->parent_id])
+                ->count();
+        } elseif ($this->position && $this->oldAttributes['position'] != $this->position && $this->parent_id) {
+            /* Ранее предшествующий элемент */
+            $beforeItem = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'position' => $this->oldAttributes['position'] - 1,
+                    'parent_id' => $this->parent_id
+                ])
+                ->one();
+
+            // если позиция изменена
+            if ($beforeItem['id'] != $this->position) {
+                /* Будущий предшествующий элемент */
+                $beforeItem = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('document')
+                    ->where([
+                        'id' => $this->position,
+                        'parent_id' => $this->parent_id
+                    ])
+                    ->one();
+
+                $items = (new \yii\db\Query())
+                    ->select(['id', 'position'])
+                    ->from('document')
+                    ->where([
+                        'parent_id' => $this->parent_id,
+                    ])
+                    ->orderBy(['position' => SORT_ASC])
+                    ->all();
+
+                // Удаляем текущий элемент из списка
+                foreach ($items as $key => $item) {
+                    if ($item['id'] == $this->id) {
+                        unset($items[$key]);
+                    }
+                }
+
+                $i = 0;
+                // находим предыдущий элемент и после него текущий
+                $db = Yii::$app->db;
+                foreach ($items as $item) {
+                    $item['position'] = $i;
+                    if ($item['id'] == $beforeItem['id']) {
+                        $db->createCommand()->update('document', ['position' => $i], 'id='.$item['id'])->execute();
+                        $i++;
+                        $this->position = $i;
+                    } else {
+                        $db->createCommand()->update('document', ['position' => $i], 'id='.$item['id'])->execute();
+                    }
+                    $i++;
+                }
+            } else {
+                $this->position = $beforeItem['position'] + 1;
+            }
+        }
+
         if ($this->access == null) {
             $this->access = Constants::ACCESS_USER;
         }
@@ -188,6 +253,24 @@ class DocumentForm extends DocumentExtend
                 $lostFilesIds[] = $file['id'];
             }
             ImageForm::deleteAll(['id' => $lostFilesIds]);
+        }
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        if ($this->position) {
+            /* Если позиция имеет какое-либо значение, определяем ID предыдущего элемента */
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'parent_id' => $this->parent_id,
+                    'position' => $this->position - 1,
+                ])
+                ->one();
+            $this->position = $data['id'];
         }
     }
 

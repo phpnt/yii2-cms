@@ -91,7 +91,7 @@ class Document extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Время изменения'),
             'created_by' => Yii::t('app', 'Создал'),
             'updated_by' => Yii::t('app', 'Изменил'),
-            'position' => Yii::t('app', 'Позиция'),
+            'position' => Yii::t('app', 'Позиция (после)'),
             'access' => Yii::t('app', 'Доступ'),
         ];
     }

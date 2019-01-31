@@ -249,6 +249,7 @@ class ViewItems extends Widget
                 'status' => Constants::STATUS_DOC_ACTIVE,
             ])
             ->andWhere(['is not', 'is_folder', null])
+            ->orderBy(['position' => SORT_ASC])
             ->all();
     }
 }

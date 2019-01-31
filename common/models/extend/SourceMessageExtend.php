@@ -256,7 +256,7 @@ class SourceMessageExtend extends SourceMessage
 
         $result = [];
         foreach ($messages['app'] as $message) {
-            if (preg_match("/[a-zA-Z]/iu", $message)) {
+            if (preg_match("/[а-яА-я]/iu", $message)) {
                 $result['app'][] = $message;
             }
         }
