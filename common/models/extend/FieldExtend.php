@@ -216,12 +216,12 @@ class FieldExtend extends Field
     public function getTypeList()
     {
         return [
-            Constants::FIELD_TYPE_INT =>  Yii::t('app', 'Целое число'),
-            Constants::FIELD_TYPE_INT_RANGE =>  Yii::t('app', 'Диапазон целых чисел'),
-            Constants::FIELD_TYPE_FLOAT =>  Yii::t('app', 'Число с дробью'),
-            Constants::FIELD_TYPE_FLOAT_RANGE =>  Yii::t('app', 'Диапазон чисел с дробью'),
-            Constants::FIELD_TYPE_STRING =>  Yii::t('app', 'Строка'),
-            Constants::FIELD_TYPE_TEXT =>  Yii::t('app', 'Текст'),
+            Constants::FIELD_TYPE_INT =>  Yii::t('app', 'Целое число (INT)'),
+            Constants::FIELD_TYPE_INT_RANGE =>  Yii::t('app', 'Диапазон целых чисел (INT)'),
+            Constants::FIELD_TYPE_FLOAT =>  Yii::t('app', 'Число (DOUBLE)'),
+            Constants::FIELD_TYPE_FLOAT_RANGE =>  Yii::t('app', 'Диапазон чисел с дробью (DOUBLE)'),
+            Constants::FIELD_TYPE_STRING =>  Yii::t('app', 'Строка (STRING)'),
+            Constants::FIELD_TYPE_TEXT =>  Yii::t('app', 'Текст (TEXT)'),
             Constants::FIELD_TYPE_CHECKBOX =>  Yii::t('app', 'Чекбокс'),
             Constants::FIELD_TYPE_RADIO =>  Yii::t('app', 'Радиокнопка'),
             Constants::FIELD_TYPE_LIST =>  Yii::t('app', 'Список'),

@@ -81,12 +81,12 @@ use common\models\Constants;
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DATE || $modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
-                        <?php if ($modelFieldForm->min): ?>
-                            <?= Yii::$app->formatter->asDate($modelFieldForm->min) ?>
+                        <?php if ($modelFieldForm->min_val): ?>
+                            <?= Yii::$app->formatter->asDate($modelFieldForm->min_val) ?>
                         <?php endif; ?>
                         <?= ' - ' ?>
-                        <?php if ($modelFieldForm->max): ?>
-                            <?= Yii::$app->formatter->asDate($modelFieldForm->max) ?>
+                        <?php if ($modelFieldForm->max_val): ?>
+                            <?= Yii::$app->formatter->asDate($modelFieldForm->max_val) ?> 
                         <?php endif; ?>
                     <?php endif; ?>
                 </td>

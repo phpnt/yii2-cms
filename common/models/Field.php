@@ -11,10 +11,17 @@ use Yii;
  * @property string $name Наименование
  * @property int $type Тип поля
  * @property int $is_required Обязательное
+ * @property string $error_required Сообщение ошибки если поле не заполнено.
  * @property int $is_unique Уникальное
- * @property int $min Минимальное значение
- * @property int $max Максимальное значение
+ * @property string $error_unique Сообщение ошибки если поле уже есть в БД.
+ * @property double $min_val Минимальное числовое значение.
+ * @property double $max_val Максимальное числовое значение.
+ * @property string $error_value Сообщение ошибки если поле не соответствует значениям.
+ * @property int $min_str Минимальное количество символов.
+ * @property int $max_str Максимальное количество символов.
+ * @property string $error_length Сообщение ошибки если поле не соответствует кол-ву символов.
  * @property string $params Дополнительные параметры
+ * @property string $mask Маска поля
  * @property int $template_id Шаблон
  *
  * @property Template $template
@@ -41,8 +48,9 @@ class Field extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'type', 'template_id'], 'required'],
-            [['type', 'is_required', 'is_unique', 'min', 'max', 'template_id'], 'integer'],
-            [['name', 'params'], 'string', 'max' => 255],
+            [['type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id'], 'integer'],
+            [['min_val', 'max_val'], 'number'],
+            [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask'], 'string', 'max' => 255],
             [['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],
         ];
     }
@@ -57,10 +65,17 @@ class Field extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Наименование'),
             'type' => Yii::t('app', 'Тип поля'),
             'is_required' => Yii::t('app', 'Обязательное'),
+            'error_required' => Yii::t('app', 'Сообщение ошибки если поле не заполнено.'),
             'is_unique' => Yii::t('app', 'Уникальное'),
-            'min' => Yii::t('app', 'Минимальное значение'),
-            'max' => Yii::t('app', 'Максимальное значение'),
+            'error_unique' => Yii::t('app', 'Сообщение ошибки если поле уже есть в БД.'),
+            'min_val' => Yii::t('app', 'Минимальное числовое значение.'),
+            'max_val' => Yii::t('app', 'Максимальное числовое значение.'),
+            'error_value' => Yii::t('app', 'Сообщение ошибки если поле не соответствует значениям.'),
+            'min_str' => Yii::t('app', 'Минимальное количество символов.'),
+            'max_str' => Yii::t('app', 'Максимальное количество символов.'),
+            'error_length' => Yii::t('app', 'Сообщение ошибки если поле не соответствует кол-ву символов.'),
             'params' => Yii::t('app', 'Дополнительные параметры'),
+            'mask' => Yii::t('app', 'Маска поля'),
             'template_id' => Yii::t('app', 'Шаблон'),
         ];
     }

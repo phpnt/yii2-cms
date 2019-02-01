@@ -3,7 +3,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 88318;LY-BA;Бенгази;"Sha`biyat Banghazi";Africa/Tripoli;"";133
 89341;IQ-BA;Басра;"Muhafazat al Basrah";Asia/Baghdad;"";105
 92877;IQ-NI;Найнава;"Muhafazat Ninawa";Asia/Baghdad;"";105
-94823;IQ-KA;Кербела;"Muhafazat Karbala\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Baghdad;"";105
+94823;IQ-KA;Кербела;"Muhafazat Karbala\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Baghdad;"";105
 95445;IQ-AR;Эрбиль;"Muhafazat Arbil";Asia/Baghdad;"";105
 97019;IQ-DQ;Ди-Кар;"Muhafazat Dhi Qar";Asia/Baghdad;"";105
 98180;IQ-BG;Багдад;"Muhafazat Baghdad";Asia/Baghdad;"";105
@@ -79,7 +79,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 248944;JO-IR;Ирбид;Irbid;Asia/Amman;"";110
 250439;JO-AM;Амман;"Muhafazat `Amman";Asia/Amman;"";110
 250583;JO-MA;Эль-Мафрак;"Al Mafraq";Asia/Amman;"";110
-250751;JO-BA;Эль-Балка;"Muhafazat al Balqa\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Amman;"";110
+250751;JO-BA;Эль-Балка;"Muhafazat al Balqa\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Amman;"";110
 273607;LB-JL;"Горный Ливан";"Mohafazat Mont-Liban";Asia/Beirut;"";124
 276780;LB-BA;Бейрут;Beyrouth;Asia/Beirut;"";124
 278297;LB-AS;"Северный Ливан";"Mohafazat Liban-Nord";Asia/Beirut;"";124
@@ -89,7 +89,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 285841;KW-AH;Эль-Ахмади;"Muhafazat al Ahmadi";Asia/Kuwait;"";120
 290333;BH-15;Мухаррак;"Muharraq Governorate";Asia/Bahrain;"";25
 290595;AE-UQ;"Умм эль-Кайвайн";"Umm al Qaywayn";Asia/Dubai;"";4
-291075;AE-RK;"Рас эль-Хайма";"Ra\\\\\\\\\\\\\\\\\\\\\\\\'s al Khaymah";Asia/Dubai;"";4
+291075;AE-RK;"Рас эль-Хайма";"Ra\\\\\\\\\\\\\\\\\\\\\\\\\'s al Khaymah";Asia/Dubai;"";4
 292224;AE-DU;Дубай;Dubayy;Asia/Dubai;"";4
 292673;AE-SH;Шарджа;"Ash Shariqah";Asia/Dubai;"";4
 292879;AE-FU;Эль-Фуджайра;"Al Fujayrah";Asia/Dubai;"";4
@@ -166,8 +166,8 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 408660;SD-DS;"Южный Дарфур";"Southern Darfur";Africa/Khartoum;"";190
 408663;SD-KA;Кассала;"Kassala State";Africa/Khartoum;"";190
 408666;SD-KN;"Северный Кордофан";"Northern Darfur";Africa/Khartoum;"";190
-409314;AM-SU;Сюникская;"Syunik\\\\\\\\\\\\\\\\\\\\\\\\'i Marz";Asia/Yerevan;"";9
-409315;AM-VD;Вайоцдзорская;"Vayots\\\\\\\\\\\\\\\\\\\\\\\\' Dzori Marz";Asia/Yerevan;"";9
+409314;AM-SU;Сюникская;"Syunik\\\\\\\\\\\\\\\\\\\\\\\\\'i Marz";Asia/Yerevan;"";9
+409315;AM-VD;Вайоцдзорская;"Vayots\\\\\\\\\\\\\\\\\\\\\\\\\' Dzori Marz";Asia/Yerevan;"";9
 411740;OM-MA;Маскат;"Muhafazat Masqat";Asia/Muscat;"";167
 411742;OM-ZU;Дофар;"Muhafazat Zufar";Asia/Muscat;"";167
 413931;IR-03;Ардебиль;"Ostan-e Ardabil";Asia/Tehran;"";106
@@ -212,60 +212,60 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 461112;LV-016;"Бауский край";"Bauskas Rajons";Europe/Riga;"";132
 461160;LV-015;"Балвский край";"Balvu Rajons";Europe/Riga;"";132
 461525;LV-007;"Алуксненский край";"Aluksnes Rajons";Europe/Riga;"";132
-468898;RU-YAR;"Ярославская область";"Yaroslavskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"78";185
-472039;RU-VOR;"Воронежская область";"Voronezhskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"20";185
-472454;RU-VLG;"Вологодская область";"Vologodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"19";185
-472755;RU-VGG;"Волгоградская область";"Volgogradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"18";185
+468898;RU-YAR;"Ярославская область";"Yaroslavskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"78";185
+472039;RU-VOR;"Воронежская область";"Voronezhskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"20";185
+472454;RU-VLG;"Вологодская область";"Vologodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"19";185
+472755;RU-VGG;"Волгоградская область";"Volgogradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"18";185
 479119;RU-ULY;"Ульяновская область";"Ulyanovsk Oblast";Europe/Volgograd;"73";185
 479613;RU-UD;Удмуртия;"Udmurtskaya Respublika";Europe/Samara;"94";185
-480041;RU-TVE;"Тверская область";"Tverskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"28";185
-480508;RU-TUL;"Тульская область";"Tul\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"70";185
+480041;RU-TVE;"Тверская область";"Tverskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"28";185
+480508;RU-TUL;"Тульская область";"Tul\\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"70";185
 484048;RU-TA;Татарстан;Tatarstan;Europe/Moscow;"92";185
-484638;RU-TAM;"Тамбовская область";"Tambovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"68";185
-487839;RU-STA;"Ставропольский край";"Stavropol\\\\\\\\\\\\\\\\\\\\\\\\'skiy Kray";Europe/Moscow;"70";185
-491684;RU-SMO;"Смоленская область";"Smolenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"66";185
-498671;RU-SAR;"Саратовская область";"Saratovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"63";185
-499068;RU-SAM;"Самарская область";"Samarskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Samara;"36";185
-500059;RU-RYA;"Рязанская область";"Ryazanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"61";185
-501165;RU-ROS;"Ростовская область";"Rostovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"60";185
-504338;RU-PSK;"Псковская область";"Pskovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"58";185
+484638;RU-TAM;"Тамбовская область";"Tambovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"68";185
+487839;RU-STA;"Ставропольский край";"Stavropol\\\\\\\\\\\\\\\\\\\\\\\\\'skiy Kray";Europe/Moscow;"70";185
+491684;RU-SMO;"Смоленская область";"Smolenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"66";185
+498671;RU-SAR;"Саратовская область";"Saratovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"63";185
+499068;RU-SAM;"Самарская область";"Samarskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Samara;"36";185
+500059;RU-RYA;"Рязанская область";"Ryazanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"61";185
+501165;RU-ROS;"Ростовская область";"Rostovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"60";185
+504338;RU-PSK;"Псковская область";"Pskovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"58";185
 511180;RU-PER;"Пермский край";"Perm Krai";Asia/Yekaterinburg;"57";185
-511555;RU-PNZ;"Пензенская область";"Penzenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"56";185
-514801;RU-ORL;"Орловская область";"Orlovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"54";185
-515001;RU-ORE;"Оренбургская область";"Orenburgskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"53";185
-519324;RU-NGR;"Новгородская область";"Novgorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"49";185
+511555;RU-PNZ;"Пензенская область";"Penzenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"56";185
+514801;RU-ORL;"Орловская область";"Orlovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"54";185
+515001;RU-ORE;"Оренбургская область";"Orenburgskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"53";185
+519324;RU-NGR;"Новгородская область";"Novgorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"49";185
 519969;RU-SE;"Северная Осетия";"North Ossetia";Europe/Moscow;"90";185
 522652;RU-NEN;"Ненецкий АО";"Nenetskiy Avtonomnyy Okrug";Europe/Moscow;"111";185
-524304;RU-MUR;"Мурманская область";"Murmanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"47";185
+524304;RU-MUR;"Мурманская область";"Murmanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"47";185
 524894;RU-MOW;Москва;Moskva;Europe/Moscow;"45";185
-524925;RU-MOS;"Московская область";"Moskovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"46";185
+524925;RU-MOS;"Московская область";"Moskovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"46";185
 525369;RU-MO;Мордовия;"Respublika Mordoviya";Europe/Moscow;"89";185
 529352;RU-ME;"Марий Эл";"Respublika Mariy-El";Europe/Moscow;"88";185
-535120;RU-LIP;"Липецкая область";"Lipetskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"42";185
-536199;RU-LEN;"Ленинградская область";"Leningradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"41";185
+535120;RU-LIP;"Липецкая область";"Lipetskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"42";185
+536199;RU-LEN;"Ленинградская область";"Leningradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"41";185
 536203;RU-SPE;Санкт-Петербург;Sankt-Peterburg;Europe/Moscow;"40";185
-538555;RU-KRS;"Курская область";"Kurskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"38";185
+538555;RU-KRS;"Курская область";"Kurskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"38";185
 542415;RU-KDA;"Краснодарский край";"Krasnodarskiy Kray";Europe/Moscow;"30";185
-543871;RU-KOS;"Костромская область";"Kostromskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"34";185
+543871;RU-KOS;"Костромская область";"Kostromskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"34";185
 545854;RU-KO;Коми;Komi;Europe/Moscow;"87";185
-548389;RU-KIR;"Кировская область";"Kirovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"33";185
+548389;RU-KIR;"Кировская область";"Kirovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"33";185
 552548;RU-KR;Карелия;"Respublika Kareliya";Europe/Moscow;"86";185
 552927;RU-KC;Карачаево-Черкессия;Karachayevo-Cherkesiya;Europe/Moscow;"91";185
-553899;RU-KLU;"Калужская область";"Kaluzhskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"29";185
+553899;RU-KLU;"Калужская область";"Kaluzhskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"29";185
 553972;RU-KL;Калмыкия;Kalmykiya;Europe/Moscow;"85";185
-554230;RU-KGD;"Калининградская область";"Kaliningradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kaliningrad;"27";185
+554230;RU-KGD;"Калининградская область";"Kaliningradskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kaliningrad;"27";185
 554667;RU-KB;Кабардино-Балкария;"Kabardino-Balkarskaya Respublika";Europe/Moscow;"83";185
-555235;RU-IVA;"Ивановская область";"Ivanovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"24";185
+555235;RU-IVA;"Ивановская область";"Ivanovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"24";185
 556349;RU-IN;Ингушетия;"Respublika Ingushetiya";Europe/Moscow;"26";185
-559838;RU-NIZ;"Нижегородская область";"Nizhegorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"22";185
+559838;RU-NIZ;"Нижегородская область";"Nizhegorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"22";185
 567293;RU-DA;Дагестан;Dagestan;Europe/Moscow;"82";185
 567395;RU-CU;Чувашия;"Chuvashskaya Respublika";Europe/Moscow;"97";185
 569665;RU-CE;Чечня;"Chechenskaya Respublika";Europe/Moscow;"96";185
-571473;RU-BRY;"Брянская область";"Bryanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"15";185
-578071;RU-BEL;"Белгородская область";"Belgorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"14";185
+571473;RU-BRY;"Брянская область";"Bryanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"15";185
+578071;RU-BEL;"Белгородская область";"Belgorodskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"14";185
 578853;RU-BA;Башкортостан;Bashkortostan;Asia/Yekaterinburg;"80";185
-580491;RU-AST;"Астраханская область";"Astrakhanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"12";185
-581043;RU-ARK;"Архангельская область";"Arkhangel\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"11";185
+580491;RU-AST;"Астраханская область";"Astrakhanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Volgograd;"12";185
+581043;RU-ARK;"Архангельская область";"Arkhangel\\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"11";185
 584222;RU-AD;Адыгея;"Respublika Adygeya";Europe/Moscow;"79";185
 587081;AZ-BA;Баку;"Baku City";Asia/Baku;"";18
 587448;EE-86;Вырумаа;Vorumaa;Europe/Tallinn;"";63
@@ -285,10 +285,10 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 592170;EE-37;Харьюмаа;Harjumaa;Europe/Tallinn;"";63
 604010;SE-BD;Норрботтен;Norrbotten;Europe/Stockholm;"";191
 607847;KZ-ZAP;"Западно-Казахстанская область";"Batys Qazaqstan Oblysy";Asia/Oral;"";122
-608879;KZ-MAN;"Мангистауская область";"Mangistauskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Aqtau;"";122
+608879;KZ-MAN;"Мангистауская область";"Mangistauskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Aqtau;"";122
 609862;KZ-ATY;"Атырауская область";"Atyrau Oblysy";Asia/Oral;"";122
-610688;KZ-AKT;"Актюбинская область";"Aktyubinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Aqtobe;"";122
-611716;GE-TB;Тбилиси;"K\\\\\\\\\\\\\\\\\\\\\\\\'alak\\\\\\\\\\\\\\\\\\\\\\\\'i T\\\\\\\\\\\\\\\\\\\\\\\\'bilisi";Asia/Tbilisi;"";79
+610688;KZ-AKT;"Актюбинская область";"Aktyubinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Aqtobe;"";122
+611716;GE-TB;Тбилиси;"K\\\\\\\\\\\\\\\\\\\\\\\\\'alak\\\\\\\\\\\\\\\\\\\\\\\\\'i T\\\\\\\\\\\\\\\\\\\\\\\\\'bilisi";Asia/Tbilisi;"";79
 616051;AM-ER;Ереван;Yerevan;Asia/Yerevan;"";9
 617077;MD-ED;"Единецкий район";"Raionul Edinet";Europe/Chisinau;"";136
 617283;MD-SV;"Штефан-Водский район";"Raionul Stefan Voda";Europe/Chisinau;"";136
@@ -301,13 +301,13 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 618164;MD-CA;"Кагульский район";"Raionul Cahul";Europe/Chisinau;"";136
 618369;MD-DR;"Дрокиевский район";"Raionul Drochia";Europe/Chisinau;"";136
 618381;MD-DO;"Дондюшанский район";"Raionul Donduseni";Europe/Chisinau;"";136
-620134;BY-VI;"Витебская область";"Vitebskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"20";36
-625073;BY-MA;"Могилёвская область";"Mogilevskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"70";36
-625142;BY-MI;"Минская область";"Minskaja Voblasts\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"60";36
+620134;BY-VI;"Витебская область";"Vitebskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"20";36
+625073;BY-MA;"Могилёвская область";"Mogilevskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"70";36
+625142;BY-MI;"Минская область";"Minskaja Voblasts\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"60";36
 625143;BY-HM;Минск;"Horad Minsk";Europe/Minsk;"50";36
-628035;BY-HR;"Гродненская область";"Grodnenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"40";36
+628035;BY-HR;"Гродненская область";"Grodnenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"40";36
 628281;BY-HO;"Гомельская область";"Gomel Region";Europe/Minsk;"30";36
-629631;BY-BR;"Брестская область";"Brestskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"10";36
+629631;BY-BR;"Брестская область";"Brestskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Minsk;"10";36
 643485;FI-OL;Оулу;"Oulun Laeaeni";Europe/Helsinki;"";69
 648958;FI-LL;Лапландия;"Lapin Laeaeni";Europe/Helsinki;"";69
 662447;RO-VN;Вранча;Vrancea;Europe/Bucharest;"";184
@@ -351,33 +351,33 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 686192;RO-AG;Арджеш;"Judetul Arges";Europe/Bucharest;"";184
 686253;RO-AR;Арад;Arad;Europe/Bucharest;"";184
 686581;RO-AB;Алба;"Judetul Alba";Europe/Bucharest;"";184
-686966;UA-18;"Житомирская область";"Zhytomyrs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"18";222
-687699;UA-23;"Запорожская область";"Zaporiz\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"23";222
+686966;UA-18;"Житомирская область";"Zhytomyrs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"18";222
+687699;UA-23;"Запорожская область";"Zaporiz\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"23";222
 687869;UA-21;"Закарпатская область";"Zakarpattia Oblast";Europe/Uzhgorod;"21";222
-689064;UA-07;"Волынская область";"Volyns\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"70";222
-689559;UA-05;"Винницкая область";"Vinnyts\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"50";222
-691649;UA-61;"Тернопольская область";"Ternopil\\\\\\\\\\\\\\\\\\\\\\\\'s\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"61";222
-692196;UA-59;"Сумская область";"Sums\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"59";222
-694422;RU_CR;Севастополь;"Sevastopol\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Simferopol;"85";185
-695592;UA-56;"Ровненская область";"Rivnens\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"56";222
-696634;UA-53;"Полтавская область";"Poltavs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"53";222
-698738;UA-51;"Одесская область";"Odes\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"51";222
-700567;UA-48;"Николаевская область";"Mykolayivs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"48";222
-702549;UA-46;"Львовская область";"L\\\\\\\\\\\\\\\\\\\\\\\\'vivs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"46";222
-702657;UA-09;"Луганская область";"Luhans\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"44";222
+689064;UA-07;"Волынская область";"Volyns\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"70";222
+689559;UA-05;"Винницкая область";"Vinnyts\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"50";222
+691649;UA-61;"Тернопольская область";"Ternopil\\\\\\\\\\\\\\\\\\\\\\\\\'s\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"61";222
+692196;UA-59;"Сумская область";"Sums\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"59";222
+694422;RU_CR;Севастополь;"Sevastopol\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Simferopol;"85";185
+695592;UA-56;"Ровненская область";"Rivnens\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"56";222
+696634;UA-53;"Полтавская область";"Poltavs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"53";222
+698738;UA-51;"Одесская область";"Odes\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"51";222
+700567;UA-48;"Николаевская область";"Mykolayivs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"48";222
+702549;UA-46;"Львовская область";"L\\\\\\\\\\\\\\\\\\\\\\\\\'vivs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"46";222
+702657;UA-09;"Луганская область";"Luhans\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"44";222
 703446;UA-32;"Киевская область";"Kyiv Oblast";Europe/Kiev;"32";222
 703447;UA-30;Киев;Kyiv;Europe/Kiev;"80";222
 703883;RU-CR;"Крымский федеральный округ";"Avtonomna Respublika Krym";Europe/Simferopol;"10";185
-705811;UA-35;"Кировоградская область";"Kirovohrads\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"35";222
-706370;UA-68;"Хмельницкая область";"Khmel\\\\\\\\\\\\\\\\\\\\\\\\'nyts\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"68";222
-706442;UA-65;"Херсонская область";"Khersons\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"65";222
-706482;UA-63;"Харьковская область";"Kharkivs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"63";222
-707470;UA-26;"Ивано-Франковская область";"Ivano-Frankivs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"26";222
-709716;UA-14;"Донецкая область";"Donets\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"14";222
-709929;UA-12;"Днепропетровская область";"Dnipropetrovska Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"12";222
-710720;UA-77;"Черновицкая область";"Chernivets\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"73";222
-710734;UA-74;"Черниговская область";"Chernihivs\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"74";222
-710802;UA-71;"Черкасская область";"Cherkas\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"71";222
+705811;UA-35;"Кировоградская область";"Kirovohrads\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"35";222
+706370;UA-68;"Хмельницкая область";"Khmel\\\\\\\\\\\\\\\\\\\\\\\\\'nyts\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"68";222
+706442;UA-65;"Херсонская область";"Khersons\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"65";222
+706482;UA-63;"Харьковская область";"Kharkivs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"63";222
+707470;UA-26;"Ивано-Франковская область";"Ivano-Frankivs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"26";222
+709716;UA-14;"Донецкая область";"Donets\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"14";222
+709929;UA-12;"Днепропетровская область";"Dnipropetrovska Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Zaporozhye;"12";222
+710720;UA-77;"Черновицкая область";"Chernivets\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Uzhgorod;"73";222
+710734;UA-74;"Черниговская область";"Chernihivs\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"74";222
+710802;UA-71;"Черкасская область";"Cherkas\\\\\\\\\\\\\\\\\\\\\\\\\'ka Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Kiev;"71";222
 715593;HU-SZ;Сабольч-Сатмар-Берег;"Szabolcs-Szatmar-Bereg megye";Europe/Budapest;"";99
 719637;HU-JN;Яс-Надькун-Сольнок;"Jasz-Nagykun-Szolnok megye";Europe/Budapest;"";99
 720002;HU-HE;Хевеш;"Heves megye";Europe/Budapest;"";99
@@ -425,10 +425,10 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 752014;TR-05;Амасья;Amasya;Europe/Istanbul;"";217
 780166;NO-20;Финнмарк;"Finnmark Fylke";Europe/Oslo;"";162
 786339;MK-66;Ресен;Resen;Europe/Skopje;"";139
-826294;RU-VLA;"Владимирская область";"Vladimirskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"17";185
+826294;RU-VLA;"Владимирская область";"Vladimirskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Europe/Moscow;"17";185
 828259;AM-AG;Арагацотнская;"Aragatsotni Marz";Asia/Yerevan;"";9
 828260;AM-AV;Армавирская;"Armaviri Marz";Asia/Yerevan;"";9
-828262;AM-KT;Котайкская;"Kotayk\\\\\\\\\\\\\\\\\\\\\\\\'i Marz";Asia/Yerevan;"";9
+828262;AM-KT;Котайкская;"Kotayk\\\\\\\\\\\\\\\\\\\\\\\\\'i Marz";Asia/Yerevan;"";9
 828987;FI-ES;"Южная Финляндия";"Southern Finland Province";Europe/Helsinki;"";69
 828988;FI-IS;"Восточная Финляндия";"Eastern Finland Province";Europe/Helsinki;"";69
 828989;FI-LS;"Западная Финляндия";"Province of Western Finland";Europe/Helsinki;"";69
@@ -634,37 +634,37 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 1484845;UZ-FA;Ферганская;Fergana;Asia/Tashkent;"";227
 1484846;UZ-AN;"Андижанская область";Andijan;Asia/Tashkent;"";227
 1486462;RU-YAN;"Ямало-Ненецкий АО";"Yamalo-Nenetskiy Avtonomnyy Okrug";Asia/Yekaterinburg;7114;185
-1488747;RU-TYU;"Тюменская область";"Tyumenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"71";185
+1488747;RU-TYU;"Тюменская область";"Tyumenskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"71";185
 1488873;RU-TY;Тыва;"Respublika Tyva";Asia/Krasnoyarsk;"93";185
-1489421;RU-TOM;"Томская область";"Tomskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Krasnoyarsk;"69";185
-1490542;RU-SVE;"Свердловская область";"Sverdlovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"65";185
-1496152;RU-OMS;"Омская область";"Omskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Omsk;"52";185
-1496745;RU-NVS;"Новосибирская область";"Novosibirskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Novosibirsk;"50";185
-1501312;RU-KGN;"Курганская область";"Kurganskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"37";185
+1489421;RU-TOM;"Томская область";"Tomskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Krasnoyarsk;"69";185
+1490542;RU-SVE;"Свердловская область";"Sverdlovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"65";185
+1496152;RU-OMS;"Омская область";"Omskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Omsk;"52";185
+1496745;RU-NVS;"Новосибирская область";"Novosibirskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Novosibirsk;"50";185
+1501312;RU-KGN;"Курганская область";"Kurganskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"37";185
 1502020;RU-KYA;"Красноярский край";"Krasnoyarskiy Kray";Asia/Krasnoyarsk;"40";185
 1503773;RU-KHM;"Ханты-Мансийский автономный округ - Югра";"Khanty-Mansiyskiy Avtonomnyy Okrug - Yugra";Asia/Yekaterinburg;"711";185
 1503834;RU-KK;Хакасия;"Respublika Khakasiya";Asia/Krasnoyarsk;"95";185
-1503900;RU-KEM;"Кемеровская область";"Kemerovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Novokuznetsk;"32";185
+1503900;RU-KEM;"Кемеровская область";"Kemerovskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Novokuznetsk;"32";185
 1506272;RU-AL;Алтай;"Respublika Altay";Asia/Omsk;"84";185
-1508290;RU-CHE;"Челябинская область";"Chelyabinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"75";185
+1508290;RU-CHE;"Челябинская область";"Chelyabinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yekaterinburg;"75";185
 1511732;RU-ALT;"Алтайский край";"Altayskiy Kray";Asia/Omsk;"10";185
 1517381;KZ-VOS;"Восточно-Казахстанская область";"Shyghys Qazaqstan Oblysy";Asia/Almaty;"";122
 1518003;KZ-AKM;"Акмолинская область";"Aqmola Oblysy";Asia/Almaty;"";122
-1519367;KZ-SEV;"Северо-Казахстанская область";"Severo-Kazakhstanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Almaty;"";122
+1519367;KZ-SEV;"Северо-Казахстанская область";"Severo-Kazakhstanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Almaty;"";122
 1520239;KZ-PAV;"Павлодарская область";"Pavlodar Oblysy";Asia/Almaty;"";122
 1521406;KZ-KZY;"Кызылординская область";"Qyzylorda Oblysy";Asia/Qyzylorda;"";122
 1521671;KZ-KUS;"Костанайская область";"Qostanay Oblysy";Asia/Qyzylorda;"";122
 1523401;KZ-KAR;"Карагандинская область";"Qaraghandy Oblysy";Asia/Almaty;"";122
 1524444;KZ-ZHA;"Жамбылская область";"Zhambyl Oblysy";Asia/Almaty;"";122
-1524787;KZ-YUZ;"Южно-Казахстанская область";"Yuzhno-Kazakhstanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Almaty;"";122
+1524787;KZ-YUZ;"Южно-Казахстанская область";"Yuzhno-Kazakhstanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Almaty;"";122
 1526395;KZ-ALA;Алматы;"Almaty Qalasy";Asia/Almaty;"";122
-1528260;KG-Y;"Иссык-Кульская область";"Issyk-Kul\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Bishkek;"";113
+1528260;KG-Y;"Иссык-Кульская область";"Issyk-Kul\\\\\\\\\\\\\\\\\\\\\\\\\'skaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Bishkek;"";113
 1529047;CN-65;Синьцзян-Уйгурский;"Xinjiang Uygur Zizhiqu";Asia/Urumqi;"";48
 1529778;KG-J;"Джалал-Абадская область";Jalal-Abad;Asia/Bishkek;"";113
 1537162;KZ-ALM;"Алматинская область";"Almaty Oblysy";Asia/Almaty;"";122
 1538316;KZ-BAY;Байконур;"Bayqongyr Qalasy";Asia/Almaty;"";122
 1538317;KZ-AST;Астана;"Astana Qalasy";Asia/Almaty;"";122
-1538652;KG-C;"Чуйская область";"Chuyskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Bishkek;"";113
+1538652;KG-C;"Чуйская область";"Chuyskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Bishkek;"";113
 1547449;MU-RO;Родригес;Rodrigues;Indian/Mauritius;"";149
 1559969;VN-22;Нгеан;"Tinh Nghe An";Asia/Ho_Chi_Minh;"";233
 1559970;VN-18;Ниньбинь;"Tinh Ninh Binh";Asia/Ho_Chi_Minh;"";233
@@ -891,9 +891,9 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2013162;RU-SA;"Саха (Якутия)";"Respublika Sakha (Yakutiya)";Asia/Yakutsk;"98";185
 2017623;RU-PRI;"Приморский край";"Primorskiy Kray";Asia/Vladivostok;"50";185
 2022888;RU-KHA;"Хабаровский край";"Khabarovskiy Kray";Asia/Vladivostok;"80";185
-2023468;RU-IRK;"Иркутская область";"Irkutskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Irkutsk;"25";185
-2026639;RU-YEV;"Еврейская автономная область";"Yevreyskaya Avtonomnaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Vladivostok;"99";185
-2027748;RU-AMU;"Амурская область";"Amurskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yakutsk;"10";185
+2023468;RU-IRK;"Иркутская область";"Irkutskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Irkutsk;"25";185
+2026639;RU-YEV;"Еврейская автономная область";"Yevreyskaya Avtonomnaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Vladivostok;"99";185
+2027748;RU-AMU;"Амурская область";"Amurskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Yakutsk;"10";185
 2028461;MN-1;Улан-Батор;"Ulaanbaatar Hot";Asia/Ulaanbaatar;"";142
 2029155;MN-051;Сухэ-Батор;"Suhbaatar Aymag";Asia/Choibalsan;"";142
 2029432;MN-049;Сэлэнгэ;"Selenge Aymag";Asia/Ulaanbaatar;"";142
@@ -919,8 +919,8 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2112922;JP-07;Фукусима;Fukushima-ken;Asia/Tokyo;"";111
 2113014;JP-12;Тиба;Chiba-ken;Asia/Tokyo;"";111
 2113124;JP-05;Акита;Akita-ken;Asia/Tokyo;"";111
-2121529;RU-SAK;"Сахалинская область";"Sakhalinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Sakhalin;"64";185
-2123627;RU-MAG;"Магаданская область";"Magadanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Magadan;"44";185
+2121529;RU-SAK;"Сахалинская область";"Sakhalinskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Sakhalin;"64";185
+2123627;RU-MAG;"Магаданская область";"Magadanskaya Oblast\\\\\\\\\\\\\\\\\\\\\\\\\'";Asia/Magadan;"44";185
 2125072;RU-KAM;"Камчатский край";"Kamtchatski Kray";Asia/Kamchatka;"30";185
 2126099;RU-CHU;"Чукотский автономный округ";"Chukotskiy Avtonomnyy Okrug";Asia/Anadyr;"77";185
 2130037;JP-01;Хоккайдо;Hokkaido;Asia/Tokyo;"";111
@@ -940,7 +940,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2182560;NZ-BOP;Бей-оф-Пленти;"Bay of Plenty";Pacific/Auckland;"";166
 2185978;NZ-NTL;Нортленд;Northland;Pacific/Auckland;"";166
 2187304;NZ-MBH;Марлборо;Marlborough;Pacific/Auckland;"";166
-2190146;NZ-HKB;Хокс-Бей;"Hawke\\\\\\\\\\\\\\\\\\\\\\\\'s Bay";Pacific/Auckland;"";166
+2190146;NZ-HKB;Хокс-Бей;"Hawke\\\\\\\\\\\\\\\\\\\\\\\\\'s Bay";Pacific/Auckland;"";166
 2190767;NZ-GIS;Гисборн;Gisborne;Pacific/Auckland;"";166
 2192628;NZ-CAN;Кентербери;Canterbury;Pacific/Auckland;"";166
 2193734;NZ-AUK;Окленд;Auckland;Pacific/Auckland;"";166
@@ -1002,7 +1002,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2374776;GW-BS;Бисау;"Bissau Region";Africa/Bissau;"";92
 2377449;MR-NKC;Нуакшот;"District de Nouakchott";Africa/Nouakchott;"";146
 2395524;BJ-AK;Атакора;"Atakora Department";Africa/Porto-Novo;"";27
-2396924;GA-8;Огове-Маритим;"Province de l\\\\\\\\\\\\\\\\\\\\\\\\' Ogooue-Maritime";Africa/Libreville;"";76
+2396924;GA-8;Огове-Маритим;"Province de l\\\\\\\\\\\\\\\\\\\\\\\\\' Ogooue-Maritime";Africa/Libreville;"";76
 2397466;GA-4;Нгуни;"Province de la Ngounie";Africa/Libreville;"";76
 2397842;GA-3;"Среднее Огове";"Province du Moyen-Ogooue";Africa/Libreville;"";76
 2400682;GA-1;Эстуаре;Estuaire;Africa/Libreville;"";76
@@ -1018,7 +1018,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2464464;TN-11;Тунис;"Gouvernorat de Tunis";Africa/Tunis;"";214
 2464912;TN-51;Сус;"Gouvernorat de Sousse";Africa/Tunis;"";214
 2468351;TN-71;Гафса;"Gafsa Governorate";Africa/Tunis;"";214
-2473245;TN-12;Арьяна;"Gouvernorat de l\\\\\\\\\\\\\\\\\\\\\\\\' Ariana";Africa/Tunis;"";214
+2473245;TN-12;Арьяна;"Gouvernorat de l\\\\\\\\\\\\\\\\\\\\\\\\\' Ariana";Africa/Tunis;"";214
 2473495;TN-52;Монастир;"Gouvernorat de Monastir";Africa/Tunis;"";214
 2475741;DZ-15;Тизи-Узу;"Wilaya de Tizi Ouzou";Africa/Algiers;"";61
 2476027;DZ-42;Типаса;"Wilaya de Tipaza";Africa/Algiers;"";61
@@ -1039,7 +1039,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2505525;DZ-08;Бешар;"Wilaya de Bechar";Africa/Algiers;"";61
 2505569;DZ-05;Батна;"Wilaya de Batna";Africa/Algiers;"";61
 2506994;DZ-23;Аннаба;Annaba;Africa/Algiers;"";61
-2507475;DZ-16;Алжир;"Wilaya d\\\\\\\\\\\\\\\\\\\\\\\\' Alger";Africa/Algiers;"";61
+2507475;DZ-16;Алжир;"Wilaya d\\\\\\\\\\\\\\\\\\\\\\\\\' Alger";Africa/Algiers;"";61
 2513413;ES-MC;Мурсия;"Region de Murcia";Europe/Madrid;"";67
 2519582;ES-CE;Сеута;Ceuta;Africa/Ceuta;"";67
 2521383;ES-IB;"Балеарские Острова";"Comunitat Autonoma de les Illes Balears";Europe/Madrid;"";67
@@ -1277,7 +1277,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 2960513;LU-G;Гревенмахер;"District de Grevenmacher";Europe/Luxembourg;"";131
 2960655;LU-D;Дикирх;"District de Diekirch";Europe/Luxembourg;"";131
 2983751;FR-V;Рона-Альпы;"Region Rhone-Alpes";Europe/Paris;"";74
-2985244;FR-U;"Прованс-Альпы-Лазурный Берег";"Region Provence-Alpes-Cote d\\\\\\\\\\\\\\\\\\\\\\\\'Azur";Europe/Paris;"";74
+2985244;FR-U;"Прованс-Альпы-Лазурный Берег";"Region Provence-Alpes-Cote d\\\\\\\\\\\\\\\\\\\\\\\\\'Azur";Europe/Paris;"";74
 2986492;FR-T;"Пуату- Шаранта";"Region Poitou-Charentes";Europe/Paris;"";74
 2987375;FR-S;Пикардия;"Region Picardie";Europe/Paris;"";74
 2988289;FR-R;"Земли Луары";"Region Pays de la Loire";Europe/Paris;"";74
@@ -1299,11 +1299,11 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 3037350;FR-B;Аквитания;"Region Aquitaine";Europe/Paris;"";74
 3038033;FR-A;Эльзас;"Region Alsace";Europe/Paris;"";74
 3039162;AD-06;Сант-Жулия-де-Лория;"Parroquia de Sant Julia de Loria";Europe/Andorra;"";3
-3039676;AD-05;Ордино;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\'Ordino";Europe/Andorra;"";3
+3039676;AD-05;Ордино;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\\'Ordino";Europe/Andorra;"";3
 3040131;AD-04;Ла-Массана;"Parroquia de la Massana";Europe/Andorra;"";3
-3040684;AD-03;Энкамп;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\'Encamp";Europe/Andorra;"";3
+3040684;AD-03;Энкамп;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\\'Encamp";Europe/Andorra;"";3
 3041203;AD-02;Канильо;Canillo;Europe/Andorra;"";3
-3041566;AD-07;Андорра-ла-Велья;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\'Andorra la Vella";Europe/Andorra;"";3
+3041566;AD-07;Андорра-ла-Велья;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\\'Andorra la Vella";Europe/Andorra;"";3
 3042031;LI-11;Вадуц;Vaduz;Europe/Vaduz;"";126
 3042036;LI-09;Тризен;Triesen;Europe/Vaduz;"";126
 3042038;LI-08;Шелленберг;Schellenberg;Europe/Vaduz;"";126
@@ -1350,7 +1350,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 3162354;NO-09;Эуст-Агдер;"Aust-Agder fylke";Europe/Oslo;"";162
 3163480;NO-02;Акерсхус;"Akershus fylke";Europe/Oslo;"";162
 3164604;IT-34;Венето;"Regione Veneto";Europe/Rome;"";108
-3164857;IT-23;"Валле д’Аоста";"Regione Autonoma Valle d\\\\\\\\\\\\\\\\\\\\\\\\'Aosta";Europe/Rome;"";108
+3164857;IT-23;"Валле д’Аоста";"Regione Autonoma Valle d\\\\\\\\\\\\\\\\\\\\\\\\\'Aosta";Europe/Rome;"";108
 3165048;IT-55;Умбрия;Umbria;Europe/Rome;"";108
 3165244;IT-32;"Трентино-Альто Адидже";"Trentino-Alto Adige";Europe/Rome;"";108
 3165361;IT-52;Тоскана;"Regione Toscana";Europe/Rome;"";108
@@ -1608,7 +1608,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 3337531;HR-01;Загребска;"Zagreb County";Europe/Zagreb;"";97
 3337532;HR-21;Загреб;"Grad Zagreb";Europe/Zagreb;"";97
 3337533;HR-10;Вировитицко-Подравская;"Viroviticko-Podravska Zupanija";Europe/Zagreb;"";97
-3338529;AD-08;Эскальдес-Энгордань;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\'Escaldes-Engordany";Europe/Andorra;"";3
+3338529;AD-08;Эскальдес-Энгордань;"Parroquia d\\\\\\\\\\\\\\\\\\\\\\\\\'Escaldes-Engordany";Europe/Andorra;"";3
 3339536;CZ-JM;"Южноморавский край";"Jihomoravsky kraj";Europe/Prague;"";55
 3339537;CZ-JC;"Южночешский край";"Jihocesky kraj";Europe/Prague;"";55
 3339538;CZ-VY;"Край Высочина";"Kraj Vysocina";Europe/Prague;"";55
@@ -1942,7 +1942,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 3712162;PA-2;Кокле;"Provincia de Cocle";America/Panama;"";168
 3712410;PA-4;Чирики;"Provincia de Chiriqui";America/Panama;"";168
 3713954;PA-1;Бокас-дель-Торо;"Provincia de Bocas del Toro";America/Panama;"";168
-3719432;HT-OU;Западный;"Departement de l\\\\\\\\\\\\\\\\\\\\\\\\'Ouest";America/Port-au-Prince;"";98
+3719432;HT-OU;Западный;"Departement de l\\\\\\\\\\\\\\\\\\\\\\\\\'Ouest";America/Port-au-Prince;"";98
 3719540;HT-NE;Северо-Восточный;"Departement du Nord-Est";America/Port-au-Prince;"";98
 3830305;EC-U;Сукумбиос;"Provincia de Sucumbios";America/Guayaquil;"";62
 3830306;EC-D;Орельяна;"Provincia de Francisco de Orellana";America/Guayaquil;"";62
@@ -1972,7 +1972,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 3873544;CL-RM;Сантьяго;"Region Metropolitana de Santiago";America/Santiago;"";46
 3880306;CL-ML;Мауле;Maule;America/Santiago;"";46
 3881974;CL-LL;Лос-Лагос;"Los Lagos";America/Santiago;"";46
-3883281;CL-LI;О’Хиггинс;"Region del Libertador General Bernardo O\\\\\\\\\\\\\\\\\\\\\\\\'Higgins";America/Santiago;"";46
+3883281;CL-LI;О’Хиггинс;"Region del Libertador General Bernardo O\\\\\\\\\\\\\\\\\\\\\\\\\'Higgins";America/Santiago;"";46
 3893623;CL-CO;Кокимбо;Coquimbo;America/Santiago;"";46
 3898380;CL-BI;Био-Био;"Region del Biobio";America/Santiago;"";46
 3899191;CL-AT;Атакама;Atacama;America/Santiago;"";46
@@ -2018,7 +2018,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 4017698;MX-BCS;"Южная Нижняя Калифорния";"Estado de Baja California Sur";America/Mazatlan;"";152
 4017700;MX-BCN;"Нижняя Калифорния";"Estado de Baja California";America/Tijuana;"";152
 4019231;MX-AGU;Агуаскальентес;"Estado de Aguascalientes";America/Mexico_City;"";152
-4034759;;Увеа;"Circonscription d\\\\\\\\\\\\\\\\\\\\\\\\'Uvea";Pacific/Wallis;"";235
+4034759;;Увеа;"Circonscription d\\\\\\\\\\\\\\\\\\\\\\\\\'Uvea";Pacific/Wallis;"";235
 4034977;WS-TU;Туамасага;Tuamasaga;Pacific/Apia;"";236
 4035383;WS-FA;Фаасалелеага;Fa`asaleleaga;Pacific/Apia;"";236
 4036650;CL-MA;"Магальянес и Чилийская Антарктика";"Region de Magallanes y de la Antartica Chilena";America/Santiago;"";46
@@ -2295,7 +2295,7 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 7670856;;"Analamanga Region";"Analamanga Region";Indian/Antananarivo;"";137
 7670857;;"Atsinanana Region";"Atsinanana Region";Indian/Antananarivo;"";137
 7670905;;"Haute Matsiatra Region";"Haute Matsiatra Region";Indian/Antananarivo;"";137
-7779061;RU-ZAB;"Забайкальский край";"Zabaykal\\\\\\\\\\\\\\\\\\\\\\\\'skiy Kray";Asia/Yakutsk;"76";185
+7779061;RU-ZAB;"Забайкальский край";"Zabaykal\\\\\\\\\\\\\\\\\\\\\\\\\'skiy Kray";Asia/Yakutsk;"76";185
 8030542;BS-CO;"Центральный Абако";"Central Abaco District";America/Nassau;"";32
 8030558;BS-SW;Спэниш-Уэллс;"Spanish Wells District";America/Nassau;"";32
 8051212;;"Nandi South District";"Nandi South District";Africa/Nairobi;"";112
@@ -2337,16 +2337,16 @@ id_geo_region;iso;name_ru;name_en;timezone;okato;id_geo_country
 8299745;MT-46;Рабат;Ir-Rabat;Europe/Malta;"";148
 8299746;MT-47;Сафи;Safi;Europe/Malta;"";148
 8299747;MT-49;Сан-Джуанн;"Saint John";Europe/Malta;"";148
-8299748;MT-48;Сан-Джильян;"Saint Julian\\\\\\\\\\\\\\\\\\\\\\\\'s";Europe/Malta;"";148
+8299748;MT-48;Сан-Джильян;"Saint Julian\\\\\\\\\\\\\\\\\\\\\\\\\'s";Europe/Malta;"";148
 8299750;MT-53;Санта-Лучия;"Saint Lucia";Europe/Malta;"";148
-8299751;MT-51;Сан-Пауль-иль-Бахар;"Saint Paul\\\\\\\\\\\\\\\\\\\\\\\\'s Bay";Europe/Malta;"";148
+8299751;MT-51;Сан-Пауль-иль-Бахар;"Saint Paul\\\\\\\\\\\\\\\\\\\\\\\\\'s Bay";Europe/Malta;"";148
 8299752;MT-54;Санта-Венера;"Saint Venera";Europe/Malta;"";148
 8299753;MT-52;Саннат;Sannat;Europe/Malta;"";148
 8299754;MT-55;Сиддживи;Is-Siggiewi;Europe/Malta;"";148
 8299755;MT-56;Слима;Tas-Sliema;Europe/Malta;"";148
 8299756;MT-57;Суики;Is-Swieqi;Europe/Malta;"";148
 8299757;MT-59;Таршин;Tarxien;Europe/Malta;"";148
-8299758;MT-58;Та-Шбиш;"Ta\\\\\\\\\\\\\\\\\\\\\\\\' Xbiex";Europe/Malta;"";148
+8299758;MT-58;Та-Шбиш;"Ta\\\\\\\\\\\\\\\\\\\\\\\\\' Xbiex";Europe/Malta;"";148
 8299761;MT-63;Шайра;Ix-Xghajra;Europe/Malta;"";148
 8299762;MT-64;Заббар;Haz-Zabbar;Europe/Malta;"";148
 8299763;MT-66;Зеббудж;Haz-Zebbug;Europe/Malta;"";148

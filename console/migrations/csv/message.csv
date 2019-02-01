@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -63,8 +63,6 @@ id;language;translation;hash
 82;en;"Field type";d9d58a558b26086ce17f1b10c305def3
 83;en;Required;84b7e5142b0df99332332bf0455fa527
 84;en;Unique;84b7e5142b0df99332332bf0455fa527
-85;en;"Minimum value";37a8ba297d0c1ffac3ba0ba1f683a043
-86;en;"Maximum value";2752b64aa16433cdc16dcece5eeb0d73
 87;en;"Extra options";d12b12db44f670d8335f840232b25112
 88;en;Child;4e781b92106145efd22c723744b616fb
 89;en;"The user with the email address is not registered";247dd9bc8d70d35ae2a2dfdd5f77d9f7
@@ -93,13 +91,6 @@ id;language;translation;hash
 112;en;"The field ""{field}"" is not a link.";acca4eb0d4763a168b0dc889a9b41955
 113;en;"The field ""{field}"" is not a YuoTube link.";acca4eb0d4763a168b0dc889a9b41955
 114;en;"Files may have the following extensions {extensions}";55cf08c34e8df5643967c5cafa389e68
-115;en;"The field ""{field}"" cannot be less than ""{min}"".";1ea0ae28197eec25f7f6caa5b5bf2090
-116;en;"The field ""{field}"" cannot be less than ""{date}"".";d7d1e9ac4f616a66b53dc6c6c9c50125
-117;en;"The field ""{field}"" cannot be greater than ""{max}"".";d31a58531b7aaa3710bfe69b71cd47b1
-118;en;"The field ""{field}"" must contain no more than ""{strlen}"" characters.";d31a58531b7aaa3710bfe69b71cd47b1
-119;en;"The field ""{field}"" cannot be greater than ""{date}"".";f57a7d60c23a09659e7d1201e2f16780
-120;en;"The field ""{field}"" cannot contain more ""{files}"" files.";28b64e019c17771da2d5c15032173add
-121;en;"The field ""{field}"" must be unique.";a93695d2acc817da650988a8178e3118
 122;en;"The reset token cannot be empty.";0da23572a86952a0ed3ac41b01c47e8f
 123;en;"Invalid password reset token.";6090596cd1ae2b4df38f216f2672b708
 124;en;"English name";b061e4a3eceb23ef07043032ff098d0c
@@ -127,12 +118,6 @@ id;language;translation;hash
 147;en;Extension;fb7ad62b58374e33a18bcc3be6924612
 148;en;"The size";fb7ad62b58374e33a18bcc3be6924612
 149;en;"The path to the file";605c30affabccd66b5a84de4cf4e8372
-150;en;Integer;da3972d2eb7d41b3aa78325496a83fed
-151;en;"Integer range";b4ff16d8abc585fcbd5009498eb3257c
-152;en;"Number with a fraction";36819be92fadbc665edd6a1dbc6c8528
-153;en;"Range of numbers with a fraction";36819be92fadbc665edd6a1dbc6c8528
-154;en;String;08e1a2dfc535a104304ee7d0775cf5e2
-155;en;Text;6f308e6b9ca365fa2ca7e3af86c9ceae
 156;en;Checkbox;dca092ddb3301060fd5b814cfb34c700
 157;en;"Radio button";544666c98529db68332e1b22d926f0f7
 158;en;List;083ea28ddeb2a06e158ce26dc94201b2
@@ -320,11 +305,10 @@ id;language;translation;hash
 384;en;"Update the profile";1aea452667ecaf021aa30928c51b1114
 385;en;"Create the profile";9b8688fed1a4321696f58f4fc123ae03
 386;en;"Fill out the profile";1edfa68a67732ab11eca62e911899d9f
-387;en;"The field ""{field}"" cannot be less than ""{strlen}"" characters.";c35d845baf0fa427437beab336f7d23b
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+393;en;"A template for the user\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -378,3 +362,29 @@ id;language;translation;hash
 465;en;"Your comment.";fa2b67ebeebbc8b2354a5f54d0330b9a
 466;en;"Enter text";e407b2bc106d1e3a8305c9674b3f444e
 467;en;"Position (after)";b92b3a76b7ee7b96e86b4eef7cbbb243
+468;en;"The field '{name}' must be a number from {min_val} to {max_val}.";558b9c2ae4aeca9137f3765ada30fd21
+469;en;"The field '{name}' must contain from {min_str} to {max_str} characters.";409189d01aa5297af80c3af262744b0e
+470;en;"The field '{name}' is required.";e561e87e1822fad11e9b0cd8c38af17f
+471;en;"The field '{name}' must be unique.";aea0e0d5ecc8f9eae46183cfe2c83677
+472;en;"File size must be from {min_val} to {max_val} bytes.";d30f1b89ff45be38075f29cfd704490f
+473;en;"The number of files should be from {min_str} to {max_str} pieces.";084a1af99c24e7e4ed4ecdfdb25ae48c
+474;en;"The field '{name}' must be from {min_val} to {max_val}.";e869a60c868b6058195a7cc9e30138f3
+475;en;"Minimum numeric value (bytes)";d91e33613b9a84469dc18feb72c507c6
+476;en;"Maximum numeric value (bytes)";a88d3884d7ef5fe9ec1ed21662b9f819
+477;en;"Minimum number of files";dd7972343dc87816a2b2116e578e4ac8
+478;en;"Maximum number of files";2958222aa83be8ab834e522b242632f1
+479;en;"Error message if the field is not filled.";41208fc3c2b77a06b5eb22962cd23fc9
+480;en;"Error message if the field is already in the database.";261a8b16e02537ef08f1da238794b767
+481;en;"Minimum numeric value.";cb48da695288f756b521651a38def435
+482;en;"Maximum numeric value.";dc86eb1e6568cba6aa1ee927bf6c6118
+483;en;"Error message if the field does not match the values.";f5278fd93dd9ab17f188b108c0522f06
+484;en;"Minimum number of characters.";66fbc661bab312ecf508ae4d6870da51
+485;en;"Maximum number of characters.";bed89f003881099a437c6fb24b26febc
+486;en;"Error message if the field does not match the number of characters.";a774dc4675cc9aab8745734032f6d4d7
+487;en;"Field mask";3d57bd0d4d709fb959cb5b880992b7e4
+488;en;"Integer (INT)";1ea534aeed635c8e8129afc51f3973af
+489;en;"Integer range (INT)";b09ce3771ffd3c472cf773b90c574174
+490;en;"Number (DOUBLE)";e2211ae2dbe5fa15773cd6183542e4e3
+491;en;"Range of numbers with a fraction (DOUBLE)";ba12e1e871739207f6cfbfbfc9299dfc
+492;en;"String (STRING)";f288f7be6dc9acd1615b02fea010fbfd
+493;en;"Text (TEXT)";1901b31fa0552a4683de5f52aa8d3048

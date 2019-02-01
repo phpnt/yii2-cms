@@ -145,9 +145,9 @@ class m000000_000002_cms_shop extends Migration
         //Таблица шаблонов template
         $this->createTable('{{%template}}', [
             'id' => $this->primaryKey()->comment('ID'),
-            'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
+            'name' => $this->string()->notNull()->unique()->comment(Yii::t('app', 'Наименование')),
             'description' => $this->text()->notNull()->comment(Yii::t('app', 'Описание')),
-            'mark' => $this->string()->notNull()->comment(Yii::t('app', 'Метка для шаблона')),
+            'mark' => $this->string()->notNull()->unique()->comment(Yii::t('app', 'Метка для шаблона')),
             'status' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
             'add_rating' => $this->boolean()->comment(Yii::t('app', 'Разрешена оценка элемента')),
             'add_comments' => $this->boolean()->comment(Yii::t('app', 'Разрешены комментарии к элементу')),
@@ -207,10 +207,17 @@ class m000000_000002_cms_shop extends Migration
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип поля')),  // строка, целое число, массив и др.
             'is_required' => $this->boolean()->comment(Yii::t('app', 'Обязательное')),
+            'error_required' => $this->string()->defaultValue(Yii::t('app', "Поле \'{name}\' обязательно для заполнения."))->comment(Yii::t('app', 'Сообщение ошибки если поле не заполнено.')),
             'is_unique' => $this->boolean()->comment(Yii::t('app', 'Уникальное')),
-            'min' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Минимальное значение')),
-            'max' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Максимальное значение')),
+            'error_unique' => $this->string()->defaultValue(Yii::t('app', "Поле \'{name}\' должно быть уникально."))->comment(Yii::t('app', 'Сообщение ошибки если поле уже есть в БД.')),
+            'min_val' => $this->double()->defaultValue(0)->comment(Yii::t('app', 'Минимальное числовое значение.')),
+            'max_val' => $this->double()->defaultValue(0)->comment(Yii::t('app', 'Максимальное числовое значение.')),
+            'error_value' => $this->string()->defaultValue(Yii::t('app', "Поле \'{name}\' должно быть числом от {min_val} до {max_val}."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует значениям.')),
+            'min_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Минимальное количество символов.')),
+            'max_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Максимальное количество символов.')),
+            'error_length' => $this->string()->defaultValue(Yii::t('app', "Поле \'{name}\' должно содержать от {min_str} до {max_str} символов."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует кол-ву символов.')),
             'params' => $this->string()->comment(Yii::t('app', 'Дополнительные параметры')),    // максимальное кол-во файлов, допустимые расширения
+            'mask' => $this->string()->comment(Yii::t('app', 'Маска поля')),
             'template_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Шаблон')),
         ], $tableOptions);
 
@@ -218,7 +225,8 @@ class m000000_000002_cms_shop extends Migration
         $this->addForeignKey('field_template_id_fk', '{{%field}}', 'template_id', '{{%template}}', 'id', 'CASCADE', 'CASCADE');
 
         $this->importData('field',
-            ['id', 'name', 'type', 'is_required', 'is_unique', 'min', 'max', 'params', 'template_id'],
+            ['id', 'name', 'type', 'is_required', 'error_required', 'is_unique', 'error_unique', 'min_val', 'max_val', 'error_value',
+                'min_str', 'max_str', 'error_length', 'params', 'mask', 'template_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/field.csv', "r"));
 
         // Значения целых цисел дополнительных полей

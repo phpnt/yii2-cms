@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\FieldForm;
@@ -18,8 +17,8 @@ class FieldSearch extends FieldForm
     public function rules()
     {
         return [
-            [['id', 'type', 'is_required', 'is_unique', 'min', 'max', 'template_id'], 'integer'],
-            [['name', 'params'], 'safe'],
+            [['id', 'type', 'is_required', 'is_unique', 'min_val', 'max_val', 'min_str', 'max_str', 'template_id'], 'integer'],
+            [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask'], 'safe'],
         ];
     }
 
@@ -63,13 +62,20 @@ class FieldSearch extends FieldForm
             'type' => $this->type,
             'is_required' => $this->is_required,
             'is_unique' => $this->is_unique,
-            'min' => $this->min,
-            'max' => $this->max,
+            'min_val' => $this->min_val,
+            'max_val' => $this->max_val,
+            'min_str' => $this->min_str,
+            'max_str' => $this->max_str,
             'template_id' => $this->template_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'params', $this->params]);
+            ->andFilterWhere(['like', 'error_required', $this->error_required])
+            ->andFilterWhere(['like', 'error_unique', $this->error_unique])
+            ->andFilterWhere(['like', 'error_value', $this->error_value])
+            ->andFilterWhere(['like', 'error_length', $this->error_length])
+            ->andFilterWhere(['like', 'params', $this->params])
+            ->andFilterWhere(['like', 'mask', $this->mask]);
 
         return $dataProvider;
     }

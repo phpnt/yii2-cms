@@ -39,6 +39,8 @@ class Template extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['status', 'add_rating', 'add_comments', 'i18n'], 'integer'],
             [['name', 'mark'], 'string', 'max' => 255],
+            [['name'], 'unique'],
+            [['mark'], 'unique'],
         ];
     }
 

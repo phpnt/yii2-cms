@@ -53,13 +53,12 @@ class FieldForm extends FieldExtend
         }
 
         if ($this->input_date_from) {
-            $this->min = strtotime($this->input_date_from);
+            $this->min_val = strtotime($this->input_date_from);
         }
 
         if ($this->input_date_to) {
-            $this->max = strtotime($this->input_date_to);
+            $this->max_val = strtotime($this->input_date_to);
         }
-
         return true;
     }
 
@@ -117,11 +116,11 @@ class FieldForm extends FieldExtend
             }
         }
         if ($this->type == Constants::FIELD_TYPE_DATE || $this->type == Constants::FIELD_TYPE_DATE_RANGE) {
-            if ($this->min) {
-                $this->input_date_from = Yii::$app->formatter->asDate($this->min);
+            if ($this->min_val) {
+                $this->input_date_from = Yii::$app->formatter->asDate($this->min_val);
             }
-            if ($this->max) {
-                $this->input_date_to = Yii::$app->formatter->asDate($this->max);
+            if ($this->max_val) {
+                $this->input_date_to = Yii::$app->formatter->asDate($this->max_val);
             }
         }
     }
@@ -133,6 +132,35 @@ class FieldForm extends FieldExtend
     public function beforeDelete()
     {
         parent::beforeDelete();
+
+        if (isset($this->valueInts)) {
+            foreach ($this->valueInts as $modelValueIntForm) {
+                try {
+                    $modelValueIntForm->delete();
+                } catch (StaleObjectException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                } catch (\Throwable $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                }
+            }
+        }
+
+        if (isset($this->valueNumerics)) {
+            foreach ($this->valueNumerics as $modelValueNumericForm) {
+                try {
+                    $modelValueNumericForm->delete();
+                } catch (StaleObjectException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                } catch (\Throwable $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                }
+            }
+        }
+
         if (isset($this->valueStrings)) {
             foreach ($this->valueStrings as $modelValueStringForm) {
                 try {
@@ -147,10 +175,24 @@ class FieldForm extends FieldExtend
             }
         }
 
-        if (isset($this->valueInts)) {
-            foreach ($this->valueInts as $modelValueIntForm) {
+        if (isset($this->valueTexts)) {
+            foreach ($this->valueTexts as $modelValueTextForm) {
                 try {
-                    $modelValueIntForm->delete();
+                    $modelValueTextForm->delete();
+                } catch (StaleObjectException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                } catch (\Throwable $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                }
+            }
+        }
+
+        if (isset($this->valueFiles)) {
+            foreach ($this->valueFiles as $modelValueFileForm) {
+                try {
+                    $modelValueFileForm->delete();
                 } catch (StaleObjectException $e) {
                     Yii::$app->errorHandler->logException($e);
                     throw new ErrorException($e->getMessage());

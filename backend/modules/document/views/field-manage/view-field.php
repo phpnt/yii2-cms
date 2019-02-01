@@ -81,6 +81,72 @@ Modal::begin([
                         ]
                     ],
                     [
+                        'attribute' => 'min_val',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->min_val;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'max_val',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->max_val;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'error_value',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->error_value;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'min_str',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->min_str;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'max_str',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->max_str;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'error_length',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->error_length;
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
                         'attribute' => 'is_required',
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelFieldForm) {
@@ -89,6 +155,17 @@ Modal::begin([
                                 return Yii::t('app', 'Да');
                             }
                             return Yii::t('app', 'Нет');
+                        }, $modelFieldForm),
+                        'captionOptions' => [
+                            'style' => 'width: 50% !important;'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'error_required',
+                        'format' => 'raw',
+                        'value' => call_user_func(function ($modelFieldForm) {
+                            /* @var $modelFieldForm \common\models\forms\FieldForm */
+                            return $modelFieldForm->error_required;
                         }, $modelFieldForm),
                         'captionOptions' => [
                             'style' => 'width: 50% !important;'
@@ -109,22 +186,11 @@ Modal::begin([
                         ]
                     ],
                     [
-                        'attribute' => 'min',
+                        'attribute' => 'error_unique',
                         'format' => 'raw',
                         'value' => call_user_func(function ($modelFieldForm) {
                             /* @var $modelFieldForm \common\models\forms\FieldForm */
-                            return $modelFieldForm->min;
-                        }, $modelFieldForm),
-                        'captionOptions' => [
-                            'style' => 'width: 50% !important;'
-                        ]
-                    ],
-                    [
-                        'attribute' => 'max',
-                        'format' => 'raw',
-                        'value' => call_user_func(function ($modelFieldForm) {
-                            /* @var $modelFieldForm \common\models\forms\FieldForm */
-                            return $modelFieldForm->max;
+                            return $modelFieldForm->error_unique;
                         }, $modelFieldForm),
                         'captionOptions' => [
                             'style' => 'width: 50% !important;'

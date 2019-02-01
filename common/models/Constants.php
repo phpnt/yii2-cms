@@ -62,7 +62,7 @@ class Constants
     const FIELD_TYPE_RADIO      = 8; // Радиокнопка
     const FIELD_TYPE_LIST       = 9; // Список
     const FIELD_TYPE_LIST_MULTY = 10; // Список с мультивыбором
-    const FIELD_TYPE_PRICE      = 11; // Цена
+    const FIELD_TYPE_PRICE      = 11; // Телефон
     const FIELD_TYPE_DATE       = 12; // Дата
     const FIELD_TYPE_DATE_RANGE = 13; // Диапазон дат
     const FIELD_TYPE_ADDRESS    = 14; // Адрес
