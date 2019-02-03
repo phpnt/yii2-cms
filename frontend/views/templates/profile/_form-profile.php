@@ -36,7 +36,6 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
         <?= SetDefaultFields::widget([
             'form' => $form,
             'model' => $modelProfileTemplateForm,
-            'modelName' => 'ProfileTemplateForm',
         ]); ?>
     <?php endif; ?>
 

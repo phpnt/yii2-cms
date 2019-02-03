@@ -148,7 +148,7 @@ class SourceMessageExtend extends SourceMessage
                         ];
                     }
 
-                    // переводим название полей
+                    // переводим название полей и сообщения ошибках
                     $templateFields = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('field')
@@ -159,6 +159,22 @@ class SourceMessageExtend extends SourceMessage
                         if ($templateField['name']) {
                             $messages['app'][] = $templateField['name'];
                             $this->locations['app'][] = [md5($templateField['name']) => 'Table "field" field "name", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_required']) {
+                            $messages['app'][] = $templateField['error_required'];
+                            $this->locations['app'][] = [md5($templateField['error_required']) => 'Table "field" field "error_required", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_unique']) {
+                            $messages['app'][] = $templateField['error_unique'];
+                            $this->locations['app'][] = [md5($templateField['error_unique']) => 'Table "field" field "error_unique", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_value']) {
+                            $messages['app'][] = $templateField['error_value'];
+                            $this->locations['app'][] = [md5($templateField['error_value']) => 'Table "field" field "error_value", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_length']) {
+                            $messages['app'][] = $templateField['error_length'];
+                            $this->locations['app'][] = [md5($templateField['error_length']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
                         }
                     }
                 } elseif ($template && $template['i18n'] == Constants::STATUS_I18N_ALL) {
@@ -203,7 +219,7 @@ class SourceMessageExtend extends SourceMessage
                         ];
                     }
 
-                    // переводим название полей
+                    // переводим название полей и сообщения об ошибках
                     $templateFields = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('field')
@@ -214,6 +230,22 @@ class SourceMessageExtend extends SourceMessage
                         if ($templateField['name']) {
                             $messages['app'][] = $templateField['name'];
                             $this->locations['app'][] = [md5($templateField['name']) => 'Table "field" field "name", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_required']) {
+                            $messages['app'][] = $templateField['error_required'];
+                            $this->locations['app'][] = [md5($templateField['error_required']) => 'Table "field" field "error_required", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_unique']) {
+                            $messages['app'][] = $templateField['error_unique'];
+                            $this->locations['app'][] = [md5($templateField['error_unique']) => 'Table "field" field "error_unique", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_value']) {
+                            $messages['app'][] = $templateField['error_value'];
+                            $this->locations['app'][] = [md5($templateField['error_value']) => 'Table "field" field "error_value", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['error_length']) {
+                            $messages['app'][] = $templateField['error_length'];
+                            $this->locations['app'][] = [md5($templateField['error_length']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
                         }
                     }
 

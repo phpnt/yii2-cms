@@ -184,8 +184,7 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
     <?php if (isset($modelDocumentForm->template)): ?>
         <?= SetDefaultFields::widget([
             'form' => $form,
-            'model' => $modelDocumentForm,
-            'modelName' => 'DocumentForm',
+            'model' => $modelDocumentForm
         ]); ?>
     <?php endif; ?>
 

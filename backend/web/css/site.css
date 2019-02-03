@@ -1,6 +1,13 @@
 .fa-folder {
     color: #f0b352;
 }
+.checkbox input[type="checkbox"] {
+    position: absolute !important;
+    visibility: hidden;
+}
+.radio label, .checkbox label {
+    padding-left: 0 !important;
+}
 .ms-container {
     width: 100% !important;
 }

@@ -15,7 +15,6 @@ class SetDefaultFields extends Widget
 {
     public $form;
     public $model;
-    public $modelName;
 
     public function init()
     {

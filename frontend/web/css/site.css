@@ -6,6 +6,13 @@ body {
     visibility: hidden;
     display: none;
 }
+.checkbox input[type="checkbox"] {
+    position: absolute !important;
+    visibility: hidden;
+}
+.radio label, .checkbox label {
+    padding-left: 0 !important;
+}
 .cursor-pointer {
     cursor: pointer;
 }

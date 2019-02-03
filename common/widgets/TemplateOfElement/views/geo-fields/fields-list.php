@@ -8,9 +8,11 @@
  */
 
 use common\models\Constants;
+use common\widgets\TemplateOfElement\fields\FieldTypeahead;
 
 /* @var $this \yii\web\View */
 /* @var $widget \common\widgets\TemplateOfElement\SetGeoFields */
+/* @var $form yii\widgets\ActiveForm */
 /* @var $modelGeoTemplateForm \common\widgets\TemplateOfElement\forms\GeoTemplateForm */
 /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
@@ -22,49 +24,138 @@ $modelGeoTemplateForm = $widget->modelGeoTemplateForm;
 
     <?php /* @var $modelFieldForm \common\models\forms\FieldForm */ ?>
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY): ?>
-        <?php $placeholder = $fieldsManage->getCountryName(); ?>
-        <?php $hiddenValue = $fieldsManage->getCountryId(); ?>
-        <?= $this->render('_typeahead-field', [
-            'containerClass' => 'col-md-12 block_geo_country',
-            'form' => $form,
-            'modelGeoTemplateForm' => $modelGeoTemplateForm,
-            'modelFieldForm' => $modelFieldForm,
-            'remoteUrl' => '/geo-manage/get-country?query=%QUERY&lang='.Yii::$app->language,
-            'attribute' => 'value_string',
-            'inputNameId' => 'name_geo_country',
-            'changeAttribute' => 'id_geo_country',
-            'value' => $placeholder,
-            'hiddenValue' => $hiddenValue
-        ]); ?>
+        <div class="col-md-12">
+            <?= $form->field($modelGeoTemplateForm, 'value_string', [
+                'options' => [
+                    'id' => 'group-' . $modelFieldForm->id
+                ]
+            ])->widget(FieldTypeahead::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+                'inputNameId' => 'name_geo_country',
+                'changeAttribute' => 'id_geo_country',
+                'containerSetCookie' => 'container-id_geo_country',
+                'bloodhound' => [
+                    'datumTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.obj.whitespace('name')"),
+                    'queryTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.whitespace"),
+                    'remote'            => [
+                        'url'           => '/geo-manage/get-country?query=%QUERY&lang='.Yii::$app->language,
+                        'wildcard'      => '%QUERY'
+                    ]
+                ],
+                'typeahead' => [
+                    'name' => 'name',
+                    'display' => 'name',
+                ],
+                'typeaheadEvents' => [
+                    'typeahead:selected' => new \yii\web\JsExpression(
+                        'function(obj, datum, name) {
+                    $("#name_geo_region").val("");
+                    $("#id_geo_region").val("");
+                    $("#name_geo_city").val("");
+                    $("#id_geo_city").val("");
+                    $("#id_geo_country").val(datum.id);
+                    $.pjax({
+                        type: "GET", 
+                        url: "/geo-manage/set-cookie?name=id_geo_country&value=" + datum.id,
+                        container: "#container-id_geo_country",
+                        push: false,
+                        timeout: 20000,
+                        scrollTo: false
+                    });
+            }'),
+                ],
+            ]) ?>
+        </div>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_REGION): ?>
-        <?php $placeholder = $fieldsManage->getRegionName(); ?>
-        <?php $hiddenValue = $fieldsManage->getRegionId(); ?>
-        <?= $this->render('_typeahead-field', [
-            'containerClass' => 'col-md-12 block_geo_region',
-            'form' => $form,
-            'modelGeoTemplateForm' => $modelGeoTemplateForm,
-            'modelFieldForm' => $modelFieldForm,
-            'remoteUrl' => '/geo-manage/get-region?query=%QUERY&lang='.Yii::$app->language,
-            'attribute' => 'value_string',
-            'inputNameId' => 'name_geo_region',
-            'changeAttribute' => 'id_geo_region',
-            'value' => $placeholder,
-            'hiddenValue' => $hiddenValue
-        ]); ?>
+        <div class="col-md-12">
+            <?= $form->field($modelGeoTemplateForm, 'value_string', [
+                'options' => [
+                    'id' => 'group-' . $modelFieldForm->id
+                ]
+            ])->widget(FieldTypeahead::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+                'inputNameId' => 'name_geo_region',
+                'changeAttribute' => 'id_geo_region',
+                'containerSetCookie' => 'container-id_geo_region',
+                'bloodhound' => [
+                    'datumTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.obj.whitespace('name')"),
+                    'queryTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.whitespace"),
+                    'remote'            => [
+                        'url'           => '/geo-manage/get-region?query=%QUERY&lang='.Yii::$app->language,
+                        'wildcard'      => '%QUERY'
+                    ]
+                ],
+                'typeahead' => [
+                    'name' => 'name',
+                    'display' => 'name',
+                ],
+                'typeaheadEvents' => [
+                    'typeahead:selected' => new \yii\web\JsExpression(
+                        'function(obj, datum, name) {
+                    $("#name_geo_city").val("");
+                    $("#id_geo_city").val("");
+                    $("#id_geo_region").val(datum.id);
+                    $.pjax({
+                        type: "GET", 
+                        url: "/geo-manage/set-cookie?name=id_geo_region&value=" + datum.id,
+                        container: "#container-id_geo_region",
+                        push: false,
+                        timeout: 20000,
+                        scrollTo: false
+                    });
+            }'),
+                ],
+            ]) ?>
+        </div>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CITY): ?>
-        <?php $placeholder = $fieldsManage->getCityName(); ?>
-        <?php $hiddenValue = $fieldsManage->getCityId(); ?>
-        <?= $this->render('_typeahead-field', [
-            'containerClass' => 'col-md-12 block_geo_city',
-            'form' => $form,
-            'modelGeoTemplateForm' => $modelGeoTemplateForm,
-            'modelFieldForm' => $modelFieldForm,
-            'remoteUrl' => '/geo-manage/get-city?query=%QUERY&lang='.Yii::$app->language,
-            'attribute' => 'value_string',
-            'inputNameId' => 'name_geo_city',
-            'changeAttribute' => 'id_geo_city',
-            'value' => $placeholder,
-            'hiddenValue' => $hiddenValue
-        ]); ?>
+        <div class="col-md-12">
+            <?= $form->field($modelGeoTemplateForm, 'value_string', [
+                'options' => [
+                    'id' => 'group-' . $modelFieldForm->id
+                ]
+            ])->widget(FieldTypeahead::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+                'inputNameId' => 'name_geo_city',
+                'changeAttribute' => 'id_geo_city',
+                'containerSetCookie' => 'container-id_geo_city',
+                'bloodhound' => [
+                    'datumTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.obj.whitespace('name')"),
+                    'queryTokenizer'    => new \yii\web\JsExpression("Bloodhound.tokenizers.whitespace"),
+                    'remote'            => [
+                        'url'           => '/geo-manage/get-city?query=%QUERY&lang='.Yii::$app->language,
+                        'wildcard'      => '%QUERY'
+                    ]
+                ],
+                'typeahead' => [
+                    'name' => 'name',
+                    'display' => 'name',
+                ],
+                'typeaheadEvents' => [
+                    'typeahead:selected' => new \yii\web\JsExpression(
+                        'function(obj, datum, name) {
+                        $("#name_geo_city").val("");
+                        $("#id_geo_city").val("");
+                        $("#id_geo_city").val(datum.id);
+                        $.pjax({
+                            type: "GET", 
+                            url: "/geo-manage/set-cookie?name=id_geo_city&value=" + datum.id,
+                            container: "#container-id_geo_city",
+                            push: false,
+                            timeout: 20000,
+                            scrollTo: false
+                        });
+            }'),
+                ],
+            ]) ?>
+        </div>
     <?php endif; ?>
 <?php endforeach; ?>

@@ -23,6 +23,8 @@ class FieldForm extends FieldExtend
     public $input_date_from;
     public $input_date_to;
 
+    public $file;
+    public $few_files;
     public $file_extensions;
 
     public function rules()
@@ -30,6 +32,8 @@ class FieldForm extends FieldExtend
         $items = FieldExtend::rules();
         $items[] = [['name', 'input_date_from', 'input_date_to'], 'string', 'on' => ['create-field', 'update-field']];
         $items[] = [['list', 'file_extensions'], 'each', 'rule' => ['string'], 'on' => ['create-field', 'update-field']];
+        $items[] = [['file'], 'file', 'skipOnEmpty' => true, 'on' => ['create-element', 'update-element']];
+        $items[] = [['few_files'], 'file', 'skipOnEmpty' => true, 'maxFiles' => 20, 'on' => ['create-element', 'update-element']];
 
         return $items;
     }

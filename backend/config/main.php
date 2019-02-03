@@ -83,6 +83,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,
+            'ignoreLanguageUrlPatterns' => [
+                '#^geo/#' => '#^geo/#',
+                '#^geo-manage/#' => '#^geo-manage/#',
+            ],
             'rules' => [
                 [
                     'pattern' => '',

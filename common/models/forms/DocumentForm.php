@@ -421,227 +421,241 @@ class DocumentForm extends DocumentExtend
             }
         }
 
-        if (!$this->errors_fields) {
-            foreach ($this->elements_fields as $key => $forms_field) {
-                $field = (new \yii\db\Query())
-                    ->select(['*'])
-                    ->from('field')
-                    ->where(['id' => $key])
-                    ->one();
+        foreach ($this->elements_fields as $key => $forms_field) {
+            $field = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where(['id' => $key])
+                ->one();
 
-                if (is_array($forms_field)) {
-                    foreach ($forms_field as $sub_key => $item) {
-                        if (is_string($this->elements_fields[$key][$sub_key])) {
-                            $this->elements_fields[$key][$sub_key] = trim($this->elements_fields[$key][$sub_key]);
+            if (is_array($forms_field)) {
+                foreach ($forms_field as $sub_key => $item) {
+                    if (is_string($this->elements_fields[$key][$sub_key])) {
+                        $this->elements_fields[$key][$sub_key] = trim($this->elements_fields[$key][$sub_key]);
+                    }
+                    // ограничения для полей
+                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
+                        if (!$field['min_val'] || $field['min_val'] < -2147483648) {
+                            $field['min_val'] = -2147483648;
                         }
-                        // ограничения для полей
-                        if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
-                            if (!$field['min_val'] || $field['min_val'] < -2147483648) {
-                                $field['min_val'] = -2147483648;
-                            }
+                    }
+                    // Проверка DOUBLE на число
+                    if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                        $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) {
+                        if (!is_numeric($this->elements_fields[$key][$sub_key])) {
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является числом.', ['field' => $field['name']]);
                         }
-                        // проверка на минимальное числовое значение
-                        if ($field['min_val']) {
-                            if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                                $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_PRICE) {
-                                if ($this->elements_fields[$key][$sub_key] < (int) $field['min_val']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
-                                        'min_val' => $field['min_val'],
-                                        'max_val' => $field['max_val'],
-                                    ]);
-                                }
-                            }
-                            if ($field['type'] == Constants::FIELD_TYPE_DATE ||
-                                $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
-                                if (strtotime($this->elements_fields[$key][$sub_key]) < (int) $field['min_val']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
-                                        'min_val' => Yii::$app->formatter->asDate($field['min_val']),
-                                        'max_val' => Yii::$app->formatter->asDate($field['max_val']),
-                                    ]);
-                                }
-                            }
-                            if ($field['type'] == Constants::FIELD_TYPE_FILE ||
-                                $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
-                                foreach ($this->elements_fields[$key] as $file) {
-                                    /* @var $file yii\web\UploadedFile */
-                                    if ($file->size < (int) $field['min_val']) {
-                                        $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                            'name' => $field['name'],
-                                            'min_val' => $field['min_val'],
-                                            'max_val' => $field['max_val'],
-                                        ]);
-                                    }
-                                }
-                            }
-                        }
-                        // ограничения для полей
-                        if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
-                            if (!$field['max_val'] || $field['max_val'] > 2147483647) {
-                                $field['max_val'] = 2147483647;
-                            }
-                        }
-                        // проверка на максимальное числовое значение
-                        if ($field['max_val']) {
-                            if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                                $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_PRICE) {
-                                if ($this->elements_fields[$key][$sub_key] > (int) $field['max_val']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
-                                        'min_val' => $field['min_val'],
-                                        'max_val' => $field['max_val'],
-                                    ]);
-                                }
-                            }
-                            if ($field['type'] == Constants::FIELD_TYPE_DATE ||
-                                $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
-                                if (strtotime($this->elements_fields[$key][$sub_key]) > (int) $field['max_val']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
-                                        'min_val' => Yii::$app->formatter->asDate($field['min_val']),
-                                        'max_val' => Yii::$app->formatter->asDate($field['max_val']),
-                                    ]);
-                                }
-                            }
-                            if ($field['type'] == Constants::FIELD_TYPE_FILE ||
-                                $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
-                                foreach ($this->elements_fields[$key] as $file) {
-                                    /* @var $file yii\web\UploadedFile */
-                                    if ($file->size > (int) $field['max_val']) {
-                                        $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                            'name' => $field['name'],
-                                            'min_val' => $field['min_val'],
-                                            'max_val' => $field['max_val'],
-                                        ]);
-                                    }
-                                }
-                            }
-                        }
-
-                        // ограничения для полей
+                    }
+                    // проверка на минимальное числовое значение
+                    if ($field['min_val']) {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                            $field['type'] == Constants::FIELD_TYPE_STRING) {
-                            if (!$field['min_str'] || $field['min_str'] < 0) {
-                                $field['min_str'] = 0;
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            if ($this->elements_fields[$key][$sub_key] < (int) $field['min_val']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
+                                    'name' => $field['name'],
+                                    'min_val' => $field['min_val'],
+                                    'max_val' => $field['max_val'],
+                                ]);
                             }
                         }
-                        // проверка на минимальное кол-во символов
-                        if ($field['min_str']) {
-                            if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                                $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_STRING ||
-                                $field['type'] == Constants::FIELD_TYPE_PRICE) {
-                                if (iconv_strlen($this->elements_fields[$key][$sub_key]) < (int) $field['min_str']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
+                        if ($field['type'] == Constants::FIELD_TYPE_DATE ||
+                            $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
+                            if (strtotime($this->elements_fields[$key][$sub_key]) < (int) $field['min_val']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
+                                    'name' => $field['name'],
+                                    'min_val' => Yii::$app->formatter->asDate($field['min_val']),
+                                    'max_val' => Yii::$app->formatter->asDate($field['max_val']),
+                                ]);
+                            }
+                        }
+                        if ($field['type'] == Constants::FIELD_TYPE_FILE ||
+                            $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                            foreach ($this->elements_fields[$key] as $file) {
+                                /* @var $file yii\web\UploadedFile */
+                                if ($file->size < (int) $field['min_val']) {
+                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
                                         'name' => $field['name'],
-                                        'min_str' => $field['min_str'],
-                                        'max_str' => $field['max_str'],
+                                        'min_val' => $field['min_val'],
+                                        'max_val' => $field['max_val'],
                                     ]);
                                 }
                             }
                         }
-
-                        // ограничения для полей
+                    }
+                    // ограничения для полей
+                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
+                        if (!$field['max_val'] || $field['max_val'] > 2147483647) {
+                            $field['max_val'] = 2147483647;
+                        }
+                    }
+                    // проверка на максимальное числовое значение
+                    if ($field['max_val']) {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
-                            if (!$field['max_str'] || $field['max_str'] > 10) {
-                                $field['max_str'] = 10;
+                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            if ($this->elements_fields[$key][$sub_key] > (int) $field['max_val']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
+                                    'name' => $field['name'],
+                                    'min_val' => $field['min_val'],
+                                    'max_val' => $field['max_val'],
+                                ]);
                             }
                         }
-                        if ($field['type'] == Constants::FIELD_TYPE_STRING ||
+                        if ($field['type'] == Constants::FIELD_TYPE_DATE ||
+                            $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
+                            if (strtotime($this->elements_fields[$key][$sub_key]) > (int) $field['max_val']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
+                                    'name' => $field['name'],
+                                    'min_val' => Yii::$app->formatter->asDate($field['min_val']),
+                                    'max_val' => Yii::$app->formatter->asDate($field['max_val']),
+                                ]);
+                            }
+                        }
+                        if ($field['type'] == Constants::FIELD_TYPE_FILE ||
+                            $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                            foreach ($this->elements_fields[$key] as $file) {
+                                /* @var $file yii\web\UploadedFile */
+                                if ($file->size > (int) $field['max_val']) {
+                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
+                                        'name' => $field['name'],
+                                        'min_val' => $field['min_val'],
+                                        'max_val' => $field['max_val'],
+                                    ]);
+                                }
+                            }
+                        }
+                    }
+
+                    // ограничения для полей
+                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                        $field['type'] == Constants::FIELD_TYPE_STRING) {
+                        if (!$field['min_str'] || $field['min_str'] < 0) {
+                            $field['min_str'] = 0;
+                        }
+                    }
+                    // проверка на минимальное кол-во символов
+                    if ($field['min_str']) {
+                        if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_STRING ||
+                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            if (iconv_strlen($this->elements_fields[$key][$sub_key]) < (int) $field['min_str']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
+                                    'name' => $field['name'],
+                                    'min_str' => $field['min_str'],
+                                    'max_str' => $field['max_str'],
+                                ]);
+                            }
+                        }
+                        if ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                            if (count($this->elements_fields[$key]) < $field['min_str']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
+                                    'name' => $field['name'],
+                                    'min_str' => $field['min_str'],
+                                    'max_str' => $field['max_str'],
+                                ]);
+                            }
+                        }
+                    }
+
+                    // ограничения для полей
+                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
+                        if (!$field['max_str'] || $field['max_str'] > 10) {
+                            $field['max_str'] = 10;
+                        }
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_STRING ||
+                        $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
+                        if (!$field['max_str'] || $field['max_str'] > 255) {
+                            $field['max_str'] = 255;
+                        }
+                    }
+
+                    // проверка на максимальное количество символов
+                    if ($field['max_str']) {
+                        if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_STRING ||
+                            $field['type'] == Constants::FIELD_TYPE_PRICE ||
                             $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
-                            if (!$field['max_str'] || $field['max_str'] > 255) {
-                                $field['max_str'] = 255;
+                            if (iconv_strlen($this->elements_fields[$key][$sub_key]) > (int) $field['max_str']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
+                                    'name' => $field['name'],
+                                    'min_str' => $field['min_str'],
+                                    'max_str' => $field['max_str'],
+                                ]);
                             }
                         }
+                        if ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                            if (count($this->elements_fields[$key]) > $field['max_str']) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
+                                    'name' => $field['name'],
+                                    'min_str' => $field['min_str'],
+                                    'max_str' => $field['max_str'],
+                                ]);
+                            }
+                        }
+                    }
 
-                        // проверка на максимальное количество символов
-                        if ($field['max_str']) {
-                            if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                                $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                                $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                                $field['type'] == Constants::FIELD_TYPE_STRING ||
-                                $field['type'] == Constants::FIELD_TYPE_PRICE ||
-                                $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
-                                if (iconv_strlen($this->elements_fields[$key][$sub_key]) > (int) $field['max_str']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                        'name' => $field['name'],
-                                        'min_str' => $field['min_str'],
-                                        'max_str' => $field['max_str'],
-                                    ]);
-                                }
-                            }
-                            if ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
-                                if (count($this->elements_fields[$key]) > $field['max_str']) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                        'name' => $field['name'],
-                                        'min_str' => $field['min_str'],
-                                        'max_str' => $field['max_str'],
-                                    ]);
-                                }
-                            }
+                    // Проверка на email и url и youtube ссылки и др. валидаторов
+                    if ($field['type'] == Constants::FIELD_TYPE_EMAIL) {
+                        if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_EMAIL)) {
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является email адресом.', ['field' => $field['name']]);
                         }
-
-                        // Проверка на email и url и youtube ссылки и др. валидаторов
-                        if ($field['type'] == Constants::FIELD_TYPE_EMAIL) {
-                            if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_EMAIL)) {
-                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является email адресом.', ['field' => $field['name']]);
-                            }
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_URL ||
+                        $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
+                        if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_URL)) {
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является ссылкой.', ['field' => $field['name']]);
                         }
-                        if ($field['type'] == Constants::FIELD_TYPE_URL ||
-                            $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
-                            if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_URL)) {
-                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является ссылкой.', ['field' => $field['name']]);
-                            }
-                        }
-                        if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
-                            if (isset($this->elements_fields[$key][$sub_key])) {
-                                $rx = '~
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
+                        if (isset($this->elements_fields[$key][$sub_key])) {
+                            $rx = '~
                             ^(?:https?://)?                         # Optional protocol
                            (?:www[.])?                              # Optional sub-domain
                            (?:youtube[.]com/watch[?]v=|youtu[.]be/) # Mandatory domain name (w/ query string in .com)
                            ([^&]{11})                               # Video id of 11 characters as capture group 1
                             ~x';
 
-                                $is_youtube = preg_match($rx, $this->elements_fields[$key][$sub_key], $matches);
+                            $is_youtube = preg_match($rx, $this->elements_fields[$key][$sub_key], $matches);
 
-                                if (!$is_youtube) {
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является YuoTube ссылкой.', ['field' => $field['name']]);
-                                }
+                            if (!$is_youtube) {
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является YuoTube ссылкой.', ['field' => $field['name']]);
                             }
                         }
-                        // валидация расширений файлов
-                        if ($field['type'] == Constants::FIELD_TYPE_FILE ||
-                            $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
-                            $params = Json::decode($field['params']);
-                            foreach ($this->elements_fields[$key] as $file) {
-                                /* @var $file yii\web\UploadedFile */
-                                if ($params['file_extensions'] && !in_array($file->extension, $params['file_extensions'])) {
-                                    $ext_str = '';
-                                    $i = 0;
-                                    foreach ($params['file_extensions'] as $extension) {
-                                        if ($i == 0) {
-                                            $ext_str .= $extension;
-                                        } else {
-                                            $ext_str .= ', ' . $extension;
-                                        }
-                                        $i++;
+                    }
+                    // валидация расширений файлов
+                    if ($field['type'] == Constants::FIELD_TYPE_FILE ||
+                        $field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                        $params = Json::decode($field['params']);
+                        foreach ($this->elements_fields[$key] as $file) {
+                            /* @var $file yii\web\UploadedFile */
+                            if ($params['file_extensions'] && !in_array($file->extension, $params['file_extensions'])) {
+                                $ext_str = '';
+                                $i = 0;
+                                foreach ($params['file_extensions'] as $extension) {
+                                    if ($i == 0) {
+                                        $ext_str .= $extension;
+                                    } else {
+                                        $ext_str .= ', ' . $extension;
                                     }
-                                    $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Файлы могут иметь следующие расширения {extentions}', ['extentions' => $ext_str]);
+                                    $i++;
                                 }
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Файлы могут иметь следующие расширения {extentions}', ['extentions' => $ext_str]);
                             }
                         }
                     }
@@ -649,66 +663,64 @@ class DocumentForm extends DocumentExtend
             }
         }
 
-        if (!$this->errors_fields) {
-            // Проверка на уникальность
-            foreach ($this->elements_fields as $key => $forms_field) {
-                $field = (new \yii\db\Query())
-                    ->select(['*'])
-                    ->from('field')
-                    ->where(['id' => $key])
-                    ->one();
+        // Проверка на уникальность
+        foreach ($this->elements_fields as $key => $forms_field) {
+            $field = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where(['id' => $key])
+                ->one();
 
-                if ($field['is_unique'] && is_array($forms_field)) {
-                    foreach ($forms_field as $sub_key => $item) {
-                        if ($field['type'] == Constants::FIELD_TYPE_INT) {
-                            $data = (new \yii\db\Query())
-                                ->select(['*'])
-                                ->from('value_int')
-                                ->where([
-                                    'field_id' => $field['id'],
-                                    'value' => (int) $this->elements_fields[$key][$sub_key],
-                                ])
-                                ->one();
-                        }
-                        if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
-                            $data = (new \yii\db\Query())
-                                ->select(['*'])
-                                ->from('value_numeric')
-                                ->where([
-                                    'field_id' => $field['id'],
-                                    'value' => $this->elements_fields[$key][$sub_key],
-                                ])
-                                ->one();
-                        }
-                        if ($field['type'] == Constants::FIELD_TYPE_STRING ||
-                            $field['type'] == Constants::FIELD_TYPE_EMAIL ||
-                            $field['type'] == Constants::FIELD_TYPE_URL ||
-                            $field['type'] == Constants::FIELD_TYPE_SOCIAL ||
-                            $field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
-                            $data = (new \yii\db\Query())
-                                ->select(['*'])
-                                ->from('value_string')
-                                ->where([
-                                    'field_id' => $field['id'],
-                                    'value' => $this->elements_fields[$key][$sub_key],
-                                ])
-                                ->one();
-                        }
-                        if ($field['type'] == Constants::FIELD_TYPE_TEXT) {
-                            $data = (new \yii\db\Query())
-                                ->select(['*'])
-                                ->from('value_text')
-                                ->where([
-                                    'field_id' => $field['id'],
-                                    'value' => $this->elements_fields[$key][$sub_key],
-                                ])
-                                ->one();
-                        }
+            if ($field['is_unique'] && is_array($forms_field)) {
+                foreach ($forms_field as $sub_key => $item) {
+                    if ($field['type'] == Constants::FIELD_TYPE_INT) {
+                        $data = (new \yii\db\Query())
+                            ->select(['*'])
+                            ->from('value_int')
+                            ->where([
+                                'field_id' => $field['id'],
+                                'value' => (int) $this->elements_fields[$key][$sub_key],
+                            ])
+                            ->one();
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                        $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                        $data = (new \yii\db\Query())
+                            ->select(['*'])
+                            ->from('value_numeric')
+                            ->where([
+                                'field_id' => $field['id'],
+                                'value' => $this->elements_fields[$key][$sub_key],
+                            ])
+                            ->one();
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_STRING ||
+                        $field['type'] == Constants::FIELD_TYPE_EMAIL ||
+                        $field['type'] == Constants::FIELD_TYPE_URL ||
+                        $field['type'] == Constants::FIELD_TYPE_SOCIAL ||
+                        $field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
+                        $data = (new \yii\db\Query())
+                            ->select(['*'])
+                            ->from('value_string')
+                            ->where([
+                                'field_id' => $field['id'],
+                                'value' => $this->elements_fields[$key][$sub_key],
+                            ])
+                            ->one();
+                    }
+                    if ($field['type'] == Constants::FIELD_TYPE_TEXT) {
+                        $data = (new \yii\db\Query())
+                            ->select(['*'])
+                            ->from('value_text')
+                            ->where([
+                                'field_id' => $field['id'],
+                                'value' => $this->elements_fields[$key][$sub_key],
+                            ])
+                            ->one();
+                    }
 
-                        if ($data && $data['document_id'] != $this->id) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_unique'], ['name' => $field['name']]);
-                        }
+                    if ($data && $data['document_id'] != $this->id) {
+                        $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_unique'], ['name' => $field['name']]);
                     }
                 }
             }
@@ -775,12 +787,12 @@ class DocumentForm extends DocumentExtend
                 $fieldsManage->setInt($field, $forms_field, $this->id);
             }
             // запись значений для диапазона целых чисел
-            if ($field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                $field['type'] == Constants::FIELD_TYPE_CHECKBOX) {
+            if ($field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
                 $fieldsManage->setIntRange($field, $forms_field, $this->id);
             }
             // запись значений для диапазона целых чисел
-            if ($field['type'] == Constants::FIELD_TYPE_LIST_MULTY) {
+            if ($field['type'] == Constants::FIELD_TYPE_LIST_MULTY ||
+                $field['type'] == Constants::FIELD_TYPE_CHECKBOX) {
                 $fieldsManage->setMulty($field, $forms_field, $this->id);
             }
             // запись значений для дробей
