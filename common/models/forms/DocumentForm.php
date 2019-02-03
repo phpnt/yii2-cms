@@ -444,7 +444,7 @@ class DocumentForm extends DocumentExtend
                     if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
                         $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) {
                         if (!is_numeric($this->elements_fields[$key][$sub_key])) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является числом.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является числом.', ['field' => $field['name']]);
                         }
                     }
                     // проверка на минимальное числовое значение
@@ -613,13 +613,13 @@ class DocumentForm extends DocumentExtend
                     // Проверка на email и url и youtube ссылки и др. валидаторов
                     if ($field['type'] == Constants::FIELD_TYPE_EMAIL) {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_EMAIL)) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является email адресом.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является email адресом.', ['field' => $field['name']]);
                         }
                     }
                     if ($field['type'] == Constants::FIELD_TYPE_URL ||
                         $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_URL)) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является ссылкой.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является ссылкой.', ['field' => $field['name']]);
                         }
                     }
                     if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
@@ -634,7 +634,7 @@ class DocumentForm extends DocumentExtend
                             $is_youtube = preg_match($rx, $this->elements_fields[$key][$sub_key], $matches);
 
                             if (!$is_youtube) {
-                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле \"{field}\" не является YuoTube ссылкой.', ['field' => $field['name']]);
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является YuoTube ссылкой.', ['field' => $field['name']]);
                             }
                         }
                     }

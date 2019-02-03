@@ -7,11 +7,16 @@
  * Time: 12:32
  */
 
+use phpnt\bootstrapNotify\BootstrapNotify;
+
 /* @var $this yii\web\View */
 /* @var $countComment */
 ?>
-<?php if ($countComment): ?>
-    <span class="pull-right-container">
+<span id="unchecked-count-comments">
+    <?= BootstrapNotify::widget() ?>
+    <?php if ($countComment): ?>
+        <span class="pull-right-container">
         <span class="label label-danger pull-right"><?= $countComment ?></span>
     </span>
-<?php endif; ?>
+    <?php endif; ?>
+</span>

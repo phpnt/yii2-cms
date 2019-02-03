@@ -202,3 +202,18 @@ JS;
     </div>
 </div>
 <?php Pjax::end(); ?>
+<?php
+$url_unchecked_count = Url::to(['/comment/manage/count-unchecked']);
+$js = <<< JS
+    $('#pjax-grid-comment-block').on('pjax:end',   function() {
+        $.pjax({
+            type: "GET", 
+            url: "$url_unchecked_count",
+            container: "#unchecked-count-comments",
+            push: false,
+            timeout: 20000,
+            scrollTo: false
+        });        
+    });
+JS;
+$this->registerJs($js); ?>

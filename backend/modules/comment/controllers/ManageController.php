@@ -2,6 +2,7 @@
 
 namespace backend\modules\comment\controllers;
 
+use common\models\Constants;
 use common\models\forms\CommentForm;
 use common\models\search\CommentSearch;
 use Yii;
@@ -177,6 +178,29 @@ class ManageController extends Controller
         return $this->renderAjax('index', [
             'modelCommentSearch' => $modelCommentSearch,
             'dataProviderCommentSearch' => $dataProviderCommentSearch
+        ]);
+    }
+
+    /**
+     * Удаление комментари
+     *
+     * @return string
+     * @throws ErrorException
+     */
+    public function actionCountUnchecked()
+    {
+        if (!Yii::$app->request->isPjax) {
+            return $this->redirect(['index']);
+        }
+
+        // подсчет процентов
+        $countComment = (new \yii\db\Query())
+            ->from('comment')
+            ->where(['status' => Constants::STATUS_DOC_WAIT])
+            ->count();
+
+        return $this->renderAjax('@common/widgets/UncheckedComments/views/index', [
+            'countComment' => $countComment,
         ]);
     }
 }

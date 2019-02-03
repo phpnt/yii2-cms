@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -87,9 +87,6 @@ id;language;translation;hash
 108;en;"Account not confirmed. Check Email.";c2cec6b1f356b759e11ec4d21000b289
 109;en;"Account is blocked. Contact person with administrator.";249695371343d718c0c0fbe706237fc2
 110;en;"The field ""{field}"" is required.";d38e373443b2318450cc63a315603800
-111;en;"The field ""{field}"" is not an email address.";e7c6988b0d176b5f87fae9f8797bf949
-112;en;"The field ""{field}"" is not a link.";acca4eb0d4763a168b0dc889a9b41955
-113;en;"The field ""{field}"" is not a YuoTube link.";acca4eb0d4763a168b0dc889a9b41955
 114;en;"Files may have the following extensions {extensions}";55cf08c34e8df5643967c5cafa389e68
 122;en;"The reset token cannot be empty.";0da23572a86952a0ed3ac41b01c47e8f
 123;en;"Invalid password reset token.";6090596cd1ae2b4df38f216f2672b708
@@ -308,7 +305,7 @@ id;language;translation;hash
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+393;en;"A template for the user\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -362,13 +359,8 @@ id;language;translation;hash
 465;en;"Your comment.";fa2b67ebeebbc8b2354a5f54d0330b9a
 466;en;"Enter text";e407b2bc106d1e3a8305c9674b3f444e
 467;en;"Position (after)";b92b3a76b7ee7b96e86b4eef7cbbb243
-468;en;"The field '{name}' must be a number from {min_val} to {max_val}.";558b9c2ae4aeca9137f3765ada30fd21
-469;en;"The field '{name}' must contain from {min_str} to {max_str} characters.";409189d01aa5297af80c3af262744b0e
-470;en;"The field '{name}' is required.";e561e87e1822fad11e9b0cd8c38af17f
-471;en;"The field '{name}' must be unique.";aea0e0d5ecc8f9eae46183cfe2c83677
 472;en;"File size must be from {min_val} to {max_val} bytes.";d30f1b89ff45be38075f29cfd704490f
 473;en;"The number of files should be from {min_str} to {max_str} pieces.";084a1af99c24e7e4ed4ecdfdb25ae48c
-474;en;"The field '{name}' must be from {min_val} to {max_val}.";e869a60c868b6058195a7cc9e30138f3
 475;en;"Minimum numeric value (bytes)";d91e33613b9a84469dc18feb72c507c6
 476;en;"Maximum numeric value (bytes)";a88d3884d7ef5fe9ec1ed21662b9f819
 477;en;"Minimum number of files";dd7972343dc87816a2b2116e578e4ac8
@@ -388,3 +380,16 @@ id;language;translation;hash
 491;en;"Range of numbers with a fraction (DOUBLE)";ba12e1e871739207f6cfbfbfc9299dfc
 492;en;"String (STRING)";f288f7be6dc9acd1615b02fea010fbfd
 493;en;"Text (TEXT)";1901b31fa0552a4683de5f52aa8d3048
+494;en;"The video_link or video_id property has not been sent.";42aa8f054c7177f6ecc69eaf9dce2f80
+495;en;"Video not found.";42aa8f054c7177f6ecc69eaf9dce2f80
+502;en;"(not set)";f8c518dcab383f0dabe7b58227c951de
+503;en;"Wrong phone number.";2f2cd10bb87d2f1906223e38c783604d
+504;en;"The field ""{name}"" must be a number from {min_val} to {max_val}.";545e8f43e4914b0b3cc84cdd5914d657
+505;en;"The field ""{name}"" must contain from {min_str} to {max_str} characters.";f83fc0458738ac883ba5a1f8739b5b3c
+506;en;"The field ""{name}"" is required.";a59fb627b211c4d794c6a11794e81ca8
+507;en;"Поле «{name}» должно быть уникально.";7fcf6a6af08c42581803f089a97e78af
+508;en;"The field ""{name}"" must be from {min_val} to {max_val}.";a2a769f14875058067c87627ccceb82a
+509;en;"The field ""{field}"" is not a number.";f2b23e127878d6ea0235c35b778f980e
+510;en;"The field ""{field}"" is not an email address.";dde237648eab037ad6941055ee59c0a5
+511;en;"The field ""{field}"" is not a link.";95b1e0503673caf0d5179f5d68a07e18
+512;en;"The field ""{field}"" is not a YuoTube link.";9e92111ca349c8ad40065c0bdf2744ee

@@ -1,5 +1,6 @@
 name;type;description;rule_name;data;created_at;updated_at
-admin;1;Администратор;;;1535796441;1547977092
+admin;1;Администратор;;;1535796441;1549205215
+comment/manage/count-unchecked;2;"Обновляет значок не проверенных комментариев.";;;1549204668;1549204668
 comment/manage/create-comment;2;"comment/manage/create-comment (создание комментариев)";;;1547977028;1547977028
 comment/manage/delete-comment;2;"comment/manage/delete-comment (удаление комментариев)";;;1547977054;1547977054
 comment/manage/index;2;"comment/manage/index (просмотр списка комментариев)";;;1547976886;1547976940

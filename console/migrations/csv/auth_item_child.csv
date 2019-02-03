@@ -1,4 +1,5 @@
 parent;child
+admin;comment/manage/count-unchecked
 admin;comment/manage/create-comment
 admin;comment/manage/delete-comment
 admin;comment/manage/index

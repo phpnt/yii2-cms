@@ -24,7 +24,7 @@ class UncheckedComments extends Widget
 
     public function run()
     {
-// подсчет процентов
+        // подсчет процентов
         $countComment = (new \yii\db\Query())
             ->from('comment')
             ->where(['status' => Constants::STATUS_DOC_WAIT])

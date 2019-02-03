@@ -64,10 +64,10 @@ use phpnt\datepicker\BootstrapDatepicker;
     </div>
 
     <?php if ($modelFieldForm->isNewRecord): ?>
-        <?php $modelFieldForm->error_value = Yii::t('app', "Поле '{name}' должно быть числом от {min_val} до {max_val}."); ?>
-        <?php $modelFieldForm->error_length = Yii::t('app', "Поле '{name}' должно содержать от {min_str} до {max_str} символов."); ?>
-        <?php $modelFieldForm->error_required = Yii::t('app', "Поле '{name}' обязательно для заполнения."); ?>
-        <?php $modelFieldForm->error_unique = Yii::t('app', "Поле '{name}' должно быть уникально."); ?>
+        <?php $modelFieldForm->error_value = Yii::t('app', "Поле «{name}» должно быть числом от {min_val} до {max_val}."); ?>
+        <?php $modelFieldForm->error_length = Yii::t('app', "Поле «{name}» должно содержать от {min_str} до {max_str} символов."); ?>
+        <?php $modelFieldForm->error_required = Yii::t('app', "Поле «{name}» обязательно для заполнения."); ?>
+        <?php $modelFieldForm->error_unique = Yii::t('app', "Поле «{name}» должно быть уникально."); ?>
     <?php endif; ?>
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
         $modelFieldForm->type == Constants::FIELD_TYPE_INT_RANGE): ?>
@@ -102,16 +102,16 @@ use phpnt\datepicker\BootstrapDatepicker;
             <?php $modelFieldForm->max_str = 5; ?>
             <?php $modelFieldForm->error_value = Yii::t('app', 'Размер файла должен быть от {min_val} до {max_val} байт.'); ?>
             <?php $modelFieldForm->error_length = Yii::t('app', 'Количество файлов должно быль от {min_str} до {max_str} штук.'); ?>
-            <?php $modelFieldForm->error_required = Yii::t('app', "Поле '{name}' обязательно для заполнения."); ?>
-            <?php $modelFieldForm->error_unique = Yii::t('app', "Поле '{name}' должно быть уникально."); ?>
+            <?php $modelFieldForm->error_required = Yii::t('app', "Поле «{name}» обязательно для заполнения."); ?>
+            <?php $modelFieldForm->error_unique = Yii::t('app', "Поле «{name}» должно быть уникально."); ?>
         <?php endif; ?>
     <?php endif; ?>
 
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DATE ||
         $modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
         <?php if ($modelFieldForm->isNewRecord): ?>
-            <?php $modelFieldForm->error_value = Yii::t('app', "Поле '{name}' должно быть от {min_val} до {max_val}."); ?>
-            <?php $modelFieldForm->error_required = Yii::t('app', "Поле '{name}' обязательно для заполнения."); ?>
+            <?php $modelFieldForm->error_value = Yii::t('app', "Поле «{name}» должно быть от {min_val} до {max_val}."); ?>
+            <?php $modelFieldForm->error_required = Yii::t('app', "Поле «{name}» обязательно для заполнения."); ?>
         <?php endif; ?>
     <?php endif; ?>
 
