@@ -513,8 +513,8 @@ class DocumentForm extends DocumentExtend
                             if (strtotime($this->elements_fields[$key][$sub_key]) > (int) $field['max_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
                                     'name' => $field['name'],
-                                    'min_val' => Yii::$app->formatter->asDate($field['min_val']),
-                                    'max_val' => Yii::$app->formatter->asDate($field['max_val']),
+                                    'min_val' => $field['min_val'] ? Yii::$app->formatter->asDate($field['min_val']) : Yii::t('app', '(не задано)'),
+                                    'max_val' => $field['max_val'] ? Yii::$app->formatter->asDate($field['max_val']) : Yii::t('app', '(не задано)'),
                                 ]);
                             }
                         }

@@ -206,7 +206,7 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionView($alias, $parent, $item_alias)
+    public function actionView($alias, $item_alias)
     {
         $item = (new \yii\db\Query())
             ->select(['*'])

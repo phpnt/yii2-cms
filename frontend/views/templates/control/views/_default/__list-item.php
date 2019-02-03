@@ -25,7 +25,7 @@ $templateData = $fieldsManage->getData($item['id'], $item['template_id']);
     <?php p($this->viewFile); ?>
     <div class="list-item-<?= $templateName; ?>">
         <?php /* Отображение элемента в списке */ ?>
-        <a href="<?= Url::to(['/control/default/view', 'alias' => $page['alias'], 'parent' => $parent['alias'], 'item_alias' => $item['alias']]) ?>" class="item-link">
+        <a href="<?= Url::to(['/control/default/view', 'alias' => $page['alias'], 'item_alias' => $item['alias']]) ?>" class="item-link">
             <div class="item-card">
                 <div class="text-center p-t-xs">
                     <h3><?= Yii::t('app', $item['name']) ?></h3>

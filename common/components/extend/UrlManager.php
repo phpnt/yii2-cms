@@ -256,13 +256,18 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => '<alias>/<parent>/<item_alias>',
+                'pattern' => '<alias>/<folder_alias>',
+                'route' => 'control/default/view-list',
+                'suffix' => ''
+            ];
+            $rules[] = [
+                'pattern' => 'view/<alias>/<parent>/<item_alias>',
                 'route' => 'control/default/view',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => '<alias>/<folder_alias>',
-                'route' => 'control/default/view-list',
+                'pattern' => 'view/<alias>/<item_alias>',
+                'route' => 'control/default/view',
                 'suffix' => ''
             ];
             $rules[] = [

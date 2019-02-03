@@ -39,25 +39,21 @@ foreach ($tree as $value) {
 }
 $this->params['breadcrumbs'][] = Yii::t('app', $parent['name']);
 ?>
-<div class="col-md-9">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="list-<?= $templateName; ?>">
-                <?php p($this->viewFile); ?>
-                <div class="row">
-                    <?php foreach ($items as $item): ?>
-                        <?= $this->render('__list-item', [
-                            'page' => $page,
-                            'template' => $template,
-                            'parent' => $parent,
-                            'itemsMenu' => $itemsMenu,
-                            'item' => $item,
-                            'items' => $items,
-                            'templateName' => $templateName
-                        ]); ?>
-                    <?php endforeach; ?>
-                </div>
-            </div>
+<div class="col-md-12">
+    <div class="list-<?= $templateName; ?>">
+        <?php p($this->viewFile); ?>
+        <div class="row">
+            <?php foreach ($items as $item): ?>
+                <?= $this->render('__list-item', [
+                    'page' => $page,
+                    'template' => $template,
+                    'parent' => $parent,
+                    'itemsMenu' => $itemsMenu,
+                    'item' => $item,
+                    'items' => $items,
+                    'templateName' => $templateName
+                ]); ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

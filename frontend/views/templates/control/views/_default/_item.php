@@ -44,16 +44,12 @@ foreach ($tree as $value) {
 }
 $this->params['breadcrumbs'][] = Yii::t('app', $item['name']);
 ?>
-<div class="col-md-9">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="item-<?= $templateName; ?>">
-                <?php p($this->viewFile); ?>
-                <h1><?= Yii::t('app', $item['name']) ?></h1>
-                <?php if ($item['template_id']): ?>
-                    <?php p($templateData) ?>
-                <?php endif; ?>
-            </div>
-        </div>
+<div class="col-md-12">
+    <div class="item-<?= $templateName; ?>">
+        <?php p($this->viewFile); ?>
+        <h1><?= Yii::t('app', $item['name']) ?></h1>
+        <?php if ($item['template_id']): ?>
+            <?php p($templateData) ?>
+        <?php endif; ?>
     </div>
 </div>
