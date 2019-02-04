@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -305,7 +305,7 @@ id;language;translation;hash
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+393;en;"A template for the user\\\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -367,11 +367,7 @@ id;language;translation;hash
 478;en;"Maximum number of files";2958222aa83be8ab834e522b242632f1
 479;en;"Error message if the field is not filled.";41208fc3c2b77a06b5eb22962cd23fc9
 480;en;"Error message if the field is already in the database.";261a8b16e02537ef08f1da238794b767
-481;en;"Minimum numeric value.";cb48da695288f756b521651a38def435
-482;en;"Maximum numeric value.";dc86eb1e6568cba6aa1ee927bf6c6118
 483;en;"Error message if the field does not match the values.";f5278fd93dd9ab17f188b108c0522f06
-484;en;"Minimum number of characters.";66fbc661bab312ecf508ae4d6870da51
-485;en;"Maximum number of characters.";bed89f003881099a437c6fb24b26febc
 486;en;"Error message if the field does not match the number of characters.";a774dc4675cc9aab8745734032f6d4d7
 487;en;"Field mask";3d57bd0d4d709fb959cb5b880992b7e4
 488;en;"Integer (INT)";1ea534aeed635c8e8129afc51f3973af
@@ -389,7 +385,15 @@ id;language;translation;hash
 506;en;"The field ""{name}"" is required.";a59fb627b211c4d794c6a11794e81ca8
 507;en;"Поле «{name}» должно быть уникально.";7fcf6a6af08c42581803f089a97e78af
 508;en;"The field ""{name}"" must be from {min_val} to {max_val}.";a2a769f14875058067c87627ccceb82a
-509;en;"The field ""{field}"" is not a number.";f2b23e127878d6ea0235c35b778f980e
-510;en;"The field ""{field}"" is not an email address.";dde237648eab037ad6941055ee59c0a5
-511;en;"The field ""{field}"" is not a link.";95b1e0503673caf0d5179f5d68a07e18
-512;en;"The field ""{field}"" is not a YuoTube link.";9e92111ca349c8ad40065c0bdf2744ee
+513;en;"The field is not a number.";e70ca0e023c1aeba1d3d98e2e14054ca
+514;en;"The field is not an email address.";73f53c5852d3822672e14cd6cecd89b5
+515;en;"The field is not a link.";897590a2f793f9796434f5a35e2e31c6
+516;en;"The field is not a YuoTube link.";7af83e6daece2f95a7303d3f74d8eacd
+517;en;"Required field.";aee8f7d2d1afc4ee222b116339a76e39
+518;en;"The field must be unique.";96acdf013e2ac869b0889bf69758ac00
+519;en;"The minimum numeric value is {min_val}.";ec74c5335525d04f49ede6e6497f0752
+520;en;"The maximum numeric value is {max_val}.";00542ac7435aabec3dc01e1621f30e18
+521;en;"The field must be a number from {min_val} to {max_val}.";5b0d32d22806e262664a23fa46ef087f
+522;en;"Minimum number of characters {min_str}.";e8976b9ac0770d52c3dbb54f8d524e8a
+523;en;"Maximum number of characters {max_str}.";2303950d5a7f348a47068a4b2c51d230
+524;en;"The field must contain from {min_str} to {max_str} characters.";4eadd53431a0d4f34d58ebb92cf19ad1

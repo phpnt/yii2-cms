@@ -441,10 +441,12 @@ class DocumentForm extends DocumentExtend
                         }
                     }
                     // Проверка DOUBLE на число
-                    if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                        $field['type'] == Constants::FIELD_TYPE_FLOAT ||
                         $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) {
                         if (!is_numeric($this->elements_fields[$key][$sub_key])) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является числом.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является числом.');
                         }
                     }
                     // проверка на минимальное числовое значение
@@ -456,7 +458,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_PRICE) {
                             if ($this->elements_fields[$key][$sub_key] < (int) $field['min_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                    'name' => $field['name'],
                                     'min_val' => $field['min_val'],
                                     'max_val' => $field['max_val'],
                                 ]);
@@ -466,7 +467,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
                             if (strtotime($this->elements_fields[$key][$sub_key]) < (int) $field['min_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                    'name' => $field['name'],
                                     'min_val' => Yii::$app->formatter->asDate($field['min_val']),
                                     'max_val' => Yii::$app->formatter->asDate($field['max_val']),
                                 ]);
@@ -478,7 +478,6 @@ class DocumentForm extends DocumentExtend
                                 /* @var $file yii\web\UploadedFile */
                                 if ($file->size < (int) $field['min_val']) {
                                     $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
                                         'min_val' => $field['min_val'],
                                         'max_val' => $field['max_val'],
                                     ]);
@@ -502,7 +501,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_PRICE) {
                             if ($this->elements_fields[$key][$sub_key] > (int) $field['max_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                    'name' => $field['name'],
                                     'min_val' => $field['min_val'],
                                     'max_val' => $field['max_val'],
                                 ]);
@@ -512,7 +510,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
                             if (strtotime($this->elements_fields[$key][$sub_key]) > (int) $field['max_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                    'name' => $field['name'],
                                     'min_val' => $field['min_val'] ? Yii::$app->formatter->asDate($field['min_val']) : Yii::t('app', '(не задано)'),
                                     'max_val' => $field['max_val'] ? Yii::$app->formatter->asDate($field['max_val']) : Yii::t('app', '(не задано)'),
                                 ]);
@@ -524,7 +521,6 @@ class DocumentForm extends DocumentExtend
                                 /* @var $file yii\web\UploadedFile */
                                 if ($file->size > (int) $field['max_val']) {
                                     $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
-                                        'name' => $field['name'],
                                         'min_val' => $field['min_val'],
                                         'max_val' => $field['max_val'],
                                     ]);
@@ -551,7 +547,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_PRICE) {
                             if (iconv_strlen($this->elements_fields[$key][$sub_key]) < (int) $field['min_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                    'name' => $field['name'],
                                     'min_str' => $field['min_str'],
                                     'max_str' => $field['max_str'],
                                 ]);
@@ -560,7 +555,6 @@ class DocumentForm extends DocumentExtend
                         if ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
                             if (count($this->elements_fields[$key]) < $field['min_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                    'name' => $field['name'],
                                     'min_str' => $field['min_str'],
                                     'max_str' => $field['max_str'],
                                 ]);
@@ -593,7 +587,6 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
                             if (iconv_strlen($this->elements_fields[$key][$sub_key]) > (int) $field['max_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                    'name' => $field['name'],
                                     'min_str' => $field['min_str'],
                                     'max_str' => $field['max_str'],
                                 ]);
@@ -602,7 +595,6 @@ class DocumentForm extends DocumentExtend
                         if ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
                             if (count($this->elements_fields[$key]) > $field['max_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
-                                    'name' => $field['name'],
                                     'min_str' => $field['min_str'],
                                     'max_str' => $field['max_str'],
                                 ]);
@@ -613,13 +605,13 @@ class DocumentForm extends DocumentExtend
                     // Проверка на email и url и youtube ссылки и др. валидаторов
                     if ($field['type'] == Constants::FIELD_TYPE_EMAIL) {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_EMAIL)) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является email адресом.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является email адресом.');
                         }
                     }
                     if ($field['type'] == Constants::FIELD_TYPE_URL ||
                         $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_URL)) {
-                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является ссылкой.', ['field' => $field['name']]);
+                            $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является ссылкой.');
                         }
                     }
                     if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
@@ -634,7 +626,7 @@ class DocumentForm extends DocumentExtend
                             $is_youtube = preg_match($rx, $this->elements_fields[$key][$sub_key], $matches);
 
                             if (!$is_youtube) {
-                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле «{field}» не является YuoTube ссылкой.', ['field' => $field['name']]);
+                                $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является YuoTube ссылкой.');
                             }
                         }
                     }

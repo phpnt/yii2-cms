@@ -16,7 +16,7 @@ id_geo_country;continent;name_ru;lat;lon;timezone;iso2;short_name;long_name;iso3
 18;AS;Азербайджан;40.50;47.50;Asia/Baku;AZ;Azerbaijan;"Republic of Azerbaijan";AZE;031;yes;994;.az;9;AZM;;
 19;EU;"Босния и Герцеговина";44.25;17.83;Europe/Sarajevo;BA;"Bosnia and Herzegovina";"Bosnia and Herzegovina";BIH;070;yes;387;.ba;8;BAM;;
 20;NA;Барбадос;13.17;-59.53;America/Barbados;BB;Barbados;Barbados;BRB;052;yes;1-246;.bb;10;BBD;;
-21;AS;Бангладеш;24.00;90.00;Asia/Dhaka;BD;Bangladesh;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of Bangladesh";BGD;050;yes;880;.bd;10;BDT;;
+21;AS;Бангладеш;24.00;90.00;Asia/Dhaka;BD;Bangladesh;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of Bangladesh";BGD;050;yes;880;.bd;10;BDT;;
 22;EU;Бельгия;50.75;4.50;Europe/Brussels;BE;Belgium;"Kingdom of Belgium";BEL;056;yes;32;.be;9;EUR;;
 23;AF;"Буркина Фасо";12.50;-1.67;Africa/Ouagadougou;BF;"Burkina Faso";"Burkina Faso";BFA;854;yes;226;.bf;8;XAF;;
 24;EU;Болгария;42.67;25.25;Europe/Sofia;BG;Bulgaria;"Republic of Bulgaria";BGR;100;yes;359;.bg;9;BGL;;
@@ -38,11 +38,11 @@ id_geo_country;continent;name_ru;lat;lon;timezone;iso2;short_name;long_name;iso3
 41;AF;"Центрально-Африканская Республика";7.00;21.00;Africa/Bangui;CF;"Central African Republic";"Central African Republic";CAF;140;yes;236;.cf;;XAF;;
 42;AF;Конго;-1.00;15.50;Africa/Brazzaville;CG;Congo;"Republic of the Congo";COG;178;yes;242;.cg;;XAF;;
 43;EU;Швейцария;47.00;8.01;Europe/Zurich;CH;Switzerland;"Swiss Confederation";CHE;756;yes;41;.ch;9;CHF;;
-44;AF;Кот-д’Ивуар;8.00;-5.50;Africa/Abidjan;CI;"Cote d\\\\\\\\\\\\\\\\\\\\\\\\\\\'ivoire [Ivory Coast]";"Republic of C&ocirc;te D\\\\\\\\\\\\\\\\\\\\\\\\\\\'Ivoire [Ivory Coast]";CIV;384;yes;225;.ci;;XAF;;
+44;AF;Кот-д’Ивуар;8.00;-5.50;Africa/Abidjan;CI;"Cote d\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ivoire [Ivory Coast]";"Republic of C&ocirc;te D\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'Ivoire [Ivory Coast]";CIV;384;yes;225;.ci;;XAF;;
 45;OC;"Острова Кука";-21.25;-159.79;Pacific/Rarotonga;CK;"Cook Islands";"Cook Islands";COK;184;some;682;.ck;5;NZD;;
 46;SA;Чили;-30.00;-71.00;America/Santiago;CL;Chile;"Republic of Chile";CHL;152;yes;56;.cl;;CLF;;
 47;AF;Камерун;6.00;12.50;Africa/Douala;CM;Cameroon;"Republic of Cameroon";CMR;120;yes;237;.cm;;XAF;;
-48;AS;Китай;35.00;105.00;Asia/Shanghai;CN;China;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of China";CHN;156;yes;86;.cn;11;CNY;;
+48;AS;Китай;35.00;105.00;Asia/Shanghai;CN;China;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of China";CHN;156;yes;86;.cn;11;CNY;;
 49;SA;Колумбия;4.00;-73.25;America/Bogota;CO;Colombia;"Republic of Colombia";COL;170;yes;57;.co;10;COP;;
 50;NA;Коста-Рика;10.00;-84.00;America/Costa_Rica;CR;"Costa Rica";"Republic of Costa Rica";CRI;188;yes;506;.cr;;CRC;;
 51;NA;Куба;22.00;-79.50;America/Havana;CU;Cuba;"Republic of Cuba";CUB;192;yes;53;.cu;;CUP;;
@@ -54,7 +54,7 @@ id_geo_country;continent;name_ru;lat;lon;timezone;iso2;short_name;long_name;iso3
 58;EU;Дания;56.00;10.00;Europe/Copenhagen;DK;Denmark;"Kingdom of Denmark";DNK;208;yes;45;.dk;8;DKK;;
 59;NA;Доминика;15.50;-61.33;America/Dominica;DM;Dominica;"Commonwealth of Dominica";DMA;212;yes;1-767;.dm;10;XCD;;
 60;NA;"Доминиканская республика";19.00;-70.67;America/Santo_Domingo;DO;"Dominican Republic";"Dominican Republic";DOM;214;yes;1-809;.do;10;DOP;;
-61;AF;Алжир;28.00;3.00;Africa/Algiers;DZ;Algeria;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Democratic Republic of Algeria";DZA;012;yes;213;.dz;9;DZD;;
+61;AF;Алжир;28.00;3.00;Africa/Algiers;DZ;Algeria;"People\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Democratic Republic of Algeria";DZA;012;yes;213;.dz;9;DZD;;
 62;SA;Эквадор;-1.25;-78.25;America/Guayaquil;EC;Ecuador;"Republic of Ecuador";ECU;218;yes;593;.ec;;USD;;
 63;EU;Эстония;59.00;26.00;Europe/Tallinn;EE;Estonia;"Republic of Estonia";EST;233;yes;372;.ee;;EUR;;
 64;AF;Египет;27.00;30.00;Africa/Cairo;EG;Egypt;"Arab Republic of Egypt";EGY;818;yes;20;.eg;10;EGP;;
@@ -105,12 +105,12 @@ id_geo_country;continent;name_ru;lat;lon;timezone;iso2;short_name;long_name;iso3
 115;OC;Кирибати;1.42;172.98;Pacific/Tarawa;KI;Kiribati;"Republic of Kiribati";KIR;296;yes;686;.ki;5;AUD;;
 116;AF;"Коморские острова";-12.23;44.45;Indian/Comoro;KM;Comoros;"Union of the Comoros";COM;174;yes;269;.km;;KMF;;
 117;NA;"Сент Китс и Невис";17.33;-62.75;America/St_Kitts;KN;"Saint Kitts and Nevis";"Federation of Saint Christopher and Nevis";KNA;659;yes;1-869;.kn;10;XCD;;
-118;AS;"Северная Корея";40.00;127.00;Asia/Pyongyang;KP;"North Korea";"Democratic People\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of Korea";PRK;408;yes;850;.kp;;KPW;;
+118;AS;"Северная Корея";40.00;127.00;Asia/Pyongyang;KP;"North Korea";"Democratic People\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Republic of Korea";PRK;408;yes;850;.kp;;KPW;;
 119;AS;"Южная Корея";36.50;127.75;Asia/Seoul;KR;"South Korea";"Republic of Korea";KOR;410;yes;82;.kr;;KRW;;
 120;AS;Кувейт;29.50;47.75;Asia/Kuwait;KW;Kuwait;"State of Kuwait";KWT;414;yes;965;.kw;;KWD;;
 121;NA;"Каймановы острова";19.50;-80.67;America/Cayman;KY;"Cayman Islands";"The Cayman Islands";CYM;136;no;1-345;.ky;10;KYD;;
 122;AS;Казахстан;48.00;68.00;Asia/Almaty;KZ;Kazakhstan;"Republic of Kazakhstan";KAZ;398;yes;7;.kz;9;KZT;;
-123;AS;Лаос;18.00;105.00;Asia/Vientiane;LA;Laos;"Lao People\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Democratic Republic";LAO;418;yes;856;.la;;LAK;;
+123;AS;Лаос;18.00;105.00;Asia/Vientiane;LA;Laos;"Lao People\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s Democratic Republic";LAO;418;yes;856;.la;;LAK;;
 124;AS;Ливан;33.83;35.83;Asia/Beirut;LB;Lebanon;"Republic of Lebanon";LBN;422;yes;961;.lb;;LBP;;
 125;NA;"Святая Люсия";13.88;-60.97;America/St_Lucia;LC;"Saint Lucia";"Saint Lucia";LCA;662;yes;1-758;.lc;10;XCD;;
 126;EU;Лихтенштейн;47.17;9.53;Europe/Vaduz;LI;Liechtenstein;"Principality of Liechtenstein";LIE;438;yes;423;.li;;CHF;;

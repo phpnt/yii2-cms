@@ -16,7 +16,7 @@ use yii\bootstrap\Modal;
 $header = $modelCommentForm->isNewRecord ? Yii::t('app', 'Создать комментарий') : Yii::t('app', 'Изменить комментарий');
 Modal::begin([
     'id' => 'universal-modal',
-    'size' => 'modal-lg',
+    'size' => 'modal-sm',
     'header' => '<h2 class="text-center m-t-sm m-b-sm">' . $header . '</h2>',
     'clientOptions' => ['show' => true],
     'options' => [],

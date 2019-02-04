@@ -14,11 +14,11 @@ use Yii;
  * @property string $error_required Сообщение ошибки если поле не заполнено.
  * @property int $is_unique Уникальное
  * @property string $error_unique Сообщение ошибки если поле уже есть в БД.
- * @property double $min_val Минимальное числовое значение.
- * @property double $max_val Максимальное числовое значение.
+ * @property double $min_val Минимальное числовое значение {min_val}.
+ * @property double $max_val Максимальное числовое значение {max_val}.
  * @property string $error_value Сообщение ошибки если поле не соответствует значениям.
- * @property int $min_str Минимальное количество символов.
- * @property int $max_str Максимальное количество символов.
+ * @property int $min_str Минимальное количество символов {min_str}.
+ * @property int $max_str Максимальное количество символов {max_str}.
  * @property string $error_length Сообщение ошибки если поле не соответствует кол-ву символов.
  * @property string $params Дополнительные параметры
  * @property string $mask Маска поля
@@ -68,11 +68,11 @@ class Field extends \yii\db\ActiveRecord
             'error_required' => Yii::t('app', 'Сообщение ошибки если поле не заполнено.'),
             'is_unique' => Yii::t('app', 'Уникальное'),
             'error_unique' => Yii::t('app', 'Сообщение ошибки если поле уже есть в БД.'),
-            'min_val' => Yii::t('app', 'Минимальное числовое значение.'),
-            'max_val' => Yii::t('app', 'Максимальное числовое значение.'),
+            'min_val' => Yii::t('app', 'Минимальное числовое значение {min_val}.'),
+            'max_val' => Yii::t('app', 'Максимальное числовое значение {max_val}.'),
             'error_value' => Yii::t('app', 'Сообщение ошибки если поле не соответствует значениям.'),
-            'min_str' => Yii::t('app', 'Минимальное количество символов.'),
-            'max_str' => Yii::t('app', 'Максимальное количество символов.'),
+            'min_str' => Yii::t('app', 'Минимальное количество символов {min_str}.'),
+            'max_str' => Yii::t('app', 'Максимальное количество символов {max_str}.'),
             'error_length' => Yii::t('app', 'Сообщение ошибки если поле не соответствует кол-ву символов.'),
             'params' => Yii::t('app', 'Дополнительные параметры'),
             'mask' => Yii::t('app', 'Маска поля'),
