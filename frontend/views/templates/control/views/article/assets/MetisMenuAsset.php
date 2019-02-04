@@ -7,13 +7,13 @@
  * Time: 14:54
  */
 
-namespace frontend\views\templates\assets;
+namespace frontend\views\templates\control\views\article\assets;
 
 use yii\web\AssetBundle;
 
 class MetisMenuAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates';
+    public $sourcePath = '@frontend/views/templates/control/views/article';
 
     public $css = [
         'css/mm.css'

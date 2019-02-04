@@ -7,8 +7,6 @@
  * Time: 8:42
  */
 
-use frontend\views\templates\assets\PageAsset;
-
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
 /* @var $template array используемый шаблон для элементов */
@@ -17,8 +15,6 @@ use frontend\views\templates\assets\PageAsset;
 /* @var $item array Выбранный элемент */
 /* @var $items array Элементы в родительской папке */
 /* @var $tree array Дерево элемента */
-
-PageAsset::register($this);
 
 $templateName = $template['mark'] ? $template['mark'] : 'default';
 ?>

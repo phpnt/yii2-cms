@@ -7,7 +7,6 @@
  * Time: 8:57
  */
 
-use yii\helpers\Url;
 use common\widgets\ViewItems\ViewItems;
 
 /* @var $this yii\web\View */

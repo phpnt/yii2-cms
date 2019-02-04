@@ -3,20 +3,19 @@
  * User: Vladimir Baranov <phpnt@yandex.ru>
  * Git: <https://github.com/phpnt>
  * VK: <https://vk.com/phpnt>
- * Date: 10.12.2018
- * Time: 17:24
+ * Date: 11.12.2018
+ * Time: 14:54
  */
 
-namespace frontend\views\templates\youtubeVideoTemplate\assets;
+namespace frontend\views\templates\control\views\_default\assets;
 
 use yii\web\AssetBundle;
 
-class YouTubeVideoAssets extends AssetBundle
+class MetisMenuAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates/youtubeVideoTemplate';
+    public $sourcePath = '@frontend/views/templates/control/views/_default';
 
     public $css = [
-        'css/post.css',
         'css/mm.css'
     ];
 

@@ -108,18 +108,6 @@ TranslateAsset::register($this);
 
     <div class="clearfix"></div>
 
-    <div class="col-md-12">
-        <?/*= $form->field($modelDocumentForm, 'parent_id')->dropDownList($modelDocumentForm->parentsList,
-            [
-                'class'  => 'form-control selectpicker',
-                'data' => [
-                    'style' => 'btn-default',
-                    'live-search' => 'false',
-                    'title' => '---'
-                ]
-            ]) */?>
-    </div>
-
     <?php if ($modelDocumentForm->parent_id != null): ?>
         <div class="col-md-12">
             <?= $form->field($modelDocumentForm, 'position')->dropDownList($modelDocumentForm->positionsList,

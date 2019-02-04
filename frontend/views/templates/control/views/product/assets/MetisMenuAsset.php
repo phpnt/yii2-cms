@@ -1,0 +1,29 @@
+<?php
+/**
+ * User: Vladimir Baranov <phpnt@yandex.ru>
+ * Git: <https://github.com/phpnt>
+ * VK: <https://vk.com/phpnt>
+ * Date: 11.12.2018
+ * Time: 14:54
+ */
+
+namespace frontend\views\templates\control\views\product\assets;
+
+use yii\web\AssetBundle;
+
+class MetisMenuAsset extends AssetBundle
+{
+    public $sourcePath = '@frontend/views/templates/control/product/views';
+
+    public $css = [
+        'css/mm.css'
+    ];
+
+    public $js = [
+    ];
+
+    public $depends = [
+        'yii\web\YiiAsset',
+        'phpnt\metismenu\MetisMenuAsset',
+    ];
+}

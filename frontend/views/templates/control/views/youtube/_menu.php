@@ -8,7 +8,7 @@
  */
 
 use yii\widgets\Menu;
-use frontend\views\templates\assets\MetisMenuAsset;
+use frontend\views\templates\control\views\youtube\assets\MetisMenuAsset;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */

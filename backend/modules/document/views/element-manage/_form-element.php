@@ -84,11 +84,6 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
             ]) ?>
     </div>
 
-    <div class="col-md-6">
-        <?/*= $form->field($modelDocumentForm, 'position')
-            ->textInput(['placeholder' => $modelDocumentForm->getAttributeLabel('position')]) */?>
-    </div>
-
     <div class="clearfix"></div>
 
     <div class="col-md-6">
