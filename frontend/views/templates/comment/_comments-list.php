@@ -12,11 +12,15 @@
 /* @var $comments array */
 /* @var $access_answers boolean */
 /* @var $commentsManage \common\widgets\Comment\components\CommentManage */
-
+/* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+/* @var $modelUserForm \common\models\extend\UserExtend */
+$fieldsManage = Yii::$app->fieldsManage;
+$modelUserForm = Yii::$app->user->identity;
 $commentsManage = Yii::$app->commentsManage;
 ?>
 <div class="comment-list">
     <?php foreach ($comments as $comment): ?>
+        <strong><?= $fieldsManage->getUserValueByName($name = 'Èìÿ', $comment['user_id']) ?></strong>:
         <div class="comment-item">
             <?= $comment['text'] ?>
             <p><?= Yii::$app->formatter->asDate($comment['updated_at']) ?></p>

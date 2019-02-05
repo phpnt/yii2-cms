@@ -38,10 +38,10 @@ use phpnt\summernote\SummernoteWidget;
                 'widgetOptions' => [
                     /* Настройка панели */
                     'placeholder' => Yii::t('app', 'Ваш комментарий.'),
-                    'height' => 200,
+                    'height' => 100,
                     'tabsize' => 2,
-                    'minHeight' => 200,
-                    'maxHeight' => 200,
+                    'minHeight' => 100,
+                    'maxHeight' => 100,
                     'focus' => false,
                     'disableResizeImage' => true,
                     'disableResize' => true,

@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -305,7 +305,7 @@ id;language;translation;hash
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+393;en;"A template for the user\\\\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -376,8 +376,6 @@ id;language;translation;hash
 491;en;"Range of numbers with a fraction (DOUBLE)";ba12e1e871739207f6cfbfbfc9299dfc
 492;en;"String (STRING)";f288f7be6dc9acd1615b02fea010fbfd
 493;en;"Text (TEXT)";1901b31fa0552a4683de5f52aa8d3048
-494;en;"The video_link or video_id property has not been sent.";42aa8f054c7177f6ecc69eaf9dce2f80
-495;en;"Video not found.";42aa8f054c7177f6ecc69eaf9dce2f80
 502;en;"(not set)";f8c518dcab383f0dabe7b58227c951de
 503;en;"Wrong phone number.";2f2cd10bb87d2f1906223e38c783604d
 504;en;"The field ""{name}"" must be a number from {min_val} to {max_val}.";545e8f43e4914b0b3cc84cdd5914d657
@@ -397,3 +395,5 @@ id;language;translation;hash
 522;en;"Minimum number of characters {min_str}.";e8976b9ac0770d52c3dbb54f8d524e8a
 523;en;"Maximum number of characters {max_str}.";2303950d5a7f348a47068a4b2c51d230
 524;en;"The field must contain from {min_str} to {max_str} characters.";4eadd53431a0d4f34d58ebb92cf19ad1
+525;en;"<span class=""text-danger"">Reply <i class=""fas fa-user-times""></i></span>";16b0154e2596c66539a78c35b7d0c64a
+526;en;"Add a comment <i class=""fas fa-user-times""></i>";16b0154e2596c66539a78c35b7d0c64a

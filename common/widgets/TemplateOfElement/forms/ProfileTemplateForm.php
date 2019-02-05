@@ -20,9 +20,15 @@ use yii\helpers\ArrayHelper;
  */
 class ProfileTemplateForm extends DocumentForm
 {
+    public $url;
+    public $container;
+
     public function rules()
     {
         $items = DocumentForm::rules();
+        $items[] = [['parent_id'], 'required'];
+        $items[] = [['url', 'container'], 'string'];
+
         return $items;
     }
 
@@ -37,9 +43,17 @@ class ProfileTemplateForm extends DocumentForm
     public function beforeValidate()
     {
         parent::beforeValidate();
-        $this->validateFields();
-
         return true;
+    }
+
+    public function beforeSave($insert)
+    {
+        parent::beforeSave($insert);
+
+        if ($this->validateFields()) {
+            return true;
+        }
+        return false;
     }
 
     public function afterSave($insert, $changedAttributes)
@@ -57,7 +71,7 @@ class ProfileTemplateForm extends DocumentForm
 
     /**
      * Возвращает папки и документы находящиеся в корне
-     * @return array
+     * @return array | null
      */
     public function getSelectProfile($page)
     {
@@ -72,6 +86,14 @@ class ProfileTemplateForm extends DocumentForm
             ->orderBy(['position' => SORT_ASC])
             ->all();
 
-        return ArrayHelper::map($manyProfiles, 'id', 'name');
+        if (count($manyProfiles) > 1) {
+            return ArrayHelper::map($manyProfiles, 'id', 'name');
+        }
+
+        if (count($manyProfiles) == 1) {
+            return $manyProfiles;
+        }
+
+        return null;
     }
 }

@@ -382,7 +382,7 @@ class FieldsManage extends Object
     }
 
     /*
-     * Возвращает значение по имени
+     * Возвращает значение по названию поля
      * */
     public function getValueByName($name, $templateData)
     {
@@ -391,6 +391,39 @@ class FieldsManage extends Object
                 if ($item['title'] == $name) {
                     return $item['value'];
                 }
+            }
+        }
+
+        return null;
+    }
+
+    /*
+     * Возвращает поля шаблона пользователя значение по названию поля и ID пользователя
+     * */
+    public function getUserValueByName($name, $user_id)
+    {
+        $user = (new \yii\db\Query())
+            ->select(['document_id'])
+            ->from('user')
+            ->where([
+                'id' => $user_id
+            ])
+            ->one();
+
+        if ($user && $user['document_id']) {
+            $document = (new \yii\db\Query())
+                ->select(['template_id'])
+                ->from('document')
+                ->where([
+                    'id' => $user['document_id']
+                ])
+                ->one();
+            $data = $this->getData($user['document_id'], $document['template_id']);
+
+            $name = $this->getValueByName('Имя', $data);
+
+            if ($name) {
+                return $name;
             }
         }
 
@@ -585,7 +618,9 @@ class FieldsManage extends Object
                                 'field_id' => $data['field_id'],
                             ])
                             ->all();
-                        $data['value'] = $values[$data['value']]['value'];
+                        if ($data['value']) {
+                            $data['value'] = $values[$data['value']]['value'];
+                        }
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CITY) {
                     $data = (new \yii\db\Query())

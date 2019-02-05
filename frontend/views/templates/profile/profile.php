@@ -10,28 +10,22 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $page array */
-/* @var $profile array */
 /* @var $modelProfileTemplateForm \common\widgets\TemplateOfElement\forms\ProfileTemplateForm */
 
 use yii\bootstrap\Modal;
 ?>
 <?php
 Modal::begin([
-    'id' => 'users-login',
+    'id' => 'profile-modal',
     'size' => 'modal-md',
-    'header' => '<h3 class="col-md-12 text-center">'.Yii::t('app', 'Заполните профиль').'</h3>',
+    'header' => '<h3 class="text-center m-t-zero">'.Yii::t('app', 'Заполните профиль').'</h3>',
     'clientOptions' => ['show' => true],
     'options' => [],
 ]);
 ?>
 
-    <div class="col-md-12">
-        <?php p($this->viewFile); ?>
-    </div>
-
 <?= $this->render('_form-profile', [
     'page' => $page,
-    'profile' => $profile,
     'modelProfileTemplateForm' => $modelProfileTemplateForm,
 ]); ?>
 

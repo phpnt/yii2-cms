@@ -12,11 +12,12 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\widgets\DetailView;
 use phpnt\bootstrapSelect\BootstrapSelectAsset;
+use phpnt\bootstrapNotify\BootstrapNotify;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $page array */
-/* @var $modelUserForm \common\models\forms\UserForm */
+/* @var $modelUserForm \common\models\extend\UserExtend */
 /* @var $modelProfileTemplateForm \common\widgets\TemplateOfElement\forms\ProfileTemplateForm */
 /* @var $manyProfiles array */
 
@@ -27,20 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $modelUserForm = Yii::$app->user->identity;
 ?>
-<div class="profile-default-index">
-    <div class="col-md-12">
-        <?php p($this->viewFile); ?>
-    </div>
+<div id="block-profile" class="profile-default-index">
+    <?= BootstrapNotify::widget() ?>
     <div class="col-md-12">
         <?= Yii::t('app', $page['content']) ?>
     </div>
-
-    <?php if (count($manyProfiles) >= 2): ?>
-        <?= $this->render('_form-select-profile', [
-            'page' => $page,
-            'modelProfileTemplateForm' => $modelProfileTemplateForm
-        ]) ?>
-    <?php endif; ?>
 
     <?php
     /* @var $modelUserForm \common\models\forms\UserForm */
@@ -49,7 +41,7 @@ $modelUserForm = Yii::$app->user->identity;
             <?php
             /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
             $fieldsManage = Yii::$app->fieldsManage;
-            $templateData = $fieldsManage->getData($modelUserForm->document_id, $modelUserForm->document->parent->template_id);
+            $templateData = $fieldsManage->getData($modelUserForm->document_id, $modelUserForm->document->template_id);
             p($templateData);
             ?>
         </div>
@@ -89,7 +81,7 @@ $modelUserForm = Yii::$app->user->identity;
                 'onclick' => '
                     $.pjax({
                         type: "GET",
-                        url: "' . Url::to(['update-profile', 'id_document' => $modelProfileTemplateForm->id, 'id_folder' => $modelProfileTemplateForm->parent_id]) . '",
+                        url: "' . Url::to(['update-profile', 'id_document' => $modelProfileTemplateForm->id]) . '",
                         container: "#pjaxModalUniversal",
                         push: false,
                         timeout: 10000,
@@ -97,16 +89,21 @@ $modelUserForm = Yii::$app->user->identity;
                     })'
             ]); ?>
         </div>
-    <?php elseif (count($manyProfiles) == 1): ?>
+    <?php else: ?>
         <div class="col-md-12 text-right m-b-sm">
+            <?php
+            $url = Url::to(['create-profile',
+                'url' => Url::to(['/profile/default/refresh-profile']),
+                'container' => '#block-profile',
+            ]);
+            ?>
             <?= Html::button(Yii::t('app', 'Создать профиль'), [
                 'class' => 'btn btn-success',
                 'title' => Yii::t('app', 'Создать профиль'),
                 'onclick' => '
                     $.pjax({
                         type: "POST", 
-                        url: "'.Url::to(['select-profile']).'",
-                        data: "profile=' . $manyProfiles[0]['id'] . '",
+                        url: "'.$url.'",
                         container: "#pjaxModalUniversal",
                         push: false,
                         timeout: 10000,

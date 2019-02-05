@@ -441,16 +441,17 @@ class DocumentForm extends DocumentExtend
                         }
                     }
                     // Проверка DOUBLE на число
-                    if ($field['type'] == Constants::FIELD_TYPE_INT ||
+                    if (($field['type'] == Constants::FIELD_TYPE_INT ||
                         $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                         $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                        $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) {
+                        $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) &&
+                        $this->elements_fields[$key][$sub_key] != '') {
                         if (!is_numeric($this->elements_fields[$key][$sub_key])) {
                             $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является числом.');
                         }
                     }
                     // проверка на минимальное числовое значение
-                    if ($field['min_val']) {
+                    if ($field['min_val'] && $this->elements_fields[$key][$sub_key] != '') {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
@@ -493,7 +494,7 @@ class DocumentForm extends DocumentExtend
                         }
                     }
                     // проверка на максимальное числовое значение
-                    if ($field['max_val']) {
+                    if ($field['max_val'] && $this->elements_fields[$key][$sub_key] != '') {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
@@ -538,7 +539,7 @@ class DocumentForm extends DocumentExtend
                         }
                     }
                     // проверка на минимальное кол-во символов
-                    if ($field['min_str']) {
+                    if ($field['min_str'] && $this->elements_fields[$key][$sub_key] != '') {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
@@ -577,7 +578,7 @@ class DocumentForm extends DocumentExtend
                     }
 
                     // проверка на максимальное количество символов
-                    if ($field['max_str']) {
+                    if ($field['max_str'] && $this->elements_fields[$key][$sub_key] != '') {
                         if ($field['type'] == Constants::FIELD_TYPE_INT ||
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
