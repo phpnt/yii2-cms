@@ -261,6 +261,13 @@ class DefaultController extends Controller
                         'message' => Yii::t('app', 'Успешно'),
                     ]
                 );
+                if (!$modelProfileTemplateForm->url || !$modelProfileTemplateForm->container) {
+                    return $this->asJson([
+                        'success' => 1,
+                        'url' => Url::to(['refresh-profile']),
+                        'container' => '#block-profile',
+                    ]);
+                }
                 return $this->asJson([
                     'success' => 1,
                     'url' => $modelProfileTemplateForm->url,
@@ -284,7 +291,9 @@ class DefaultController extends Controller
 
     /**
      * Изменение документа
+     *
      * @return string
+     * @throws ErrorException
      */
     public function actionUpdateProfile($id_document)
     {
@@ -292,21 +301,45 @@ class DefaultController extends Controller
             return $this->redirect(['index']);
         }
 
+        /* @var $modelUserForm UserForm */
+        $modelUserForm = Yii::$app->user->identity;
+
         $modelProfileTemplateForm = ProfileTemplateForm::findOne($id_document);
 
-        if ($modelProfileTemplateForm->load(Yii::$app->request->post()) && $modelProfileTemplateForm->save()) {
-            Yii::$app->session->set(
-                'message',
-                [
-                    'type' => 'success',
-                    'icon' => 'glyphicon glyphicon-ok',
-                    'message' => Yii::t('app', 'Успешно'),
-                ]
-            );
-            return $this->asJson([
-                'success' => 1,
-                'url' => Url::to(['/profile/default/refresh-profile']),
-                'container' => '#block-profile',
+        if ($modelProfileTemplateForm->load(Yii::$app->request->post())) {
+            $profile = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'id' => $modelProfileTemplateForm->parent_id
+                ])
+                ->one();
+
+            if ($modelProfileTemplateForm->template_id != $profile['template_id']) {
+                $modelProfileTemplateForm->template_id = $profile['template_id'];
+                $modelProfileTemplateForm->elements_fields = [];
+            }
+
+            if ($modelProfileTemplateForm->elements_fields && $modelProfileTemplateForm->save()) {
+                Yii::$app->session->set(
+                    'message',
+                    [
+                        'type' => 'success',
+                        'icon' => 'glyphicon glyphicon-ok',
+                        'message' => Yii::t('app', 'Успешно'),
+                    ]
+                );
+                return $this->asJson([
+                    'success' => 1,
+                    'url' => Url::to(['refresh-profile']),
+                    'container' => '#block-profile',
+                ]);
+            }
+
+            return $this->renderAjax('@frontend/views/templates/profile/_form-profile', [
+                'page' => $this->page,
+                'modelProfileTemplateForm' => $modelProfileTemplateForm,
+                'modelUserForm' => $modelUserForm
             ]);
         }
 

@@ -618,7 +618,7 @@ class FieldsManage extends Object
                                 'field_id' => $data['field_id'],
                             ])
                             ->all();
-                        if ($data['value']) {
+                        if (isset($data['value'])) {
                             $data['value'] = $values[$data['value']]['value'];
                         }
                     }

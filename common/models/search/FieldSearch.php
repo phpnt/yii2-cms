@@ -17,8 +17,9 @@ class FieldSearch extends FieldForm
     public function rules()
     {
         return [
-            [['id', 'type', 'is_required', 'is_unique', 'min_val', 'max_val', 'min_str', 'max_str', 'template_id'], 'integer'],
-            [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask'], 'safe'],
+            [['id', 'type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id'], 'integer'],
+            [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask', 'hint'], 'safe'],
+            [['min_val', 'max_val'], 'number'],
         ];
     }
 
@@ -75,7 +76,8 @@ class FieldSearch extends FieldForm
             ->andFilterWhere(['like', 'error_value', $this->error_value])
             ->andFilterWhere(['like', 'error_length', $this->error_length])
             ->andFilterWhere(['like', 'params', $this->params])
-            ->andFilterWhere(['like', 'mask', $this->mask]);
+            ->andFilterWhere(['like', 'mask', $this->mask])
+            ->andFilterWhere(['like', 'hint', $this->hint]);
 
         return $dataProvider;
     }

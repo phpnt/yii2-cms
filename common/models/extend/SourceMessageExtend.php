@@ -176,6 +176,10 @@ class SourceMessageExtend extends SourceMessage
                             $messages['app'][] = $templateField['error_length'];
                             $this->locations['app'][] = [md5($templateField['error_length']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
                         }
+                        if ($templateField['hint']) {
+                            $messages['app'][] = $templateField['hint'];
+                            $this->locations['app'][] = [md5($templateField['hint']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
+                        }
                     }
                 } elseif ($template && $template['i18n'] == Constants::STATUS_I18N_ALL) {
                     // если переводим все
@@ -246,6 +250,10 @@ class SourceMessageExtend extends SourceMessage
                         if ($templateField['error_length']) {
                             $messages['app'][] = $templateField['error_length'];
                             $this->locations['app'][] = [md5($templateField['error_length']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
+                        }
+                        if ($templateField['hint']) {
+                            $messages['app'][] = $templateField['hint'];
+                            $this->locations['app'][] = [md5($templateField['hint']) => 'Table "field" field "error_length", ID = ' . $templateField['id']];
                         }
                     }
 

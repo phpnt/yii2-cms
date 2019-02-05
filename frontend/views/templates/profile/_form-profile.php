@@ -23,9 +23,10 @@ use phpnt\bootstrapSelect\BootstrapSelectAsset;
 BootstrapSelectAsset::register($this);
 ?>
 <div id="elements-form-block">
+    <?php $mainUrl = $modelProfileTemplateForm->isNewRecord ? Url::to(['create-profile', 'id_document' => $modelProfileTemplateForm->id]) : Url::to(['update-profile', 'id_document' => $modelProfileTemplateForm->id, 'id_folder' => $modelProfileTemplateForm->parent_id]); ?>
     <?php $form = ActiveForm::begin([
         'id' => 'form-profile',
-        'action' => $modelProfileTemplateForm->isNewRecord ? Url::to(['create-profile', 'id_document' => $modelProfileTemplateForm->id]) : Url::to(['update-profile', 'id_document' => $modelProfileTemplateForm->id, 'id_folder' => $modelProfileTemplateForm->parent_id]),
+        'action' => $mainUrl,
         'options' => ['data-pjax' => true]
     ]); ?>
 
@@ -44,7 +45,7 @@ BootstrapSelectAsset::register($this);
                 'onchange' => '
                     $.pjax({
                         type: "POST", 
-                        url: "'.Url::to(['create-profile']).'",
+                        url: "'.$mainUrl.'",
                         data: $("#form-profile").serializeArray(),
                         container: "#elements-form-block",
                         push: false,

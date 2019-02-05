@@ -70,6 +70,7 @@ class FieldTypeahead extends InputWidget
         $this->options = ArrayHelper::merge($this->options, $options);
 
         $this->field->label(Yii::t('app', $this->modelFieldForm->name));
+        $this->field->hint('<i>' . Yii::t('app', $this->modelFieldForm->hint) . '</i>');
 
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][0])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][0];

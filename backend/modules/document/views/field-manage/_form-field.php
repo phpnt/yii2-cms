@@ -507,6 +507,13 @@ use phpnt\datepicker\BootstrapDatepicker;
         </div>
     <?php endif; ?>
 
+    <div class="col-xs-12">
+        <?= $form->field($modelFieldForm, 'hint')
+            ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('hint')])
+            ->hint('<i>' . Yii::t('app', 'Отображение подсказки для поля, аналогочно этой, или др. настройкам.' . '</i>'))
+        ?>
+    </div>
+
     <div class="col-md-12">
         <?= $form->field($modelFieldForm, 'template_id')->hiddenInput([])->error(false)->label(false) ?>
     </div>

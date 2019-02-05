@@ -45,7 +45,7 @@ $model = $widget->model;
             ]) ?>
         </div>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_INT_RANGE): ?>
-        <div class="col-md-12">
+        <div class="col-xs-12">
             <hr>
             <label class="control-label"><?= $modelFieldForm->name ?></label>
         </div>
@@ -73,6 +73,11 @@ $model = $widget->model;
                 ],
             ])->label(Yii::t('app', 'До')) ?>
         </div>
+        <?php if ($modelFieldForm->hint): ?>
+            <div class="col-xs-12">
+                <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
+            </div>
+        <?php endif; ?>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
         $modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
         <div class="col-md-12">
@@ -116,6 +121,11 @@ $model = $widget->model;
                 ],
             ])->label(Yii::t('app', 'До')) ?>
         </div>
+        <?php if ($modelFieldForm->hint): ?>
+            <div class="col-xs-12">
+                <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
+            </div>
+        <?php endif; ?>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
         $modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
         $modelFieldForm->type == Constants::FIELD_TYPE_EMAIL ||
@@ -285,6 +295,11 @@ $model = $widget->model;
                 ],
             ])->label(Yii::t('app', 'От')) ?>
         </div>
+        <?php if ($modelFieldForm->hint): ?>
+            <div class="col-xs-12">
+                <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
+            </div>
+        <?php endif; ?>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [

@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -305,7 +305,7 @@ id;language;translation;hash
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
 390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
+393;en;"A template for the user\\\\\\\\\\\\\\\\\\\'s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -365,10 +365,7 @@ id;language;translation;hash
 476;en;"Maximum numeric value (bytes)";a88d3884d7ef5fe9ec1ed21662b9f819
 477;en;"Minimum number of files";dd7972343dc87816a2b2116e578e4ac8
 478;en;"Maximum number of files";2958222aa83be8ab834e522b242632f1
-479;en;"Error message if the field is not filled.";41208fc3c2b77a06b5eb22962cd23fc9
 480;en;"Error message if the field is already in the database.";261a8b16e02537ef08f1da238794b767
-483;en;"Error message if the field does not match the values.";f5278fd93dd9ab17f188b108c0522f06
-486;en;"Error message if the field does not match the number of characters.";a774dc4675cc9aab8745734032f6d4d7
 487;en;"Field mask";3d57bd0d4d709fb959cb5b880992b7e4
 488;en;"Integer (INT)";1ea534aeed635c8e8129afc51f3973af
 489;en;"Integer range (INT)";b09ce3771ffd3c472cf773b90c574174
@@ -392,8 +389,13 @@ id;language;translation;hash
 519;en;"The minimum numeric value is {min_val}.";ec74c5335525d04f49ede6e6497f0752
 520;en;"The maximum numeric value is {max_val}.";00542ac7435aabec3dc01e1621f30e18
 521;en;"The field must be a number from {min_val} to {max_val}.";5b0d32d22806e262664a23fa46ef087f
-522;en;"Minimum number of characters {min_str}.";e8976b9ac0770d52c3dbb54f8d524e8a
-523;en;"Maximum number of characters {max_str}.";2303950d5a7f348a47068a4b2c51d230
 524;en;"The field must contain from {min_str} to {max_str} characters.";4eadd53431a0d4f34d58ebb92cf19ad1
 525;en;"<span class=""text-danger"">Reply <i class=""fas fa-user-times""></i></span>";16b0154e2596c66539a78c35b7d0c64a
 526;en;"Add a comment <i class=""fas fa-user-times""></i>";16b0154e2596c66539a78c35b7d0c64a
+527;en;"Display hints for the field, analogous to this, or other settings.";e8f764c313e9985ccbe06b9c7325ded0
+528;en;"Error message if the field is not filled";e50ba3426f9322e3b48b66f057cd9eee
+529;en;"Error message if the field does not match the values";bb0037ea9809f21e2e3cc810d71e8c78
+530;en;"Minimum number of characters {min_str}";03f4dc22a33edbe75d7ed964da6c4d79
+531;en;"Maximum number of characters {max_str}";5feb7e5a616e4bfc3772b10408432241
+532;en;"Error message if the field does not match the number of characters";62301e839b15202fde3cbb4427d78128
+533;en;"Hint for the field";77bb8265bc76e5a1b4f5cd954665665a

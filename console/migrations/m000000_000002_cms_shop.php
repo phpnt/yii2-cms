@@ -207,17 +207,18 @@ class m000000_000002_cms_shop extends Migration
             'name' => $this->string()->notNull()->comment(Yii::t('app', 'Наименование')),
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип поля')),  // строка, целое число, массив и др.
             'is_required' => $this->boolean()->comment(Yii::t('app', 'Обязательное')),
-            'error_required' => $this->string()->defaultValue(Yii::t('app', "Поле обязательно для заполнения."))->comment(Yii::t('app', 'Сообщение ошибки если поле не заполнено.')),
+            'error_required' => $this->string()->defaultValue(Yii::t('app', "Поле обязательно для заполнения."))->comment(Yii::t('app', 'Сообщение ошибки если поле не заполнено')),
             'is_unique' => $this->boolean()->comment(Yii::t('app', 'Уникальное')),
             'error_unique' => $this->string()->defaultValue(Yii::t('app', "Поле должно быть уникально."))->comment(Yii::t('app', 'Сообщение ошибки если поле уже есть в БД.')),
             'min_val' => $this->double()->defaultValue(0)->comment(Yii::t('app', 'Минимальное числовое значение {min_val}.')),
             'max_val' => $this->double()->defaultValue(0)->comment(Yii::t('app', 'Максимальное числовое значение {max_val}.')),
-            'error_value' => $this->string()->defaultValue(Yii::t('app', "Поле должно быть числом от {min_val} до {max_val}."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует значениям.')),
-            'min_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Минимальное количество символов {min_str}.')),
-            'max_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Максимальное количество символов {max_str}.')),
-            'error_length' => $this->string()->defaultValue(Yii::t('app', "Поле должно содержать от {min_str} до {max_str} символов."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует кол-ву символов.')),
+            'error_value' => $this->string()->defaultValue(Yii::t('app', "Поле должно быть числом от {min_val} до {max_val}."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует значениям')),
+            'min_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Минимальное количество символов {min_str}')),
+            'max_str' => $this->integer()->defaultValue(0)->comment(Yii::t('app', 'Максимальное количество символов {max_str}')),
+            'error_length' => $this->string()->defaultValue(Yii::t('app', "Поле должно содержать от {min_str} до {max_str} символов."))->comment(Yii::t('app', 'Сообщение ошибки если поле не соответствует кол-ву символов')),
             'params' => $this->string()->comment(Yii::t('app', 'Дополнительные параметры')),    // максимальное кол-во файлов, допустимые расширения
             'mask' => $this->string()->comment(Yii::t('app', 'Маска поля')),
+            'hint' => $this->string()->comment(Yii::t('app', 'Подсказка для поля')),
             'template_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Шаблон')),
         ], $tableOptions);
 
@@ -226,7 +227,7 @@ class m000000_000002_cms_shop extends Migration
 
         $this->importData('field',
             ['id', 'name', 'type', 'is_required', 'error_required', 'is_unique', 'error_unique', 'min_val', 'max_val', 'error_value',
-                'min_str', 'max_str', 'error_length', 'params', 'mask', 'template_id'],
+                'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/field.csv', "r"));
 
         // Значения целых цисел дополнительных полей
