@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
 
 class MetisMenuAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates/control/product/views';
+    public $sourcePath = '@frontend/views/templates/control/views/product';
 
     public $css = [
         'css/mm.css'

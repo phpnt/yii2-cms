@@ -127,7 +127,7 @@ class RatingController extends Controller
     }
 
     /**
-     * Управление кнопкой "Нравиться"
+     * Управление кнопкой "Не нравиться"
      *
      * @return mixed
      * @throws \yii\base\Exception
@@ -349,6 +349,214 @@ class RatingController extends Controller
             'stars_number' => $stars_number,
             'star_cost' => $star_cost,
             'votes_number' => $votes_number
+        ]);
+    }
+
+    /**
+     * Управление кнопкой "Нравиться" для комментариев
+     *
+     * @return mixed
+     * @throws \yii\base\Exception
+     */
+    public function actionCommentLike($comment_id)
+    {
+        if (!Yii::$app->request->isPjax) {
+            return $this->goHome();
+        }
+
+        // контроль посещений страниц
+        if (Yii::$app->user->isGuest) {
+            // удаляет dislike, если есть
+            LikeForm::deleteAll([
+                'like' => 0,
+                'comment_id' => $comment_id,
+                'ip' => Yii::$app->request->userIP,
+                'user_agent' => Yii::$app->request->userAgent
+            ]);
+            // с одним IP обновляется раз в сутки
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('like')
+                ->where([
+                    'comment_id' => $comment_id,
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent
+                ])->one();
+            if (!$data) {
+                $modelLikeForm = new LikeForm();
+                $modelLikeForm->like = 1;
+                $modelLikeForm->dislike = 0;
+                $modelLikeForm->created_at = time();
+                $modelLikeForm->comment_id = $comment_id;
+                $modelLikeForm->ip = Yii::$app->request->userIP;
+                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
+                $modelLikeForm->save();
+            } else {
+                LikeForm::deleteAll([
+                    'comment_id' => $comment_id,
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent
+                ]);
+            }
+        } else {
+                // удаляет dislike, если есть
+                LikeForm::deleteAll([
+                    'like' => 0,
+                    'comment_id' => $comment_id,
+                    'user_id' => Yii::$app->user->id
+                ]);
+            $modelLikeForm = LikeForm::findOne([
+                'comment_id' => $comment_id,
+                'user_id' => Yii::$app->user->id
+            ]);
+            if (!$modelLikeForm) {
+                $modelLikeForm = new LikeForm();
+                $modelLikeForm->like = 1;
+                $modelLikeForm->dislike = 0;
+                $modelLikeForm->created_at = time();
+                $modelLikeForm->comment_id = $comment_id;
+                $modelLikeForm->ip = Yii::$app->request->userIP;
+                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
+                $modelLikeForm->user_id = Yii::$app->user->id;
+                $modelLikeForm->save();
+            } else {
+                LikeForm::deleteAll([
+                    'comment_id' => $comment_id,
+                    'user_id' => Yii::$app->user->id
+                ]);
+            }
+        }
+
+        // количество лайков
+        $likes = (new \yii\db\Query())
+            ->from('like')
+            ->where([
+                'like' => 1,
+                'comment_id' => $comment_id,
+            ])
+            ->count();
+
+        // количество дизлайков
+        $dislikes = (new \yii\db\Query())
+            ->from('like')
+            ->where([
+                'like' => 0,
+                'comment_id' => $comment_id,
+            ])
+            ->count();
+
+        return $this->renderAjax('@frontend/views/templates/rating/comment-rating', [
+            'comment_id' => $comment_id,
+            'likes' => $likes,
+            'dislikes' => $dislikes,
+        ]);
+    }
+
+    /**
+     * Управление кнопкой "Не нравиться"
+     *
+     * @return mixed
+     * @throws \yii\base\Exception
+     */
+    public function actionCommentDislike($comment_id)
+    {
+        if (!Yii::$app->request->isPjax) {
+            return $this->goHome();
+        }
+
+        // контроль посещений страниц
+        if (Yii::$app->user->isGuest) {
+            // удаляет dislike, если есть
+            LikeForm::deleteAll([
+                'like' => 1,
+                'comment_id' => $comment_id,
+                'ip' => Yii::$app->request->userIP,
+                'user_agent' => Yii::$app->request->userAgent
+            ]);
+            // удаляет like, если есть
+            LikeForm::deleteAll([
+                'like' => 1,
+                'comment_id' => $comment_id,
+                'ip' => Yii::$app->request->userIP,
+                'user_agent' => Yii::$app->request->userAgent
+            ]);
+            // с одним IP обновляется раз в сутки
+            $modelLikeForm = LikeForm::find()
+                ->where([
+                    'comment_id' => $comment_id,
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent
+                ])
+                ->one();
+            if (!$modelLikeForm) {
+                $modelLikeForm = new LikeForm();
+                $modelLikeForm->like = 0;
+                $modelLikeForm->dislike = 1;
+                $modelLikeForm->created_at = time();
+                $modelLikeForm->comment_id = $comment_id;
+                $modelLikeForm->ip = Yii::$app->request->userIP;
+                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
+                $modelLikeForm->save();
+            } else {
+                LikeForm::deleteAll([
+                    'comment_id' => $comment_id,
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent
+                ]);
+            }
+        } else {
+            // удаляет dislike, если есть
+            LikeForm::deleteAll([
+                'like' => 1,
+                'comment_id' => $comment_id,
+                'user_id' => Yii::$app->user->id
+            ]);
+            $modelLikeForm = LikeForm::find()
+                ->where([
+                    'comment_id' => $comment_id,
+                    'user_id' => Yii::$app->user->id
+                ])
+                ->one();
+            if (!$modelLikeForm) {
+                $modelLikeForm = new LikeForm();
+                $modelLikeForm->like = 0;
+                $modelLikeForm->dislike = 1;
+                $modelLikeForm->created_at = time();
+                $modelLikeForm->comment_id = $comment_id;
+                $modelLikeForm->ip = Yii::$app->request->userIP;
+                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
+                $modelLikeForm->user_id = Yii::$app->user->id;
+                $modelLikeForm->save();
+            } else {
+                LikeForm::deleteAll([
+                    'comment_id' => $comment_id,
+                    'user_id' => Yii::$app->user->id
+                ]);
+            }
+        }
+
+        // количество дизлайков
+        $dislikes = (new \yii\db\Query())
+            ->from('like')
+            ->where([
+                'like' => 0,
+                'comment_id' => $comment_id,
+            ])
+            ->count();
+
+        // количество лайков
+        $likes = (new \yii\db\Query())
+            ->from('like')
+            ->where([
+                'like' => 1,
+                'comment_id' => $comment_id,
+            ])
+            ->count();
+
+        return $this->renderAjax('@frontend/views/templates/rating/comment-rating', [
+            'comment_id' => $comment_id,
+            'likes' => $likes,
+            'dislikes' => $dislikes,
         ]);
     }
 }

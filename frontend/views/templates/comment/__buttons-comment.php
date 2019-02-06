@@ -18,7 +18,7 @@ use yii\helpers\Url;
 /* @var $modelUserForm \common\models\extend\UserExtend */
 $modelUserForm = Yii::$app->user->identity;
 ?>
-<?php if ($access_answers): ?>
+<?php if ($access_answers && $user_id != Yii::$app->user->id): ?>
     <?php if ($modelUserForm->document_id): ?>
         <?= Html::a(Yii::t('app', 'Ответить'), 'javascript:void(0)',
             [
@@ -53,7 +53,6 @@ $modelUserForm = Yii::$app->user->identity;
             ]) ?>
     <?php endif; ?>
 <?php endif; ?>
-    &nbsp;
 <?php if ($user_id == Yii::$app->user->id): ?>
     <?= Html::a(Yii::t('app', 'Редактировать'), 'javascript:void(0)',
         [
@@ -67,7 +66,6 @@ $modelUserForm = Yii::$app->user->identity;
                     scrollTo: false
                 })'
         ]) ?>
-    &nbsp;
     <?= Html::a(Yii::t('app', 'Удалить'), 'javascript:void(0)',
         [
             'onclick' => '
@@ -81,3 +79,4 @@ $modelUserForm = Yii::$app->user->identity;
                 })',
         ]) ?>
 <?php endif; ?>
+

@@ -20,9 +20,19 @@ class Comment extends Widget
     public $access_answers = true;  // разрешены ответы на комментарии
     public $access_guests = false;  // разрешены не авторизованным пользователям
 
+    public $label;
+    public $message_denied;
+
     public function init()
     {
         parent::init();
+
+        if (!$this->label) {
+            $this->label = Yii::t('app', 'Комментарии:');
+        }
+        if (!$this->message_denied) {
+            $this->message_denied = Yii::t('app', 'Комментарии могут оставлять только зарегистрированные пользователи.');
+        }
     }
 
     public function run()
@@ -38,6 +48,7 @@ class Comment extends Widget
             ->all();
 
         return $this->render('@frontend/views/templates/comment/index', [
+            'widget' => $this,
             'document_id' => $this->document_id,
             'comments' => $comments,
             'access_answers' => $this->access_answers

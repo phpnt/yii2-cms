@@ -25,25 +25,33 @@ ProductTempAsset::register($this);
     <?php if ($itemsMenu): ?>
         <?php /* Если есть элементы бокового меню */ ?>
         <div class="row">
-            <?= $this->render('_menu', [
-                'page' => $page,
-                'template' => $template,
-                'parent' => $parent,
-                'itemsMenu' => $itemsMenu,
-                'item' => $item,
-                'items' => $items,
-                'templateName' => $templateName
-            ]); ?>
-            <?= $this->render('data', [
-                'page' => $page,
-                'template' => $template,
-                'parent' => $parent,
-                'itemsMenu' => $itemsMenu,
-                'item' => $item,
-                'items' => $items,
-                'tree' => $tree,
-                'templateName' => $templateName
-            ]); ?>
+            <div class="col-md-3">
+                <div class="row">
+                    <?= $this->render('_menu', [
+                        'page' => $page,
+                        'template' => $template,
+                        'parent' => $parent,
+                        'itemsMenu' => $itemsMenu,
+                        'item' => $item,
+                        'items' => $items,
+                        'templateName' => $templateName
+                    ]); ?>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <?= $this->render('data', [
+                        'page' => $page,
+                        'template' => $template,
+                        'parent' => $parent,
+                        'itemsMenu' => $itemsMenu,
+                        'item' => $item,
+                        'items' => $items,
+                        'tree' => $tree,
+                        'templateName' => $templateName
+                    ]); ?>
+                </div>
+            </div>
         </div>
     <?php else: ?>
         <div class="row">

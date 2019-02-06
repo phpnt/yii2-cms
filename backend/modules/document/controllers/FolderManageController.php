@@ -167,9 +167,9 @@ class FolderManageController extends Controller
      */
     public function actionUpdateFolder($id)
     {
-        if (!Yii::$app->request->isPjax) {
+        /*if (!Yii::$app->request->isPjax) {
             return $this->redirect(['/document/manage/index']);
-        }
+        }*/
 
         $modelDocumentForm = DocumentForm::findOne($id);
         $modelDocumentForm->scenario = 'update-folder';

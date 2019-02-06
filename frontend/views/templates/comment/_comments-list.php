@@ -7,6 +7,8 @@
  * Time: 13:00
  */
 
+use common\widgets\Rating\CommentRating;
+
 /* @var $this yii\web\View */
 /* @var $document_id int */
 /* @var $comments array */
@@ -34,6 +36,7 @@ $commentsManage = Yii::$app->commentsManage;
                     'access_answers' => $access_answers,
                 ]) ?>
             <?php endif; ?>
+            &nbsp;&nbsp;&nbsp;<?= CommentRating::widget(['comment_id' => $comment['id']]) ?>
         </div>
         <?php $commentsIn = $commentsManage->getChilds($comment['id']); ?>
         <?php if ($commentsIn): ?>
