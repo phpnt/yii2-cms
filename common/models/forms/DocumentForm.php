@@ -23,6 +23,11 @@ use yii\web\UploadedFile;
 
 class DocumentForm extends DocumentExtend
 {
+    // информация о текущей странице
+    public $alias_menu_item;    // алиас элемента главного меню
+    public $alias_sidebar_item; // алиас элемента бокового меню
+    public $alias_item;         // алиас элемента
+
     public $elements_fields = [];
     public $errors_fields = [];
 

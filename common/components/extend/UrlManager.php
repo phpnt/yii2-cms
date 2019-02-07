@@ -251,22 +251,22 @@ class UrlManager extends BaseUrlManager
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => '<alias>',
+                'pattern' => '<alias_menu_item>',
                 'route' => 'control/default/index',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => '<alias>/<folder_alias>',
+                'pattern' => '<alias_menu_item>/<alias_sidebar_item>',
                 'route' => 'control/default/view-list',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => 'view/<alias>/<parent>/<item_alias>',
+                'pattern' => 'view/<alias_menu_item>/<alias_sidebar_item>/<alias_item>',
                 'route' => 'control/default/view',
                 'suffix' => ''
             ];
             $rules[] = [
-                'pattern' => 'view/<alias>/<item_alias>',
+                'pattern' => 'view/<alias_menu_item>/<alias_item>',
                 'route' => 'control/default/view',
                 'suffix' => ''
             ];

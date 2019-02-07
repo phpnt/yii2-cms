@@ -45,7 +45,7 @@ AppAsset::register($this);
 </div>
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::a('phpNT.com', 'http://phpnt.com/', ['target' => '_blank']) ?> & <?= Html::a('adt.ru', 'http://adt.ru/', ['target' => '_blank']) ?> <?= date('Y') ?></p>
+        <p class="pull-left"><i class="far fa-copyright"></i> <?= Html::a('phpnt.com', 'http://phpnt.com/', ['target' => '_blank']) ?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -11,11 +11,10 @@ use frontend\views\templates\control\views\product\assets\ProductTempAsset;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
-/* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
 /* @var $templateName string */
 
@@ -29,11 +28,11 @@ ProductTempAsset::register($this);
                 <div class="row">
                     <?= $this->render('_menu', [
                         'page' => $page,
-                        'template' => $template,
-                        'parent' => $parent,
+                        'modelSearch' => $modelSearch,
+                        'dataProvider' => $dataProvider,
                         'itemsMenu' => $itemsMenu,
-                        'item' => $item,
-                        'items' => $items,
+                        'modelDocumentForm' => $modelDocumentForm,
+                        'tree' => $tree,
                         'templateName' => $templateName
                     ]); ?>
                 </div>
@@ -42,11 +41,10 @@ ProductTempAsset::register($this);
                 <div class="row">
                     <?= $this->render('data', [
                         'page' => $page,
-                        'template' => $template,
-                        'parent' => $parent,
+                        'modelSearch' => $modelSearch,
+                        'dataProvider' => $dataProvider,
                         'itemsMenu' => $itemsMenu,
-                        'item' => $item,
-                        'items' => $items,
+                        'modelDocumentForm' => $modelDocumentForm,
                         'tree' => $tree,
                         'templateName' => $templateName
                     ]); ?>
@@ -58,11 +56,10 @@ ProductTempAsset::register($this);
             <?php /* Если нет элементов бокового меню */ ?>
             <?= $this->render('data', [
                 'page' => $page,
-                'template' => $template,
-                'parent' => $parent,
+                'modelSearch' => $modelSearch,
+                'dataProvider' => $dataProvider,
                 'itemsMenu' => $itemsMenu,
-                'item' => $item,
-                'items' => $items,
+                'modelDocumentForm' => $modelDocumentForm,
                 'tree' => $tree,
                 'templateName' => $templateName
             ]); ?>

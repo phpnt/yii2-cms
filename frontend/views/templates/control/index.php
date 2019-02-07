@@ -11,9 +11,8 @@
 use common\widgets\ViewItems\ViewItems;
 
 /* @var $this yii\web\View */
-/* @var $page array информация о странице */
-/* @var $template array используемый шаблон для элементов */
+/* @var $alias_menu_item string алиас элемента главного меню */
 ?>
-<div class="<?= $page['alias']; ?>-index">
-    <?= ViewItems::widget(['page' => $page, 'template' => $template]); ?>
+<div class="<?= $alias_menu_item; ?>-index">
+    <?= ViewItems::widget(['alias_menu_item' => $alias_menu_item]); ?>
 </div>

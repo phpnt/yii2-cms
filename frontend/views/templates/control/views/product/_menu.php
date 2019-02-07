@@ -8,7 +8,7 @@
  */
 
 use yii\widgets\Menu;
-use frontend\views\templates\control\views\product\assets\MetisMenuAsset;
+use frontend\views\templates\control\views\_default\assets\MetisMenuAsset;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
@@ -22,6 +22,7 @@ use frontend\views\templates\control\views\product\assets\MetisMenuAsset;
 MetisMenuAsset::register($this);
 ?>
 <div class="col-xs-12">
+    <?php p($this->viewFile); ?>
     <div class="menu-<?= $templateName; ?>">
         <div class="sidebar-nav">
             <?= Menu::widget([

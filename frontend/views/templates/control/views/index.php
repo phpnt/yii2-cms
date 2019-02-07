@@ -9,14 +9,13 @@
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
-/* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
 
-$templateName = $template['mark'] ? $template['mark'] : 'default';
+$templateName = $modelSearch->template ? $modelSearch->template->mark : 'default';
 ?>
 <?php /* Если корневая папка основного меню, без бокового меню и без элементов в папке. */ ?>
 <?php $file = Yii::getAlias( '@frontend/views/templates/control/views/' . $templateName . '/index.php'); ?>
@@ -24,22 +23,20 @@ $templateName = $template['mark'] ? $template['mark'] : 'default';
 <?php if(file_exists($file)): ?>
     <?= $this->render($templateName . '/index', [
         'page' => $page,
-        'template' => $template,
-        'parent' => $parent,
+        'modelSearch' => $modelSearch,
+        'dataProvider' => $dataProvider,
         'itemsMenu' => $itemsMenu,
-        'item' => $item,
-        'items' => $items,
+        'modelDocumentForm' => $modelDocumentForm,
         'tree' => $tree,
         'templateName' => $templateName
     ]); ?>
 <?php else: ?>
     <?= $this->render('_default/index', [
         'page' => $page,
-        'template' => $template,
-        'parent' => $parent,
+        'modelSearch' => $modelSearch,
+        'dataProvider' => $dataProvider,
         'itemsMenu' => $itemsMenu,
-        'item' => $item,
-        'items' => $items,
+        'modelDocumentForm' => $modelDocumentForm,
         'tree' => $tree,
         'templateName' => $templateName
     ]); ?>

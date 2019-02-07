@@ -4,6 +4,7 @@ namespace frontend\modules\control\controllers;
 
 use common\models\Constants;
 use common\models\extend\UserExtend;
+use common\models\forms\DocumentForm;
 use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
@@ -17,22 +18,26 @@ use yii\web\Controller;
 class DefaultController extends Controller
 {
     // информация о текущей странице
-    public $page;
+    public $alias_menu_item;    // алиас элемента главного меню
+    public $alias_sidebar_item; // алиас элемента бокового меню
+    public $alias_item;         // алиас элемента
+
+    private $menu_item;     // элемент главного меню
 
     public function init()
     {
         parent::init();
 
-        if (Yii::$app->request->get('alias')) {
-            $alias = Yii::$app->request->get('alias');
+        if (Yii::$app->request->get('alias_menu_item')) {
+            $this->alias_menu_item = Yii::$app->request->get('alias_menu_item');
         } else {
-            $alias = 'main';
+            $this->alias_menu_item = 'main';
         }
 
-        $this->page = (new \yii\db\Query())
+        $this->menu_item = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
-            ->where(['alias' => $alias])
+            ->where(['alias' => $this->alias_menu_item])
             ->one();
     }
 
@@ -47,7 +52,7 @@ class DefaultController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => Yii::$app->userAccess->getUserAccess($this->page['access'])
+                        'roles' => Yii::$app->userAccess->getUserAccess($this->menu_item['access'])
                     ],
                 ],
             ],
@@ -74,7 +79,6 @@ class DefaultController extends Controller
                 );
             }
         }
-
 
         if (Yii::$app->request->get('alias')) {
             $alias = Yii::$app->request->get('alias');
@@ -145,104 +149,43 @@ class DefaultController extends Controller
     }
 
     /**
-     * Renders the index view for the module
+     * Отображение элемента или списка, при нажатии на главное меню
      * @return string
      */
-    public function actionIndex($alias = 'main')
+    public function actionIndex()
     {
-        $template = false;
-        if ($this->page['template_id']) {
-            $template = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('template')
-                ->where([
-                    'id' => $this->page['template_id'],
-                    //'status' => Constants::STATUS_DOC_ACTIVE
-                ])
-                ->one();
-        }
-
         return $this->render('@frontend/views/templates/control/index', [
-            'page' => $this->page,
-            'template' => $template,
+            'alias_menu_item' => $this->alias_menu_item
         ]);
     }
 
     /**
-     * Renders the index view for the module
+     * Отображение списка, при нажатии на боковое меню
      * @return string
      */
-    public function actionViewList($alias, $folder_alias)
+    public function actionViewList($alias_sidebar_item)
     {
-        $parent = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'alias' => $folder_alias,
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->one();
-
-        $template = false;
-        if ($parent['template_id']) {
-            $template = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('template')
-                ->where([
-                    'id' => $parent['template_id'],
-                    //'status' => Constants::STATUS_DOC_ACTIVE
-                ])
-                ->one();
-        }
-
         return $this->render('@frontend/views/templates/control/view-list', [
-            'page' => $this->page,
-            'template' => $template,
-            'parent' => $parent,
+            'alias_menu_item' => $this->alias_menu_item,
+            'alias_sidebar_item' => $alias_sidebar_item,
         ]);
     }
 
     /**
-     * Renders the index view for the module
+     * Отображение элемента
      * @return string
      */
-    public function actionView($alias, $item_alias)
+    public function actionView($alias_menu_item, $alias_sidebar_item = null, $alias_item)
     {
-        $item = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'alias' => $item_alias,
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->one();
-
-        $parent = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'id' => $item['parent_id'],
-                'status' => Constants::STATUS_DOC_ACTIVE
-            ])
-            ->one();
-
-        $template = false;
-        if ($parent['template_id']) {
-            $template = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('template')
-                ->where([
-                    'id' => $parent['template_id'],
-                    //'status' => Constants::STATUS_DOC_ACTIVE
-                ])
-                ->one();
-        }
+        $modelDocumentForm = DocumentForm::findOne([
+            'alias' => $alias_item,
+            'status' => Constants::STATUS_DOC_ACTIVE
+        ]);
 
         return $this->render('@frontend/views/templates/control/view', [
-            'page' => $this->page,
-            'template' => $template,
-            'parent' => $parent,
-            'item' => $item
+            'alias_menu_item' => $alias_menu_item,
+            'alias_sidebar_item' => $alias_sidebar_item,
+            'modelDocumentForm' => $modelDocumentForm,
         ]);
     }
 }

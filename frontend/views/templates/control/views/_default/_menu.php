@@ -21,21 +21,18 @@ use frontend\views\templates\control\views\_default\assets\MetisMenuAsset;
 
 MetisMenuAsset::register($this);
 ?>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-xs-12">
-            <?php p($this->viewFile); ?>
-            <div class="menu-<?= $templateName; ?>">
-                <div class="sidebar-nav">
-                    <?= Menu::widget([
-                        'items' => $itemsMenu,
-                        'options' => [
-                            'class' => 'side-menu metismenu',
-                        ],
-                        'activeCssClass'=>'active',
-                    ]); ?>
-                </div>
-            </div>
+<div class="col-xs-12">
+    <?php p($this->viewFile); ?>
+    <div class="menu-<?= $templateName; ?>">
+        <div class="sidebar-nav">
+            <?= Menu::widget([
+                'items' => $itemsMenu,
+                'options' => [
+                    'class' => 'side-menu metismenu',
+                ],
+                'activeCssClass'=>'active',
+            ]); ?>
         </div>
     </div>
 </div>
+

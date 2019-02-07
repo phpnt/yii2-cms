@@ -10,10 +10,9 @@
 use common\widgets\ViewItems\ViewItems;
 
 /* @var $this yii\web\View */
-/* @var $page array информация о странице */
-/* @var $template array используемый шаблон для элементов */
-/* @var $item array информация о списке */
+/* @var $alias_menu_item string алиас элемента главного меню */
+/* @var $alias_sidebar_item string алиас элемента бокового меню */
 ?>
-<div class="<?= $page['alias']; ?>-view-list">
-    <?= ViewItems::widget(['page' => $page, 'template' => $template, 'parent' => $parent]); ?>
+<div class="<?= $alias_menu_item; ?>-view-list">
+    <?= ViewItems::widget(['alias_menu_item' => $alias_menu_item, 'alias_sidebar_item' => $alias_sidebar_item]); ?>
 </div>

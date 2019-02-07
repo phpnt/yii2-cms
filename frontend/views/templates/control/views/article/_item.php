@@ -9,18 +9,15 @@
 
 use yii\helpers\Url;
 
-/* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
-/* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
-/* @var $templateName string */
-/* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+/* @var $templateName string *//* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
 $fieldsManage = Yii::$app->fieldsManage;
-$templateData = $fieldsManage->getData($item['id'], $item['template_id']);
+$templateData = $fieldsManage->getData($modelDocumentForm->id, $modelDocumentForm->template_id);
 
 $this->title = Yii::t('app', $page['title']);
 
@@ -29,12 +26,12 @@ foreach ($tree as $value) {
     if ($value['alias'] == $page['alias']) {
         $this->params['breadcrumbs'][] = [
             'label' => Yii::t('app', $value['name']),
-            'url' => Url::to(['/control/default/index', 'alias' => $page['alias']])
+            'url' => Url::to(['/control/default/index', 'alias_menu_item' => $page['alias']])
         ];
-    } elseif ($value['alias'] == $parent['alias']) {
+    } elseif ($value['alias'] == $modelDocumentForm->parent->alias) {
         $this->params['breadcrumbs'][] = [
             'label' => Yii::t('app', $value['name']),
-            'url' => Url::to(['/control/default/view-list', 'alias' => $page['alias'], 'folder_alias' => $value['alias']])
+            'url' => Url::to(['/control/default/view-list', 'alias_menu_item' => $page['alias'], 'alias_sidebar_item' => $value['alias']])
         ];
     } else {
         $this->params['breadcrumbs'][] = [
@@ -42,17 +39,14 @@ foreach ($tree as $value) {
         ];
     }
 }
-$this->params['breadcrumbs'][] = Yii::t('app', $item['name']);
+$this->params['breadcrumbs'][] = Yii::t('app', $modelDocumentForm->name);
 ?>
-<div class="col-md-9">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="item-<?= $templateName; ?>">
-                <h1 class="text-center"><?= Yii::t('app', $item['name']) ?></h1>
-                <?php if ($item['template_id']): ?>
-                    <?php p($templateData) ?>
-                <?php endif; ?>
-            </div>
-        </div>
+<div class="col-md-12">
+    <div class="item-<?= $templateName; ?>">
+        <?php p($this->viewFile); ?>
+        <h1><?= Yii::t('app', $modelDocumentForm->name) ?></h1>
+        <?php if ($modelDocumentForm->template_id): ?>
+            <?php p($templateData) ?>
+        <?php endif; ?>
     </div>
 </div>

@@ -8,14 +8,14 @@
  */
 
 use yii\helpers\Url;
+use yii\widgets\ListView;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
 /* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
 /* @var $tree array Дерево элемента */
 /* @var $templateName string */
 
@@ -26,7 +26,7 @@ foreach ($tree as $value) {
             'label' => Yii::t('app', $value['name']),
             'url' => Url::to(['/control/default/index', 'alias' => $page['alias']])
         ];
-    } elseif ($value['alias'] == $parent['alias']) {
+    } elseif ($value['alias'] == $modelSearch->parent->alias) {
         $this->params['breadcrumbs'][] = [
             'label' => Yii::t('app', $value['name']),
             'url' => Url::to(['/control/default/view-list', 'alias' => $page['alias'], 'folder_alias' => $value['alias']])
@@ -37,23 +37,35 @@ foreach ($tree as $value) {
         ];
     }
 }
-$this->params['breadcrumbs'][] = Yii::t('app', $parent['name']);
+$this->params['breadcrumbs'][] = Yii::t('app', $modelSearch->parent->name);
 ?>
 <div class="col-md-12">
     <div class="list-<?= $templateName; ?>">
         <?php p($this->viewFile); ?>
         <div class="row">
-            <?php foreach ($items as $item): ?>
-                <?= $this->render('__list-item', [
-                    'page' => $page,
-                    'template' => $template,
-                    'parent' => $parent,
-                    'itemsMenu' => $itemsMenu,
-                    'item' => $item,
-                    'items' => $items,
-                    'templateName' => $templateName
-                ]); ?>
-            <?php endforeach; ?>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'id' => 'listview-' . $templateName,
+                'summary'=>'',
+                'itemView' => function ($modelDocumentForm, $key, $index, $widget) {
+                    /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                    if (Yii::$app->request->get('alias_menu_item')) {
+                        $modelDocumentForm->alias_menu_item = Yii::$app->request->get('alias_menu_item');
+                    }
+                    if (Yii::$app->request->get('alias_sidebar_item')) {
+                        $modelDocumentForm->alias_sidebar_item = Yii::$app->request->get('alias_sidebar_item');
+                    }
+                    if (Yii::$app->request->get('alias_item')) {
+                        $modelDocumentForm->alias_item = Yii::$app->request->get('alias_item');
+                    }
+                    return $this->render('__list-view-item' ,[
+                        'modelDocumentForm' => $modelDocumentForm,
+                        'key' => $key,
+                        'index' => $index,
+                        'widget' => $widget
+                    ]);
+                },
+            ]); ?>
         </div>
     </div>
 </div>

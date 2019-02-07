@@ -39,7 +39,7 @@ use yii\helpers\Url;
     <div class="pull-right hidden-xs">
         <strong><?=date('Y')?></strong>
     </div>
-    <strong><a href="http://phpnt.com/" target="_blank">phpnt.com</a></strong> & <strong><a href="http://adt.ru/" target="_blank">adt.ru</a></strong>
+    <strong><i class="far fa-copyright"></i> <a href="http://phpnt.com/" target="_blank">phpnt.com</a></strong>
 </footer>
 
 <aside class="control-sidebar control-sidebar-light">

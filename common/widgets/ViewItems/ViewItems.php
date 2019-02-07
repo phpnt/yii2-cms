@@ -9,6 +9,7 @@
 
 namespace common\widgets\ViewItems;
 
+use common\models\search\DocumentSearch;
 use Yii;
 use common\models\Constants;
 use yii\base\Widget;
@@ -16,10 +17,13 @@ use yii\helpers\Url;
 
 class ViewItems extends Widget
 {
-    public $page;
-    public $template;
-    public $parent;
-    public $item;
+    public $alias_menu_item;    // алиас элемента главного меню
+    public $alias_sidebar_item; // алиас элемента бокового меню
+
+    public $modelDocumentForm;  // выбранный элемент
+
+    private $menu_item;
+    private $sidebar_item;
 
     public $itemContainerClass = 'col-md-4';
     public $menuContainerClass = 'col-md-3';
@@ -35,9 +39,27 @@ class ViewItems extends Widget
     {
         parent::init();
 
-        // находим дерево элемента
-        if ($this->item) {
-            $parent = $this->item['parent_id'];
+        $this->menu_item = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => $this->alias_menu_item,
+            ])
+            ->one();
+
+        if ($this->alias_sidebar_item) {
+            $this->sidebar_item = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'alias' => $this->alias_sidebar_item,
+                ])
+                ->one();
+        }
+
+        if ($this->modelDocumentForm) {
+            // если выбран элемент
+            $parent = $this->modelDocumentForm->parent_id;
             for ($i = 0; $i < 10; $i++) {
                 $data = (new \yii\db\Query())
                     ->select(['*'])
@@ -52,8 +74,9 @@ class ViewItems extends Widget
                     $parent = $data['parent_id'];
                 }
             }
-        } elseif ($this->parent) {
-            $parent = $this->parent['parent_id'];
+        } elseif ($this->alias_sidebar_item) {
+            // если нажата ссылка бокового меню
+            $parent = $this->sidebar_item['parent_id'];
             for ($i = 0; $i < 10; $i++) {
                 $data = (new \yii\db\Query())
                     ->select(['*'])
@@ -69,20 +92,17 @@ class ViewItems extends Widget
                 }
             }
         } else {
-            $parent = $this->page['parent_id'];
-            for ($i = 0; $i < 10; $i++) {
-                $data = (new \yii\db\Query())
-                    ->select(['*'])
-                    ->from('document')
-                    ->where([
-                        'id' => $parent,
-                    ])
-                    ->one();
+            // если нажата ссылка главного меню
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'id' => $this->menu_item['parent_id'],
+                ])
+                ->one();
 
-                if ($data) {
-                    $this->tree[] = $data;
-                    $parent = $data['parent_id'];
-                }
+            if ($data) {
+                $this->tree[] = $data;
             }
         }
         array_pop($this->tree);
@@ -91,76 +111,69 @@ class ViewItems extends Widget
 
     public function run()
     {
-        if ($this->parent) {
-            $items = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('document')
-                ->where([
-                    'parent_id' => $this->parent['id'],
-                    'status' => Constants::STATUS_DOC_ACTIVE,
-                    'is_folder' => null
-                ])
-                ->all();
+        if ($this->alias_sidebar_item) {
+            // если нажата ссылка бокового меню
+            $modelSearch = new DocumentSearch();
+            $modelSearch->template_id = $this->sidebar_item['template_id'];
+            $modelSearch->parent_id = $this->sidebar_item['id'];
+            $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
+            $dataProvider = $modelSearch->searchElement(Yii::$app->request->queryParams);
         } else {
-            $items = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('document')
-                ->where([
-                    'parent_id' => $this->page['id'],
-                    'status' => Constants::STATUS_DOC_ACTIVE,
-                    'is_folder' => null
-                ])
-                ->all();
+            // если нажата ссылка главного меню или выбран элемент
+            $modelSearch = new DocumentSearch();
+            $modelSearch->template_id = $this->menu_item['template_id'];
+            $modelSearch->parent_id = $this->menu_item['id'];
+            $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
+            $dataProvider = $modelSearch->searchElement(Yii::$app->request->queryParams);
         }
 
-        $folders = $this->getChildFolders($this->page['id']);
+        // получает элементы бокового меню
+        $sidebar_items = $this->getChildFolders($this->menu_item['id']);
         $itemsMenu = [];
 
-        /* Если нет папок отображаем только элементы */
-        if (!$folders && !$this->parent && !$this->item) {
+        if (!$sidebar_items && !$this->alias_sidebar_item && !$this->modelDocumentForm) {
+            // если нет бокового меню, не выбрана ссылка бокового меню и не выбран элемент
             return $this->render('@frontend/views/templates/control/views/index', [
-                'page' => $this->page,
-                'template' => $this->template,
-                'parent' => false,
-                'itemsMenu' => false,
-                'item' => false,
-                'items' => $items ? $items : false,
+                'page' => $this->menu_item,
+                'modelSearch' => $modelSearch,
+                'dataProvider' => $dataProvider,
+                'itemsMenu' => $itemsMenu ? $itemsMenu : false,
+                'modelDocumentForm' => $this->modelDocumentForm,
                 'tree' => $this->tree,
             ]);
         };
 
-        /* Если нет папок и выбран элемент отображаем только элемент */
-        if (!$folders && $this->parent && $this->item) {
+        /* Если нет бокового меню и выбран элемент отображаем только элемент */
+        if (!$sidebar_items && !$this->alias_sidebar_item && $this->modelDocumentForm) {
             return $this->render('@frontend/views/templates/control/views/index', [
-                'page' => $this->page,
-                'template' => $this->template,
-                'parent' => $this->parent,
-                'itemsMenu' => false,
-                'item' => $this->item,
-                'items' => false,
+                'page' => $this->menu_item,
+                'modelSearch' => $modelSearch,
+                'dataProvider' => $dataProvider,
+                'itemsMenu' => $itemsMenu ? $itemsMenu : false,
+                'modelDocumentForm' => $this->modelDocumentForm,
                 'tree' => $this->tree,
             ]);
         };
 
         /* Формируем меню */
-        foreach ($folders as $folder) {
+        foreach ($sidebar_items as $sidebar_item) {
             $class = '';
-            if ($folder['id'] == $this->parent['id']) {
+            if ($sidebar_item['id'] == $this->sidebar_item['id']) {
                 $class = 'active';
-            } elseif ($folder['id'] == $this->parent['parent_id']) {
+            } elseif ($sidebar_item['id'] == $this->sidebar_item['parent_id']) {
                 $class = 'mm-active';
             }
-            $itemsMenu[$folder['id']] = [
-                'label' => Yii::t('app', $folder['name']),
-                'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $folder['alias']]),
+            $itemsMenu[$sidebar_item['id']] = [
+                'label' => Yii::t('app', $sidebar_item['name']),
+                'url' => Url::to(['/control/default/view-list', 'alias_menu_item' => $this->menu_item['alias'], 'alias_sidebar_item' => $sidebar_item['alias']]),
                 'options' => [
                     'class' => $class,
                 ],
             ];
-            $in_1_folders = $this->getChildFolders($folder['id']);
+            $in_1_folders = $this->getChildFolders($sidebar_item['id']);
 
             if ($in_1_folders) {
-                $itemsMenu[$folder['id']] += [
+                $itemsMenu[$sidebar_item['id']] += [
                     'options' => [
                         'class' => 'dropdown'
                     ],
@@ -172,15 +185,15 @@ class ViewItems extends Widget
 
                     if ($in_2_folders) {
                         $class = '';
-                        if ($in_1_folder['id'] == $this->parent['parent_id']) {
+                        if ($in_1_folder['id'] == $this->sidebar_item['parent_id']) {
                             $class = 'mm-active';
                         };
-                        $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
+                        $itemsMenu[$sidebar_item['id']]['items'][$in_1_folder['id']] = [
                             'label' => Yii::t('app', $in_1_folder['name']),
                             'url' => ['#'],
                         ];
                         foreach ($in_2_folders as $in_2_folder) {
-                            $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] += [
+                            $itemsMenu[$sidebar_item['id']]['items'][$in_1_folder['id']] += [
                                 'options' => [
                                     'class' => 'dropdown '.$class
                                 ],
@@ -188,12 +201,12 @@ class ViewItems extends Widget
                             ];
 
                             $class = '';
-                            if ($in_2_folder['id'] == $this->parent['id']) {
+                            if ($in_2_folder['id'] == $this->sidebar_item['id']) {
                                 $class = 'active';
                             };
-                            $itemsMenu[$folder['id']]['items'][$in_1_folder['id']]['items'][$in_2_folder['id']] = [
+                            $itemsMenu[$sidebar_item['id']]['items'][$in_1_folder['id']]['items'][$in_2_folder['id']] = [
                                 'label' => Yii::t('app', $in_2_folder['name']),
-                                'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $in_2_folder['alias']]),
+                                'url' => Url::to(['/control/default/view-list', 'alias_menu_item' => $this->menu_item['alias'], 'alias_sidebar_item' => $in_2_folder['alias']]),
                                 'options' => [
                                     'class' => $class,
                                 ],
@@ -201,12 +214,12 @@ class ViewItems extends Widget
                         }
                     } else {
                         $class = '';
-                        if ($in_1_folder['id'] == $this->parent['id']) {
+                        if ($in_1_folder['id'] == $this->sidebar_item['id']) {
                             $class = 'active';
                         };
-                        $itemsMenu[$folder['id']]['items'][$in_1_folder['id']] = [
+                        $itemsMenu[$sidebar_item['id']]['items'][$in_1_folder['id']] = [
                             'label' => Yii::t('app', $in_1_folder['name']),
-                            'url' => Url::to(['/control/default/view-list', 'alias' => $this->page['alias'], 'folder_alias' => $in_1_folder['alias']]),
+                            'url' => Url::to(['/control/default/view-list', 'alias_menu_item' => $this->menu_item['alias'], 'alias_sidebar_item' => $in_1_folder['alias']]),
                             'options' => [
                                 'class' => $class,
                             ],
@@ -216,26 +229,24 @@ class ViewItems extends Widget
             }
         }
 
-        /* Если нет папок и выбран элемент отображаем только элемент */
-        if ($this->parent && $this->item) {
+        /* Если нет бокового меню и выбран элемент отображаем только элемент */
+        if ($this->sidebar_item && $this->modelDocumentForm) {
             return $this->render('@frontend/views/templates/control/views/index', [
-                'page' => $this->page,
-                'template' => $this->template,
-                'parent' => $this->parent ? $this->parent : false,
-                'itemsMenu' => $itemsMenu,
-                'item' => $this->item,
-                'items' => false,
+                'page' => $this->menu_item,
+                'modelSearch' => $modelSearch,
+                'dataProvider' => $dataProvider,
+                'itemsMenu' => $itemsMenu ? $itemsMenu : false,
+                'modelDocumentForm' => $this->modelDocumentForm,
                 'tree' => $this->tree,
             ]);
         };
 
         return $this->render('@frontend/views/templates/control/views/index', [
-            'page' => $this->page,
-            'template' => $this->template,
-            'parent' => $this->parent ? $this->parent : false,
-            'itemsMenu' => $itemsMenu,
-            'item' => false,
-            'items' => $items,
+            'page' => $this->menu_item,
+            'modelSearch' => $modelSearch,
+            'dataProvider' => $dataProvider,
+            'itemsMenu' => $itemsMenu ? $itemsMenu : false,
+            'modelDocumentForm' => $this->modelDocumentForm,
             'tree' => $this->tree,
         ]);
     }

@@ -34,7 +34,6 @@ class MainMenu extends Widget
         $site = (new \yii\db\Query())
             ->select(['*'])
             ->from('document')
-            ->where(['alias' => 'site'])
             ->one();
 
         /* В зависимости от доcтупа извлекаем навигацию (http://screenshot.ru/88dd5a039c55d5a8f8c3808fcb1e02d9) */

@@ -110,8 +110,8 @@ $items = [];
         <?php
         $items[] = [
             'label' => Yii::t('app', $item['name']),
-            'url' => Url::to(['/control/default/index', 'alias' => $item['alias']]),
-            'active' => Yii::$app->request->get('alias') == $item['alias']
+            'url' => Url::to(['/control/default/index', 'alias_menu_item' => $item['alias']]),
+            'active' => Yii::$app->request->get('alias_menu_item') == $item['alias']
         ];
         ?>
     <?php endif; ?>

@@ -9,36 +9,33 @@
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
-/* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
-/* @var $templateName string */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
+/* @var $templateName string */
 ?>
 <div class="data-<?= $templateName; ?>">
-    <?php if ($item): ?>
+    <?php if ($modelDocumentForm): ?>
     <?php /* Если выбран элемент из списка */ ?>
         <?= $this->render('_item', [
             'page' => $page,
-            'template' => $template,
-            'parent' => $parent,
+            'modelSearch' => $modelSearch,
+            'dataProvider' => $dataProvider,
             'itemsMenu' => $itemsMenu,
-            'item' => $item,
-            'items' => $items,
+            'modelDocumentForm' => $modelDocumentForm,
             'tree' => $tree,
             'templateName' => $templateName
         ]); ?>
-    <?php elseif ($items): ?>
+    <?php elseif ($dataProvider->models): ?>
         <?php /* Если отображается список */ ?>
         <?= $this->render('_list', [
             'page' => $page,
-            'template' => $template,
-            'parent' => $parent,
+            'modelSearch' => $modelSearch,
+            'dataProvider' => $dataProvider,
             'itemsMenu' => $itemsMenu,
-            'item' => $item,
-            'items' => $items,
+            'modelDocumentForm' => $modelDocumentForm,
             'tree' => $tree,
             'templateName' => $templateName
         ]); ?>
@@ -46,11 +43,11 @@
         <?php /* Если нет ни элемента, ни списка */ ?>
         <?= $this->render('_content', [
             'page' => $page,
-            'template' => $template,
-            'parent' => $parent,
+            'modelSearch' => $modelSearch,
+            'dataProvider' => $dataProvider,
             'itemsMenu' => $itemsMenu,
-            'item' => $item,
-            'items' => $items,
+            'modelDocumentForm' => $modelDocumentForm,
+            'tree' => $tree,
             'templateName' => $templateName
         ]); ?>
     <?php endif; ?>
