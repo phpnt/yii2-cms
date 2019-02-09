@@ -35,9 +35,15 @@ class ViewItems extends Widget
 
     protected $tree = [];        // дерево элемента
 
+    public $clearGeoCache = true;  // очищать кеш Geo после обновления поиска
+
     public function init()
     {
         parent::init();
+
+        if ($this->clearGeoCache) {
+            $this->clearCache();
+        }
 
         $this->menu_item = (new \yii\db\Query())
             ->select(['*'])
@@ -262,5 +268,24 @@ class ViewItems extends Widget
             ->andWhere(['is not', 'is_folder', null])
             ->orderBy(['position' => SORT_ASC])
             ->all();
+    }
+
+    public function clearCache() {
+        $session = Yii::$app->session;
+        $cookiesResponse = Yii::$app->response->cookies;
+        $cookiesRequest = Yii::$app->request->cookies;
+
+        $session->remove('id_geo_country_search');
+        if (isset($cookiesRequest['id_geo_country_search'])) {
+            $cookiesResponse->remove('id_geo_country_search');
+        }
+        $session->remove('id_geo_region_search');
+        if (isset($cookiesRequest['id_geo_region_search'])) {
+            $cookiesResponse->remove('id_geo_region_search');
+        }
+        $session->remove('id_geo_city_search');
+        if (isset($cookiesRequest['id_geo_city_search'])) {
+            $cookiesResponse->remove('id_geo_city_search');
+        }
     }
 }

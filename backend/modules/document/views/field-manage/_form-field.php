@@ -142,7 +142,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_length')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -153,7 +153,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_required')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -179,7 +179,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_value')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -218,7 +218,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_length')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -244,7 +244,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_length')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -255,7 +255,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_required')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -274,7 +274,7 @@ use phpnt\datepicker\BootstrapDatepicker;
         $modelFieldForm->type == Constants::FIELD_TYPE_YOUTUBE
     ): ?>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -285,7 +285,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_required')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_unique', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -344,7 +344,7 @@ use phpnt\datepicker\BootstrapDatepicker;
             </div>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -361,14 +361,14 @@ use phpnt\datepicker\BootstrapDatepicker;
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DATE ||
         $modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
         <div class="col-xs-6">
-            <?= $form->field($modelFieldForm, 'input_date_from')->widget(BootstrapDatepicker::className(), [
+            <?= $form->field($modelFieldForm, 'input_date_from')->widget(BootstrapDatepicker::class, [
                 'autoclose' => true,
                 'format' => 'dd.mm.yyyy',
                 'language'  => Yii::$app->language
             ]); ?>
         </div>
         <div class="col-xs-6">
-            <?= $form->field($modelFieldForm, 'input_date_to')->widget(BootstrapDatepicker::className(), [
+            <?= $form->field($modelFieldForm, 'input_date_to')->widget(BootstrapDatepicker::class, [
                 'autoclose' => true,
                 'format' => 'dd.mm.yyyy',
                 'language'  => Yii::$app->language
@@ -379,7 +379,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_value')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -397,7 +397,7 @@ use phpnt\datepicker\BootstrapDatepicker;
         $modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY
     ): ?>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -439,7 +439,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_value')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -495,7 +495,7 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_length')]) ?>
         </div>
         <div class="col-xs-12">
-            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::className(), [
+            <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [
                 'type'  => ICheck::TYPE_CHECBOX,
                 'style'  => ICheck::STYLE_FLAT,
                 'color'  => 'blue'                  // цвет
@@ -514,6 +514,35 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->hint('<i>' . Yii::t('app', 'Отображение подсказки для поля, аналогочно этой, или др. настройкам.' . '</i>'))
             ?>
         </div>
+    <?php endif; ?>
+
+    <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_CHECKBOX ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_LIST_MULTY ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_RADIO ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_LIST ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_DATE ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_PRICE ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_CITY ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_REGION ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY
+    ): ?>
+        <?php if (isset($modelFieldForm->template) && $modelFieldForm->template->use_filter): ?>
+            <div class="col-xs-12">
+                <?php if ($modelFieldForm->isNewRecord): ?>
+                    <?php $modelFieldForm->use_filter = '1'; ?>
+                <?php endif; ?>
+                <?= $form->field($modelFieldForm, 'use_filter', ['template' => '{label} {input}'])->widget(ICheck::class, [
+                    'type'  => ICheck::TYPE_CHECBOX,
+                    'style'  => ICheck::STYLE_FLAT,
+                    'color'  => 'blue', // цвет
+                    'options' => [
+                        'checked' => $modelFieldForm->use_filter
+                    ]
+                ])->label(false) ?>
+            </div>
+        <?php endif; ?>
     <?php endif; ?>
 
     <div class="col-md-12">

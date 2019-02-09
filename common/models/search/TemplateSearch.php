@@ -17,7 +17,7 @@ class TemplateSearch extends TemplateForm
     public function rules()
     {
         return [
-            [['id', 'status', 'add_rating', 'add_comments', 'i18n'], 'integer'],
+            [['id', 'status', 'add_rating', 'add_comments', 'use_filter', 'i18n'], 'integer'],
             [['name', 'description', 'mark'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class TemplateSearch extends TemplateForm
             'status' => $this->status,
             'add_rating' => $this->add_rating,
             'add_comments' => $this->add_comments,
+            'use_filter' => $this->use_filter,
             'i18n' => $this->i18n,
         ]);
 

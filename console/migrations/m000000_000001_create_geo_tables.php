@@ -91,7 +91,7 @@ class m000000_000001_create_geo_tables extends Migration
             if ($i > 0) {
                 $y = 0;
                 foreach ($rowItems as $item) {
-                    $item = str_replace("'", "\'", $item);
+                    $item = str_replace("'", "`", $item);
                         if ($item == '') {
                             $rows[$z][$y] = null;
                         } else {

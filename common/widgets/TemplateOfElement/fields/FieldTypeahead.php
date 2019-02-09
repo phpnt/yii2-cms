@@ -23,6 +23,8 @@ class FieldTypeahead extends InputWidget
     public $modelFieldForm;
     public $options = [];
 
+    public $setValue = true;    // использовать ранее введенные значения
+
     public $inputNameId;
     public $changeAttribute;
     public $containerSetCookie;
@@ -47,24 +49,35 @@ class FieldTypeahead extends InputWidget
         /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
         $fieldsManage = Yii::$app->fieldsManage;
         $id_geo = isset($this->model->elements_fields[$this->modelFieldForm->id][0]) ? $this->model->elements_fields[$this->modelFieldForm->id][0] : $fieldsManage->getValue($this->modelFieldForm->id, $this->modelFieldForm->type, $this->model->id);
+        $placeholder = false;
+        $hiddenValue = false;
         if ($this->changeAttribute == 'id_geo_country') {
             $placeholder = $fieldsManage->getCountryName($id_geo);
-            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getCountryId();
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_country');
         } elseif ($this->changeAttribute == 'id_geo_region') {
             $placeholder = $fieldsManage->getRegionName($id_geo);
-            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getRegionId();
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_region');
         } elseif ($this->changeAttribute == 'id_geo_city') {
             $placeholder = $fieldsManage->getCityName($id_geo);
-            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getCityId();
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_city');
         }
-
+        if ($this->changeAttribute == 'search-id_geo_country') {
+            $placeholder = $fieldsManage->getCountrySearchName($id_geo);
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_country_search');
+        } elseif ($this->changeAttribute == 'search-id_geo_region') {
+            $placeholder = $fieldsManage->getRegionSearchName($id_geo);
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_region_search');
+        } elseif ($this->changeAttribute == 'search-id_geo_city') {
+            $placeholder = $fieldsManage->getCitySearchName($id_geo);
+            $hiddenValue = $id_geo ? $id_geo : $fieldsManage->getGeoId('id_geo_city_search');
+        }
 
         $formName = $this->model->formName();
         $fieldID = $this->modelFieldForm->id;
 
         $options = [
             'id' => $this->inputNameId,
-            'value' => $placeholder,
+            'value' => $this->setValue ? $placeholder : false,
         ];
 
         $this->options = ArrayHelper::merge($this->options, $options);
@@ -82,13 +95,8 @@ class FieldTypeahead extends InputWidget
         echo Html::activeHiddenInput($this->model, $this->changeAttribute, [
             'id' => $this->changeAttribute,
             'name' => $formName . "[elements_fields][$fieldID][0]",
-            'value' => $hiddenValue
+            'value' => $this->setValue ? $hiddenValue : false
         ]);
-        /*echo Html::activeHiddenInput($this->model, $this->changeAttribute, [
-            'id' => $this->changeAttribute,
-            'name' => $this->name,
-            'value' => $hiddenValue
-        ]);*/
         echo '<div id="' . $this->containerSetCookie . '"></div>';
     }
 

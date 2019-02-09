@@ -18,7 +18,7 @@
 ?>
 <div class="data-<?= $templateName; ?>">
     <?php if ($modelDocumentForm): ?>
-    <?php /* Если выбран элемент из списка */ ?>
+        <?php /* Если выбран элемент из списка */ ?>
         <?= $this->render('_item', [
             'page' => $page,
             'modelSearch' => $modelSearch,

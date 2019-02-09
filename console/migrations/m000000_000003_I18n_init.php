@@ -54,7 +54,7 @@ class m000000_000003_I18n_init extends Migration
             if ($i > 0) {
                 $y = 0;
                 foreach ($rowItems as $item) {
-                    $item = str_replace("'", "\'", $item);
+                    $item = str_replace("'", "`", $item);
                     if ($item == '') {
                         $rows[$z][$y] = null;
                     } else {

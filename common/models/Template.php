@@ -14,6 +14,7 @@ use Yii;
  * @property int $status Статус
  * @property int $add_rating Разрешена оценка элемента
  * @property int $add_comments Разрешены комментарии к элементу
+ * @property int $use_filter Разрешить фильтр по полям шаблона
  * @property int $i18n Режим перевода
  *
  * @property Document[] $documents
@@ -37,7 +38,7 @@ class Template extends \yii\db\ActiveRecord
         return [
             [['name', 'description', 'mark'], 'required'],
             [['description'], 'string'],
-            [['status', 'add_rating', 'add_comments', 'i18n'], 'integer'],
+            [['status', 'add_rating', 'add_comments', 'use_filter', 'i18n'], 'integer'],
             [['name', 'mark'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['mark'], 'unique'],
@@ -57,6 +58,7 @@ class Template extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Статус'),
             'add_rating' => Yii::t('app', 'Разрешена оценка элемента'),
             'add_comments' => Yii::t('app', 'Разрешены комментарии к элементу'),
+            'use_filter' => Yii::t('app', 'Разрешить фильтр по полям шаблона'),
             'i18n' => Yii::t('app', 'Режим перевода'),
         ];
     }

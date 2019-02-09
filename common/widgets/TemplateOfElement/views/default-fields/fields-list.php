@@ -293,7 +293,7 @@ $model = $widget->model;
                     'format' => 'dd.mm.yyyy',
                     'language'  => Yii::$app->language,
                 ],
-            ])->label(Yii::t('app', 'От')) ?>
+            ])->label(Yii::t('app', 'До')) ?>
         </div>
         <?php if ($modelFieldForm->hint): ?>
             <div class="col-xs-12">
@@ -419,8 +419,6 @@ $model = $widget->model;
                 'typeaheadEvents' => [
                     'typeahead:selected' => new \yii\web\JsExpression(
                         'function(obj, datum, name) {
-                        $("#name_geo_city").val("");
-                        $("#id_geo_city").val("");
                         $("#id_geo_city").val(datum.id);
                         $.pjax({
                             type: "GET", 

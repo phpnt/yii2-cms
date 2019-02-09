@@ -149,8 +149,9 @@ class m000000_000002_cms_shop extends Migration
             'description' => $this->text()->notNull()->comment(Yii::t('app', 'Описание')),
             'mark' => $this->string()->notNull()->unique()->comment(Yii::t('app', 'Метка для шаблона')),
             'status' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_WAIT)->comment(Yii::t('app', 'Статус')),
-            'add_rating' => $this->boolean()->comment(Yii::t('app', 'Разрешена оценка элемента')),
-            'add_comments' => $this->boolean()->comment(Yii::t('app', 'Разрешены комментарии к элементу')),
+            'add_rating' => $this->boolean()->defaultValue(0)->comment(Yii::t('app', 'Разрешена оценка элемента')),
+            'add_comments' => $this->boolean()->defaultValue(0)->comment(Yii::t('app', 'Разрешены комментарии к элементу')),
+            'use_filter' => $this->boolean()->defaultValue(0)->comment(Yii::t('app', 'Разрешить фильтр по полям шаблона')),
             'i18n' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_I18N_ALL)->comment(Yii::t('app', 'Режим перевода')), // 1 - перевод названия и значения,
                                                                                                                                                             // 2 - перевод названия,
                                                                                                                                                             // 6 - перевод отключен
@@ -160,7 +161,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('template_name_index', '{{%template}}', 'name');
 
         $this->importData('template',
-            ['id', 'name', 'description', 'mark', 'status', 'add_rating', 'add_comments', 'i18n'],
+            ['id', 'name', 'description', 'mark', 'status', 'add_rating', 'add_comments', 'use_filter', 'i18n'],
             fopen(__DIR__ . '/../../console/migrations/csv/template.csv', "r"));
 
         //Таблица документов document
@@ -220,6 +221,7 @@ class m000000_000002_cms_shop extends Migration
             'mask' => $this->string()->comment(Yii::t('app', 'Маска поля')),
             'hint' => $this->string()->comment(Yii::t('app', 'Подсказка для поля')),
             'template_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Шаблон')),
+            'use_filter' => $this->boolean()->defaultValue(1)->comment(Yii::t('app', 'Использовать в фильтре')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы полей field
@@ -227,7 +229,7 @@ class m000000_000002_cms_shop extends Migration
 
         $this->importData('field',
             ['id', 'name', 'type', 'is_required', 'error_required', 'is_unique', 'error_unique', 'min_val', 'max_val', 'error_value',
-                'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id'],
+                'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id', 'use_filter'],
             fopen(__DIR__ . '/../../console/migrations/csv/field.csv', "r"));
 
         // Значения целых цисел дополнительных полей
@@ -456,7 +458,7 @@ class m000000_000002_cms_shop extends Migration
             if ($i > 0) {
                 $y = 0;
                 foreach ($rowItems as $item) {
-                    $item = str_replace("'", "\'", $item);
+                    $item = str_replace("'", "`", $item);
                     if ($item == '') {
                         $rows[$z][$y] = null;
                     } else {

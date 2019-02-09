@@ -9,11 +9,11 @@
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
-/* @var $template array используемый шаблон для элементов */
-/* @var $parent array Родительская папка */
+/* @var $modelSearch \common\models\search\DocumentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $itemsMenu array Элементы меню */
-/* @var $item array Выбранный элемент */
-/* @var $items array Элементы в родительской папке */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
+/* @var $tree array Дерево элемента */
 /* @var $templateName string */
 
 $this->title = Yii::t('app', $page['title']);

@@ -9,6 +9,7 @@
 namespace common\models\extend;
 
 use common\models\forms\ValueFileForm;
+use common\models\forms\ValueIntForm;
 use Yii;
 use common\models\Constants;
 use common\models\Document;
@@ -44,6 +45,7 @@ use yii\helpers\ArrayHelper;
  * @property UserForm $updatedBy
  * @property LikeForm[] $likes
  * @property ValueFileForm[] $valueFiles
+ * @property ValueIntForm[] $valueInts
  * @property ValueNumericForm[] $valueNumerics
  * @property ValueStringForm[] $valueStrings
  * @property ValueTextForm[] $valueTexts
@@ -329,6 +331,14 @@ class DocumentExtend extends Document
     public function getValueFiles()
     {
         return $this->hasMany(ValueFileForm::className(), ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValueInts()
+    {
+        return $this->hasMany(ValueIntForm::className(), ['document_id' => 'id']);
     }
 
     /**

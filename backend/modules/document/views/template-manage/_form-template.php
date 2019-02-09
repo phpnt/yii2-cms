@@ -86,6 +86,17 @@ use phpnt\ICheck\ICheck;
         ])->label(false) ?>
     </div>
 
+    <div class="col-md-12">
+        <?= $form->field($modelTemplateForm, 'use_filter', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+            'type'  => ICheck::TYPE_CHECBOX,
+            'style'  => ICheck::STYLE_SQUARE,
+            'color'  => 'blue',
+            'options' => [
+                'checked' => $modelTemplateForm->use_filter
+            ]
+        ])->label(false) ?>
+    </div>
+
     <div class="clearfix"></div>
 
     <div class="form-group text-center">

@@ -142,8 +142,6 @@ $modelGeoTemplateForm = $widget->modelGeoTemplateForm;
                 'typeaheadEvents' => [
                     'typeahead:selected' => new \yii\web\JsExpression(
                         'function(obj, datum, name) {
-                        $("#name_geo_city").val("");
-                        $("#id_geo_city").val("");
                         $("#id_geo_city").val(datum.id);
                         $.pjax({
                             type: "GET", 

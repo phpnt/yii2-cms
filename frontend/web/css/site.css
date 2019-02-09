@@ -301,3 +301,33 @@ a.desc:after {
     border-left: 0;
     cursor: none !important;
 }
+.input-xs {
+    height: 28px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+select.input-xs {
+    height: 28px;
+    line-height: 28px;
+}
+textarea.input-xs,
+select[multiple].input-sm {
+    height: auto;
+}
+.addon-xs {
+    padding: 6px 6px !important;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group-sm label {
+    font-size: 12px;
+    font-weight: bolder;
+}

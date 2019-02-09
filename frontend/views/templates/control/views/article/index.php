@@ -35,6 +35,47 @@ ArticleTempAsset::register($this);
                         'tree' => $tree,
                         'templateName' => $templateName
                     ]); ?>
+                    <?php if ($dataProvider->models && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+                        <?= $this->render('_search-form', [
+                            'page' => $page,
+                            'modelSearch' => $modelSearch,
+                            'dataProvider' => $dataProvider,
+                            'itemsMenu' => $itemsMenu,
+                            'modelDocumentForm' => $modelDocumentForm,
+                            'tree' => $tree,
+                            'templateName' => $templateName
+                        ]); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <?= $this->render('data', [
+                        'page' => $page,
+                        'modelSearch' => $modelSearch,
+                        'dataProvider' => $dataProvider,
+                        'itemsMenu' => $itemsMenu,
+                        'modelDocumentForm' => $modelDocumentForm,
+                        'tree' => $tree,
+                        'templateName' => $templateName
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+    <?php elseif (isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+        <?php /* Если есть элементы, но нет бокового меню */ ?>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <?= $this->render('_search-form', [
+                        'page' => $page,
+                        'modelSearch' => $modelSearch,
+                        'dataProvider' => $dataProvider,
+                        'itemsMenu' => $itemsMenu,
+                        'modelDocumentForm' => $modelDocumentForm,
+                        'tree' => $tree,
+                        'templateName' => $templateName
+                    ]); ?>
                 </div>
             </div>
             <div class="col-md-9">

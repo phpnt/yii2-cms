@@ -24,12 +24,12 @@ foreach ($tree as $value) {
     if ($value['alias'] == $page['alias']) {
         $this->params['breadcrumbs'][] = [
             'label' => Yii::t('app', $value['name']),
-            'url' => Url::to(['/control/default/index', 'alias' => $page['alias']])
+            'url' => Url::to(['/control/default/index', 'alias_menu_item' => $page['alias']])
         ];
     } elseif ($value['alias'] == $modelSearch->parent->alias) {
         $this->params['breadcrumbs'][] = [
             'label' => Yii::t('app', $value['name']),
-            'url' => Url::to(['/control/default/view-list', 'alias' => $page['alias'], 'folder_alias' => $value['alias']])
+            'url' => Url::to(['/control/default/view-list', 'alias_menu_item' => $page['alias'], 'alias_sidebar_item' => $value['alias']])
         ];
     } else {
         $this->params['breadcrumbs'][] = [
@@ -46,7 +46,13 @@ $this->params['breadcrumbs'][] = Yii::t('app', $modelSearch->parent->name);
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'id' => 'listview-' . $templateName,
-                'summary'=>'',
+                'layout' => "{summary}<div class='col-md-12'>{pager}</div>{items}<div class='col-md-12'>{pager}</div>",
+                'summaryOptions' => [
+                    'class' => 'col-md-12'
+                ],
+                'emptyTextOptions' => [
+                    'class' => 'col-md-12'
+                ],
                 'itemView' => function ($modelDocumentForm, $key, $index, $widget) {
                     /* @var $modelDocumentForm \common\models\forms\DocumentForm */
                     if (Yii::$app->request->get('alias_menu_item')) {

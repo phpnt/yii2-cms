@@ -82,7 +82,7 @@ class CsvManagerController extends Controller
 
                 foreach ($dataProvider->models as $data) {
                     foreach ($data->attributes as $attribute) {
-                        if ($attribute) {
+                        if ($attribute !== null) {
                             $attribute = str_replace('в?™', "'", $attribute);
                             $result[$i][] = iconv('UTF-8', 'windows-1251//IGNORE', $attribute);
                         } else {

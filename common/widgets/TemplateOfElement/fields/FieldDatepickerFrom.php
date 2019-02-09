@@ -26,6 +26,8 @@ class FieldDatepickerFrom extends InputWidget
 
     public $widgetContainerId;
 
+    public $calendarIcon = "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>";
+
     private $idItem;
 
     public function init()
@@ -69,7 +71,7 @@ class FieldDatepickerFrom extends InputWidget
 
         echo "<div class='input-group date'>";
         echo Html::activeInput('text', $this->model, $this->attribute, $this->options);
-        echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>";
+        echo $this->calendarIcon;
         echo "</div>";
     }
 

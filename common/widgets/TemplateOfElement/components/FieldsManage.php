@@ -170,30 +170,30 @@ class FieldsManage extends Object
     // записывает поле с диапазоном дат
     public function setDataRange($field, $forms_field, $document_id)
     {
-        $manyValueStringForm = ValueStringForm::findAll([
+        $manyValueIntForm = ValueIntForm::findAll([
             'field_id' => $field['id'],
             'document_id' => $document_id,
         ]);
-        if (!$manyValueStringForm) {
+        if (!$manyValueIntForm) {
             foreach ($forms_field as $value) {
-                $modelValueStringForm = new ValueStringForm();
-                $modelValueStringForm->type = $field['type'];
-                $modelValueStringForm->document_id = $document_id;
-                $modelValueStringForm->field_id = $field['id'];
-                $modelValueStringForm->title = $field['name'];
-                $modelValueStringForm->value = $value;
-                if (!$modelValueStringForm->save()) {
-                    dd($modelValueStringForm->errors);
+                $modelValueIntForm = new ValueIntForm();
+                $modelValueIntForm->type = $field['type'];
+                $modelValueIntForm->document_id = $document_id;
+                $modelValueIntForm->field_id = $field['id'];
+                $modelValueIntForm->title = $field['name'];
+                $modelValueIntForm->value = strtotime($value);
+                if (!$modelValueIntForm->save()) {
+                    dd($modelValueIntForm->errors);
                 }
             }
         } else {
             $i = 0;
-            foreach ($manyValueStringForm as $modelValueStringForm) {
-                /* @var $modelValueStringForm ValueStringForm */
-                $modelValueStringForm->title = $field['name'];
-                $modelValueStringForm->value = $forms_field[$i];
-                if (!$modelValueStringForm->save()) {
-                    dd($modelValueStringForm->errors);
+            foreach ($manyValueIntForm as $modelValueIntForm) {
+                /* @var $modelValueIntForm ValueIntForm */
+                $modelValueIntForm->title = $field['name'];
+                $modelValueIntForm->value = strtotime($forms_field[$i]);
+                if (!$modelValueIntForm->save()) {
+                    dd($modelValueIntForm->errors);
                 }
                 $i++;
             }
@@ -361,13 +361,14 @@ class FieldsManage extends Object
         } elseif ($type == Constants::FIELD_TYPE_FLOAT_RANGE) {
             return $this->getNumRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_STRING ||
-            $type == Constants::FIELD_TYPE_DATE ||
             $type == Constants::FIELD_TYPE_ADDRESS ||
             $type == Constants::FIELD_TYPE_EMAIL ||
             $type == Constants::FIELD_TYPE_URL ||
             $type == Constants::FIELD_TYPE_SOCIAL ||
             $type == Constants::FIELD_TYPE_YOUTUBE) {
             return $this->getStr($field_id, $document_id);
+        } elseif ($type == Constants::FIELD_TYPE_DATE) {
+            return $this->getDate($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_DATE_RANGE) {
             return $this->getDateRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_TEXT) {
@@ -559,7 +560,6 @@ class FieldsManage extends Object
                         }
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
-                    $modelFieldForm->type == Constants::FIELD_TYPE_DATE ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_EMAIL ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_URL ||
@@ -573,10 +573,20 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
+                } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE) {
+                    $data = (new \yii\db\Query())
+                        ->select(['*'])
+                        ->from('value_int')
+                        ->where([
+                            'field_id' => $modelFieldForm->id,
+                            'document_id' => $document_id,
+                        ])
+                        ->one();
+                    $data['value'] = Yii::$app->formatter->asDate($data['value']);
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE) {
                     $dataRange = (new \yii\db\Query())
                         ->select(['*'])
-                        ->from('value_string')
+                        ->from('value_int')
                         ->where([
                             'field_id' => $modelFieldForm->id,
                             'document_id' => $document_id,
@@ -587,7 +597,7 @@ class FieldsManage extends Object
                         $y = 0;
                         foreach ($dataRange as $item) {
                             $data['title'] = $item['title'];
-                            $data['value'][$y] = $item['value'];
+                            $data['value'][$y] = Yii::$app->formatter->asDate($item['value']);
                             $y++;
                         }
                     }
@@ -801,20 +811,36 @@ class FieldsManage extends Object
     }
 
     /**
-     * Получает значение диапазона дат
+     * Получает дату
      */
-    public function getDateRange($field_id, $document_id)
+    public function getDate($field_id, $document_id)
     {
-        $manyValueNumericForm = ValueStringForm::findAll([
+        $modelValueIntForm = ValueIntForm::findOne([
             'field_id' => $field_id,
             'document_id' => $document_id,
         ]);
 
-        if ($manyValueNumericForm) {
+        if ($modelValueIntForm) {
+            return Yii::$app->formatter->asDate(Yii::$app->formatter->asDate($modelValueIntForm->value));
+        }
+        return null;
+    }
+
+    /**
+     * Получает значение диапазона дат
+     */
+    public function getDateRange($field_id, $document_id)
+    {
+        $manyValueIntForm = ValueIntForm::findAll([
+            'field_id' => $field_id,
+            'document_id' => $document_id,
+        ]);
+
+        if ($manyValueIntForm) {
             $result = [];
-            foreach ($manyValueNumericForm as $modelValueStringForm) {
-                /* @var $modelValueStringForm ValueStringForm */
-                $result[] = $modelValueStringForm->value;
+            foreach ($manyValueIntForm as $modelValueIntForm) {
+                /* @var $modelValueIntForm ValueIntForm */
+                $result[] = Yii::$app->formatter->asDate($modelValueIntForm->value);
             }
             return $result;
         }
@@ -870,13 +896,30 @@ class FieldsManage extends Object
     }
 
     /**
+     * Получает ID страны
+     */
+    public function getGeoId($name)
+    {
+        $session = Yii::$app->session;
+        $id_geo_country = $session->get($name);
+        $cookies = Yii::$app->request->cookies;
+        if (!$id_geo_country && isset($cookies[$name])) {
+            $id_geo_country = $cookies[$name]->value;
+        }
+
+        return $id_geo_country ? $id_geo_country : false;
+    }
+
+    /**
      * Получает название страны по ID
     */
     public function getCountryName($id_geo_country = null)
     {
         if (!$id_geo_country) {
+            $session = Yii::$app->session;
+            $id_geo_country = $session->get('id_geo_country');
             $cookies = Yii::$app->request->cookies;
-            if (isset($cookies['id_geo_country'])) {
+            if (!$id_geo_country && isset($cookies['id_geo_country'])) {
                 $id_geo_country = $cookies['id_geo_country']->value;
             }
         }
@@ -902,13 +945,34 @@ class FieldsManage extends Object
     }
 
     /**
-     * Получает ID страны
+     * Получает название страны по ID, для поиска
      */
-    public function getCountryId()
+    public function getCountrySearchName($id_geo_country = null)
     {
-        $cookies = Yii::$app->request->cookies;
-        if (isset($cookies['id_geo_country'])) {
-            return $cookies['id_geo_country']->value;
+        if (!$id_geo_country) {
+            $session = Yii::$app->session;
+            $id_geo_country = $session->get('id_geo_country_search');
+            $cookies = Yii::$app->request->cookies;
+            if (!$id_geo_country && isset($cookies['id_geo_country_search'])) {
+                $id_geo_country = $cookies['id_geo_country_search']->value;
+            }
+        }
+
+        if ($id_geo_country) {
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_country')
+                ->where([
+                    'id_geo_country' => $id_geo_country,
+                ])
+                ->one();
+            if ($data) {
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['short_name'];
+                }
+            }
         }
 
         return null;
@@ -918,8 +982,10 @@ class FieldsManage extends Object
     public function getRegionName($id_geo_region = null)
     {
         if (!$id_geo_region) {
+            $session = Yii::$app->session;
+            $id_geo_region = $session->get('id_geo_region');
             $cookies = Yii::$app->request->cookies;
-            if (isset($cookies['id_geo_region'])) {
+            if (!$id_geo_region && isset($cookies['id_geo_region'])) {
                 $id_geo_region = $cookies['id_geo_region']->value;
             }
         }
@@ -943,16 +1009,34 @@ class FieldsManage extends Object
         return null;
     }
 
-    /**
-     * Получает ID региона
-    */
-    public function getRegionId()
+    // получает название региона
+    public function getRegionSearchName($id_geo_region = null)
     {
-        $cookies = Yii::$app->request->cookies;
-        if (isset($cookies['id_geo_region'])) {
-            return $cookies['id_geo_region']->value;
+        if (!$id_geo_region) {
+            $session = Yii::$app->session;
+            $id_geo_region = $session->get('id_geo_region_search');
+            $cookies = Yii::$app->request->cookies;
+            if (!$id_geo_region && isset($cookies['id_geo_region_search'])) {
+                $id_geo_region = $cookies['id_geo_region_search']->value;
+            }
         }
 
+        if ($id_geo_region) {
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_region')
+                ->where([
+                    'id_geo_region' => $id_geo_region,
+                ])
+                ->one();
+            if ($data) {
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['name_en'];
+                }
+            }
+        }
         return null;
     }
 
@@ -962,8 +1046,10 @@ class FieldsManage extends Object
     public function getCityName($id_geo_city = null)
     {
         if (!$id_geo_city) {
+            $session = Yii::$app->session;
+            $id_geo_city = $session->get('id_geo_city');
             $cookies = Yii::$app->request->cookies;
-            if (isset($cookies['id_geo_city'])) {
+            if (!$id_geo_city && isset($cookies['id_geo_city'])) {
                 $id_geo_city = $cookies['id_geo_city']->value;
             }
         }
@@ -988,15 +1074,35 @@ class FieldsManage extends Object
     }
 
     /**
-     * Получает ID региона
+     * Получает название города
      */
-    public function getCityId()
+    public function getCitySearchName($id_geo_city = null)
     {
-        $cookies = Yii::$app->request->cookies;
-        if (isset($cookies['id_geo_city'])) {
-            return $cookies['id_geo_city']->value;
+        if (!$id_geo_city) {
+            $session = Yii::$app->session;
+            $id_geo_city = $session->get('id_geo_city_search');
+            $cookies = Yii::$app->request->cookies;
+            if (!$id_geo_city && isset($cookies['id_geo_city_search'])) {
+                $id_geo_city = $cookies['id_geo_city_search']->value;
+            }
         }
 
+        if ($id_geo_city) {
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('geo_city')
+                ->where([
+                    'id_geo_city' => $id_geo_city,
+                ])
+                ->one();
+            if ($data) {
+                if (Yii::$app->language == 'ru' || Yii::$app->language == 'ru_RU') {
+                    return $data['name_ru'];
+                } else {
+                    return $data['name_en'];
+                }
+            }
+        }
         return null;
     }
 }

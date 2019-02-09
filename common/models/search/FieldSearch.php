@@ -17,7 +17,7 @@ class FieldSearch extends FieldForm
     public function rules()
     {
         return [
-            [['id', 'type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id'], 'integer'],
+            [['id', 'type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id', 'use_filter'], 'integer'],
             [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask', 'hint'], 'safe'],
             [['min_val', 'max_val'], 'number'],
         ];
@@ -68,6 +68,7 @@ class FieldSearch extends FieldForm
             'min_str' => $this->min_str,
             'max_str' => $this->max_str,
             'template_id' => $this->template_id,
+            'use_filter' => $this->use_filter,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
