@@ -13,7 +13,7 @@ use Yii;
  * @property int $type Тип
  * @property int $document_id Документ
  * @property int $field_id Поле
- * @property int $position Позиция (после)
+ * @property string $params Параметры
  *
  * @property Document $document
  * @property Field $field
@@ -36,8 +36,8 @@ class ValueNumeric extends \yii\db\ActiveRecord
         return [
             [['title', 'type', 'document_id', 'field_id'], 'required'],
             [['value'], 'number'],
-            [['type', 'document_id', 'field_id', 'position'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['type', 'document_id', 'field_id'], 'integer'],
+            [['title', 'params'], 'string', 'max' => 255],
             [['document_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['document_id' => 'id']],
             [['field_id'], 'exist', 'skipOnError' => true, 'targetClass' => Field::className(), 'targetAttribute' => ['field_id' => 'id']],
         ];
@@ -55,7 +55,7 @@ class ValueNumeric extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Тип'),
             'document_id' => Yii::t('app', 'Документ'),
             'field_id' => Yii::t('app', 'Поле'),
-            'position' => Yii::t('app', 'Позиция (после)'),
+            'params' => Yii::t('app', 'Параметры'),
         ];
     }
 

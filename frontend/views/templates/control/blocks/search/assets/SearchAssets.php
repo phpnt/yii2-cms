@@ -7,13 +7,13 @@
  * Time: 7:26
  */
 
-namespace frontend\views\templates\search\assets;
+namespace frontend\views\templates\control\blocks\search\assets;
 
 use yii\web\AssetBundle;
 
 class SearchAssets extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates/search/css';
+    public $sourcePath = '@frontend/views/templates/control/blocks/search';
 
     public $css = [
         'css/search.css'

@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use common\widgets\TemplateOfElement\SetSearchDefaultFields;
-use frontend\views\templates\search\assets\SearchAssets;
+use frontend\views\templates\control\blocks\search\assets\SearchAssets;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */

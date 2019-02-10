@@ -104,6 +104,6 @@ class TemplateExtend extends Template
      */
     public function getFields()
     {
-        return $this->hasMany(FieldForm::className(), ['template_id' => 'id']);
+        return $this->hasMany(FieldForm::className(), ['template_id' => 'id'])->orderBy(['position' => SORT_ASC]);
     }
 }

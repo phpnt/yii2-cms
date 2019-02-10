@@ -17,6 +17,7 @@ use common\models\forms\ValueIntForm;
 use common\models\forms\ValueNumericForm;
 use common\models\forms\ValueStringForm;
 use common\models\forms\ValueTextForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 /*
@@ -28,6 +29,7 @@ use yii\helpers\Json;
  * @property string $city
  * @property string $region
  * @property string $country
+ * @property array $positionsList
  *
  * @property TemplateForm $template
  * @property ValueFileForm[] $valueFiles
@@ -39,6 +41,25 @@ use yii\helpers\Json;
  */
 class FieldExtend extends Field
 {
+    /**
+     * Возвращает список всех полей текущего шаблона
+     * @return array
+     */
+    public function getPositionsList()
+    {
+        $folders = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('field')
+            ->where([
+                'template_id' => $this->template_id,
+            ])
+            ->andWhere(['!=', 'id', $this->id])
+            ->orderBy(['position' => SORT_ASC])
+            ->all();
+
+        return ArrayHelper::map($folders, 'id', 'name');
+    }
+
     /**
      * Возвращает массив выбранных расширений для файлов
      * @return array

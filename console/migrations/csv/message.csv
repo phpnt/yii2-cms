@@ -402,5 +402,7 @@ id;language;translation;hash
 535;en;Reset;9a7e6c61f12c4fdd5ec2fa2ea8e1690a
 538;en;"Use in filter";84c8bd05198af2403a0d064ff9e3cfae
 539;en;"Allow filter template fields";5323615e7f4693645fedfa64fb191b24
-540;en;"Only field names, error messages and tips";c3517882174a9db05b41bcf9f57cac0f
 541;en;Comments:;e0c10111a6027b329a809d9a7dbc5507
+542;en;"Only for items.";2a2a99128e177863055a2ec1f3a042f9
+543;en;Parameters;d650e9539ae811be5a2edc89b8bc4112
+544;en;"Fields and messages.";9317d99be113671c1836d65ae9d34c64

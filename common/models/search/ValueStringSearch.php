@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\ValueStringForm;
@@ -18,8 +17,8 @@ class ValueStringSearch extends ValueStringForm
     public function rules()
     {
         return [
-            [['id', 'type', 'document_id', 'field_id', 'position'], 'integer'],
-            [['title', 'value'], 'safe'],
+            [['id', 'type', 'document_id', 'field_id'], 'integer'],
+            [['title', 'value', 'params'], 'safe'],
         ];
     }
 
@@ -63,11 +62,11 @@ class ValueStringSearch extends ValueStringForm
             'type' => $this->type,
             'document_id' => $this->document_id,
             'field_id' => $this->field_id,
-            'position' => $this->position,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'value', $this->value]);
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'params', $this->params]);
 
         return $dataProvider;
     }

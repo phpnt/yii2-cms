@@ -265,7 +265,7 @@ class DocumentForm extends DocumentExtend
     {
         parent::afterFind();
 
-        if ($this->position) {
+        if (Yii::$app->controller->id != 'csv-manager' && $this->position) {
             /* Если позиция имеет какое-либо значение, определяем ID предыдущего элемента */
             $data = (new \yii\db\Query())
                 ->select(['*'])

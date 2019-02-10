@@ -16,7 +16,7 @@ use Yii;
  * @property int $type Тип
  * @property int $document_id Документ
  * @property int $field_id Поле
- * @property int $position Позиция (после)
+ * @property string $params Параметры
  *
  * @property Document $document
  * @property Field $field
@@ -38,8 +38,8 @@ class ValueFile extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'name', 'extension', 'path'], 'required'],
-            [['size', 'type', 'document_id', 'field_id', 'position'], 'integer'],
-            [['title', 'name', 'extension', 'path'], 'string', 'max' => 255],
+            [['size', 'type', 'document_id', 'field_id'], 'integer'],
+            [['title', 'name', 'extension', 'path', 'params'], 'string', 'max' => 255],
             [['document_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['document_id' => 'id']],
             [['field_id'], 'exist', 'skipOnError' => true, 'targetClass' => Field::className(), 'targetAttribute' => ['field_id' => 'id']],
         ];
@@ -60,7 +60,7 @@ class ValueFile extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Тип'),
             'document_id' => Yii::t('app', 'Документ'),
             'field_id' => Yii::t('app', 'Поле'),
-            'position' => Yii::t('app', 'Позиция (после)'),
+            'params' => Yii::t('app', 'Параметры'),
         ];
     }
 

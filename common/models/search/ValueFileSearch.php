@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\ValueFileForm;
@@ -18,8 +17,8 @@ class ValueFileSearch extends ValueFileForm
     public function rules()
     {
         return [
-            [['id', 'size', 'type', 'document_id', 'field_id', 'position'], 'integer'],
-            [['title', 'name', 'extension', 'path'], 'safe'],
+            [['id', 'size', 'type', 'document_id', 'field_id'], 'integer'],
+            [['title', 'name', 'extension', 'path', 'params'], 'safe'],
         ];
     }
 
@@ -64,13 +63,13 @@ class ValueFileSearch extends ValueFileForm
             'type' => $this->type,
             'document_id' => $this->document_id,
             'field_id' => $this->field_id,
-            'position' => $this->position,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'extension', $this->extension])
-            ->andFilterWhere(['like', 'path', $this->path]);
+            ->andFilterWhere(['like', 'path', $this->path])
+            ->andFilterWhere(['like', 'params', $this->params]);
 
         return $dataProvider;
     }

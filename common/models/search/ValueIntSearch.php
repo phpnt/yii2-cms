@@ -2,7 +2,6 @@
 
 namespace common\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\forms\ValueIntForm;
@@ -18,8 +17,8 @@ class ValueIntSearch extends ValueIntForm
     public function rules()
     {
         return [
-            [['id', 'value', 'type', 'document_id', 'field_id', 'position'], 'integer'],
-            [['title'], 'safe'],
+            [['id', 'value', 'type', 'document_id', 'field_id'], 'integer'],
+            [['title', 'params'], 'safe'],
         ];
     }
 
@@ -64,10 +63,10 @@ class ValueIntSearch extends ValueIntForm
             'type' => $this->type,
             'document_id' => $this->document_id,
             'field_id' => $this->field_id,
-            'position' => $this->position,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'params', $this->params]);
 
         return $dataProvider;
     }

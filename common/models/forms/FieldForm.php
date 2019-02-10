@@ -77,6 +77,76 @@ class FieldForm extends FieldExtend
 
             $this->params = Json::encode($file_extensions);
         }
+
+        /* Если позиция не указана, ставим номер по умолчанию */
+        if (!$this->position && $this->template_id) {
+            dd($this->attributes);
+            $this->position = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where([
+                    'template_id' => $this->template_id,
+                ])
+                ->count();
+        } elseif ($this->position && $this->oldAttributes['position'] != $this->position && $this->template_id) {
+            dd($this->attributes);
+            /* Ранее предшествующий элемент */
+            $beforeItem = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where([
+                    'position' => $this->oldAttributes['position'] - 1,
+                    'template_id' => $this->template_id
+                ])
+                ->one();
+
+            // если позиция изменена
+            if ($beforeItem['id'] != $this->position) {
+                /* Будущий предшествующий элемент */
+                $beforeItem = (new \yii\db\Query())
+                    ->select(['*'])
+                    ->from('field')
+                    ->where([
+                        'id' => $this->position,
+                        'template_id' => $this->template_id
+                    ])
+                    ->one();
+
+                $items = (new \yii\db\Query())
+                    ->select(['id', 'position'])
+                    ->from('field')
+                    ->where([
+                        'template_id' => $this->template_id,
+                    ])
+                    ->orderBy(['position' => SORT_ASC])
+                    ->all();
+
+                // Удаляем текущий элемент из списка
+                foreach ($items as $key => $item) {
+                    if ($item['id'] == $this->id) {
+                        unset($items[$key]);
+                    }
+                }
+
+                $i = 0;
+                // находим предыдущий элемент и после него текущий
+                $db = Yii::$app->db;
+                foreach ($items as $item) {
+                    $item['position'] = $i;
+                    if ($item['id'] == $beforeItem['id']) {
+                        $db->createCommand()->update('field', ['position' => $i], 'id='.$item['id'])->execute();
+                        $i++;
+                        $this->position = $i;
+                    } else {
+                        $db->createCommand()->update('field', ['position' => $i], 'id='.$item['id'])->execute();
+                    }
+                    $i++;
+                }
+            } else {
+                $this->position = $beforeItem['position'] + 1;
+            }
+        }
+
         return true;
     }
 
@@ -126,6 +196,18 @@ class FieldForm extends FieldExtend
             if ($this->max_val) {
                 $this->input_date_to = Yii::$app->formatter->asDate($this->max_val);
             }
+        }
+        if (Yii::$app->controller->id != 'csv-manager' && $this->position) {
+            /* Если позиция имеет какое-либо значение, определяем ID предыдущего элемента */
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where([
+                    'template_id' => $this->template_id,
+                    'position' => $this->position - 1,
+                ])
+                ->one();
+            $this->position = $data['id'];
         }
     }
 

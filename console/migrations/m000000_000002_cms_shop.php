@@ -222,6 +222,7 @@ class m000000_000002_cms_shop extends Migration
             'hint' => $this->string()->comment(Yii::t('app', 'Подсказка для поля')),
             'template_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Шаблон')),
             'use_filter' => $this->boolean()->defaultValue(1)->comment(Yii::t('app', 'Использовать в фильтре')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы полей field
@@ -229,7 +230,7 @@ class m000000_000002_cms_shop extends Migration
 
         $this->importData('field',
             ['id', 'name', 'type', 'is_required', 'error_required', 'is_unique', 'error_unique', 'min_val', 'max_val', 'error_value',
-                'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id', 'use_filter'],
+                'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id', 'use_filter', 'position'],
             fopen(__DIR__ . '/../../console/migrations/csv/field.csv', "r"));
 
         // Значения целых цисел дополнительных полей
@@ -240,7 +241,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы значений дат дополнительных полей
@@ -249,7 +250,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('value_int_name_index', '{{%value_int}}', 'value');
 
         $this->importData('value_int',
-            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'position'],
+            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_int.csv', "r"));
 
         //Числовые значения дополнительных полей
@@ -260,7 +261,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы числовых значений дополнительных полей
@@ -269,7 +270,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('value_numeric_name_index', '{{%value_numeric}}', 'value');
 
         $this->importData('value_numeric',
-            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'position'],
+            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_numeric.csv', "r"));
 
         //Строковые значения дополнительных полей
@@ -280,7 +281,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы строковых значений дополнительных полей
@@ -289,7 +290,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('value_string_name_index', '{{%value_string}}', 'value');
 
         $this->importData('value_string',
-            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'position'],
+            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_string.csv', "r"));
 
         //Текстовые значения дополнительных полей
@@ -300,7 +301,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы текстовых значений дополнительных полей
@@ -308,7 +309,7 @@ class m000000_000002_cms_shop extends Migration
         $this->addForeignKey('value_text_field_id_fk', '{{%value_text}}', 'field_id', '{{%field}}', 'id', 'NO ACTION', 'CASCADE');
 
         $this->importData('value_text',
-            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'position'],
+            ['id', 'title', 'value', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_text.csv', "r"));
 
         $this->createTable('{{%value_file}}', [
@@ -321,7 +322,7 @@ class m000000_000002_cms_shop extends Migration
             'type' => $this->integer()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->comment(Yii::t('app', 'Поле')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы файлов
@@ -329,7 +330,7 @@ class m000000_000002_cms_shop extends Migration
         $this->addForeignKey('value_file_field_id_fk', '{{%value_file}}', 'field_id', '{{%field}}', 'id', 'NO ACTION', 'CASCADE');
 
         $this->importData('value_file',
-            ['id', 'title', 'name', 'extension', 'size', 'path', 'type',  'document_id', 'field_id', 'position'],
+            ['id', 'title', 'name', 'extension', 'size', 'path', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_file.csv', "r"));
 
         //Таблица просмотров документов visit

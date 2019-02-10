@@ -25,6 +25,7 @@ use Yii;
  * @property string $hint Подсказка для поля
  * @property int $template_id Шаблон
  * @property int $use_filter Использовать в фильтре
+ * @property int $position Позиция (после)
  *
  * @property Template $template
  * @property ValueFile[] $valueFiles
@@ -50,7 +51,7 @@ class Field extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'type', 'template_id'], 'required'],
-            [['type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id', 'use_filter'], 'integer'],
+            [['type', 'is_required', 'is_unique', 'min_str', 'max_str', 'template_id', 'use_filter', 'position'], 'integer'],
             [['min_val', 'max_val'], 'number'],
             [['name', 'error_required', 'error_unique', 'error_value', 'error_length', 'params', 'mask', 'hint'], 'string', 'max' => 255],
             [['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],
@@ -81,6 +82,7 @@ class Field extends \yii\db\ActiveRecord
             'hint' => Yii::t('app', 'Подсказка для поля'),
             'template_id' => Yii::t('app', 'Шаблон'),
             'use_filter' => Yii::t('app', 'Использовать в фильтре'),
+            'position' => Yii::t('app', 'Позиция (после)'),
         ];
     }
 

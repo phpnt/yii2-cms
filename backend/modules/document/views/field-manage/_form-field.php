@@ -514,6 +514,17 @@ use phpnt\datepicker\BootstrapDatepicker;
                 ->hint('<i>' . Yii::t('app', 'Отображение подсказки для поля, аналогочно этой, или др. настройкам.' . '</i>'))
             ?>
         </div>
+        <div class="col-md-12">
+            <?= $form->field($modelFieldForm, 'position')->dropDownList($modelFieldForm->positionsList,
+                [
+                    'class'  => 'form-control selectpicker',
+                    'data' => [
+                        'style' => 'btn-default',
+                        'live-search' => 'false',
+                        'title' => '---'
+                    ]
+                ]) ?>
+        </div>
     <?php endif; ?>
 
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
