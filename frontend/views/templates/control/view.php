@@ -19,23 +19,5 @@ use common\widgets\Basket\BasketButton;
 ?>
 <div class="<?= $alias_menu_item; ?>-view">
     <?= ViewItems::widget(['alias_menu_item' => $alias_menu_item, 'alias_sidebar_item' => $alias_sidebar_item, 'modelDocumentForm' => $modelDocumentForm]); ?>
-    <?php if (isset($modelDocumentForm->template->add_rating) && $modelDocumentForm->template->add_rating): ?>
-        <div class="col-md-12 text-right">
-            <?= Rating::widget([
-                'document_id' => $modelDocumentForm->id,
-                'like' => true,             // показывать кнопку "Нравиться"
-                'dislike' => true,          // показывать кнопку "Не нравиться"
-                'percentage' => true,       // показывать процентный рейтинг
-                'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
-                'access_guests' => true,    // разрешены не авторизованным пользователям
-            ]) ?>
-        </div>
-    <?php endif; ?>
-    <?php if (isset($modelDocumentForm->template->add_comments) && $modelDocumentForm->template->add_comments): ?>
-        <?= Comment::widget([
-            'document_id' => $modelDocumentForm->id,
-            'access_answers' => true,   // разрешены ответы на комментарии
-        ]) ?>
-    <?php endif; ?>
 </div>
 

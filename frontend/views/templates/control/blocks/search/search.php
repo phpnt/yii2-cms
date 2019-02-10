@@ -11,6 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use common\widgets\TemplateOfElement\SetSearchDefaultFields;
+use frontend\views\templates\search\assets\SearchAssets;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
@@ -31,40 +32,44 @@ if (Yii::$app->request->get('alias_menu_item') &&
         'alias_menu_item' => Yii::$app->request->get('alias_menu_item'),
         'alias_sidebar_item' => Yii::$app->request->get('alias_sidebar_item')]);
 }
+
+SearchAssets::register($this);
 ?>
-<div class="col-xs-12">
-    <?php p($this->viewFile); ?>
-    <div class="document-form-search">
-        <div class="search-<?= $templateName; ?>">
-            <?php $form = ActiveForm::begin([
-                'action' => $searchUrl,
-                'method' => 'get',
-            ]); ?>
+<div class="block-search">
+    <div class="col-xs-12">
+        <?php p($this->viewFile); ?>
+        <div class="document-form-search">
+            <div class="search-<?= $templateName; ?>">
+                <?php $form = ActiveForm::begin([
+                    'action' => $searchUrl,
+                    'method' => 'get',
+                ]); ?>
 
-            <?php if (isset($modelSearch->template)): ?>
-                <div class="row">
-                    <?= SetSearchDefaultFields::widget([
-                        'form' => $form,
-                        'model' => $modelSearch,
-                    ]); ?>
+                <?php if (isset($modelSearch->template)): ?>
+                    <div class="row">
+                        <?= SetSearchDefaultFields::widget([
+                            'form' => $form,
+                            'model' => $modelSearch,
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+
+                <div class="form-group text-center">
+                    <?= Html::submitButton(Yii::t('app', 'Поиск'), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a(Yii::t('app', 'Сброс'), $searchUrl, ['class' => 'btn btn-default']) ?>
                 </div>
-            <?php endif; ?>
 
-            <div class="form-group text-center">
-                <?= Html::submitButton(Yii::t('app', 'Поиск'), ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Сброс'), $searchUrl, ['class' => 'btn btn-default']) ?>
-            </div>
-
-            <?php ActiveForm::end(); ?>
-            <?php
-            $js = <<< JS
+                <?php ActiveForm::end(); ?>
+                <?php
+                $js = <<< JS
                 function addError(id, message) {
                     console.log(id, message);
                     $( id ).addClass( "has-error" );
                     $( id + " .help-block-error" ).text( message ); 
                 }
 JS;
-            $this->registerJs($js); ?>
+                $this->registerJs($js); ?>
+            </div>
         </div>
     </div>
 </div>

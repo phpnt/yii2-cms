@@ -8,7 +8,7 @@
  */
 
 use phpnt\bootstrapNotify\BootstrapNotify;
-use frontend\views\templates\comment\assets\CommentTempAsset;
+use frontend\views\templates\control\blocks\comment\assets\CommentTempAsset;
 
 /* @var $this yii\web\View */
 /* @var $document_id int */
@@ -17,10 +17,10 @@ use frontend\views\templates\comment\assets\CommentTempAsset;
 
 CommentTempAsset::register($this);
 ?>
-<div id="block-comment-<?= $document_id ?>" class="comment m-t-lg">
+<div class="block-comment m-t-lg">
     <?php BootstrapNotify::widget() ?>
     <div class="col-md-12 m-b-md">
-        <h3>Комментарии:</h3>
+        <h3><?= Yii::t('app', 'Комментарии:') ?></h3>
     </div>
     <div class="col-md-12 m-b-md">
         <div class="slim-scroll-comments block-comments-height" data-height="600px">

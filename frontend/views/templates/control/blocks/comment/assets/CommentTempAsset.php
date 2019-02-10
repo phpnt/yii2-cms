@@ -7,13 +7,13 @@
  * Time: 17:24
  */
 
-namespace frontend\views\templates\comment\assets;
+namespace frontend\views\templates\control\blocks\comment\assets;
 
 use yii\web\AssetBundle;
 
 class CommentTempAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates/comment';
+    public $sourcePath = '@frontend/views/templates/control/blocks/comment';
 
     public $css = [
         'css/comment.css',

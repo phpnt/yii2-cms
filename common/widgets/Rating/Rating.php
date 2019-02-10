@@ -62,7 +62,7 @@ class Rating extends Widget
                 }
                 $percent_count = $percent_count / $i;
 
-                return $this->render('@frontend/views/templates/rating/percentage', [
+                return $this->render('@frontend/views/templates/control/blocks/rating/percentage', [
                     'document_id' => $this->document_id,
                     'percent_count' => $percent_count,
                     'stars_number' => $this->stars_number,
@@ -79,7 +79,7 @@ class Rating extends Widget
                     ])
                     ->count();
 
-                return $this->render('@frontend/views/templates/rating/like', [
+                return $this->render('@frontend/views/templates/control/blocks/rating/like', [
                     'document_id' => $this->document_id,
                     'likes' => $likes
                 ]);
@@ -93,7 +93,7 @@ class Rating extends Widget
                     ])
                     ->count();
 
-                return $this->render('@frontend/views/templates/rating/dislike', [
+                return $this->render('@frontend/views/templates/control/blocks/rating/dislike', [
                     'document_id' => $this->document_id,
                     'dislikes' => $dislikes,
                 ]);
@@ -115,7 +115,7 @@ class Rating extends Widget
                     ])
                     ->count();
 
-                return $this->render('@frontend/views/templates/rating/like_and_dislike', [
+                return $this->render('@frontend/views/templates/control/blocks/rating/like_and_dislike', [
                     'document_id' => $this->document_id,
                     'likes' => $likes,
                     'dislikes' => $dislikes,

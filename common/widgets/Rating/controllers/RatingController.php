@@ -104,7 +104,7 @@ class RatingController extends Controller
             ->count();
 
         if (!$dislike) {
-            return $this->renderAjax('@frontend/views/templates/rating/like', [
+            return $this->renderAjax('@frontend/views/templates/control/blocks/rating/like', [
                 'document_id' => $document_id,
                 'likes' => $likes
             ]);
@@ -119,7 +119,7 @@ class RatingController extends Controller
             ])
             ->count();
 
-        return $this->renderAjax('@frontend/views/templates/rating/like_and_dislike', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/rating/like_and_dislike', [
             'document_id' => $document_id,
             'likes' => $likes,
             'dislikes' => $dislikes,
@@ -223,7 +223,7 @@ class RatingController extends Controller
             ->count();
 
         if (!$like) {
-            return $this->renderAjax('@frontend/views/templates/rating/like', [
+            return $this->renderAjax('@frontend/views/templates/control/blocks/rating/like', [
                 'document_id' => $document_id,
                 'dislikes' => $dislikes,
             ]);
@@ -238,7 +238,7 @@ class RatingController extends Controller
             ])
             ->count();
 
-        return $this->renderAjax('@frontend/views/templates/rating/like_and_dislike', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/rating/like_and_dislike', [
             'document_id' => $document_id,
             'likes' => $likes,
             'dislikes' => $dislikes,
@@ -343,7 +343,7 @@ class RatingController extends Controller
         }
         $percent_count = $percent_count / $i;
 
-        return $this->renderAjax('@frontend/views/templates/rating/percentage', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/rating/percentage', [
             'document_id' => $document_id,
             'percent_count' => $percent_count,
             'stars_number' => $stars_number,
@@ -445,7 +445,7 @@ class RatingController extends Controller
             ])
             ->count();
 
-        return $this->renderAjax('@frontend/views/templates/rating/comment-rating', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/rating/comment-rating', [
             'comment_id' => $comment_id,
             'likes' => $likes,
             'dislikes' => $dislikes,
@@ -553,7 +553,7 @@ class RatingController extends Controller
             ])
             ->count();
 
-        return $this->renderAjax('@frontend/views/templates/rating/comment-rating', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/rating/comment-rating', [
             'comment_id' => $comment_id,
             'likes' => $likes,
             'dislikes' => $dislikes,

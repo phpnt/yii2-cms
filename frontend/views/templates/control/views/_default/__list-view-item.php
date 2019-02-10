@@ -27,9 +27,9 @@ if ($modelDocumentForm->alias_menu_item ==$modelDocumentForm->parent->alias) {
     $url = Url::to(['/control/default/view', 'alias_menu_item' => $modelDocumentForm->alias_menu_item, 'alias_sidebar_item' => $modelDocumentForm->parent->alias, 'alias_item' => $modelDocumentForm->alias]);
 }
 ?>
-<div class="col-md-4 m-b-md">
-    <?php p($this->viewFile); ?>
-    <div class="list-item-<?= $templateName; ?>">
+<div class="list-item-<?= $templateName; ?>">
+    <div class="col-md-4 m-b-md">
+        <?php p($this->viewFile); ?>
         <?php /* Отображение элемента в списке */ ?>
         <a href="<?= $url ?>" class="item-link">
             <div class="item-card">

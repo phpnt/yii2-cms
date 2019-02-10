@@ -8,7 +8,7 @@
  */
 
 use yii\widgets\Menu;
-use frontend\views\templates\control\views\youtube\assets\MetisMenuAsset;
+use frontend\views\templates\control\blocks\sidebar\assets\SidebarAsset;
 
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
@@ -19,19 +19,21 @@ use frontend\views\templates\control\views\youtube\assets\MetisMenuAsset;
 /* @var $tree array Дерево элемента */
 /* @var $templateName string */
 
-MetisMenuAsset::register($this);
+SidebarAsset::register($this);
 ?>
-<div class="col-xs-12">
-    <?php p($this->viewFile); ?>
-    <div class="menu-<?= $templateName; ?>">
-        <div class="sidebar-nav">
-            <?= Menu::widget([
-                'items' => $itemsMenu,
-                'options' => [
-                    'class' => 'side-menu metismenu',
-                ],
-                'activeCssClass'=>'active',
-            ]); ?>
+<div class="block-sidebar">
+    <div class="col-xs-12">
+        <?php p($this->viewFile); ?>
+        <div class="menu-<?= $templateName; ?>">
+            <div class="sidebar-nav">
+                <?= Menu::widget([
+                    'items' => $itemsMenu,
+                    'options' => [
+                        'class' => 'side-menu metismenu',
+                    ],
+                    'activeCssClass'=>'active',
+                ]); ?>
+            </div>
         </div>
     </div>
 </div>

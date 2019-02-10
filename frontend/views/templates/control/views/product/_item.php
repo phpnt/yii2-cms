@@ -41,8 +41,8 @@ foreach ($tree as $value) {
 }
 $this->params['breadcrumbs'][] = Yii::t('app', $modelDocumentForm->name);
 ?>
-<div class="col-md-12">
-    <div class="item-<?= $templateName; ?>">
+<div class="block-item item-<?= $templateName; ?>">
+    <div class="col-md-12">
         <?php p($this->viewFile); ?>
         <h1><?= Yii::t('app', $modelDocumentForm->name) ?></h1>
         <?php if ($modelDocumentForm->template_id): ?>

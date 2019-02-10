@@ -15,29 +15,31 @@ use yii\helpers\Url;
 /* @var $likes int */
 /* @var $dislikes int */
 ?>
-<div id="like-and-dislike-widget-<?= $document_id ?>">
-    <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
-        'class' => 'btn btn-success',
-        'onclick' => '
+<div class="block-rating">
+    <div class="col-md-12 text-right">
+        <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
+            'class' => 'btn btn-success',
+            'onclick' => '
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/like', 'document_id' => $document_id, 'dislike' => true]) . '",
-                container: "#like-and-dislike-widget-' . $document_id . '",
+                container: "#rating-widget",
                 push: false,
                 timeout: 10000,
                 scrollTo: false
             })'
-    ]); ?>
-    <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
-        'class' => 'btn btn-danger',
-        'onclick' => '
+        ]); ?>
+        <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
+            'class' => 'btn btn-danger',
+            'onclick' => '
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/dislike', 'document_id' => $document_id, 'like' => true]) . '",
-                container: "#like-and-dislike-widget-' . $document_id . '",
+                container: "#rating-widget",
                 push: false,
                 timeout: 10000,
                 scrollTo: false
             })'
-    ]); ?>
+        ]); ?>
+    </div>
 </div>

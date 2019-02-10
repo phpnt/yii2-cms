@@ -41,7 +41,7 @@ class CommentRating extends Widget
             ])
             ->count();
 
-        return $this->render('@frontend/views/templates/rating/comment-rating', [
+        return $this->render('@frontend/views/templates/control/blocks/rating/comment-rating', [
             'comment_id' => $this->comment_id,
             'likes' => $likes,
             'dislikes' => $dislikes,

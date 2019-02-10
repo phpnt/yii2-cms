@@ -42,8 +42,8 @@ foreach ($tree as $value) {
 }
 $this->params['breadcrumbs'][] = Yii::t('app', $modelDocumentForm->name);
 ?>
-<div class="col-md-12">
-    <div class="item-<?= $templateName; ?>">
+<div class="block-item item-<?= $templateName; ?>">
+    <div class="col-md-12">
         <h1 class="text-center"><?= Yii::t('app', $modelDocumentForm->name) ?></h1>
         <?php if ($modelDocumentForm->template_id): ?>
             <?php if ($url = $fieldsManage->getValueByName('Ссылка', $templateData)): ?>

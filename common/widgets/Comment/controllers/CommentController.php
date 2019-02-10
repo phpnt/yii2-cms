@@ -40,7 +40,7 @@ class CommentController extends Controller
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
-        return $this->renderAjax('@frontend/views/templates/comment/index', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/comment/index', [
             'document_id' => $document_id,
             'comments' => $comments,
             'access_answers' => $access_answers,
@@ -76,7 +76,7 @@ class CommentController extends Controller
             return $this->asJson(['success' => 1]);
         }
 
-        return $this->renderAjax('@frontend/views/templates/comment/_form-comment', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/comment/_form-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
             'modelCommentForm' => $modelCommentForm,
@@ -123,7 +123,7 @@ class CommentController extends Controller
             );
         }
 
-        return $this->renderAjax('@frontend/views/templates/comment/_form-comment', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/comment/_form-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
             'modelCommentForm' => $modelCommentForm,
@@ -141,7 +141,7 @@ class CommentController extends Controller
             return $this->redirect(['index']);
         }
 
-        return $this->renderAjax('@frontend/views/templates/comment/confirm-delete-comment', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/comment/confirm-delete-comment', [
             'document_id' => $document_id,
             'comment_id' => $comment_id,
             'access_answers' => $access_answers,
@@ -202,7 +202,7 @@ class CommentController extends Controller
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
-        return $this->renderAjax('@frontend/views/templates/comment/index', [
+        return $this->renderAjax('@frontend/views/templates/control/blocks/comment/index', [
             'document_id' => $document_id,
             'comments' => $comments,
             'access_answers' => $access_answers,

@@ -3,20 +3,20 @@
  * User: Vladimir Baranov <phpnt@yandex.ru>
  * Git: <https://github.com/phpnt>
  * VK: <https://vk.com/phpnt>
- * Date: 11.12.2018
- * Time: 14:54
+ * Date: 10.02.2019
+ * Time: 7:13
  */
 
-namespace frontend\views\templates\control\views\_default\assets;
+namespace frontend\views\templates\control\blocks\sidebar\assets;
 
 use yii\web\AssetBundle;
 
-class MetisMenuAsset extends AssetBundle
+class SidebarAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/views/templates/control/views/_default';
+    public $sourcePath = '@frontend/views/templates/control/blocks/sidebar';
 
     public $css = [
-        'css/mm.css'
+        'css/sidebar.css'
     ];
 
     public $js = [

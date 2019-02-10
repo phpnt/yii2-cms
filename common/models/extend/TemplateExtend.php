@@ -67,7 +67,7 @@ class TemplateExtend extends Template
     {
         return [
             Constants::STATUS_I18N_ALL =>  Yii::t('app', 'Переводить все'),
-            Constants::STATUS_I18N_NAMES => Yii::t('app', 'Только названия полей, сообщения об ошибках и подсказки.'),
+            Constants::STATUS_I18N_NAMES => Yii::t('app', 'Поля и сообщения.'),
             Constants::STATUS_I18N_BLOCKED => Yii::t('app', 'Не переводить'),
         ];
     }

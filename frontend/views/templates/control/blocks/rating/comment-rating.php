@@ -15,7 +15,7 @@ use yii\helpers\Url;
 /* @var $likes int */
 /* @var $dislikes int */
 ?>
-<span id="comment-rating-widget-<?= $comment_id ?>">
+<span id="comment-rating-widget-<?= $comment_id ?>"  class="block-comment-rating">
     <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
         'title' => Yii::t('app', 'Нравиться'),
         'class' => 'btn btn-xs btn-success',

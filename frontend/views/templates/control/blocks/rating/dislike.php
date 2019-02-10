@@ -14,17 +14,19 @@ use yii\helpers\Url;
 /* @var $document_id int */
 /* @var $dislikes int */
 ?>
-<div id="dislike-widget-<?= $document_id ?>">
-    <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
-        'class' => 'btn btn-danger',
-        'onclick' => '
+<div class="block-rating">
+    <div class="col-md-12 text-right">
+        <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
+            'class' => 'btn btn-danger',
+            'onclick' => '
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/dislike', 'document_id' => $document_id, 'like' => false]) . '",
-                container: "#dislike-widget-' . $document_id . '",
+                container: "#rating-widget",
                 push: false,
                 timeout: 10000,
                 scrollTo: false
             })'
-    ]); ?>
+        ]); ?>
+    </div>
 </div>

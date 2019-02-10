@@ -39,8 +39,8 @@ foreach ($tree as $value) {
 }
 $this->params['breadcrumbs'][] = Yii::t('app', $modelSearch->parent->name);
 ?>
-<div class="col-md-12">
-    <div class="list-<?= $templateName; ?>">
+<div class="list-<?= $templateName; ?>">
+    <div class="col-md-12">
         <?php p($this->viewFile); ?>
         <div class="row">
             <?= ListView::widget([

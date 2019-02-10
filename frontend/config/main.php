@@ -88,7 +88,7 @@ return [
             'enableStrictParsing' => true,
             'ignoreLanguageUrlPatterns' => [
                 '#^auth/#' => '#^auth/#',
-                '#^geo/#' => '#^geo/#',
+                //'#^geo/#' => '#^geo/#',
                 '#^geo-manage/#' => '#^geo-manage/#',
             ],
         ],

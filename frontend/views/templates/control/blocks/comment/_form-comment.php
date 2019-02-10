@@ -76,7 +76,7 @@ use phpnt\summernote\SummernoteWidget;
                         $.pjax({
                             type: "GET",
                             url: "' . Url::to(['/comment/refresh-comment', 'document_id' => $document_id]) . '",
-                            container: "#block-comment-' . $document_id . '",
+                            container: "#comment-widget",
                             push: false,
                             timeout: 10000,
                             scrollTo: false
@@ -87,7 +87,7 @@ use phpnt\summernote\SummernoteWidget;
         <?php ActiveForm::end(); ?>
         <?php
         $url_refresh = Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]);
-        $block_refresh = '#block-comment-' . $document_id;
+        $block_refresh = '#comment-widget';
         $js = <<< JS
         $('#form-comment').on('beforeSubmit', function () { 
             var form = $(this);
@@ -110,7 +110,7 @@ use phpnt\summernote\SummernoteWidget;
                         return false;
                     }
                     if(result.success) {
-                        console.log('ok');
+                        //console.log('ok');
                         // data is saved
                         $.pjax({
                             type: "GET", 

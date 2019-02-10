@@ -47,7 +47,7 @@ class Comment extends Widget
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
-        return $this->render('@frontend/views/templates/comment/index', [
+        return $this->render('@frontend/views/templates/control/blocks/comment/index', [
             'widget' => $this,
             'document_id' => $this->document_id,
             'comments' => $comments,

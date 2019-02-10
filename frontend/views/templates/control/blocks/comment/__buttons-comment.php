@@ -36,7 +36,7 @@ $modelUserForm = Yii::$app->user->identity;
         <?php
         $url = Url::to(['/profile/default/create-profile',
             'url' => Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]),
-            'container' => '#block-comment-' . $document_id,
+            'container' => '#comment-widget',
         ]);
         ?>
         <?= Html::a(Yii::t('app', '<span class="text-danger">Ответить <i class="fas fa-user-times"></i></span>'), 'javascript:void(0)',

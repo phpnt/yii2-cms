@@ -65,36 +65,39 @@ use phpnt\ICheck\ICheck;
     <div class="clearfix"></div>
 
     <div class="col-md-12">
-        <?= $form->field($modelTemplateForm, 'add_rating', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+        <?= $form->field($modelTemplateForm, 'add_rating', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
                 'checked' => $modelTemplateForm->add_rating
-            ]
-        ])->label(false) ?>
+            ]])
+            ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
+            ->label(false) ?>
     </div>
 
     <div class="col-md-12">
-        <?= $form->field($modelTemplateForm, 'add_comments', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+        <?= $form->field($modelTemplateForm, 'add_comments', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
                 'checked' => $modelTemplateForm->add_comments
-            ]
-        ])->label(false) ?>
+            ]])
+            ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
+            ->label(false) ?>
     </div>
 
     <div class="col-md-12">
-        <?= $form->field($modelTemplateForm, 'use_filter', ['template' => ' {input} {label}'])->widget(ICheck::class, [
+        <?= $form->field($modelTemplateForm, 'use_filter', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
                 'checked' => $modelTemplateForm->use_filter
-            ]
-        ])->label(false) ?>
+            ]])
+            ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
+            ->label(false) ?>
     </div>
 
     <div class="clearfix"></div>
