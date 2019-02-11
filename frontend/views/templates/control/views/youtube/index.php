@@ -35,7 +35,7 @@ YoutubeTempAsset::register($this);
                             'tree' => $tree,
                             'templateName' => $templateName
                         ]); ?>
-                        <?php if ($dataProvider->models && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+                        <?php if (($dataProvider->models || Yii::$app->request->get('DocumentSearch')) && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
                             <?= $this->render('@frontend/views/templates/control/blocks/search/search', [
                                 'page' => $page,
                                 'modelSearch' => $modelSearch,
@@ -65,7 +65,7 @@ YoutubeTempAsset::register($this);
                 </div>
             </div>
         </div>
-    <?php elseif (isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+    <?php elseif (($dataProvider->models || Yii::$app->request->get('DocumentSearch')) && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
         <?php /* Если есть элементы, но нет бокового меню */ ?>
         <div class="row">
             <div class="block-left">

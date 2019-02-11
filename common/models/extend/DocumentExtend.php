@@ -101,7 +101,7 @@ class DocumentExtend extends Document
             $data[$modelDocumentForm->id]['text'] = Yii::t('app', $modelDocumentForm->name) . ' ' . $modelDocumentForm->statusItem;
             $data[$modelDocumentForm->id]['icon'] = 'fa fa-folder';
             $data[$modelDocumentForm->id]['state'] = [
-                'opened' => $modelDocumentForm->id == 1 ? true : false
+                'opened' => $modelDocumentForm->id == 1 ? true : true
             ];
         }
 

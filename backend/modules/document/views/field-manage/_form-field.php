@@ -534,6 +534,7 @@ use phpnt\datepicker\BootstrapDatepicker;
         $modelFieldForm->type == Constants::FIELD_TYPE_LIST ||
         $modelFieldForm->type == Constants::FIELD_TYPE_DATE ||
         $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
         $modelFieldForm->type == Constants::FIELD_TYPE_PRICE ||
         $modelFieldForm->type == Constants::FIELD_TYPE_CITY ||
         $modelFieldForm->type == Constants::FIELD_TYPE_REGION ||

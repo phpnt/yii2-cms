@@ -156,7 +156,7 @@ class DocumentSearch extends DocumentForm
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
                     if ($field['type'] == Constants::FIELD_TYPE_INT) {
-                        $query->leftJoin('value_int AS int', 'document.id = int.document_id');
+                        $query->leftJoin('value_int AS int' . $key, 'document.id = int' . $key . '.document_id');
                             if (($this->elements_fields[$key][0] != '' &&
                                     $this->elements_fields[$key][1] != '') &&
                                 $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
@@ -167,52 +167,52 @@ class DocumentSearch extends DocumentForm
                         // если значеине "от" не пустое
                         if ($this->elements_fields[$key][0] != '') {
                             $query->andWhere(['and',
-                                ['int.type' => Constants::FIELD_TYPE_INT],
-                                ['>=', 'int.value', $this->elements_fields[$key][0]]
+                                ['int' . $key . '.type' => Constants::FIELD_TYPE_INT],
+                                ['>=', 'int' . $key . '.value', $this->elements_fields[$key][0]]
                             ]);
                           }
                         // если значеине "до" не пустое
                         if ($this->elements_fields[$key][1] != '') {
                             $query->andWhere(['and',
-                                ['int.type' => Constants::FIELD_TYPE_INT],
-                                ['<=', 'int.value', $this->elements_fields[$key][1]]
+                                ['int' . $key . '.type' => Constants::FIELD_TYPE_INT],
+                                ['<=', 'int' . $key . '.value', $this->elements_fields[$key][1]]
                             ]);
                         }
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_CHECKBOX) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS checkbox', 'document.id = checkbox.document_id');
+                        $query->leftJoin('value_int AS checkbox' . $key, 'document.id = checkbox' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['checkbox.type' => Constants::FIELD_TYPE_CHECKBOX],
-                            ['checkbox.value' => $this->elements_fields[$key][0]]
+                            ['checkbox' . $key . '.type' => Constants::FIELD_TYPE_CHECKBOX],
+                            ['checkbox' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_LIST_MULTY) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS list_multy', 'document.id = list_multy.document_id');
+                        $query->leftJoin('value_int AS list_multy' . $key, 'document.id = list_multy' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['list_multy.type' => Constants::FIELD_TYPE_LIST_MULTY],
-                            ['list_multy.value' => $this->elements_fields[$key][0]]
+                            ['list_multy' . $key . '.type' => Constants::FIELD_TYPE_LIST_MULTY],
+                            ['list_multy' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_RADIO) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS radio', 'document.id = radio.document_id');
+                        $query->leftJoin('value_int AS radio' . $key, 'document.id = radio' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['radio.type' => Constants::FIELD_TYPE_RADIO],
-                            ['radio.value' => $this->elements_fields[$key][0]]
+                            ['radio' . $key . '.type' => Constants::FIELD_TYPE_RADIO],
+                            ['radio' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_LIST) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS list', 'document.id = list.document_id');
+                        $query->leftJoin('value_int AS list' . $key, 'document.id = list' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['list.type' => Constants::FIELD_TYPE_LIST],
-                            ['list.value' => $this->elements_fields[$key][0]]
+                            ['list' . $key . '.type' => Constants::FIELD_TYPE_LIST],
+                            ['list' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
@@ -220,7 +220,7 @@ class DocumentSearch extends DocumentForm
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
                     if ($field['type'] == Constants::FIELD_TYPE_DATE) {
-                        $query->leftJoin('value_int AS date', 'document.id = date.document_id');
+                        $query->leftJoin('value_int AS date' . $key, 'document.id = date' . $key . '.document_id');
                         if (($this->elements_fields[$key][0] != '' &&
                                 $this->elements_fields[$key][1] != '') &&
                             $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
@@ -231,43 +231,43 @@ class DocumentSearch extends DocumentForm
                         // если значеине "от" не пустое
                         if ($this->elements_fields[$key][0] != '') {
                             $query->andWhere(['and',
-                                ['date.type' => Constants::FIELD_TYPE_DATE],
-                                ['>=', 'date.value', strtotime($this->elements_fields[$key][0])]
+                                ['date' . $key . '.type' => Constants::FIELD_TYPE_DATE],
+                                ['>=', 'date' . $key . '.value', strtotime($this->elements_fields[$key][0])]
                             ]);
                         }
                         // если значеине "до" не пустое
                         if ($this->elements_fields[$key][1] != '') {
                             $query->andWhere(['and',
-                                ['date.type' => Constants::FIELD_TYPE_DATE],
-                                ['<=', 'date.value', strtotime($this->elements_fields[$key][1])]
+                                ['date' . $key . '.type' => Constants::FIELD_TYPE_DATE],
+                                ['<=', 'date' . $key . '.value', strtotime($this->elements_fields[$key][1])]
                             ]);
                         }
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_COUNTRY) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS country', 'document.id = country.document_id');
+                        $query->leftJoin('value_int AS country' . $key, 'document.id = country' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['country.type' => Constants::FIELD_TYPE_COUNTRY],
-                            ['country.value' => $this->elements_fields[$key][0]]
+                            ['country' . $key . '.type' => Constants::FIELD_TYPE_COUNTRY],
+                            ['country' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_REGION) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS region', 'document.id = region.document_id');
+                        $query->leftJoin('value_int AS region' . $key, 'document.id = region' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['region.type' => Constants::FIELD_TYPE_REGION],
-                            ['region.value' => $this->elements_fields[$key][0]]
+                            ['region' . $key . '.type' => Constants::FIELD_TYPE_REGION],
+                            ['region' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_CITY) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_int AS city', 'document.id = city.document_id');
+                        $query->leftJoin('value_int AS city' . $key, 'document.id = city' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['city.type' => Constants::FIELD_TYPE_CITY],
-                            ['city.value' => $this->elements_fields[$key][0]]
+                            ['city' . $key . '.type' => Constants::FIELD_TYPE_CITY],
+                            ['city' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
@@ -275,7 +275,7 @@ class DocumentSearch extends DocumentForm
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
                     if ($field['type'] == Constants::FIELD_TYPE_FLOAT) {
-                        $query->leftJoin('value_numeric AS float', 'document.id = float.document_id');
+                        $query->leftJoin('value_numeric AS float' . $key, 'document.id = float' . $key . '.document_id');
                         if (($this->elements_fields[$key][0] != '' &&
                                 $this->elements_fields[$key][1] != '') &&
                             $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
@@ -287,15 +287,15 @@ class DocumentSearch extends DocumentForm
 
                         if ($this->elements_fields[$key][0] != '') {
                             $query->andWhere(['and',
-                                ['float.type' => Constants::FIELD_TYPE_FLOAT],
-                                ['>=', 'float.value', $this->elements_fields[$key][0]]
+                                ['float' . $key . '.type' => Constants::FIELD_TYPE_FLOAT],
+                                ['>=', 'float' . $key . '.value', $this->elements_fields[$key][0]]
                             ]);
                         }
                         // если значеине "до" не пустое
                         if ($this->elements_fields[$key][1] != '') {
                             $query->andWhere(['and',
-                                ['float.type' => Constants::FIELD_TYPE_FLOAT],
-                                ['<=', 'float.value', $this->elements_fields[$key][1]]
+                                ['float' . $key . '.type' => Constants::FIELD_TYPE_FLOAT],
+                                ['<=', 'float' . $key . '.value', $this->elements_fields[$key][1]]
                             ]);
                         }
                     }
@@ -304,7 +304,7 @@ class DocumentSearch extends DocumentForm
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
                     if ($field['type'] == Constants::FIELD_TYPE_PRICE) {
-                        $query->leftJoin('value_numeric AS price', 'document.id = price.document_id');
+                        $query->leftJoin('value_numeric AS price' . $key, 'document.id = price' . $key . '.document_id');
                         if (($this->elements_fields[$key][0] != '' &&
                                 $this->elements_fields[$key][1] != '') &&
                             $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
@@ -316,25 +316,25 @@ class DocumentSearch extends DocumentForm
 
                         if ($this->elements_fields[$key][0] != '') {
                             $query->andWhere(['and',
-                                ['price.type' => Constants::FIELD_TYPE_PRICE],
-                                ['>=', 'price.value', $this->elements_fields[$key][0]]
+                                ['price' . $key . '.type' => Constants::FIELD_TYPE_PRICE],
+                                ['>=', 'price' . $key . '.value', $this->elements_fields[$key][0]]
                             ]);
                         }
                         // если значеине "до" не пустое
                         if ($this->elements_fields[$key][1] != '') {
                             $query->andWhere(['and',
-                                ['price.type' => Constants::FIELD_TYPE_PRICE],
-                                ['<=', 'price.value', $this->elements_fields[$key][1]]
+                                ['price' . $key . '.type' => Constants::FIELD_TYPE_PRICE],
+                                ['<=', 'price' . $key . '.value', $this->elements_fields[$key][1]]
                             ]);
                         }
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_STRING) {
                     if ($this->elements_fields[$key][0] != '') {
-                        $query->leftJoin('value_string AS string', 'document.id = string.document_id');
+                        $query->leftJoin('value_string AS string' . $key, 'document.id = string' . $key . '.document_id');
                         $query->andWhere(['and',
-                            ['string.type' => Constants::FIELD_TYPE_STRING],
-                            ['like', 'string.value', $this->elements_fields[$key][0]]
+                            ['string' . $key . '.type' => Constants::FIELD_TYPE_STRING],
+                            ['like', 'string' . $key . '.value', $this->elements_fields[$key][0]]
                         ]);
                     }
                 }
