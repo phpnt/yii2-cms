@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ccf8052-fdad-484f-a5bc-b83c906155e7" name="Default Changelist" comment="0.0.4">
-      <change beforePath="$PROJECT_DIR$/backend/modules/document/controllers/FieldManageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/modules/document/controllers/FieldManageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/modules/document/views/field-manage/_form-field.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/modules/document/views/field-manage/_form-field.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/Field.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/Field.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/ValueFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/ValueFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/ValueInt.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/ValueInt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/ValueNumeric.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/ValueNumeric.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/ValueString.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/ValueString.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/ValueText.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/ValueText.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/extend/FieldExtend.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/extend/FieldExtend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/extend/TemplateExtend.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/extend/TemplateExtend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/forms/DocumentForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/forms/DocumentForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/forms/FieldForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/forms/FieldForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/FieldSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/FieldSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/ValueFileSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/ValueFileSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/ValueIntSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/ValueIntSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/ValueNumericSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/ValueNumericSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/ValueStringSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/ValueStringSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/models/search/ValueTextSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/common/models/search/ValueTextSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/document.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/document.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/field.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/field.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/message.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/message.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/source_message.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/source_message.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/value_file.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/value_file.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/value_int.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/value_int.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/value_numeric.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/value_numeric.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/value_string.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/value_string.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/value_text.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/value_text.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/csv/visit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/csv/visit.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console/migrations/m000000_000002_cms_shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/console/migrations/m000000_000002_cms_shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/templates/control/blocks/search/assets/SearchAssets.php" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/templates/control/blocks/search/assets/SearchAssets.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/templates/control/blocks/search/search.php" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/templates/control/blocks/search/search.php" afterDir="false" />
-    </list>
+    <list default="true" id="4ccf8052-fdad-484f-a5bc-b83c906155e7" name="Default Changelist" comment="0.0.4" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,17 +30,18 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="56" />
-          <entry key="project.open.time.0" value="53" />
+          <entry key="project.open.time.0" value="54" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.42" value="1" />
-          <entry key="project.opened" value="58" />
+          <entry key="project.opened" value="59" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="bat" value="1" />
+          <entry key="bowerrc" value="1" />
           <entry key="conf" value="1" />
           <entry key="css" value="1" />
           <entry key="csv" value="18" />
@@ -89,7 +58,7 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="CSV" value="18" />
-          <entry key="JSON" value="2" />
+          <entry key="JSON" value="3" />
           <entry key="PHP" value="29" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SmartyConfig" value="1" />
@@ -113,13 +82,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/views/templates/profile/_files.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
               <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.bowerrc">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -282,7 +256,20 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="example" type="b2602c69:ProjectViewProjectNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -293,11 +280,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Server\data\htdocs\example.loc\example" />
       <recent name="D:\Server\data\htdocs\example.loc\example\frontend\views\layouts" />
       <recent name="D:\Server\data\htdocs\example.loc\example\common\widgets\TemplateOfElement\components" />
       <recent name="D:\Server\data\htdocs\example.loc\example\common\components\extend" />
       <recent name="D:\Server\data\htdocs\example.loc\example\frontend\web" />
-      <recent name="D:\Server\data\htdocs\example.loc\example" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -379,6 +366,7 @@
       <workItem from="1549727631953" duration="27000" />
       <workItem from="1549771655711" duration="25000" />
       <workItem from="1549802185889" duration="7000" />
+      <workItem from="1550042022527" duration="25000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.4">
       <created>1544277643810</created>
@@ -391,10 +379,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26895000" />
+    <option name="totallyTimeSpent" value="26920000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32997763" />
@@ -404,7 +393,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32960895" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32881355" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32997763" />
       <window_info anchor="bottom" id="File Transfer" order="10" weight="0.5396648" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -626,6 +615,9 @@
           <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
