@@ -12,6 +12,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use phpnt\bootstrapNotify\BootstrapNotify;
+use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
 /* @var $modelTemplateSearch common\models\search\TemplateSearch */
@@ -148,18 +149,6 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             },
         ],
         [
-            'attribute' => 'mark',
-            'format' => 'raw',
-            'contentOptions' => [
-                'class' => 'vcenter',
-                //'style' => 'max-width: 100px !important; width: 100px !important;'
-            ],
-            'value' => function ($modelTemplateForm) {
-                /* @var $modelTemplateForm \common\models\forms\TemplateForm */
-                return Yii::t('app', $modelTemplateForm->mark);
-            },
-        ],
-        [
             'attribute' => 'status',
             'format' => 'raw',
             'contentOptions' => [
@@ -200,21 +189,36 @@ use phpnt\bootstrapNotify\BootstrapNotify;
             //'contentOptions' => ['style'=>'max-width: 20px !important; width: 20px !important;'],
         ],
         [
-            'label' => Yii::t('app', 'Поля'),
+            'label' => Yii::t('app', 'Поля шаблона'),
             'format' => 'raw',
             'contentOptions' => function ($modelTemplateForm, $key, $index, $column){
                 /* @var $modelTemplateForm \common\models\forms\TemplateForm */
                 return [
-                    'class' => 'vcenter'
+                    'class' => 'vcenter',
+                    'style' => 'max-width: 200px !important; width: 200px !important;'
                 ];
             },
             'value' => function ($modelTemplateForm, $key, $index, $column) {
                 /* @var $modelTemplateForm \common\models\forms\TemplateForm */
-                return $this->render('@backend/modules/document/views/field-manage/__fields_of_template', [
-                    'manyFieldForm' => $modelTemplateForm->fields,
-                    'key'           => $key,
-                    'index'         => $index,
-                    'column'        => $column,
+                return Collapse::widget([
+                    'items' => [
+                        // equivalent to the above
+                        [
+                            'label' => Yii::t('app', 'Поля шаблона'),
+                            'content' => '<div id="field_of_template_' . $modelTemplateForm->id . '">' . $this->render('@backend/modules/document/views/field-manage/__fields_of_template', [
+                                'manyFieldForm' => $modelTemplateForm->fields,
+                                'key'           => $key,
+                                'index'         => $index,
+                                'column'        => $column,
+                            ]) . '</div>',
+                            'contentOptions' => [
+
+                            ],
+                        ],
+                    ],
+                    'options' => [
+                        'id' => 'field-row-' . $modelTemplateForm->id,
+                    ],
                 ]);
             },
         ],

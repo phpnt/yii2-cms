@@ -31,7 +31,7 @@ use yii\helpers\ArrayHelper;
  * @property array $positionsList
  * @property array $statusList
  * @property array $statusItem
- * @property string $allFolders
+ * @property array $allFolders
  * @property array $accessList
  * @property int $viewedDocument
  * @property int $likedDocument

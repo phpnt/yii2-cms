@@ -79,17 +79,16 @@ class FieldForm extends FieldExtend
         }
 
         /* Если позиция не указана, ставим номер по умолчанию */
-        if (!$this->position && $this->template_id) {
-            dd($this->attributes);
+        if (!$this->position && $this->template_id && $this->isNewRecord) {
             $this->position = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('field')
                 ->where([
                     'template_id' => $this->template_id,
                 ])
+                ->orderBy(['position' => SORT_ASC])
                 ->count();
         } elseif ($this->position && $this->oldAttributes['position'] != $this->position && $this->template_id) {
-            dd($this->attributes);
             /* Ранее предшествующий элемент */
             $beforeItem = (new \yii\db\Query())
                 ->select(['*'])

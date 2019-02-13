@@ -20,50 +20,21 @@ class GenerateEmailTemplate extends Object
 
     public function getTemplate($template, $data, $counter = 5)
     {
-        $i = 0;
-        while ($i < $counter) {
-            if (isset($data['{NAME_'.$i.'}'])) {
-                $template = str_replace(['{NAME_'.$i.'}'], $data['{NAME_'.$i.'}'], $template);
-            }
-            $i++;
-        }
+        $template = $this->generateTemplate('NAME', $template, $data, $counter);
+        $template = $this->generateTemplate('EMAIL', $template, $data, $counter);
+        $template = $this->generateTemplate('PASS', $template, $data, $counter);
+        $template = $this->generateTemplate('URL', $template, $data, $counter);
+        $template = $this->generateTemplate('DATE', $template, $data, $counter);
+        $template = $this->generateTemplate('TEXT', $template, $data, $counter);
 
-        $i = 0;
-        while ($i < $counter) {
-            if (isset($data['{EMAIL_'.$i.'}'])) {
-                $template = str_replace(['{EMAIL_'.$i.'}'], $data['{EMAIL_'.$i.'}'], $template);
-            }
-            $i++;
-        }
+        return $template;
+    }
 
+    private function generateTemplate($name, $template, $data, $counter) {
         $i = 0;
         while ($i < $counter) {
-            if (isset($data['{PASS_'.$i.'}'])) {
-                $template = str_replace(['{PASS_'.$i.'}'], $data['{PASS_'.$i.'}'], $template);
-            }
-            $i++;
-        }
-
-        $i = 0;
-        while ($i < $counter) {
-            if (isset($data['{URL_'.$i.'}'])) {
-                $template = str_replace(['{URL_'.$i.'}'], $data['{URL_'.$i.'}'], $template);
-            }
-            $i++;
-        }
-
-        $i = 0;
-        while ($i < $counter) {
-            if (isset($data['{DATE_'.$i.'}'])) {
-                $template = str_replace(['{DATE_'.$i.'}'], $data['{DATE_'.$i.'}'], $template);
-            }
-            $i++;
-        }
-
-        $i = 0;
-        while ($i < $counter) {
-            if (isset($data['{TEXT_'.$i.'}'])) {
-                $template = str_replace(['{TEXT_'.$i.'}'], $data['{TEXT_'.$i.'}'], $template);
+            if (isset($data['{' . $name . '_'.$i.'}'])) {
+                $template = str_replace(['{' . $name . '_'.$i.'}'], $data['{' . $name . '_'.$i.'}'], $template);
             }
             $i++;
         }

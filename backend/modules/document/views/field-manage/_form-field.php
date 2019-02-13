@@ -569,6 +569,7 @@ use phpnt\datepicker\BootstrapDatepicker;
     <?php
     $url_refresh = Url::to(['/document/field-manage/refresh-fields', 'template_id' => $modelFieldForm->template_id]);
     $id_grid_refresh = '#field_of_template_' . $modelFieldForm->template_id;
+    $id_collapse = '#field-row-' . $modelFieldForm->template_id .'-collapse1';
 
     $js = <<< JS
         $('.selectpicker').selectpicker({});
@@ -594,8 +595,9 @@ use phpnt\datepicker\BootstrapDatepicker;
                     }
                     if(result.success) {
                         // data is saved
-                        console.log('success');
+                        console.log('success 2');
                         $("#universal-modal").modal("hide");
+                        $("$id_collapse").addClass("in");
                         $.pjax({
                             type: "GET", 
                             url: "$url_refresh",

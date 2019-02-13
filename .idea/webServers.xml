@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="63cb6ace-1b1d-4a2d-8e69-cdb4fb34bea7" name="http://test.phpnt.com" url="http://5.45.124.29">
+        <fileTransfer host="5.45.124.29" port="22" rootFolder="/var/www/setyes/data/www/test.phpnt.com" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

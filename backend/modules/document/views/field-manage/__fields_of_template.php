@@ -19,18 +19,17 @@ use common\models\Constants;
 /* @var $index int */
 /* @var $column yii\grid\DataColumn */
 ?>
-<div id="field_of_template_<?= $key ?>">
-    <?= BootstrapNotify::widget() ?>
-    <table class="table table-hover">
-        <tbody>
-        <?php foreach ($manyFieldForm as $modelFieldForm): ?>
-            <tr>
-                <td class="text-center vcenter" style="max-width: 65px !important; width: 65px !important;">
-                    <?php if (Yii::$app->user->can('document/field-manage/view-field')): ?>
-                        <?= Html::a('<i class="fa fa-eye"></i>', 'javascript:void(0);', [
-                            'class' => 'text-info',
-                            'title' => Yii::t('app', 'Просмотр поля'),
-                            'onclick' => '
+<?= BootstrapNotify::widget() ?>
+<table class="table table-hover">
+    <tbody>
+    <?php foreach ($manyFieldForm as $modelFieldForm): ?>
+        <tr>
+            <td class="text-center vcenter" style="max-width: 65px !important; width: 65px !important;">
+                <?php if (Yii::$app->user->can('document/field-manage/view-field')): ?>
+                    <?= Html::a('<i class="fa fa-eye"></i>', 'javascript:void(0);', [
+                        'class' => 'text-info',
+                        'title' => Yii::t('app', 'Просмотр поля'),
+                        'onclick' => '
                                 $.pjax({
                                     type: "GET",
                                     url: "' . Url::to(['/document/field-manage/view-field', 'id' => $modelFieldForm->id]) . '",
@@ -39,13 +38,13 @@ use common\models\Constants;
                                     timeout: 10000,
                                     scrollTo: false
                                 })'
-                        ]); ?>
-                    <?php endif; ?>
-                    <?php if (Yii::$app->user->can('document/field-manage/update-field')): ?>
-                        <?= Html::a('<i class="fa fa-pen"></i>', 'javascript:void(0);', [
-                            'class' => 'text-warning',
-                            'title' => Yii::t('app', 'Изменить поле'),
-                            'onclick' => '
+                    ]); ?>
+                <?php endif; ?>
+                <?php if (Yii::$app->user->can('document/field-manage/update-field')): ?>
+                    <?= Html::a('<i class="fa fa-pen"></i>', 'javascript:void(0);', [
+                        'class' => 'text-warning',
+                        'title' => Yii::t('app', 'Изменить поле'),
+                        'onclick' => '
                                 $.pjax({
                                     type: "GET",
                                     url: "' . Url::to(['/document/field-manage/update-field', 'id' => $modelFieldForm->id]) . '",
@@ -54,13 +53,13 @@ use common\models\Constants;
                                     timeout: 10000,
                                     scrollTo: false
                                 })'
-                        ]); ?>
-                    <?php endif; ?>
-                    <?php if (Yii::$app->user->can('document/field-manage/confirm-delete-field')): ?>
-                        <?= Html::a('<i class="fa fa-trash"></i>', 'javascript:void(0);', [
-                            'class' => 'text-danger',
-                            'title' => Yii::t('app', 'Удалить поле'),
-                            'onclick' => '
+                    ]); ?>
+                <?php endif; ?>
+                <?php if (Yii::$app->user->can('document/field-manage/confirm-delete-field')): ?>
+                    <?= Html::a('<i class="fa fa-trash"></i>', 'javascript:void(0);', [
+                        'class' => 'text-danger',
+                        'title' => Yii::t('app', 'Удалить поле'),
+                        'onclick' => '
                                 $.pjax({
                                     type: "GET",
                                     url: "' . Url::to(['field-manage/confirm-delete-field', 'id' => $modelFieldForm->id]) . '",
@@ -69,31 +68,30 @@ use common\models\Constants;
                                     timeout: 10000,
                                     scrollTo: false
                                 })'
-                        ]); ?>
+                    ]); ?>
+                <?php endif; ?>
+            </td>
+            <td>
+                <?= $modelFieldForm->name ?> (<?= $modelFieldForm->typeItem ?>)<br>
+                <?php if (isset($modelFieldForm->valueStringsOfTemplate)): ?>
+                    <?php foreach ($modelFieldForm->valueStringsOfTemplate as $modelValueStringForm): ?>
+                        <?php /* @var $modelValueStringForm \common\models\forms\ValueStringForm */ ?>
+                        <?= $modelValueStringForm->value ?><br>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DATE || $modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
+                    <?php if ($modelFieldForm->min_val): ?>
+                        <?= Yii::$app->formatter->asDate($modelFieldForm->min_val) ?>
                     <?php endif; ?>
-                </td>
-                <td>
-                    <?= $modelFieldForm->name ?> (<?= $modelFieldForm->typeItem ?>)<br>
-                    <?php if (isset($modelFieldForm->valueStringsOfTemplate)): ?>
-                        <?php foreach ($modelFieldForm->valueStringsOfTemplate as $modelValueStringForm): ?>
-                            <?php /* @var $modelValueStringForm \common\models\forms\ValueStringForm */ ?>
-                            <?= $modelValueStringForm->value ?><br>
-                        <?php endforeach; ?>
+                    <?= ' - ' ?>
+                    <?php if ($modelFieldForm->max_val): ?>
+                        <?= Yii::$app->formatter->asDate($modelFieldForm->max_val) ?>
                     <?php endif; ?>
-                    <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DATE || $modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE): ?>
-                        <?php if ($modelFieldForm->min_val): ?>
-                            <?= Yii::$app->formatter->asDate($modelFieldForm->min_val) ?>
-                        <?php endif; ?>
-                        <?= ' - ' ?>
-                        <?php if ($modelFieldForm->max_val): ?>
-                            <?= Yii::$app->formatter->asDate($modelFieldForm->max_val) ?> 
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<div class="clearfix"></div>
 
