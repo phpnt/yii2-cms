@@ -139,6 +139,7 @@ use common\widgets\UncheckedComments\UncheckedComments;
                                     'models[20]' => \common\models\search\SourceMessageSearch::class,
                                     'models[21]' => \common\models\search\BasketSearch::class,
                                     'models[22]' => \common\models\search\CommentSearch::class,
+                                    'models[23]' => \common\models\search\TemplateViewSearch::class,
                                     'with_header' => true
                                 ]),
                                 'options' => ['class' => 'treeview'],

@@ -15,7 +15,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 /* @var $manyValueFileForm array */
 /* @var $modelValueFileForm \common\models\forms\ValueFileForm */
 ?>
-<div id="element-files" >
+<div id="element-files">
     <?php BootstrapNotify::widget([]) ?>
     <?php if (isset($manyValueFileForm)): ?>
         <?php foreach ($manyValueFileForm as $modelValueFileForm): ?>

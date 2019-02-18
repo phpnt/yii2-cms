@@ -116,29 +116,16 @@ class DocumentForm extends DocumentExtend
                 ->from('document')
                 ->where(['parent_id' => $this->parent_id])
                 ->count();
-        } elseif ($this->position && $this->oldAttributes['position'] != $this->position && $this->parent_id) {
-            /* Ранее предшествующий элемент */
-            $beforeItem = (new \yii\db\Query())
+        } elseif ($this->position && $this->parent_id) {
+            /* Предшествующий элемент */
+            $afterItem = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('document')
-                ->where([
-                    'position' => $this->oldAttributes['position'] - 1,
-                    'parent_id' => $this->parent_id
-                ])
+                ->where(['id' => $this->position])
                 ->one();
 
             // если позиция изменена
-            if ($beforeItem['id'] != $this->position) {
-                /* Будущий предшествующий элемент */
-                $beforeItem = (new \yii\db\Query())
-                    ->select(['*'])
-                    ->from('document')
-                    ->where([
-                        'id' => $this->position,
-                        'parent_id' => $this->parent_id
-                    ])
-                    ->one();
-
+            if ((isset($this->oldAttributes['position']) && ($this->oldAttributes['position'] != $afterItem['position'] - 1)) || $this->isNewRecord) {
                 $items = (new \yii\db\Query())
                     ->select(['id', 'position'])
                     ->from('document')
@@ -156,21 +143,20 @@ class DocumentForm extends DocumentExtend
                 }
 
                 $i = 0;
-                // находим предыдущий элемент и после него текущий
                 $db = Yii::$app->db;
                 foreach ($items as $item) {
                     $item['position'] = $i;
-                    if ($item['id'] == $beforeItem['id']) {
-                        $db->createCommand()->update('document', ['position' => $i], 'id='.$item['id'])->execute();
+                    if ($item['id'] == $afterItem['id']) {
+                        $this->position = $item['position'];
                         $i++;
-                        $this->position = $i;
+                        $db->createCommand()->update('document', ['position' => $i], 'id='.$item['id'])->execute();
                     } else {
                         $db->createCommand()->update('document', ['position' => $i], 'id='.$item['id'])->execute();
                     }
                     $i++;
                 }
             } else {
-                $this->position = $beforeItem['position'] + 1;
+                $this->position = $afterItem['position'] - 1;
             }
         }
 
@@ -265,14 +251,14 @@ class DocumentForm extends DocumentExtend
     {
         parent::afterFind();
 
-        if (Yii::$app->controller->id != 'csv-manager' && $this->position) {
+        if (Yii::$app->controller->id != 'csv-manager' && $this->position !== null) {
             /* Если позиция имеет какое-либо значение, определяем ID предыдущего элемента */
             $data = (new \yii\db\Query())
                 ->select(['*'])
                 ->from('document')
                 ->where([
                     'parent_id' => $this->parent_id,
-                    'position' => $this->position - 1,
+                    'position' => $this->position + 1,
                 ])
                 ->one();
             $this->position = $data['id'];
@@ -414,7 +400,7 @@ class DocumentForm extends DocumentExtend
                     if (is_string($item)) {
                         $item = trim($item);
                     }
-                    if (!$item && $field['type'] != Constants::FIELD_TYPE_RADIO && $field['type'] != Constants::FIELD_TYPE_LIST) {
+                    if ($item === '' && $field['type'] != Constants::FIELD_TYPE_RADIO && $field['type'] != Constants::FIELD_TYPE_LIST) {
                         // для всех полей, кроме радио и списков
                         $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_required'], ['name' => $field['name']]);
                     } elseif ($field['type'] == Constants::FIELD_TYPE_RADIO || $field['type'] == Constants::FIELD_TYPE_LIST) {
@@ -619,18 +605,18 @@ class DocumentForm extends DocumentExtend
                     }
 
                     // Проверка на email и url и youtube ссылки и др. валидаторов
-                    if ($field['type'] == Constants::FIELD_TYPE_EMAIL) {
+                    if ($field['type'] == Constants::FIELD_TYPE_EMAIL && $this->elements_fields[$key][$sub_key] != '') {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_EMAIL)) {
                             $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является email адресом.');
                         }
                     }
-                    if ($field['type'] == Constants::FIELD_TYPE_URL ||
-                        $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
+                    if (($field['type'] == Constants::FIELD_TYPE_URL ||
+                        $field['type'] == Constants::FIELD_TYPE_SOCIAL) && $this->elements_fields[$key][$sub_key] != '') {
                         if (isset($this->elements_fields[$key][$sub_key]) && !filter_var($this->elements_fields[$key][$sub_key], FILTER_VALIDATE_URL)) {
                             $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является ссылкой.');
                         }
                     }
-                    if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
+                    if ($field['type'] == Constants::FIELD_TYPE_YOUTUBE && $this->elements_fields[$key][$sub_key] != '') {
                         if (isset($this->elements_fields[$key][$sub_key])) {
                             $rx = '~
                             ^(?:https?://)?                         # Optional protocol

@@ -27,21 +27,27 @@ if ($modelDocumentForm->alias_menu_item ==$modelDocumentForm->parent->alias) {
     $url = Url::to(['/control/default/view', 'alias_menu_item' => $modelDocumentForm->alias_menu_item, 'alias_sidebar_item' => $modelDocumentForm->parent->alias, 'alias_item' => $modelDocumentForm->alias]);
 }
 ?>
-<div class="list-item-<?= $templateName; ?>">
-    <div class="col-md-4 m-b-md">
-        <?php p($this->viewFile); ?>
-        <?php /* Отображение элемента в списке */ ?>
+<div class="list-item list-item-<?= $templateName; ?>">
+    <?php if (isset($modelDocumentForm->template->templateViewItemList) && $modelDocumentForm->template->templateViewItemList->view): ?>
         <a href="<?= $url ?>" class="item-link">
-            <div class="item-card">
-                <div class="text-center p-t-xs">
-                    <h3><?= Yii::t('app', $modelDocumentForm->name) ?></h3>
-                </div>
-                <div>
-                    <?php if ($modelDocumentForm->template_id): ?>
-                        <?php p($templateData) ?>
-                    <?php endif; ?>
-                </div>
-            </div>
+            <?= $modelDocumentForm->dataItemList ?>
         </a>
-    </div>
+    <?php else: ?>
+        <div class="col-md-4 m-b-md">
+            <?php p($this->viewFile); ?>
+            <?php /* Отображение элемента в списке */ ?>
+            <a href="<?= $url ?>" class="item-link">
+                <div class="item-card">
+                    <div class="text-center p-t-xs">
+                        <h3><?= Yii::t('app', $modelDocumentForm->name) ?></h3>
+                    </div>
+                    <div>
+                        <?php if ($modelDocumentForm->template_id): ?>
+                            <?php p($templateData) ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php endif; ?>
 </div>

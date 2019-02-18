@@ -197,7 +197,6 @@ id;language;translation;hash
 237;en;"Create template";5092c7bf26b46a6cd4ddb74f5568d4b7
 238;en;"Change template";31508b6ded12c67da41b2a48f9155701
 239;en;"View Template";de7d8671157afcf8591ab4c152bd8e66
-240;en;Fields;a130e05f453b038f95a539d3c5cb5c5f
 241;en;"Add field";fd7c127ea5cb6d40f9f4d8be07487775
 242;en;"Delete template";1566e2689101a9f516c920098a3b3272
 243;en;"View basket item";cdf650880bfd088bb180055d975de753
@@ -357,7 +356,6 @@ id;language;translation;hash
 464;en;"Language switching";31255223407c0c5b564c831e92c92f06
 465;en;"Your comment.";fa2b67ebeebbc8b2354a5f54d0330b9a
 466;en;"Enter text";e407b2bc106d1e3a8305c9674b3f444e
-467;en;"Position (after)";b92b3a76b7ee7b96e86b4eef7cbbb243
 472;en;"File size must be from {min_val} to {max_val} bytes.";d30f1b89ff45be38075f29cfd704490f
 473;en;"The number of files should be from {min_str} to {max_str} pieces.";084a1af99c24e7e4ed4ecdfdb25ae48c
 475;en;"Minimum numeric value (bytes)";d91e33613b9a84469dc18feb72c507c6
@@ -405,4 +403,27 @@ id;language;translation;hash
 541;en;Comments:;e0c10111a6027b329a809d9a7dbc5507
 542;en;"Only for items.";2a2a99128e177863055a2ec1f3a042f9
 543;en;Parameters;d650e9539ae811be5a2edc89b8bc4112
-544;en;"Fields and messages.";9317d99be113671c1836d65ae9d34c64
+545;en;View;e96c08b731bf6d1924f5c3531c4a71eb
+546;en;"View Templates";3dda1bede7cf7c51a676c3e76abddb99
+547;en;"Template fields";122695561460f9dca730fa413acd81cb
+548;en;"Item template";850d75291d72b0e1418a77bc7abd0163
+549;en;"Item template in list";24ff77a8744313831e8927856c306062
+550;en;"Cart Item Template";2cbf5c8d12ea420b8ce3a53c8b502371
+551;en;"Used fields.";90706ed612f82d5c4b6b335fd432c9a6
+552;en;"Possible values";98fbf25479d3993211e685a5ec78ae43
+553;en;"For all fields used.";6829afd38e3d941c1ac595cb0dacc3ee
+559;en;"Built-in blocks.";e6919f4714cb03a1347970e74c7e766b
+560;en;"<strong> {!like!} </strong> - ""Like"" button.";e578988527bcb8a82354021f475ce462
+561;en;"<strong> {!like-dislike!} </strong> - like and dislike buttons.";6c912762c385c4a83cee09a0cc635b27
+562;en;"<strong>{!stars!} </strong> - rating.";e1f6d67b377c28998cd14b714259de50
+563;en;"<strong> {!comments!} </strong> - block comments.";e1f6d67b377c28998cd14b714259de50
+564;en;Picture.;c26bb733c283a7045dad0f171a8418ee
+567;en;"YouTube video.";b63a5324d55c624c73541eb33dee415d
+570;en;"Item page";264650f338fc3f68caf0a2382cadad6a
+571;en;"Item in list";2e96e7ce6ac9145018192d8ee2ac1978
+572;en;"Position (before)";13afa147894dab36407344f96a065995
+573;en;"No fields.";7049c416de735ea7f1273c90d9361d5c
+574;en;"No data found.";0481ee42d1a84b943d39a9a566196b85
+575;en;"Fields and messages";a682b7e600ab6e2155f17837c224207b
+576;en;"Type of view";949bab82e13566850a1c0505e46f727d
+577;en;View;ec752195c0e9bcb6508e8cb1f9a8031c

@@ -10,6 +10,9 @@ namespace common\models\extend;
 
 use common\models\forms\ValueFileForm;
 use common\models\forms\ValueIntForm;
+use common\widgets\Comment\Comment;
+use common\widgets\Rating\Rating;
+use phpnt\youtube\YouTubeWidget;
 use Yii;
 use common\models\Constants;
 use common\models\Document;
@@ -21,7 +24,9 @@ use common\models\forms\ValueNumericForm;
 use common\models\forms\ValueStringForm;
 use common\models\forms\ValueTextForm;
 use common\models\forms\VisitForm;
+use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * @property array $rootDocuments
@@ -35,6 +40,8 @@ use yii\helpers\ArrayHelper;
  * @property array $accessList
  * @property int $viewedDocument
  * @property int $likedDocument
+ * @property string $dataItem
+ * @property string $dataItemList
  *
  * @property DocumentForm $parent
  * @property DocumentForm $child
@@ -53,6 +60,251 @@ use yii\helpers\ArrayHelper;
 */
 class DocumentExtend extends Document
 {
+    /**
+     * Возвращает сформированный шаблон элемента
+     * @return int
+     */
+    public function getDataItem ()
+    {
+        /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+        $fieldsManage = Yii::$app->fieldsManage;
+        $view = $this->template->templateViewItem->view;
+        $templateData = $fieldsManage->getData($this->id, $this->template_id);
+        if ($templateData) {
+            return $this->genereteView($templateData, $view, $type = Constants::TYPE_ITEM);
+        }
+
+        return Yii::t('app', 'Данных не найдено.');
+    }
+
+    /**
+     * Возвращает сформированный шаблон элемента в списке
+     * @return int
+     */
+    public function getDataItemList ()
+    {
+        /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+        $fieldsManage = Yii::$app->fieldsManage;
+        $view = $this->template->templateViewItemList->view;
+        $templateData = $fieldsManage->getData($this->id, $this->template_id);
+        if ($templateData) {
+            if ($templateData) {
+                return $this->genereteView($templateData, $view, $type = Constants::TYPE_ITEM_LIST);
+            }
+        }
+
+        return Yii::t('app', 'Данных не найдено.');
+    }
+
+    /*
+     * @return string
+     * */
+    private function genereteView($templateData, $view, $type) {
+        foreach ($templateData as $field) {
+            $view = str_replace('{_' . $field['title'] . '_}', Yii::t('app', $field['title']), $view);
+            if ($field['type'] == Constants::FIELD_TYPE_INT || $field['type'] == Constants::FIELD_TYPE_FLOAT || $field['type'] == Constants::FIELD_TYPE_STRING ||
+                $field['type'] == Constants::FIELD_TYPE_DATE || $field['type'] == Constants::FIELD_TYPE_LIST || $field['type'] == Constants::FIELD_TYPE_RADIO ||
+                $field['type'] == Constants::FIELD_TYPE_PRICE || $field['type'] == Constants::FIELD_TYPE_TEXT || $field['type'] == Constants::FIELD_TYPE_ADDRESS ||
+                $field['type'] == Constants::FIELD_TYPE_COUNTRY || $field['type'] == Constants::FIELD_TYPE_REGION || $field['type'] == Constants::FIELD_TYPE_CITY ||
+                $field['type'] == Constants::FIELD_TYPE_EMAIL || $field['type'] == Constants::FIELD_TYPE_URL || $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
+                $field['value'] = $field['value'] ? Yii::t('app', $field['value']) : Yii::t('app', '(не задано)');
+                if (isset($field['value'])) {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', $field['value']), $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_INT_RANGE || $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE || $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
+                if (isset($field['value'])) {
+                    $view = str_replace('{=' . $field['title'] . '=}', $field['value'][0] . ' - ' . $field['value'][1], $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_CHECKBOX || $field['type'] == Constants::FIELD_TYPE_LIST_MULTY) {
+                if (isset($field['value'])) {
+                    $string = '';
+                    $i = 0;
+                    foreach ($field['value'] as $value) {
+                        if ($i == 0) {
+                            $string .= Yii::t('app', $value);
+                        } else {
+                            $string .= ', ' . Yii::t('app', $value);
+                        }
+                        $i++;
+                    }
+                    $view = str_replace('{=' . $field['title'] . '=}', $string, $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_FILE) {
+                $url = Html::a($field['value']['name'], Url::to([$field['value']['path']]), ['target' => '_blank']);
+                if (isset($field['value'])) {
+                    $view = str_replace('{=' . $field['title'] . '=}', $url, $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+                if (strpos($view, '{^_' . $field['title'] . '_^}') !== false) {
+                    $image = Html::img($field['value']['path'], [
+                        'class' => 'full-width',
+                        'alt' => Yii::t('app', $field['title'])
+                    ]);
+                    $view = str_replace('{^_' . $field['title'] . '_^}', $image, $view);
+                }
+                if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
+                    $image = Html::img($field['value']['path'], [
+                        'class' => 'full-width',
+                        'alt' => Yii::t('app', $field['title']),
+                        'onclick' => '
+                            $.pjax({
+                                type: "GET",
+                                url: "' . Url::to(['/site/show-image', 'img' => $field['value']['path']]) . '",
+                                container: "#pjaxModalUniversal",
+                                push: false,
+                                timeout: 10000,
+                                scrollTo: false
+                            })
+                        '
+                    ]);
+
+                    $view = str_replace('{^=' . $field['title'] . '=^}', $image, $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
+                if (isset($field['value'])) {
+                    $string = '';
+                    $i = 0;
+                    foreach ($field['value'] as $value) {
+                        if ($i == 0) {
+                            $string .= Html::a($value['name'], Url::to([$value['path']]), ['target' => '_blank']);
+                        } else {
+                            $string .= ', ' . Html::a($value['name'], Url::to([$value['path']]), ['target' => '_blank']);
+                        }
+                        $i++;
+                    }
+                    $view = str_replace('{=' . $field['title'] . '=}', $string, $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
+                if (isset($field['value'])) {
+                    if (strpos($view, '{=' . $field['title'] . '=}') !== false) {
+                        // если вывод только значения
+                        $view = str_replace('{=' . $field['title'] . '=}', $field['value'], $view);
+                    }
+                    if (strpos($view, '{^_' . $field['title'] . '_^}') !== false) {
+                        // если вывод превью видео
+                        /* @var $youTubeData \phpnt\youtube\components\YouTubeData */
+                        $youTubeData = Yii::$app->youTubeData;
+                        $preview = $youTubeData->getPreview($field['value'], null, 'medium');
+                        $image = Html::img($preview['url'], [
+                            'class' => 'full-width'
+                        ]);
+                        $view = str_replace('{^_' . $field['title'] . '_^}', $image, $view);
+                    }
+                    if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
+                        // если вывод видео
+                        $widget = YouTubeWidget::widget(['video_link' => $field['value']]);
+                        $view = str_replace('{^=' . $field['title'] . '=^}', $widget, $view);
+                    }
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            }
+        }
+
+        // Генерация значений встроенных полей у шаблона представления
+        $view = $this->generateIncludesField('{~_Наименование_~}', $this->getAttributeLabel('name'), $view);
+        $view = $this->generateIncludesField('{~=Наименование=~}', Yii::t('app', $this->name), $view);
+        $view = $this->generateIncludesField('{~_Заголовок_~}', $this->getAttributeLabel('title'), $view);
+        $view = $this->generateIncludesField('{~=Заголовок=~}', Yii::t('app', $this->title), $view);
+        $view = $this->generateIncludesField('{~_Алиас_~}', $this->getAttributeLabel('alias'), $view);
+        $view = $this->generateIncludesField('{~=Алиас=~}', Yii::t('app', $this->alias), $view);
+        $view = $this->generateIncludesField('{~_Аннотация_~}', $this->getAttributeLabel('annotation'), $view);
+        $view = $this->generateIncludesField('{~=Аннотация=~}', Yii::t('app', $this->annotation), $view);
+        $view = $this->generateIncludesField('{~_Содержание_~}', $this->getAttributeLabel('content'), $view);
+        $view = $this->generateIncludesField('{~=Содержание=~}', Yii::t('app', $this->content), $view);
+
+        // проверка на служебные блоки
+        if (strpos($view, '{!comments!}') !== false) {
+            if ($this->template->add_comments && $type == Constants::TYPE_ITEM) {
+                $comments = Comment::widget([
+                    'document_id' => $this->id,
+                    'access_answers' => true,   // разрешены ответы на комментарии
+                ]);
+                $view = str_replace('{!comments!}', '<div id="comment-widget">' . $comments . '</div>', $view);
+            } else {
+                $view = str_replace('{!comments!}', '', $view);
+            }
+        }
+
+        if (strpos($view, '{!like!}') !== false) {
+            // поиск блока рейтинга
+            if ($this->template->add_rating) {
+                $rating = Rating::widget([
+                    'document_id' => $this->id,
+                    'like' => true,             // показывать кнопку "Нравиться"
+                    'dislike' => false,          // показывать кнопку "Не нравиться"
+                    'percentage' => false,       // показывать процентный рейтинг
+                    'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
+                    'access_guests' => true,    // разрешены не авторизованным пользователям
+                ]);
+                $view = str_replace('{!like!}', '<div id="rating-widget-' . $this->id . '">' . $rating . '</div>', $view);
+            } else {
+                $view = str_replace('{!like!}', '', $view);
+            }
+        } elseif (strpos($view, '{!like-dislike!}') !== false) {
+            if ($this->template->add_rating) {
+                $rating = Rating::widget([
+                    'document_id' => $this->id,
+                    'like' => true,             // показывать кнопку "Нравиться"
+                    'dislike' => true,          // показывать кнопку "Не нравиться"
+                    'percentage' => false,       // показывать процентный рейтинг
+                    'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
+                    'access_guests' => true,    // разрешены не авторизованным пользователям
+                ]);
+                $view = str_replace('{!like-dislike!}', '<div id="rating-widget-' . $this->id . '">' . $rating . '</div>', $view);
+            } else {
+                $view = str_replace('{!like-dislike!}', '', $view);
+            }
+        } elseif (strpos($view, '{!stars!}') !== false) {
+            if ($this->template->add_rating) {
+                $rating = Rating::widget([
+                    'document_id' => $this->id,
+                    'like' => false,             // показывать кнопку "Нравиться"
+                    'dislike' => false,          // показывать кнопку "Не нравиться"
+                    'percentage' => true,       // показывать процентный рейтинг
+                    'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
+                    'access_guests' => true,    // разрешены не авторизованным пользователям
+                ]);
+                $view = str_replace('{!stars!}', '<div id="rating-widget-' . $this->id . '">' . $rating . '</div>', $view);
+            } else {
+                $view = str_replace('{!stars!}', '', $view);
+            }
+        }
+
+        if (strpos($view, '{!comments!}') !== false) {
+            if ($this->template->add_comments && $type == Constants::TYPE_ITEM) {
+                $comments = Comment::widget([
+                    'document_id' => $this->id,
+                    'access_answers' => true,   // разрешены ответы на комментарии
+                ]);
+                $view = str_replace('{!comments!}', '<div id="comment-widget">' . $comments . '</div>', $view);
+            } else {
+                $view = str_replace('{!comments!}', '', $view);
+            }
+        }
+
+        return $view;
+    }
+
+    /* Генерация значений встроенных полей у шаблона представления */
+    private function generateIncludesField($name, $value, $view) {
+        if (strpos($view, $name) !== false) {
+            if ($this->name) {
+                return str_replace($name, $value, $view);
+            }
+        }
+        return str_replace($name, Yii::t('app', ''), $view);
+    }
+
     /**
      * Возвращает количество лайков документа
      * @return int
@@ -248,15 +500,26 @@ class DocumentExtend extends Document
      */
     public function getPositionsList()
     {
-        $folders = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'parent_id' => $this->parent_id,
-            ])
-            ->andWhere(['!=', 'id', $this->id])
-            ->orderBy(['position' => SORT_ASC])
-            ->all();
+        if ($this->isNewRecord) {
+            $folders = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'parent_id' => $this->parent_id,
+                ])
+                ->orderBy(['position' => SORT_ASC])
+                ->all();
+        } else {
+            $folders = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'parent_id' => $this->parent_id,
+                ])
+                ->andWhere(['!=', 'id', $this->id])
+                ->orderBy(['position' => SORT_ASC])
+                ->all();
+        }
 
         return ArrayHelper::map($folders, 'id', 'name');
     }

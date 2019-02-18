@@ -19,6 +19,7 @@ use Yii;
  *
  * @property Document[] $documents
  * @property Field[] $fields
+ * @property TemplateView[] $templateViews
  */
 class Template extends \yii\db\ActiveRecord
 {
@@ -77,5 +78,13 @@ class Template extends \yii\db\ActiveRecord
     public function getFields()
     {
         return $this->hasMany(Field::className(), ['template_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTemplateViews()
+    {
+        return $this->hasMany(TemplateView::className(), ['template_id' => 'id']);
     }
 }

@@ -68,4 +68,16 @@ class SiteController extends Controller
     {
         return $this->render('user-agreement');
     }
+
+
+    /**
+     * Отображение изображения в модальном окне
+     * @return string
+     */
+    public function actionShowImage($img)
+    {
+        return $this->renderAjax('show-image', [
+            'img' => $img
+        ]);
+    }
 }

@@ -1,3 +1,8 @@
+.scroll-block {background: whitesmoke;overflow-y: scroll;border:1px solid;}
+.scroll-block::-webkit-scrollbar-track {border-radius: 4px;}
+.scroll-block::-webkit-scrollbar {width: 6px;}
+.scroll-block::-webkit-scrollbar-thumb {border-radius: 4px;background: #f0f2f5;}
+.scroll-block:hover::-webkit-scrollbar-thumb {background: #6a7d9b;}
 .fa-folder {
     color: #f0b352;
 }

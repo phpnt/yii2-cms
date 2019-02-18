@@ -25,7 +25,7 @@ use Yii;
  * @property string $hint Подсказка для поля
  * @property int $template_id Шаблон
  * @property int $use_filter Использовать в фильтре
- * @property int $position Позиция (после)
+ * @property int $position Позиция (перед)
  *
  * @property Template $template
  * @property ValueFile[] $valueFiles
@@ -82,7 +82,7 @@ class Field extends \yii\db\ActiveRecord
             'hint' => Yii::t('app', 'Подсказка для поля'),
             'template_id' => Yii::t('app', 'Шаблон'),
             'use_filter' => Yii::t('app', 'Использовать в фильтре'),
-            'position' => Yii::t('app', 'Позиция (после)'),
+            'position' => Yii::t('app', 'Позиция (перед)'),
         ];
     }
 

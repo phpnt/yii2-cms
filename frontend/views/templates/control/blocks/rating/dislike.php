@@ -22,7 +22,7 @@ use yii\helpers\Url;
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/dislike', 'document_id' => $document_id, 'like' => false]) . '",
-                container: "#rating-widget",
+                container: "#rating-widget-' . $document_id .'",
                 push: false,
                 timeout: 10000,
                 scrollTo: false

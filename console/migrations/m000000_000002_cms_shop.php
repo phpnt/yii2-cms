@@ -164,6 +164,22 @@ class m000000_000002_cms_shop extends Migration
             ['id', 'name', 'description', 'mark', 'status', 'add_rating', 'add_comments', 'use_filter', 'i18n'],
             fopen(__DIR__ . '/../../console/migrations/csv/template.csv', "r"));
 
+        //Таблица шаблонов template
+        $this->createTable('{{%template_view}}', [
+            'id' => $this->primaryKey()->comment('ID'),
+            'type' => $this->smallInteger(1)->notNull()->comment(Yii::t('app', 'Тип представления')),   // 0 - страница элемента, 1 - элемент в списке, 2 - элемент в корзине
+            'view' => $this->text()->notNull()->comment(Yii::t('app', 'Представление')),
+            'template_id' => $this->integer()->comment(Yii::t('app', 'Шаблон')),
+        ] , $tableOptions);
+
+        $this->addForeignKey('template_view_template_fk', '{{%template_view}}', 'template_id', '{{%template}}', 'id', 'CASCADE', 'CASCADE');
+        $this->createIndex('template_view_type_index', '{{%template_view}}', 'type');
+        $this->createIndex('template_view_template_id_index', '{{%template_view}}', 'template_id');
+
+        $this->importData('template_view',
+            ['id', 'type', 'view', 'template_id'],
+            fopen(__DIR__ . '/../../console/migrations/csv/template_view.csv', "r"));
+
         //Таблица документов document
         $this->createTable('{{%document}}', [
             'id' => $this->primaryKey()->comment('ID'),
@@ -182,7 +198,7 @@ class m000000_000002_cms_shop extends Migration
             'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
             'created_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Создал')),
             'updated_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Изменил')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (перед)')),
             'access' => $this->smallInteger(1)->defaultValue(Constants::ACCESS_USER)->comment(Yii::t('app', 'Доступ')),     // см в Constants
         ] , $tableOptions);
 
@@ -222,7 +238,7 @@ class m000000_000002_cms_shop extends Migration
             'hint' => $this->string()->comment(Yii::t('app', 'Подсказка для поля')),
             'template_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Шаблон')),
             'use_filter' => $this->boolean()->defaultValue(1)->comment(Yii::t('app', 'Использовать в фильтре')),
-            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (после)')),
+            'position' => $this->integer()->comment(Yii::t('app', 'Позиция (перед)')),
         ], $tableOptions);
 
         //Индексы и ключи таблицы полей field

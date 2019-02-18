@@ -191,7 +191,7 @@ class FieldsManage extends Object
             foreach ($manyValueIntForm as $modelValueIntForm) {
                 /* @var $modelValueIntForm ValueIntForm */
                 $modelValueIntForm->title = $field['name'];
-                $modelValueIntForm->value = strtotime($forms_field[$i]);
+                $modelValueIntForm->value = $forms_field[$i] ? strtotime($forms_field[$i]) : null;
                 if (!$modelValueIntForm->save()) {
                     dd($modelValueIntForm->errors);
                 }
@@ -473,7 +473,7 @@ class FieldsManage extends Object
                         }
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CHECKBOX) {
-                    $dataRange = (new \yii\db\Query())
+                    $dataCheckbox = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('value_int')
                         ->where([
@@ -481,29 +481,35 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->all();
-                    if ($dataRange) {
+                    if ($dataCheckbox) {
                         $fieldData = (new \yii\db\Query())
                             ->select(['*'])
                             ->from('value_string')
                             ->where([
-                                'field_id' => $dataRange[0]['field_id']
+                                'field_id' => $dataCheckbox[0]['field_id']
                             ])
                             ->all();
+
+                        $resultCheckbox = [];
+                        foreach ($dataCheckbox as $checkbox) {
+                            if (isset($fieldData[$checkbox['value']])) {
+                                $resultCheckbox[] = $fieldData[$checkbox['value']];
+                            }
+                        }
+
                         $data = [];
                         $y = 0;
-                        foreach ($fieldData as $item) {
-                            $data['value'][$y]['title'] = $item['value'];
-                            $y++;
-                        }
-                        $y = 0;
-                        foreach ($dataRange as $item) {
+                        foreach ($resultCheckbox as $item) {
                             $data['title'] = $item['title'];
-                            $data['value'][$y]['value'] = $item['value'];
+                            $data['value'][$y] = $item['value'];
                             $y++;
                         }
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_LIST_MULTY) {
-                    $dataRange = (new \yii\db\Query())
+                    $dataMulty = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('value_int')
                         ->where([
@@ -511,16 +517,16 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->all();
-                    if ($dataRange) {
+                    if ($dataMulty) {
                         $fieldData = (new \yii\db\Query())
                             ->select(['*'])
                             ->from('value_string')
                             ->where([
-                                'field_id' => $dataRange[0]['field_id']
+                                'field_id' => $dataMulty[0]['field_id']
                             ])
                             ->all();
                         $listData = [];
-                        foreach ($dataRange as $item) {
+                        foreach ($dataMulty as $item) {
                             $listData[] = $fieldData[$item['value']];
                         }
                         $data = [];
@@ -530,6 +536,9 @@ class FieldsManage extends Object
                             $data['value'][$y] = $item['value'];
                             $y++;
                         }
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_PRICE) {
@@ -541,6 +550,10 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
+                    if (!$data) {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
+                    }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT_RANGE) {
                      $dataRange = (new \yii\db\Query())
                         ->select(['*'])
@@ -558,6 +571,9 @@ class FieldsManage extends Object
                             $data['value'][$y] = $item['value'];
                             $y++;
                         }
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
@@ -573,6 +589,10 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
+                    if (!$data) {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
+                    }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE) {
                     $data = (new \yii\db\Query())
                         ->select(['*'])
@@ -582,7 +602,12 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
-                    $data['value'] = Yii::$app->formatter->asDate($data['value']);
+                    if ($data) {
+                        $data['value'] = Yii::$app->formatter->asDate($data['value']);
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
+                    }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE_RANGE) {
                     $dataRange = (new \yii\db\Query())
                         ->select(['*'])
@@ -600,6 +625,9 @@ class FieldsManage extends Object
                             $data['value'][$y] = Yii::$app->formatter->asDate($item['value']);
                             $y++;
                         }
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_TEXT) {
                     $data = (new \yii\db\Query())
@@ -610,6 +638,10 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
+                    if (!$data) {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
+                    }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_RADIO ||
                     $modelFieldForm->type == Constants::FIELD_TYPE_LIST) {
                     $data = (new \yii\db\Query())
@@ -629,8 +661,12 @@ class FieldsManage extends Object
                             ])
                             ->all();
                         if (isset($data['value'])) {
+                            $data['title'] = $modelFieldForm->name;
                             $data['value'] = $values[$data['value']]['value'];
                         }
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_CITY) {
                     $data = (new \yii\db\Query())
@@ -644,6 +680,9 @@ class FieldsManage extends Object
                     if ($data) {
                         $name = $this->getCityName($data['value']);
                         $data['value'] = $name;
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_REGION) {
                     $data = (new \yii\db\Query())
@@ -656,7 +695,11 @@ class FieldsManage extends Object
                         ->one();
                     if ($data) {
                         $name = $this->getRegionName($data['value']);
+                        $data['title'] = $modelFieldForm->name;
                         $data['value'] = $name;
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY) {
                     $data = (new \yii\db\Query())
@@ -669,7 +712,11 @@ class FieldsManage extends Object
                         ->one();
                     if ($data) {
                         $name = $this->getCountryName($data['value']);
+                        $data['title'] = $modelFieldForm->name;
                         $data['value'] = $name;
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FILE) {
                     $data = (new \yii\db\Query())
@@ -681,7 +728,10 @@ class FieldsManage extends Object
                         ])
                         ->one();
                     if ($data) {
-                        $data['value'] = $data['path'];
+                        $data['value'] = $data;
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FEW_FILES) {
                     $data = (new \yii\db\Query())
@@ -703,10 +753,13 @@ class FieldsManage extends Object
                             ])
                             ->all();
                         $data['value'] = $values;
+                    } else {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
                     }
                 }
 
-                if (isset($data)) {
+                if (isset($data) && isset($data['title'])) {
                     $result[$i] = [
                         'title' => $data['title'],
                         'value' => $data['value'],
@@ -715,7 +768,6 @@ class FieldsManage extends Object
                     $i++;
                     unset($data);
                 }
-
             }
         }
 
@@ -821,7 +873,7 @@ class FieldsManage extends Object
         ]);
 
         if ($modelValueIntForm) {
-            return Yii::$app->formatter->asDate(Yii::$app->formatter->asDate($modelValueIntForm->value));
+            return $modelValueIntForm->value ? Yii::$app->formatter->asDate($modelValueIntForm->value) : null;
         }
         return null;
     }
@@ -840,7 +892,7 @@ class FieldsManage extends Object
             $result = [];
             foreach ($manyValueIntForm as $modelValueIntForm) {
                 /* @var $modelValueIntForm ValueIntForm */
-                $result[] = Yii::$app->formatter->asDate($modelValueIntForm->value);
+                $result[] = $modelValueIntForm->value ? Yii::$app->formatter->asDate($modelValueIntForm->value) : null;
             }
             return $result;
         }

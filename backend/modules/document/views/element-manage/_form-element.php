@@ -120,7 +120,7 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
                     ),
                 ],
             ],
-        ])->label(false); ?>
+        ]); ?>
     </div>
 
     <div class="col-md-6">
@@ -157,7 +157,7 @@ use common\widgets\TemplateOfElement\SetDefaultFields;
                     ),
                 ],
             ],
-        ])->label(false); ?>
+        ]); ?>
     </div>
 
     <div class="clearfix"></div>

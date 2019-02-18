@@ -23,7 +23,7 @@ use Yii;
  * @property int $updated_at Время изменения
  * @property int $created_by Создал
  * @property int $updated_by Изменил
- * @property int $position Позиция
+ * @property int $position Позиция (перед)
  * @property int $access Доступ
  *
  * @property Basket[] $baskets
@@ -91,7 +91,7 @@ class Document extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Время изменения'),
             'created_by' => Yii::t('app', 'Создал'),
             'updated_by' => Yii::t('app', 'Изменил'),
-            'position' => Yii::t('app', 'Позиция (после)'),
+            'position' => Yii::t('app', 'Позиция (перед)'),
             'access' => Yii::t('app', 'Доступ'),
         ];
     }

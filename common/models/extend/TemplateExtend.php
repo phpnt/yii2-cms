@@ -8,6 +8,7 @@
 
 namespace common\models\extend;
 
+use common\models\forms\TemplateViewForm;
 use Yii;
 use common\models\Constants;
 use common\models\forms\DocumentForm;
@@ -22,6 +23,9 @@ use common\models\Template;
  *
  * @property DocumentForm[] $documents
  * @property FieldForm[] $fields
+ * @property TemplateViewForm $templateViewItem
+ * @property TemplateViewForm $templateViewItemList
+ * @property TemplateViewForm $templateViewItemBasket
  */
 class TemplateExtend extends Template
 {
@@ -105,5 +109,32 @@ class TemplateExtend extends Template
     public function getFields()
     {
         return $this->hasMany(FieldForm::className(), ['template_id' => 'id'])->orderBy(['position' => SORT_ASC]);
+    }
+
+    /**
+     * элемент
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTemplateViewItem()
+    {
+        return $this->hasOne(TemplateViewForm::className(), ['template_id' => 'id'])->where(['type' => Constants::TYPE_ITEM]);
+    }
+
+    /**
+     * элемент списка
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTemplateViewItemList()
+    {
+        return $this->hasOne(TemplateViewForm::className(), ['template_id' => 'id'])->where(['type' => Constants::TYPE_ITEM_LIST]);
+    }
+
+    /**
+     * элемент корзины
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTemplateViewItemBasket()
+    {
+        return $this->hasOne(TemplateViewForm::className(), ['template_id' => 'id'])->where(['type' => Constants::TYPE_ITEM_BASKET]);
     }
 }

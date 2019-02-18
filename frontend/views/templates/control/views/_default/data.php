@@ -31,26 +31,6 @@ use common\widgets\Comment\Comment;
             'tree' => $tree,
             'templateName' => $templateName
         ]); ?>
-        <?php if (isset($modelDocumentForm->template->add_rating) && $modelDocumentForm->template->add_rating): ?>
-            <div id="rating-widget">
-                <?= Rating::widget([
-                    'document_id' => $modelDocumentForm->id,
-                    'like' => false,             // показывать кнопку "Нравиться"
-                    'dislike' => false,          // показывать кнопку "Не нравиться"
-                    'percentage' => true,       // показывать процентный рейтинг
-                    'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
-                    'access_guests' => true,    // разрешены не авторизованным пользователям
-                ]) ?>
-            </div>
-        <?php endif; ?>
-        <?php if (isset($modelDocumentForm->template->add_comments) && $modelDocumentForm->template->add_comments): ?>
-            <div id="comment-widget">
-                <?= Comment::widget([
-                    'document_id' => $modelDocumentForm->id,
-                    'access_answers' => true,   // разрешены ответы на комментарии
-                ]) ?>
-            </div>
-        <?php endif; ?>
     <?php elseif ($dataProvider->models): ?>
         <?php /* Если отображается список */ ?>
         <?= $this->render('_list', [

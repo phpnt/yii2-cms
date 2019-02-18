@@ -51,6 +51,11 @@ class Constants
     const TYPE_ROLE    = 1;
     const TYPE_PERMISSION = 2;
 
+    // Типы представлений шаблонов
+    const TYPE_ITEM = 0;        // элемент
+    const TYPE_ITEM_LIST = 1;   // элемент списка
+    const TYPE_ITEM_BASKET = 2; // элемент корзины
+
     // типы поле
     const FIELD_TYPE_INT        = 1; // Целое число +
     const FIELD_TYPE_INT_RANGE  = 2; // Диапазон целых чисел

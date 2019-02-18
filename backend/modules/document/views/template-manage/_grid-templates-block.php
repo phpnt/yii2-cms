@@ -149,6 +149,23 @@ use yii\bootstrap\Collapse;
             },
         ],
         [
+            'label' => Yii::t('app', 'Шаблоны представлений'),
+            'format' => 'raw',
+            'contentOptions' => [
+                'class' => 'vcenter',
+                'style' => 'max-width: 110px !important; width: 110px !important;'
+            ],
+            'value' => function ($modelTemplateForm, $key, $index, $column) {
+                /* @var $modelTemplateForm \common\models\forms\TemplateForm */
+                return '<div id="views_of_template_' . $modelTemplateForm->id . '">' . $this->render('@backend/modules/document/views/template-view-manage/__template-buttons', [
+                    'modelTemplateForm' => $modelTemplateForm,
+                    'key'           => $key,
+                    'index'         => $index,
+                    'column'        => $column,
+                ]) . '</div>';
+            },
+        ],
+        [
             'attribute' => 'status',
             'format' => 'raw',
             'contentOptions' => [

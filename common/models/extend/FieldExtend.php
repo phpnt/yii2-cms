@@ -47,17 +47,28 @@ class FieldExtend extends Field
      */
     public function getPositionsList()
     {
-        $folders = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('field')
-            ->where([
-                'template_id' => $this->template_id,
-            ])
-            ->andWhere(['!=', 'id', $this->id])
-            ->orderBy(['position' => SORT_ASC])
-            ->all();
+        if ($this->isNewRecord) {
+            $fields = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where([
+                    'template_id' => $this->template_id,
+                ])
+                ->orderBy(['position' => SORT_ASC])
+                ->all();
+        } else {
+            $fields = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('field')
+                ->where([
+                    'template_id' => $this->template_id,
+                ])
+                ->andWhere(['!=', 'id', $this->id])
+                ->orderBy(['position' => SORT_ASC])
+                ->all();
+        }
 
-        return ArrayHelper::map($folders, 'id', 'name');
+        return ArrayHelper::map($fields, 'id', 'name');
     }
 
     /**

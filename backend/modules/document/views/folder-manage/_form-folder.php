@@ -158,7 +158,7 @@ TranslateAsset::register($this);
                     ),
                 ],
             ],
-        ])->label(false); ?>
+        ]); ?>
     </div>
 
     <div class="col-md-6">
@@ -195,7 +195,7 @@ TranslateAsset::register($this);
                     ),
                 ],
             ],
-        ])->label(false); ?>
+        ]); ?>
     </div>
 
     <div class="clearfix"></div>

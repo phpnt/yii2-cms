@@ -42,7 +42,7 @@ use yii\helpers\Url;
             $.pjax({
                 type: "POST",
                 url: "' . Url::to(['/rating/set-percent', 'document_id' => $document_id, 'value' => $value]) . '",
-                container: "#rating-widget",
+                container: "#rating-widget-' . $document_id .'",
                 data: { stars_number : ' . $stars_number . ', star_cost : ' . $star_cost . ' },
                 push: false,
                 timeout: 10000,

@@ -193,7 +193,7 @@ $model = $widget->model;
                         'format' => 'dd.mm.yyyy',
                         'language'  => Yii::$app->language,
                     ],
-                ])->label(Yii::t('app', 'От')) ?>
+                ])->label(Yii::t('app', 'До')) ?>
             </div>
             <?php if ($modelFieldForm->hint): ?>
                 <div class="col-xs-12">
