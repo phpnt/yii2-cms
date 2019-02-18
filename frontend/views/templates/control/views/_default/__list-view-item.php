@@ -34,7 +34,6 @@ if ($modelDocumentForm->alias_menu_item ==$modelDocumentForm->parent->alias) {
         </a>
     <?php else: ?>
         <div class="col-md-4 m-b-md">
-            <?php p($this->viewFile); ?>
             <?php /* Отображение элемента в списке */ ?>
             <a href="<?= $url ?>" class="item-link">
                 <div class="item-card">

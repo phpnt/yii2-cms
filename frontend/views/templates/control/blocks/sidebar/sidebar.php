@@ -22,8 +22,7 @@ use frontend\views\templates\control\blocks\sidebar\assets\SidebarAsset;
 SidebarAsset::register($this);
 ?>
 <div class="block-sidebar">
-    <div class="col-xs-12">
-        <?php p($this->viewFile); ?>
+    <div class="col-xs-12 m-b-md">
         <div class="menu-<?= $templateName; ?>">
             <div class="sidebar-nav">
                 <?= Menu::widget([

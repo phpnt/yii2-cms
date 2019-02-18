@@ -37,7 +37,6 @@ SearchAssets::register($this);
 ?>
 <div class="block-search">
     <div class="col-xs-12">
-        <?php p($this->viewFile); ?>
         <div class="document-form-search">
             <div class="search-<?= $templateName; ?>">
                 <?php $form = ActiveForm::begin([

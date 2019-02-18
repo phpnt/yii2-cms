@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="content-<?= $templateName; ?>">
     <div class="col-md-12">
-        <?php p($this->viewFile); ?>
         <?= Yii::t('app', $page['content']); ?>
     </div>
 </div>

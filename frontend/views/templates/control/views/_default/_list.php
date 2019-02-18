@@ -41,7 +41,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', $modelSearch->parent->name);
 ?>
 <div class="list-<?= $templateName; ?>">
     <div class="col-md-12">
-        <?php p($this->viewFile); ?>
         <div class="row">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
