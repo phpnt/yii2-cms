@@ -18,27 +18,26 @@ use yii\helpers\Url;
 /* @var $votes_number int */
 ?>
 <div class="block-rating">
-    <div class="col-md-12 text-right">
-        <?php $i = 1; ?>
-        <?php while ($stars_number >= $i): ?>
-            <?php
-            /* Текущее значение звезды */
-            $value = $star_cost * $i;
-            /* Установка иконок в зависимости от рейтинга */
-            if ($percent_count >= $value) {
-                $name = '<i class="fas fa-star"></i>';
+    <?php $i = 1; ?>
+    <?php while ($stars_number >= $i): ?>
+        <?php
+        /* Текущее значение звезды */
+        $value = $star_cost * $i;
+        /* Установка иконок в зависимости от рейтинга */
+        if ($percent_count >= $value) {
+            $name = '<i class="fas fa-star"></i>';
+        } else {
+            if ($percent_count > $value - $star_cost) {
+                $name = '<i class="fas fa-star-half-alt"></i>';
             } else {
-                if ($percent_count > $value - $star_cost) {
-                    $name = '<i class="fas fa-star-half-alt"></i>';
-                } else {
-                    $name = '<i class="far fa-star"></i>';
-                }
+                $name = '<i class="far fa-star"></i>';
             }
-            ?>
+        }
+        ?>
 
-            <?= Html::a($name, 'javascript:void(0);', [
-                'class' => 'text-warning',
-                'onclick' => '
+        <?= Html::a($name, 'javascript:void(0);', [
+            'class' => 'text-warning',
+            'onclick' => '
             $.pjax({
                 type: "POST",
                 url: "' . Url::to(['/rating/set-percent', 'document_id' => $document_id, 'value' => $value]) . '",
@@ -48,9 +47,8 @@ use yii\helpers\Url;
                 timeout: 10000,
                 scrollTo: false
             })'
-            ]); ?>
-            <?php $i++; ?>
-        <?php endwhile; ?>
-        <strong><?= Yii::t('app', 'Голосов {votes_number}', ['votes_number' => $votes_number]) ?></strong>
-    </div>
+        ]); ?>
+        <?php $i++; ?>
+    <?php endwhile; ?>
+    <strong><?= Yii::t('app', 'Голосов {votes_number}', ['votes_number' => $votes_number]) ?></strong>
 </div>

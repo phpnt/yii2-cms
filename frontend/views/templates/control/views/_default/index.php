@@ -7,6 +7,8 @@
  * Time: 8:41
  */
 
+use frontend\views\templates\control\views\_default\assets\DefaultTempAsset;
+
 /* @var $this \yii\web\View */
 /* @var $page array Главная страница меню */
 /* @var $modelSearch \common\models\search\DocumentSearch */
@@ -15,6 +17,8 @@
 /* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
 /* @var $templateName string */
+
+DefaultTempAsset::register($this);
 ?>
 <div class="index-<?= $templateName; ?>">
     <?php if ($itemsMenu): ?>

@@ -30,7 +30,7 @@ class TemplateView extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'view'], 'required'],
+            [['type'], 'required'],
             [['type', 'template_id'], 'integer'],
             [['view'], 'string'],
             [['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],

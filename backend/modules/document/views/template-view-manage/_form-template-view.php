@@ -111,6 +111,12 @@ use common\models\Constants;
                             <?= Yii::t('app', '<strong>{!comments!}</strong> - блок комментариев.') ?><br>
                         <?php endif; ?>
                     </p>
+                    <label class="control-label"><?= Yii::t('app', 'Служебное.') ?></label>
+                    <p>
+                        <?php if ($modelTemplateViewForm->type == Constants::TYPE_ITEM_LIST): ?>
+                            <?= Yii::t('app', '<strong>{!item-view!}</strong> - ссылка для просмотра элемента.') ?><br>
+                        <?php endif; ?>
+                    </p>
                 </div>
                 <div class="col-sm-6">
                     <label class="control-label"><?= Yii::t('app', 'Изображение.') ?></label>

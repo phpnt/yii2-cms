@@ -29,16 +29,14 @@ if ($modelDocumentForm->alias_menu_item ==$modelDocumentForm->parent->alias) {
 ?>
 <div class="list-item list-item-<?= $templateName; ?>">
     <?php if (isset($modelDocumentForm->template->templateViewItemList) && $modelDocumentForm->template->templateViewItemList->view): ?>
-        <a href="<?= $url ?>" class="item-link">
-            <?= $modelDocumentForm->dataItemList ?>
-        </a>
+        <?= $modelDocumentForm->getDataItemList($url); ?>
     <?php else: ?>
         <div class="col-md-4 m-b-md">
             <?php /* Отображение элемента в списке */ ?>
             <a href="<?= $url ?>" class="item-link">
                 <div class="item-card">
                     <div class="text-center p-t-xs">
-                        <h3><?= Yii::t('app', $modelDocumentForm->name) ?></h3>
+                        <h5><?= Yii::t('app', $modelDocumentForm->name) ?></h5>
                     </div>
                     <div>
                         <?php if ($modelDocumentForm->template_id): ?>

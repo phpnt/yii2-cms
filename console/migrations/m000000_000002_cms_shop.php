@@ -168,7 +168,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createTable('{{%template_view}}', [
             'id' => $this->primaryKey()->comment('ID'),
             'type' => $this->smallInteger(1)->notNull()->comment(Yii::t('app', 'Тип представления')),   // 0 - страница элемента, 1 - элемент в списке, 2 - элемент в корзине
-            'view' => $this->text()->notNull()->comment(Yii::t('app', 'Представление')),
+            'view' => $this->text()->comment(Yii::t('app', 'Представление')),
             'template_id' => $this->integer()->comment(Yii::t('app', 'Шаблон')),
         ] , $tableOptions);
 
@@ -203,7 +203,6 @@ class m000000_000002_cms_shop extends Migration
         ] , $tableOptions);
 
         //Индексы и ключи таблицы документов document
-        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_parent_id_fk', '{{%document}}', 'parent_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_template_id_fk', '{{%document}}', 'template_id', '{{%template}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_user_creator_pk', '{{%document}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
@@ -217,6 +216,8 @@ class m000000_000002_cms_shop extends Migration
             ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
                 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
+
+        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
 
         //Дополнительные поля
         $this->createTable('{{%field}}', [

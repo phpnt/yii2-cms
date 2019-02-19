@@ -50,6 +50,26 @@ $this->params['breadcrumbs'][] = Yii::t('app', $modelDocumentForm->name);
             <?php if ($modelDocumentForm->template_id): ?>
                 <?php p($templateData) ?>
             <?php endif; ?>
+            <?php if (isset($modelDocumentForm->template->add_rating) && $modelDocumentForm->template->add_rating): ?>
+                <div id="rating-widget-<?= $modelDocumentForm->id ?>" class="text-right m-t-lg">
+                    <?= \common\widgets\Rating\Rating::widget([
+                        'document_id' => $modelDocumentForm->id,
+                        'like' => true,             // показывать кнопку "Нравиться"
+                        'dislike' => true,          // показывать кнопку "Не нравиться"
+                        'percentage' => false,       // показывать процентный рейтинг
+                        'stars_number' => 10,       // кол-во звезд в процентном рейтинге (от 2 до 10)
+                        'access_guests' => true,    // разрешены не авторизованным пользователям
+                    ]) ?>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($modelDocumentForm->template->add_comments) && $modelDocumentForm->template->add_comments): ?>
+                <div id="comment-widget">
+                    <?= \common\widgets\Comment\Comment::widget([
+                        'document_id' => $modelDocumentForm->id,
+                        'access_answers' => true,   // разрешены ответы на комментарии
+                    ]) ?>
+                </div>
+            <?php endif; ?>
         </div>
     <?php endif; ?>
 </div>

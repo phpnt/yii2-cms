@@ -19,10 +19,10 @@ CommentTempAsset::register($this);
 ?>
 <div class="block-comment m-t-lg">
     <?php BootstrapNotify::widget() ?>
-    <div class="col-md-12 m-b-md">
+    <div class="m-b-md">
         <h3><?= Yii::t('app', 'Комментарии:') ?></h3>
     </div>
-    <div class="col-md-12 m-b-md">
+    <div class="m-b-md">
         <div class="slim-scroll-comments block-comments-height" data-height="600px">
             <?= $this->render('_comments-list', [
                 'document_id' => $document_id,
@@ -32,16 +32,14 @@ CommentTempAsset::register($this);
         </div>
     </div>
     <?php if (!Yii::$app->user->isGuest): ?>
-    <div class="col-md-12">
         <div id="block-comment-add-form-<?= $document_id ?>">
             <?= $this->render('_button-new-comment', [
                 'document_id' => $document_id,
                 'access_answers' => $access_answers,
             ]) ?>
         </div>
-    </div>
     <?php else: ?>
-        <div class="col-md-12 m-t-md">
+        <div class="m-t-md">
             <p><?= Yii::t('app', 'Комментарии могут оставлять только зарегистрированные пользователи.') ?></p>
         </div>
     <?php endif; ?>

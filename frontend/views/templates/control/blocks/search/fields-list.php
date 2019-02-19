@@ -33,7 +33,7 @@ $model = $widget->model;
             $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
             $modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
             <div class="col-xs-12">
-                <label class="control-label"><?= $modelFieldForm->name ?></label>
+                <label class="control-label"><?= Yii::t('app', $modelFieldForm->name) ?></label>
             </div>
             <div class="col-xs-6">
                 <?= $form->field($model, 'value_number', [
@@ -61,7 +61,7 @@ $model = $widget->model;
             </div>
             <?php if ($modelFieldForm->hint): ?>
                 <div class="col-xs-12">
-                    <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
+                    <p class="help-block"><i><?= Yii::t('app', $modelFieldForm->hint) ?></i></p>
                 </div>
             <?php endif; ?>
         <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING): ?>
@@ -155,7 +155,7 @@ $model = $widget->model;
             </div>
         <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_DATE): ?>
             <div class="col-md-12">
-                <label class="control-label"><?= $modelFieldForm->name ?></label>
+                <label class="control-label"><?= Yii::t('app', $modelFieldForm->name) ?></label>
             </div>
             <div class="col-xs-6">
                 <?= $form->field($model, 'value_int', [
@@ -197,7 +197,7 @@ $model = $widget->model;
             </div>
             <?php if ($modelFieldForm->hint): ?>
                 <div class="col-xs-12">
-                    <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
+                    <p class="help-block"><i><?= Yii::t('app', $modelFieldForm->hint) ?></i></p>
                 </div>
             <?php endif; ?>
         <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY): ?>

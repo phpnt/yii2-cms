@@ -15,10 +15,9 @@ use yii\helpers\Url;
 /* @var $likes int */
 ?>
 <div class="block-rating">
-    <div class="col-md-12 text-right">
-        <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
-            'class' => 'btn btn-success',
-            'onclick' => '
+    <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
+        'class' => 'btn btn-xs btn-success',
+        'onclick' => '
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/like', 'document_id' => $document_id, 'dislike' => false]) . '",
@@ -27,6 +26,5 @@ use yii\helpers\Url;
                 timeout: 10000,
                 scrollTo: false
             })'
-        ]); ?>
-    </div>
+    ]); ?>
 </div>

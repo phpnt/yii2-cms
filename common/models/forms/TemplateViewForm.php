@@ -17,6 +17,13 @@ class TemplateViewForm extends TemplateViewExtend
     {
         parent::beforeValidate();
 
+        $this->view = trim($this->view);
+
+        if (!$this->view || $this->view == "") {
+            $this->addError('view', 'Обязательно для заполнения.');
+            return false;
+        }
+
         return true;
     }
 }

@@ -73,7 +73,7 @@ use common\models\Constants;
             </td>
             <td>
                 <?= $modelFieldForm->name ?> (<?= $modelFieldForm->typeItem ?>)<br>
-                <?php if (isset($modelFieldForm->valueStringsOfTemplate)): ?>
+                <?php if (isset($modelFieldForm->valueStringsOfTemplate) && $modelFieldForm->type != Constants::FIELD_TYPE_STRING): ?>
                     <?php foreach ($modelFieldForm->valueStringsOfTemplate as $modelValueStringForm): ?>
                         <?php /* @var $modelValueStringForm \common\models\forms\ValueStringForm */ ?>
                         <?= $modelValueStringForm->value ?><br>

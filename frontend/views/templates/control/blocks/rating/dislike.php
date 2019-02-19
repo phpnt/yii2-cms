@@ -15,10 +15,9 @@ use yii\helpers\Url;
 /* @var $dislikes int */
 ?>
 <div class="block-rating">
-    <div class="col-md-12 text-right">
-        <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
-            'class' => 'btn btn-danger',
-            'onclick' => '
+    <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
+        'class' => 'btn btn-xs btn-danger',
+        'onclick' => '
             $.pjax({
                 type: "GET",
                 url: "' . Url::to(['/rating/dislike', 'document_id' => $document_id, 'like' => false]) . '",
@@ -27,6 +26,5 @@ use yii\helpers\Url;
                 timeout: 10000,
                 scrollTo: false
             })'
-        ]); ?>
-    </div>
+    ]); ?>
 </div>

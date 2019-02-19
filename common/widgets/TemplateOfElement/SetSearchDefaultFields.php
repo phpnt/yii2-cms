@@ -23,7 +23,7 @@ class SetSearchDefaultFields extends Widget
 
     public function run()
     {
-        return $this->render('search-default-fields/fields-list', [
+        return $this->render('@frontend/views/templates/control/blocks/search/fields-list', [
             'widget' => $this,
         ]);
     }

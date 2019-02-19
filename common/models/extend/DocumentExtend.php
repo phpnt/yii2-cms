@@ -81,7 +81,7 @@ class DocumentExtend extends Document
      * Возвращает сформированный шаблон элемента в списке
      * @return int
      */
-    public function getDataItemList ()
+    public function getDataItemList($url = null)
     {
         /* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
         $fieldsManage = Yii::$app->fieldsManage;
@@ -89,7 +89,9 @@ class DocumentExtend extends Document
         $templateData = $fieldsManage->getData($this->id, $this->template_id);
         if ($templateData) {
             if ($templateData) {
-                return $this->genereteView($templateData, $view, $type = Constants::TYPE_ITEM_LIST);
+                $view = $this->genereteView($templateData, $view, $type = Constants::TYPE_ITEM_LIST);
+                $view = $this->generateIncludesField('{!item-view!}', $url, $view);
+                return $view;
             }
         }
 
@@ -151,7 +153,7 @@ class DocumentExtend extends Document
                 }
                 if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
                     $image = Html::img($field['value']['path'], [
-                        'class' => 'full-width',
+                        'class' => 'full-width cursor-pointer',
                         'alt' => Yii::t('app', $field['title']),
                         'onclick' => '
                             $.pjax({

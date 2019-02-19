@@ -22,7 +22,7 @@ $commentsManage = Yii::$app->commentsManage;
 ?>
 <div class="comment-list">
     <?php foreach ($comments as $comment): ?>
-        <strong><?= $fieldsManage->getUserValueByName($name = 'Èìÿ', $comment['user_id']) ?></strong>:
+        <strong><?= $fieldsManage->getUserValueByName($name = 'Ð˜Ð¼Ñ', $comment['user_id']) ?></strong>:
         <div class="comment-item">
             <?= $comment['text'] ?>
             <p><?= Yii::$app->formatter->asDate($comment['updated_at']) ?></p>
