@@ -123,6 +123,7 @@ use common\models\Constants;
                     <p>
                         <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод изображения в блоке.') ?><br>
                         <?= Yii::t('app', '<strong>{^=ПОЛЕ=^}</strong> - вывод изображения в модальном окне.') ?><br>
+                        <?= Yii::t('app', '<strong>{^[ПОЛЕ1, ПОЛЕ2, ...]^}</strong> - карусель. Значения ПОЛЕ(N), это один или несколько загруженных файлов (jpg, jpeg, png).') ?><br>
                     </p>
                     <label class="control-label"><?= Yii::t('app', 'Видео YouTube.') ?></label>
                     <p>
@@ -139,7 +140,7 @@ use common\models\Constants;
 
     $js = <<< JS
         $('#form').on('beforeSubmit', function () {
-            $("div.note-editor .btn-codeview").click();
+            $("div.note-editor .btn-codeview").click(); 
             var form = $(this);
                 $.pjax({
                     type: form.attr('method'),

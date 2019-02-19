@@ -10,6 +10,7 @@ namespace common\models\extend;
 
 use common\models\forms\ValueFileForm;
 use common\models\forms\ValueIntForm;
+use common\widgets\Carousel\Carousel;
 use common\widgets\Comment\Comment;
 use common\widgets\Rating\Rating;
 use phpnt\youtube\YouTubeWidget;
@@ -41,7 +42,6 @@ use yii\helpers\Url;
  * @property int $viewedDocument
  * @property int $likedDocument
  * @property string $dataItem
- * @property string $dataItemList
  *
  * @property DocumentForm $parent
  * @property DocumentForm $child
@@ -102,6 +102,17 @@ class DocumentExtend extends Document
      * @return string
      * */
     private function genereteView($templateData, $view, $type) {
+        // Указан используется ли карусель
+        if (strpos($view, '{^[') !== false) {
+            $parsed = $this->getStringBetween($view, '{^[', ']^}');
+            $carouselString = '{^[' . $parsed . ']^}';
+            $carouselItems = explode(',', $parsed);
+            $result = [];
+            foreach ($carouselItems as $carouselItem) {
+                $result[] = trim($carouselItem);
+            }
+            $carouselItems = $result;
+        }
         foreach ($templateData as $field) {
             $view = str_replace('{_' . $field['title'] . '_}', Yii::t('app', $field['title']), $view);
             if ($field['type'] == Constants::FIELD_TYPE_INT || $field['type'] == Constants::FIELD_TYPE_FLOAT || $field['type'] == Constants::FIELD_TYPE_STRING ||
@@ -166,8 +177,27 @@ class DocumentExtend extends Document
                             })
                         '
                     ]);
-
                     $view = str_replace('{^=' . $field['title'] . '=^}', $image, $view);
+                }
+
+                // карусель
+                if (isset($carouselItems) && $carouselItems) {
+                    if (isset($field['value'])) {
+                        $keyItem = array_search($field['title'], $carouselItems);
+                        if ($keyItem !== false &&
+                            ($field['value']['extension'] == 'jpg' ||
+                                $field['value']['extension'] == 'jpeg' ||
+                                $field['value']['extension'] == 'png')) {
+                            // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
+                            if (!isset($carouselFiles)) {
+                                $carouselFiles = [];
+                            }
+                            $carouselFiles[] = Html::img($field['value']['path'], [
+                                'class' => 'full-width animated fadeIn'
+                            ]);
+                            unset($carouselItems[$keyItem]);
+                        }
+                    }
                 }
             } elseif ($field['type'] == Constants::FIELD_TYPE_FEW_FILES) {
                 if (isset($field['value'])) {
@@ -184,6 +214,29 @@ class DocumentExtend extends Document
                     $view = str_replace('{=' . $field['title'] . '=}', $string, $view);
                 } else {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+
+                // карусель
+                if (isset($carouselItems) && $carouselItems) {
+                    if (isset($field['value']) && $field['value']) {
+                        $keyItem = array_search($field['title'], $carouselItems);
+                        if ($keyItem !== false) {
+                            foreach ($field['value'] as $file) {
+                                if ($file['extension'] == 'jpg' ||
+                                    $file['extension'] == 'jpeg' ||
+                                    $file['extension'] == 'png') {
+                                    // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
+                                    if (!isset($carouselFiles)) {
+                                        $carouselFiles = [];
+                                    }
+                                    $carouselFiles[] = Html::img($file['path'], [
+                                        'class' => 'full-width animated fadeIn'
+                                    ]);
+                                }
+                            }
+                            unset($carouselItems[$keyItem]);
+                        }
+                    }
                 }
             } elseif ($field['type'] == Constants::FIELD_TYPE_YOUTUBE) {
                 if (isset($field['value'])) {
@@ -210,6 +263,10 @@ class DocumentExtend extends Document
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
                 }
             }
+        }
+
+        if (isset($carouselFiles) && $carouselFiles) {
+            $view = str_replace($carouselString, Carousel::widget(['items' => $carouselFiles]), $view);
         }
 
         // Генерация значений встроенных полей у шаблона представления
@@ -295,6 +352,16 @@ class DocumentExtend extends Document
         }
 
         return $view;
+    }
+
+    /* возвращает строку между символами $start, $end */
+    private function getStringBetween($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
     }
 
     /* Генерация значений встроенных полей у шаблона представления */

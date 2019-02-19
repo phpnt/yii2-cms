@@ -30,6 +30,7 @@
         "phpnt/font-awesome": "*",
         "phpnt/admin-lte": "*",
         "phpnt/yii2-datepicker": "*",
+        "bower-asset/lightslider": "*",
         "bower-asset/jstree-bootstrap-theme": "*",
         "bower-asset/typeahead.js": "*",
         "studio-42/elfinder": "*",
