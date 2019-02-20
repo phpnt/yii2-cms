@@ -9,9 +9,9 @@
 
 namespace common\components\other;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class GenerateEmailTemplate extends Object
+class GenerateEmailTemplate extends BaseObject
 {
     public function init()
     {

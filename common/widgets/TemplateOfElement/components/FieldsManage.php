@@ -19,11 +19,11 @@ use common\models\forms\ValueNumericForm;
 use common\models\forms\ValueStringForm;
 use common\models\forms\ValueTextForm;
 use yii\base\ErrorException;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\db\StaleObjectException;
 use yii\helpers\FileHelper;
 
-class FieldsManage extends Object
+class FieldsManage extends BaseObject
 {
     public function init()
     {

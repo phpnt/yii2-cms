@@ -10,9 +10,9 @@
 namespace common\components\other;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class FrontendUrl extends Object
+class FrontendUrl extends BaseObject
 {
     public function init()
     {

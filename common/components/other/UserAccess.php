@@ -10,9 +10,9 @@
 namespace common\components\other;
 
 use common\models\Constants;
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class UserAccess extends Object
+class UserAccess extends BaseObject
 {
     public function init()
     {
