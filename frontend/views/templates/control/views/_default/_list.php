@@ -19,6 +19,8 @@ use yii\widgets\ListView;
 /* @var $tree array Дерево элемента */
 /* @var $templateName string */
 
+$this->title = Yii::t('app', $modelSearch->parent->name);
+
 // Формируем "хлебные крошки"
 foreach ($tree as $value) {
     if ($value['alias'] == $page['alias']) {

@@ -155,18 +155,28 @@ class DocumentExtend extends Document
                 } else {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
                 }
-                if (strpos($view, '{^_' . $field['title'] . '_^}') !== false) {
-                    $image = Html::img($field['value']['path'], [
-                        'class' => 'full-width',
-                        'alt' => Yii::t('app', $field['title'])
-                    ]);
-                    $view = str_replace('{^_' . $field['title'] . '_^}', $image, $view);
-                }
-                if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
-                    $image = Html::img($field['value']['path'], [
-                        'class' => 'full-width cursor-pointer',
-                        'alt' => Yii::t('app', $field['title']),
-                        'onclick' => '
+                // только для изображений
+                if ($field['value']['extension'] == 'jpg' ||
+                    $field['value']['extension'] == 'jpeg' ||
+                    $field['value']['extension'] == 'png') {
+
+                    // если файл не существуйт, назначаем картинку нет фото
+                    $image = Yii::getAlias( '@frontend/web' . $field['value']['path']);
+                    if(!file_exists($image)) {
+                        $field['value']['path'] = '/images/service/no-foto.png';
+                    }
+                    if (strpos($view, '{^_' . $field['title'] . '_^}') !== false) {
+                        $image = Html::img($field['value']['path'], [
+                            'class' => 'full-width',
+                            'alt' => Yii::t('app', $field['title'])
+                        ]);
+                        $view = str_replace('{^_' . $field['title'] . '_^}', $image, $view);
+                    }
+                    if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
+                        $image = Html::img($field['value']['path'], [
+                            'class' => 'full-width cursor-pointer',
+                            'alt' => Yii::t('app', $field['title']),
+                            'onclick' => '
                             $.pjax({
                                 type: "GET",
                                 url: "' . Url::to(['/site/show-image', 'img' => $field['value']['path']]) . '",
@@ -176,26 +186,24 @@ class DocumentExtend extends Document
                                 scrollTo: false
                             })
                         '
-                    ]);
-                    $view = str_replace('{^=' . $field['title'] . '=^}', $image, $view);
-                }
+                        ]);
+                        $view = str_replace('{^=' . $field['title'] . '=^}', $image, $view);
+                    }
 
-                // карусель
-                if (isset($carouselItems) && $carouselItems) {
-                    if (isset($field['value'])) {
-                        $keyItem = array_search($field['title'], $carouselItems);
-                        if ($keyItem !== false &&
-                            ($field['value']['extension'] == 'jpg' ||
-                                $field['value']['extension'] == 'jpeg' ||
-                                $field['value']['extension'] == 'png')) {
-                            // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
-                            if (!isset($carouselFiles)) {
-                                $carouselFiles = [];
+                    // карусель
+                    if (isset($carouselItems) && $carouselItems) {
+                        if (isset($field['value'])) {
+                            $keyItem = array_search($field['title'], $carouselItems);
+                            if ($keyItem !== false) {
+                                // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
+                                if (!isset($carouselFiles)) {
+                                    $carouselFiles = [];
+                                }
+                                $carouselFiles[] = Html::img($field['value']['path'], [
+                                    'class' => 'full-width animated fadeIn'
+                                ]);
+                                unset($carouselItems[$keyItem]);
                             }
-                            $carouselFiles[] = Html::img($field['value']['path'], [
-                                'class' => 'full-width animated fadeIn'
-                            ]);
-                            unset($carouselItems[$keyItem]);
                         }
                     }
                 }
@@ -229,6 +237,13 @@ class DocumentExtend extends Document
                                     if (!isset($carouselFiles)) {
                                         $carouselFiles = [];
                                     }
+
+                                    // если файл не существуйт, назначаем картинку нет фото
+                                    $image = Yii::getAlias( '@frontend/web' . $file['path']);
+                                    if(!file_exists($image)) {
+                                        $file['path'] = '/images/service/no-foto.png';
+                                    }
+
                                     $carouselFiles[] = Html::img($file['path'], [
                                         'class' => 'full-width animated fadeIn'
                                     ]);

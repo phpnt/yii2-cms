@@ -15,6 +15,7 @@ use frontend\views\templates\control\blocks\carousel\assets\CarouselAsset;
 
 CarouselAsset::register($this);
 ?>
+<?php if (count($items) > 1): ?>
 <?= Carousel::widget([
     'items' => $items,
     'options' => [
@@ -46,3 +47,7 @@ $(document).ready(function(){
 });
 JS;
 $this->registerJs($js);
+?>
+<?php else: ?>
+    <?= $items[0] ?>
+<?php endif; ?>

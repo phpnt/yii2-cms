@@ -37,6 +37,7 @@ SearchAssets::register($this);
 ?>
 <div class="block-search">
     <div class="col-xs-12">
+        <h3 class="text-center m-b-md"><?= Yii::t('app', $modelSearch->parent->name) ?></h3>
         <div class="document-form-search">
             <div class="search-<?= $templateName; ?>">
                 <?php $form = ActiveForm::begin([

@@ -16,10 +16,11 @@ use yii\helpers\Url;
 /* @var $modelDocumentForm \common\models\forms\DocumentForm Выбранный элемент */
 /* @var $tree array Дерево элемента */
 /* @var $templateName string *//* @var $fieldsManage \common\widgets\TemplateOfElement\components\FieldsManage */
+
 $fieldsManage = Yii::$app->fieldsManage;
 $templateData = $fieldsManage->getData($modelDocumentForm->id, $modelDocumentForm->template_id);
 
-$this->title = Yii::t('app', $page['title']);
+$this->title = Yii::t('app', $modelDocumentForm->title);
 
 // Формируем "хлебные крошки"
 foreach ($tree as $value) {
