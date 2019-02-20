@@ -11,7 +11,7 @@ id;language;translation;hash
 14;en;Save;410a31a5337f49c6307f809bbc10f4ac
 17;en;Send;71ce45bc03857d5830ca493adf291b65
 18;en;Login;f019903d4e435d9f472ffe8a873639d8
-19;en;"I\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\`ve forgot my password";085414f0f530e641272777c8d5661193
+19;en;"I\`ve forgot my password";085414f0f530e641272777c8d5661193
 20;en;Home;00cd05b3faf70916d1a8bc0343e2f0b4
 22;en;"Publications ";0486cd1539d22122a512401de58c6b36
 23;en;"<h1> Publications </h1>";4ac6b2dfb006c47b950c9578c01bcb29
@@ -187,8 +187,7 @@ id;language;translation;hash
 228;en;Views;14a01a9cb1421e799709bfb6fd3f9870
 229;en;Likes;65cbe3a986f420f69c24e06ea172e116
 230;en;"To create and display documents, you must select a folder.";ec4b26ac0dc4e61ef08979855098bd4c
-231;en;"Delete a file?
-";a17176d914c136151d0f4ff3ad02dc8d
+231;en;"Delete a file?";a17176d914c136151d0f4ff3ad02dc8d
 232;en;"Delete item?";30705bc993e0093f3e054e9e4c839733
 233;en;"Repeat name";805d8206f9ab9144e5730496299d6754
 234;en;"To form";533be1b760c071669129f9007c77f975
@@ -210,8 +209,7 @@ id;language;translation;hash
 251;en;"Document Manager";fcd953ec9598b189460ba233b10d7a99
 252;en;"Export all templates and documents to CSV";ca7e12618bf0d159eeeb33a4165ceb98
 253;en;Folders;f3c35604307312e5e4cc10a4c8e0a74f
-254;en;"Documents
-";f07f8012cd6d5a568357046df3364502
+254;en;"Documents";f07f8012cd6d5a568357046df3364502
 255;en;Templates;489a81e19727b06cae5a67882594aa6b
 256;en;"New Posts:";7e6626b89eae40b0c4d50aeba3a65ecc
 257;en;"Deleted messages:";7e6626b89eae40b0c4d50aeba3a65ecc
@@ -270,21 +268,21 @@ id;language;translation;hash
 311;en;"Admin panel";48b7aa8290dbee9baa41d45b54a42e2c
 313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
 314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe
-343;en;"Table ‘user’ users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
+343;en;"Table ?user? users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
 344;en;"User is not registered.";3838cd7903d95247ace2638eaf9630f6
-345;en;"Table ‘basket’ basket. Shows added to the basket of goods, their number, and users who have ordered them.";9d1da8bd0164345acb0e66365fd258a2
-346;en;"Table ‘document’ documents. CMS folders. Displays the basic structure of the site. Right-clicking on the selected folder - to create, edit, view, delete this folder. Left-clicking on the selected folder - to create, edit, view, delete elements in this folder.";391334ab05a391bce3738e317c4e26d9
-347;en;"Table ‘document’ documents. Elements of a specific folder. These can be publications, products, letter templates, or your own elements used on the site. To create, edit, view, delete items, select a folder.";a7f668cc2f1a35d28a4d0bc65e94f919
-348;en;"Table ‘template’ templates. contains templates for items. Templates are assigned to folders and applied to the elements of these folders.";e496ce2abdfedb5cf67a021d3c062bdb
-349;en;"Tables ‘source_message’ source text and category, and ‘message’ their translation. Multilingual management.";68b7c7aa6ee20d2be6e4178195106816
+345;en;"Table ?basket? basket. Shows added to the basket of goods, their number, and users who have ordered them.";9d1da8bd0164345acb0e66365fd258a2
+346;en;"Table ?document? documents. CMS folders. Displays the basic structure of the site. Right-clicking on the selected folder - to create, edit, view, delete this folder. Left-clicking on the selected folder - to create, edit, view, delete elements in this folder.";391334ab05a391bce3738e317c4e26d9
+347;en;"Table ?document? documents. Elements of a specific folder. These can be publications, products, letter templates, or your own elements used on the site. To create, edit, view, delete items, select a folder.";a7f668cc2f1a35d28a4d0bc65e94f919
+348;en;"Table ?template? templates. contains templates for items. Templates are assigned to folders and applied to the elements of these folders.";e496ce2abdfedb5cf67a021d3c062bdb
+349;en;"Tables ?source_message? source text and category, and ?message? their translation. Multilingual management.";68b7c7aa6ee20d2be6e4178195106816
 350;en;"Create and edit new roles and permissions. Assign permissions to roles used.";c9741a76dd1becee56ec4f7bdbd9b5c0
-351;en;"Tables ‘auth_item, auth_item_child’ RBAC.";32ba460fb1b4ec6da4aa81aeba6a88b2
-352;en;"Table ‘auth_rule’ RBAC rules.";cf732e3ae660f6ecd09d8076547a182b
-353;en;"Country ‘geo_country’ table. Contains a list of countries and information about them.";1a9a8bc48f99d7abd25082d32e70edb4
-354;en;"Table ‘city geo_city’. Contains a list of cities and information about them.";20e2d7190ab17d7aa21522ee9f20e041
-355;en;"Table ‘geo_region’ regions. Contains a list of regions and information about them.";12bbbe5b2273fb2e2fc175dfd2c532b2
-356;en;"Table ‘visit’ statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
-357;en;"Table ‘like’ statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d
+351;en;"Tables ?auth_item, auth_item_child? RBAC.";32ba460fb1b4ec6da4aa81aeba6a88b2
+352;en;"Table ?auth_rule? RBAC rules.";cf732e3ae660f6ecd09d8076547a182b
+353;en;"Country ?geo_country? table. Contains a list of countries and information about them.";1a9a8bc48f99d7abd25082d32e70edb4
+354;en;"Table ?city geo_city?. Contains a list of cities and information about them.";20e2d7190ab17d7aa21522ee9f20e041
+355;en;"Table ?geo_region? regions. Contains a list of regions and information about them.";12bbbe5b2273fb2e2fc175dfd2c532b2
+356;en;"Table ?visit? statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
+357;en;"Table ?like? statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d
 358;en;"Further folder attachment is not yet provided.";86e9ac62aeba9635a69a7ada398b2009
 359;en;"Login using social network";66f07d66bce5516a2eb1ce7ddb7d2462
 360;en;"Check your email and follow the instructions.";d3df7db8ed72140d7ef8b5dd6bcd8599
@@ -339,7 +337,7 @@ id;language;translation;hash
 441;en;"Comment management";67fd9f41033acfc9c0d735fb5fb742bf
 442;en;"Export comments to CSV";54ea1887ce8c873771a6c11b468f97c9
 443;en;Comments;5e18186107cdc28e261b1abcaf86b12d
-444;en;"Table ‘comment’. User comments.";330a55b0df31d57670ffedf50cc98c35
+444;en;"Table ?comment?. User comments.";330a55b0df31d57670ffedf50cc98c35
 450;en;"The name of the role or permissions";cc1bad7fe76b41d4eb40a0d12fa1a212
 452;en;"Comment status";f51903b5be4153ae3f50ea87ea6c937c
 453;en;"Translate all";c5ec1dff985f5c36e5fe289bd0145684
@@ -375,7 +373,7 @@ id;language;translation;hash
 504;en;"The field ""{name}"" must be a number from {min_val} to {max_val}.";545e8f43e4914b0b3cc84cdd5914d657
 505;en;"The field ""{name}"" must contain from {min_str} to {max_str} characters.";f83fc0458738ac883ba5a1f8739b5b3c
 506;en;"The field ""{name}"" is required.";a59fb627b211c4d794c6a11794e81ca8
-507;en;"Ïîëå «{name}» äîëæíî áûòü óíèêàëüíî.";7fcf6a6af08c42581803f089a97e78af
+507;en;"???? ?{name}? ?????? ???? ?????????.";7fcf6a6af08c42581803f089a97e78af
 508;en;"The field ""{name}"" must be from {min_val} to {max_val}.";a2a769f14875058067c87627ccceb82a
 513;en;"The field is not a number.";e70ca0e023c1aeba1d3d98e2e14054ca
 514;en;"The field is not an email address.";73f53c5852d3822672e14cd6cecd89b5

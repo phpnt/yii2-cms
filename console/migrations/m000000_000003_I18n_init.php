@@ -6,13 +6,19 @@ class m000000_000003_I18n_init extends Migration
 {
     public function up()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('{{%source_message}}', [
             'id'                    => $this->primaryKey()->comment('ID'),
             'category'              => $this->string()->comment(Yii::t('app', 'Категория сообщения')),
             'message'               => $this->text()->comment(Yii::t('app', 'Сообщение')),
             'location'              => $this->text()->comment(Yii::t('app', 'Местонахождение')),
             'hash'                  => $this->string(32)->defaultValue('')->comment(Yii::t('app', 'Хеш сообщения')),
-        ]);
+        ], $tableOptions);
 
         $this->importData('{{%source_message}}',
             ['id', 'category', 'message', 'location', 'hash'],
@@ -23,7 +29,7 @@ class m000000_000003_I18n_init extends Migration
             'language'              => $this->string(16)->notNull()->comment(Yii::t('app', 'Язык перевода')),
             'translation'           => $this->text()->comment(Yii::t('app', 'Перевод')),
             'hash'                  => $this->string(32)->notNull()->defaultValue('')->comment(Yii::t('app', 'Хеш перевода')),
-        ]);
+        ], $tableOptions);
 
         $this->addPrimaryKey('pk_message_id_language', '{{%message}}', ['id', 'language']);
         $this->addForeignKey('fk_message_source_message', '{{%message}}', 'id', '{{%source_message}}', 'id', 'CASCADE', 'RESTRICT');
@@ -58,7 +64,7 @@ class m000000_000003_I18n_init extends Migration
                     if ($item == '') {
                         $rows[$z][$y] = null;
                     } else {
-                        $rows[$z][$y] = iconv('windows-1251', 'UTF-8', $item);
+                        $rows[$z][$y] = $item;//iconv('windows-1251', 'UTF-8', $item);
                     }
                     $y++;
                 }
@@ -71,7 +77,7 @@ class m000000_000003_I18n_init extends Migration
         $i = 0;
         foreach ($rows as $row) {
             $rowsArray[$i] = $row;
-            if ($i == 1000) {
+            if ($i == 100) {
                 Yii::$app->db->createCommand()->batchInsert($table_name, $attributes, $rowsArray)->execute();
                 unset($rowsArray);
                 $i = 0;
