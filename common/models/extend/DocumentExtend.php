@@ -10,6 +10,7 @@ namespace common\models\extend;
 
 use common\models\forms\ValueFileForm;
 use common\models\forms\ValueIntForm;
+use common\models\forms\ValuePriceForm;
 use common\widgets\Carousel\Carousel;
 use common\widgets\Comment\Comment;
 use common\widgets\Rating\Rating;
@@ -37,11 +38,13 @@ use yii\helpers\Url;
  * @property array $positionsList
  * @property array $statusList
  * @property array $statusItem
+ * @property array $currencyList
  * @property array $allFolders
  * @property array $accessList
  * @property int $viewedDocument
  * @property int $likedDocument
  * @property string $dataItem
+ * @property array $discountsAvaible
  *
  * @property DocumentForm $parent
  * @property DocumentForm $child
@@ -56,10 +59,52 @@ use yii\helpers\Url;
  * @property ValueNumericForm[] $valueNumerics
  * @property ValueStringForm[] $valueStrings
  * @property ValueTextForm[] $valueTexts
+ * @property ValuePriceForm[] $valuePrices
+ * @property ValuePriceForm[] $discounts
  * @property VisitForm[] $visits
+ *
 */
 class DocumentExtend extends Document
 {
+    /**
+     * Возвращает доступные акции и скидки
+     * @return array
+     */
+    public function getDiscountsAvaible()
+    {
+        $discountForlder = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'discounts',
+            ])
+            ->one();
+
+        if ($discountForlder) {
+            /* @var $parent self */
+            $discountsAvaible = (new \yii\db\Query())
+                ->select(['document.id', 'document.name'])
+                ->from('document')
+                ->leftJoin('value_int', 'document.id = value_int.document_id')
+                ->where([
+                    'parent_id' => $discountForlder['id'],
+                    'status' => Constants::STATUS_DOC_ACTIVE,
+                ])
+                ->andWhere([
+                    'value_int.type' => Constants::FIELD_TYPE_DATE
+                ])
+                ->andWhere([
+                    '>=', 'value_int.value', time()
+                ])
+                ->all();
+            if ($discountsAvaible) {
+                return ArrayHelper::map($discountsAvaible, 'id', 'name');
+            }
+        }
+
+        return [];
+    }
+
     /**
      * Возвращает сформированный шаблон элемента
      * @return int
@@ -117,14 +162,62 @@ class DocumentExtend extends Document
             $view = str_replace('{_' . $field['title'] . '_}', Yii::t('app', $field['title']), $view);
             if ($field['type'] == Constants::FIELD_TYPE_INT || $field['type'] == Constants::FIELD_TYPE_FLOAT || $field['type'] == Constants::FIELD_TYPE_STRING ||
                 $field['type'] == Constants::FIELD_TYPE_DATE || $field['type'] == Constants::FIELD_TYPE_LIST || $field['type'] == Constants::FIELD_TYPE_RADIO ||
-                $field['type'] == Constants::FIELD_TYPE_PRICE || $field['type'] == Constants::FIELD_TYPE_TEXT || $field['type'] == Constants::FIELD_TYPE_ADDRESS ||
+                $field['type'] == Constants::FIELD_TYPE_TEXT || $field['type'] == Constants::FIELD_TYPE_ADDRESS ||
                 $field['type'] == Constants::FIELD_TYPE_COUNTRY || $field['type'] == Constants::FIELD_TYPE_REGION || $field['type'] == Constants::FIELD_TYPE_CITY ||
-                $field['type'] == Constants::FIELD_TYPE_EMAIL || $field['type'] == Constants::FIELD_TYPE_URL || $field['type'] == Constants::FIELD_TYPE_SOCIAL) {
+                $field['type'] == Constants::FIELD_TYPE_EMAIL || $field['type'] == Constants::FIELD_TYPE_URL || $field['type'] == Constants::FIELD_TYPE_SOCIAL ||
+                $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                 $field['value'] = $field['value'] ? Yii::t('app', $field['value']) : Yii::t('app', '(не задано)');
                 if (isset($field['value'])) {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', $field['value']), $view);
                 } else {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+            } elseif ($field['type'] == Constants::FIELD_TYPE_PRICE) {
+                if (isset($field['value'])) {
+                    $view = str_replace('{=' . $field['title'] . '=}', $field['value']['discount_price'], $view);
+                } else {
+                    $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
+                }
+
+                // название скидки
+                if (strpos($view, '{$_' . $field['title'] . '_$}') !== false) {
+                    if (isset($field['value']['name'])) {
+                        $view = str_replace('{$_' . $field['title'] . '_$}', $field['value']['name'], $view);
+                    } else {
+                        $view = str_replace('{$_' . $field['title'] . '_$}', Yii::t('app', ''), $view);
+                    }
+                }
+                // цена без скидки
+                if (strpos($view, '{$=' . $field['title'] . '=$}') !== false) {
+                    if (isset($field['value']['price'])) {
+                        $view = str_replace('{$=' . $field['title'] . '=$}', $field['value']['price'], $view);
+                    } else {
+                        $view = str_replace('{$=' . $field['title'] . '=$}', Yii::t('app', ''), $view);
+                    }
+                }
+                // процент скидки
+                if (strpos($view, '{$%' . $field['title'] . '%$}') !== false) {
+                    if (isset($field['value']['percent'])) {
+                        $view = str_replace('{$%' . $field['title'] . '%$}', $field['value']['percent'], $view);
+                    } else {
+                        $view = str_replace('{$%' . $field['title'] . '%$}', Yii::t('app', ''), $view);
+                    }
+                }
+                // валюта
+                if (strpos($view, '{$#' . $field['title'] . '#$}') !== false) {
+                    if (isset($field['value']['currency'])) {
+                        $view = str_replace('{$#' . $field['title'] . '#$}', $field['value']['currency'], $view);
+                    } else {
+                        $view = str_replace('{$#' . $field['title'] . '#$}', Yii::t('app', ''), $view);
+                    }
+                }
+                // дата окончания скидки
+                if (strpos($view, '{$!' . $field['title'] . '!$}') !== false) {
+                    if (isset($field['value']['date_end'])) {
+                        $view = str_replace('{$!' . $field['title'] . '!$}', $field['value']['date_end'], $view);
+                    } else {
+                        $view = str_replace('{$!' . $field['title'] . '!$}', Yii::t('app', ''), $view);
+                    }
                 }
             } elseif ($field['type'] == Constants::FIELD_TYPE_INT_RANGE || $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE || $field['type'] == Constants::FIELD_TYPE_DATE_RANGE) {
                 if (isset($field['value'])) {
@@ -155,14 +248,16 @@ class DocumentExtend extends Document
                 } else {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
                 }
+
                 // только для изображений
-                if ($field['value']['extension'] == 'jpg' ||
+                if (($field['value']['extension'] == 'jpg' ||
                     $field['value']['extension'] == 'jpeg' ||
-                    $field['value']['extension'] == 'png') {
+                    $field['value']['extension'] == 'png') ||
+                    $field['value'] == null) {
 
                     // если файл не существуйт, назначаем картинку нет фото
                     $image = Yii::getAlias( '@frontend/web' . $field['value']['path']);
-                    if(!file_exists($image)) {
+                    if(!file_exists($image) || $field['value'] == null) {
                         $field['value']['path'] = '/images/service/no-foto.png';
                     }
                     if (strpos($view, '{^_' . $field['title'] . '_^}') !== false) {
@@ -173,20 +268,27 @@ class DocumentExtend extends Document
                         $view = str_replace('{^_' . $field['title'] . '_^}', $image, $view);
                     }
                     if (strpos($view, '{^=' . $field['title'] . '=^}') !== false) {
-                        $image = Html::img($field['value']['path'], [
-                            'class' => 'full-width cursor-pointer',
-                            'alt' => Yii::t('app', $field['title']),
-                            'onclick' => '
-                            $.pjax({
-                                type: "GET",
-                                url: "' . Url::to(['/site/show-image', 'img' => $field['value']['path']]) . '",
-                                container: "#pjaxModalUniversal",
-                                push: false,
-                                timeout: 10000,
-                                scrollTo: false
-                            })
-                        '
-                        ]);
+                        if ($field['value']['path'] != '/images/service/no-foto.png') {
+                            $image = Html::img($field['value']['path'], [
+                                'class' => 'full-width cursor-pointer',
+                                'alt' => Yii::t('app', $field['title']),
+                                'onclick' => '
+                                $.pjax({
+                                    type: "GET",
+                                    url: "' . Url::to(['/site/show-image', 'img' => $field['value']['path']]) . '",
+                                    container: "#pjaxModalUniversal",
+                                    push: false,
+                                    timeout: 10000,
+                                    scrollTo: false
+                                })'
+                            ]);
+                        } else {
+                            $image = Html::img($field['value']['path'], [
+                                'class' => 'full-width',
+                                'alt' => Yii::t('app', $field['title'])
+                            ]);
+                        }
+
                         $view = str_replace('{^=' . $field['title'] . '=^}', $image, $view);
                     }
 
@@ -199,9 +301,16 @@ class DocumentExtend extends Document
                                 if (!isset($carouselFiles)) {
                                     $carouselFiles = [];
                                 }
-                                $carouselFiles[] = Html::img($field['value']['path'], [
+
+                                $image = Html::img($field['value']['path'], [
                                     'class' => 'full-width animated fadeIn'
                                 ]);
+
+                                $keyItem = array_search($image, $carouselFiles);
+                                if ($keyItem === false) {
+                                    $carouselFiles[] = $image;
+                                }
+
                                 unset($carouselItems[$keyItem]);
                             }
                         }
@@ -226,6 +335,12 @@ class DocumentExtend extends Document
 
                 // карусель
                 if (isset($carouselItems) && $carouselItems) {
+                    if ($field['value'] == null) {
+                        $field['value'][] = [
+                            'path' => '/images/service/no-foto.png',
+                            'extension' => 'png'
+                        ];
+                    }
                     if (isset($field['value']) && $field['value']) {
                         $keyItem = array_search($field['title'], $carouselItems);
                         if ($keyItem !== false) {
@@ -233,10 +348,6 @@ class DocumentExtend extends Document
                                 if ($file['extension'] == 'jpg' ||
                                     $file['extension'] == 'jpeg' ||
                                     $file['extension'] == 'png') {
-                                    // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
-                                    if (!isset($carouselFiles)) {
-                                        $carouselFiles = [];
-                                    }
 
                                     // если файл не существуйт, назначаем картинку нет фото
                                     $image = Yii::getAlias( '@frontend/web' . $file['path']);
@@ -244,9 +355,19 @@ class DocumentExtend extends Document
                                         $file['path'] = '/images/service/no-foto.png';
                                     }
 
-                                    $carouselFiles[] = Html::img($file['path'], [
+                                    // если файл используется в карусели и он является картинкой добавляем его к массиву файлов
+                                    if (!isset($carouselFiles)) {
+                                        $carouselFiles = [];
+                                    }
+
+                                    $image = Html::img($file['path'], [
                                         'class' => 'full-width animated fadeIn'
                                     ]);
+
+                                    $keyItem = array_search($image, $carouselFiles);
+                                    if ($keyItem === false) {
+                                        $carouselFiles[] = $image;
+                                    }
                                 }
                             }
                             unset($carouselItems[$keyItem]);
@@ -501,6 +622,19 @@ class DocumentExtend extends Document
     }
 
     /**
+     * Возвращает массив валют цены
+     * @return array
+     */
+    public function getCurrencyList()
+    {
+        return [
+            Constants::CURRENCY_RUB =>  Constants::CURRENCY_RUB,
+            Constants::CURRENCY_USD => Constants::CURRENCY_USD,
+            Constants::CURRENCY_EUR => Constants::CURRENCY_EUR,
+        ];
+    }
+
+    /**
      * Возвращает папки и документы находящиеся в корне
      * @return array
      */
@@ -613,7 +747,7 @@ class DocumentExtend extends Document
      */
     public function getParent()
     {
-        return $this->hasOne(DocumentForm::className(), ['id' => 'parent_id']);
+        return $this->hasOne(DocumentForm::class, ['id' => 'parent_id']);
     }
 
     /**
@@ -629,7 +763,7 @@ class DocumentExtend extends Document
      */
     public function getChilds()
     {
-        return $this->hasMany(DocumentForm::className(), ['parent_id' => 'id'])->where(['is_folder' => null]);
+        return $this->hasMany(DocumentForm::class, ['parent_id' => 'id'])->where(['is_folder' => null]);
     }
 
     /**
@@ -637,7 +771,7 @@ class DocumentExtend extends Document
      */
     public function getDocuments()
     {
-        return $this->hasMany(DocumentForm::className(), ['parent_id' => 'id']);
+        return $this->hasMany(DocumentForm::class, ['parent_id' => 'id']);
     }
 
     /**
@@ -645,7 +779,7 @@ class DocumentExtend extends Document
      */
     public function getTemplate()
     {
-        return $this->hasOne(TemplateForm::className(), ['id' => 'template_id']);
+        return $this->hasOne(TemplateForm::class, ['id' => 'template_id']);
     }
 
     /**
@@ -653,7 +787,7 @@ class DocumentExtend extends Document
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(UserForm::className(), ['id' => 'created_by']);
+        return $this->hasOne(UserForm::class, ['id' => 'created_by']);
     }
 
     /**
@@ -661,7 +795,7 @@ class DocumentExtend extends Document
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(UserForm::className(), ['id' => 'updated_by']);
+        return $this->hasOne(UserForm::class, ['id' => 'updated_by']);
     }
 
     /**
@@ -669,7 +803,7 @@ class DocumentExtend extends Document
      */
     public function getLikes()
     {
-        return $this->hasMany(LikeForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(LikeForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -677,7 +811,7 @@ class DocumentExtend extends Document
      */
     public function getValueFiles()
     {
-        return $this->hasMany(ValueFileForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(ValueFileForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -685,7 +819,7 @@ class DocumentExtend extends Document
      */
     public function getValueInts()
     {
-        return $this->hasMany(ValueIntForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(ValueIntForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -693,7 +827,7 @@ class DocumentExtend extends Document
      */
     public function getValueNumerics()
     {
-        return $this->hasMany(ValueNumericForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(ValueNumericForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -701,7 +835,7 @@ class DocumentExtend extends Document
      */
     public function getValueStrings()
     {
-        return $this->hasMany(ValueStringForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(ValueStringForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -709,7 +843,23 @@ class DocumentExtend extends Document
      */
     public function getValueTexts()
     {
-        return $this->hasMany(ValueTextForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(ValueTextForm::class, ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValuePrices()
+    {
+        return $this->hasMany(ValuePriceForm::class, ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiscounts()
+    {
+        return $this->hasMany(ValuePriceForm::class, ['discount_id' => 'id']);        
     }
 
     /**
@@ -717,6 +867,6 @@ class DocumentExtend extends Document
      */
     public function getVisits()
     {
-        return $this->hasMany(VisitForm::className(), ['document_id' => 'id']);
+        return $this->hasMany(VisitForm::class, ['document_id' => 'id']);
     }
 }

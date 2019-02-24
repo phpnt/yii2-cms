@@ -119,6 +119,14 @@ use common\models\Constants;
                     </p>
                 </div>
                 <div class="col-sm-6">
+                    <label class="control-label"><?= Yii::t('app', 'Цена.') ?></label>
+                    <p>
+                        <?= Yii::t('app', '<strong>{$_ПОЛЕ_$}</strong> - название скидки.') ?><br>
+                        <?= Yii::t('app', '<strong>{$=ПОЛЕ=$}</strong> - цена без скидки.') ?><br>
+                        <?= Yii::t('app', '<strong>{$%ПОЛЕ%$}</strong> - процент скидки.') ?><br>
+                        <?= Yii::t('app', '<strong>{$!ПОЛЕ!$}</strong> - дата окончания скидки.') ?><br>
+                        <?= Yii::t('app', '<strong>{$#ПОЛЕ#$}</strong> - валюта.') ?><br>
+                    </p>
                     <label class="control-label"><?= Yii::t('app', 'Изображение.') ?></label>
                     <p>
                         <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод изображения в блоке.') ?><br>

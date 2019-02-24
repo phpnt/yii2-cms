@@ -427,3 +427,15 @@ id;language;translation;hash
 575;en;"Fields and messages";a682b7e600ab6e2155f17837c224207b
 576;en;"Type of view";949bab82e13566850a1c0505e46f727d
 577;en;View;ec752195c0e9bcb6508e8cb1f9a8031c
+578;en;"Only for the section ""Promotions / discounts.""";175ae85e1f667f4a6eb725231a478050
+579;en;Service.;df5559bbd33c8db6ec9ec89931697989
+581;en;Price.;947f5deebd601d060a883f600c52846d
+587;en;"Promotion / discount";1d8d24c5c13d46d7906b0f97d9a81c2d
+588;en;"Select a currency.";95f0443fc9be83d8adf5a69d044a185d
+589;en;"Discounted price";b889c9973a7ea625c4dd5a0085734742
+590;en;"Discount percentage";ac5e628f27d632570255965b880a0f99
+591;en;"Promotions / discounts";e96da9cfa30a28d835d11574b168f7fc
+592;en;"<p>Promotions / discounts<br></p>";a33f91d1f8021d9f163a165e2e148e91
+593;en;"<h1>Promotions / discounts</h1>";a33f91d1f8021d9f163a165e2e148e91
+594;en;"Template for promotions and discounts";5ebe0b21f3bb23b7f18b3d4078ebf823
+595;en;"Discount end date";817982b85154ba734c94a02a4486e79a

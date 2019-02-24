@@ -33,11 +33,6 @@ use phpnt\ICheck\ICheck;
             ->textInput(['placeholder' => $modelTemplateForm->getAttributeLabel('mark')]) ?>
     </div>
 
-    <div class="col-md-12">
-        <?= $form->field($modelTemplateForm, 'description')
-            ->textarea(['placeholder' => $modelTemplateForm->getAttributeLabel('description')]) ?>
-    </div>
-
     <div class="col-md-6">
         <?= $form->field($modelTemplateForm, 'status')->dropDownList($modelTemplateForm->statusList,
             [
@@ -62,39 +57,44 @@ use phpnt\ICheck\ICheck;
             ]) ?>
     </div>
 
+    <div class="col-md-12">
+        <?= $form->field($modelTemplateForm, 'description')
+            ->textarea(['placeholder' => $modelTemplateForm->getAttributeLabel('description')]) ?>
+    </div>
+
     <div class="clearfix"></div>
 
-    <div class="col-md-12">
+    <div class="col-md-4">
         <?= $form->field($modelTemplateForm, 'add_rating', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
-                'checked' => $modelTemplateForm->add_rating
+                'checked' => $modelTemplateForm->add_rating ? $modelTemplateForm->add_rating : false
             ]])
             ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
             ->label(false) ?>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-4">
         <?= $form->field($modelTemplateForm, 'add_comments', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
-                'checked' => $modelTemplateForm->add_comments
+                'checked' => $modelTemplateForm->add_comments ? $modelTemplateForm->add_comments : false
             ]])
             ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
             ->label(false) ?>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-4">
         <?= $form->field($modelTemplateForm, 'use_filter', ['template' => ' {input} {label} {hint}'])->widget(ICheck::class, [
             'type'  => ICheck::TYPE_CHECBOX,
             'style'  => ICheck::STYLE_SQUARE,
             'color'  => 'blue',
             'options' => [
-                'checked' => $modelTemplateForm->use_filter
+                'checked' => $modelTemplateForm->use_filter ? $modelTemplateForm->use_filter : false
             ]])
             ->hint('<i>' . Yii::t('app', 'Только для элементов.') . '</i>')
             ->label(false) ?>

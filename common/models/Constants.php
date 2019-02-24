@@ -38,6 +38,11 @@ class Constants
     const BASKET_BUTTON_FOR_ONE     = 1;
     const BASKET_BUTTON_FOR_MANY    = 2;
 
+    // Возможные валюты
+    const CURRENCY_RUB = 'RUB';   // заблокирован
+    const CURRENCY_USD = 'USD';    // активен
+    const CURRENCY_EUR = 'EUR';      // ожидает подтверждения
+
     // Время действия токенов
     const EXPIRE = 3600;
 
@@ -80,6 +85,7 @@ class Constants
     const FIELD_TYPE_YOUTUBE    = 21; // Видео YouTube
     const FIELD_TYPE_FILE       = 22; // Файл
     const FIELD_TYPE_FEW_FILES  = 23; // Несколько файлов
+    const FIELD_TYPE_DISCOUNT   = 24; // Скидка
 
     // расширения для файлов
     const FILE_EXT_JPEG         = 'jpeg'; //

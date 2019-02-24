@@ -30,6 +30,7 @@ $model = $widget->model;
     <?php /* @var $modelFieldForm \common\models\forms\FieldForm */ ?>
     <?php if ($modelFieldForm->use_filter): ?>
         <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
+            $modelFieldForm->type == Constants::FIELD_TYPE_DISCOUNT ||
             $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
             $modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
             <div class="col-xs-12">

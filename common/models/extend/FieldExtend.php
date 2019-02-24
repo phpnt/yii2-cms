@@ -9,6 +9,7 @@
 namespace common\models\extend;
 
 use common\models\forms\ValueFileForm;
+use common\models\forms\ValuePriceForm;
 use Yii;
 use common\models\Constants;
 use common\models\Field;
@@ -35,6 +36,7 @@ use yii\helpers\Json;
  * @property ValueFileForm[] $valueFiles
  * @property ValueIntForm[] $valueInts
  * @property ValueNumericForm[] $valueNumerics
+ * @property ValuePriceForm[] $valuePrices
  * @property ValueStringForm[] $valueStrings
  * @property ValueStringForm[] $valueStringsOfTemplate
  * @property ValueTextForm[] $valueTexts
@@ -259,6 +261,7 @@ class FieldExtend extends Field
             Constants::FIELD_TYPE_LIST =>  Yii::t('app', 'Список'),
             Constants::FIELD_TYPE_LIST_MULTY =>  Yii::t('app', 'Список с мультивыбором'),
             Constants::FIELD_TYPE_PRICE =>  Yii::t('app', 'Цена'),
+            Constants::FIELD_TYPE_DISCOUNT =>  Yii::t('app', 'Процент скидки'),
             Constants::FIELD_TYPE_DATE =>  Yii::t('app', 'Дата'),
             Constants::FIELD_TYPE_DATE_RANGE =>  Yii::t('app', 'Диапазон дат'),
             Constants::FIELD_TYPE_ADDRESS =>  Yii::t('app', 'Адрес'),
@@ -315,6 +318,9 @@ class FieldExtend extends Field
             case Constants::FIELD_TYPE_PRICE:
                 return $this->typeList[Constants::FIELD_TYPE_PRICE];
                 break;
+            case Constants::FIELD_TYPE_DISCOUNT:
+                return $this->typeList[Constants::FIELD_TYPE_DISCOUNT];
+                break;
             case Constants::FIELD_TYPE_DATE:
                 return $this->typeList[Constants::FIELD_TYPE_DATE];
                 break;
@@ -361,7 +367,7 @@ class FieldExtend extends Field
      */
     public function getValueStringsOfTemplate()
     {
-        return $this->hasMany(ValueStringForm::className(), ['field_id' => 'id'])->where(['document_id' => null]);
+        return $this->hasMany(ValueStringForm::class, ['field_id' => 'id'])->where(['document_id' => null]);
     }
 
     /**
@@ -369,7 +375,7 @@ class FieldExtend extends Field
      */
     public function getTemplate()
     {
-        return $this->hasOne(TemplateForm::className(), ['id' => 'template_id']);
+        return $this->hasOne(TemplateForm::class, ['id' => 'template_id']);
     }
 
     /**
@@ -377,7 +383,7 @@ class FieldExtend extends Field
      */
     public function getValueFiles()
     {
-        return $this->hasMany(ValueFileForm::className(), ['field_id' => 'id']);
+        return $this->hasMany(ValueFileForm::class, ['field_id' => 'id']);
     }
 
     /**
@@ -385,7 +391,7 @@ class FieldExtend extends Field
      */
     public function getValueInts()
     {
-        return $this->hasMany(ValueIntForm::className(), ['field_id' => 'id']);
+        return $this->hasMany(ValueIntForm::class, ['field_id' => 'id']);
     }
 
     /**
@@ -393,7 +399,15 @@ class FieldExtend extends Field
      */
     public function getValueNumerics()
     {
-        return $this->hasMany(ValueNumericForm::className(), ['field_id' => 'id']);
+        return $this->hasMany(ValueNumericForm::class, ['field_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValuePrices()
+    {
+        return $this->hasMany(ValuePriceForm::class, ['field_id' => 'id']);
     }
 
     /**
@@ -401,7 +415,7 @@ class FieldExtend extends Field
      */
     public function getValueStrings()
     {
-        return $this->hasMany(ValueStringForm::className(), ['field_id' => 'id']);
+        return $this->hasMany(ValueStringForm::class, ['field_id' => 'id']);
     }
 
     /**
@@ -409,6 +423,6 @@ class FieldExtend extends Field
      */
     public function getValueTexts()
     {
-        return $this->hasMany(ValueTextForm::className(), ['field_id' => 'id']);
+        return $this->hasMany(ValueTextForm::class, ['field_id' => 'id']);
     }
 }

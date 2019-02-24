@@ -81,16 +81,23 @@ class ElementManageController extends Controller
      */
     public function actionCreateElement($id_folder)
     {
-        if (!Yii::$app->request->isPjax) {
+        /*if (!Yii::$app->request->isPjax) {
             return $this->redirect(['/document/manage/index']);
-        }
+        }*/
 
-        $modelDocumentForm = DocumentForm::findOne($id_folder);
-        $template_id = $modelDocumentForm->template_id;
+        $parentData = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where(['id' => $id_folder])
+            ->one();
+
+        $template_id = $parentData['template_id'];
+        $parent_alias = $parentData['alias'];
 
         $modelDocumentForm = new DocumentForm();
         $modelDocumentForm->scenario = 'create-element';
         $modelDocumentForm->parent_id = $id_folder;
+        $modelDocumentForm->parent_alias = $parent_alias;
         $modelDocumentForm->template_id = $template_id;
 
         if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
@@ -122,13 +129,22 @@ class ElementManageController extends Controller
      */
     public function actionUpdateElement($id_document, $id_folder)
     {
-        if (!Yii::$app->request->isPjax) {
+        /*if (!Yii::$app->request->isPjax) {
             return $this->redirect(['/document/manage/index']);
-        }
+        }*/
+
+        $parentData = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where(['id' => $id_folder])
+            ->one();
+
+        $parent_alias = $parentData['alias'];
 
         $modelDocumentForm = DocumentForm::findOne($id_document);
         $modelDocumentForm->scenario = 'update-element';
         $modelDocumentForm->parent_id = $id_folder;
+        $modelDocumentForm->parent_alias = $parent_alias;
 
         if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
             Yii::$app->session->set(

@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'models[4]' => \common\models\search\ValueNumericSearch::class,
                         'models[5]' => \common\models\search\ValueStringSearch::class,
                         'models[6]' => \common\models\search\ValueTextSearch::class,
-                        'models[7]' => \common\models\search\TemplateViewSearch::class,
+                        'models[7]' => \common\models\search\ValuePriceSearch::class,
+                        'models[8]' => \common\models\search\TemplateViewSearch::class,
                         'with_header' => true
                     ]),
                     ['class' => 'btn btn-primary', 'data-pjax' => 0]) ?>

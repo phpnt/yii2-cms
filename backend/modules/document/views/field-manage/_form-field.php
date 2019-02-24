@@ -79,6 +79,16 @@ use phpnt\datepicker\BootstrapDatepicker;
         <?php endif; ?>
     <?php endif; ?>
 
+    <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DISCOUNT): ?>
+        <?php if ($modelFieldForm->isNewRecord): ?>
+            <?php $modelFieldForm->min_val = 0; ?>
+            <?php $modelFieldForm->max_val = 100; ?>
+            <?php $modelFieldForm->min_str = 0; ?>
+            <?php $modelFieldForm->max_str = 3; ?>
+            <?php $modelFieldForm->is_required = 1; ?>
+        <?php endif; ?>
+    <?php endif; ?>
+
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
         $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT_RANGE): ?>
         <?php if ($modelFieldForm->isNewRecord): ?>
@@ -188,6 +198,22 @@ use phpnt\datepicker\BootstrapDatepicker;
         <div class="col-xs-12">
             <?= $form->field($modelFieldForm, 'error_required')
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('error_required')]) ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_DISCOUNT): ?>
+        <div class="col-xs-12">
+            <?= $form->field($modelFieldForm, 'min_val')
+                ->hiddenInput()->label(false) ?>
+            <?= $form->field($modelFieldForm, 'max_val')
+                ->hiddenInput()->label(false) ?>
+            <?= $form->field($modelFieldForm, 'min_str')
+                ->hiddenInput()->label(false) ?>
+            <?= $form->field($modelFieldForm, 'max_str')
+                ->hiddenInput()->label(false) ?>
+            <?= $form->field($modelFieldForm, 'is_required')
+                ->hiddenInput()->label(false) ?>
+            <p><?= Yii::t('app', 'Только для раздела "Акции/скидки."') ?></p>
         </div>
     <?php endif; ?>
 

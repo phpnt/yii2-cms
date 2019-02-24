@@ -9,7 +9,9 @@
 
 namespace common\widgets\TemplateOfElement\components;
 
+use common\models\forms\DocumentForm;
 use common\models\forms\ValueFileForm;
+use common\models\forms\ValuePriceForm;
 use Yii;
 use common\models\Constants;
 use common\models\forms\FieldForm;
@@ -21,6 +23,7 @@ use common\models\forms\ValueTextForm;
 use yii\base\ErrorException;
 use yii\base\Object;
 use yii\db\StaleObjectException;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 
 class FieldsManage extends Object
@@ -115,6 +118,45 @@ class FieldsManage extends Object
         }
         $modelValueNumericForm->title = $field['name'];
         $this->saveModel($forms_field, $modelValueNumericForm);
+    }
+
+    // записывает поле с ценой
+    public function setPrice($field, $forms_field, $document_id, $value_currency, $discount_id)
+    {
+        $modelValuePriceForm = ValuePriceForm::findOne([
+            'field_id' => $field['id'],
+            'document_id' => $document_id,
+        ]);
+        if (!$modelValuePriceForm) {
+            $modelValuePriceForm = new ValuePriceForm();
+            $modelValuePriceForm->type = $field['type'];
+            $modelValuePriceForm->document_id = $document_id;
+            $modelValuePriceForm->field_id = $field['id'];
+        }
+        $modelValuePriceForm->title = $field['name'];
+        $modelValuePriceForm->price = (int) $forms_field[0];
+        $modelValuePriceForm->currency = $value_currency;
+        
+        if ($discount_id) {
+            $discountValue = (new \yii\db\Query())
+                ->select(['value'])
+                ->from('value_int')
+                ->where([
+                    'document_id' => $discount_id,
+                    'type' => Constants::FIELD_TYPE_DISCOUNT,
+                ])
+                ->one();
+
+            $modelValuePriceForm->discount_price = ($modelValuePriceForm->price / 100) * $discountValue['value'];
+            $modelValuePriceForm->discount_id = $discount_id;
+        } else {
+            $modelValuePriceForm->discount_price = $modelValuePriceForm->price;
+            $modelValuePriceForm->discount_id = null;
+        }
+
+        if (!$modelValuePriceForm->save()) {
+            dd($modelValuePriceForm->errors);
+        }
     }
 
     // записывает поле с диапазоном дробных чисел
@@ -331,8 +373,12 @@ class FieldsManage extends Object
      * */
     private function saveModel($fields, $model) {
         foreach ($fields as $item) {
+            if ($item === false) {
+                $item = null;
+            }
             $model->value = $item;
             if (!$model->save()) {
+                d($item);
                 dd($model->errors);
             }
         }
@@ -344,6 +390,7 @@ class FieldsManage extends Object
     public function getValue($field_id, $type, $document_id)
     {
         if ($type == Constants::FIELD_TYPE_INT ||
+            $type == Constants::FIELD_TYPE_DISCOUNT ||
             $type == Constants::FIELD_TYPE_RADIO ||
             $type == Constants::FIELD_TYPE_LIST ||
             $type == Constants::FIELD_TYPE_CITY ||
@@ -357,7 +404,7 @@ class FieldsManage extends Object
             return $this->getIntRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_FLOAT ||
             $type == Constants::FIELD_TYPE_PRICE) {
-            return $this->getNum($field_id, $document_id);
+            return $this->getPriceData($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_FLOAT_RANGE) {
             return $this->getNumRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_STRING ||
@@ -444,7 +491,8 @@ class FieldsManage extends Object
             $i = 0;
             foreach ($modelTemplateForm->fields as $modelFieldForm) {
                 /* @var $modelFieldForm FieldForm */
-                if ($modelFieldForm->type == Constants::FIELD_TYPE_INT) {
+                if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
+                    $modelFieldForm->type == Constants::FIELD_TYPE_DISCOUNT) {
                     $data = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('value_int')
@@ -540,8 +588,7 @@ class FieldsManage extends Object
                         $data['title'] = $modelFieldForm->name;
                         $data['value'] = null;
                     }
-                } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
-                    $modelFieldForm->type == Constants::FIELD_TYPE_PRICE) {
+                } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT) {
                     $data = (new \yii\db\Query())
                         ->select(['*'])
                         ->from('value_numeric')
@@ -551,6 +598,46 @@ class FieldsManage extends Object
                         ])
                         ->one();
                     if (!$data) {
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = null;
+                    }
+                } elseif ($modelFieldForm->type == Constants::FIELD_TYPE_PRICE) {
+                    $dataPrice = (new \yii\db\Query())
+                        ->select(['*'])
+                        ->from('value_price')
+                        ->where([
+                            'field_id' => $modelFieldForm->id,
+                            'document_id' => $document_id,
+                        ])
+                        ->one();
+                    if ($dataPrice) {
+                        if ($dataPrice['discount_id']) {
+                            $dataDiscount = (new \yii\db\Query())
+                                ->select(['*'])
+                                ->from('document')
+                                ->where([
+                                    'id' => $dataPrice['discount_id'],
+                                ])
+                                ->one();
+                            if ($dataDiscount) {
+                                $dataDiscountValues = $this->getData($dataDiscount['id'], $dataDiscount['template_id']);
+                                if ($dataDiscountValues) {
+                                    foreach ($dataDiscountValues as $dataDiscountValue) {
+                                        if ($dataDiscountValue['type'] == Constants::FIELD_TYPE_DISCOUNT) {
+                                            $dataDiscount['percent'] = $dataDiscountValue['value'];
+                                        }
+                                        if ($dataDiscountValue['type'] == Constants::FIELD_TYPE_DATE) {
+                                            $dataDiscount['date_end'] = $dataDiscountValue['value'];
+                                        }
+                                    }
+                                }
+                                $dataPrice = ArrayHelper::merge($dataPrice, $dataDiscount);
+                            }
+
+                        }
+                        $data['title'] = $modelFieldForm->name;
+                        $data['value'] = $dataPrice;
+                    } else {
                         $data['title'] = $modelFieldForm->name;
                         $data['value'] = null;
                     }
@@ -779,13 +866,17 @@ class FieldsManage extends Object
      */
     public function getInt($field_id, $document_id)
     {
-        $modelValueIntForm = ValueIntForm::findOne([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $value = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_int')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
 
-        if ($modelValueIntForm) {
-            return $modelValueIntForm->value;
+        if ($value) {
+            return $value['value'];
         }
         return null;
     }
@@ -795,18 +886,42 @@ class FieldsManage extends Object
      */
     public function getIntRange($field_id, $document_id)
     {
-        $manyValueIntForm = ValueIntForm::findAll([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $values = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_int')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->all();
 
-        if ($manyValueIntForm) {
+        if ($values) {
             $result = [];
-            foreach ($manyValueIntForm as $modelValueIntForm) {
+            foreach ($values as $value) {
                 /* @var $modelValueIntForm ValueIntForm */
-                $result[] = $modelValueIntForm->value;
+                $result[] = $values['value'];
             }
             return $result;
+        }
+        return null;
+    }
+
+    /**
+     * Получает информацию о цене
+     */
+    public function getPriceData($field_id, $document_id)
+    {
+        $priceData = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('value_price')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
+
+        if ($priceData) {
+            return $priceData;
         }
         return null;
     }
@@ -816,12 +931,17 @@ class FieldsManage extends Object
      */
     public function getNum($field_id, $document_id)
     {
-        $modelValueNumericForm = ValueNumericForm::findOne([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
-        if ($modelValueNumericForm) {
-            return $modelValueNumericForm->value;
+        $value = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_numeric')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
+
+        if ($value) {
+            return $value['value'];
         }
         return null;
     }
@@ -831,16 +951,20 @@ class FieldsManage extends Object
      */
     public function getNumRange($field_id, $document_id)
     {
-        $manyValueNumericForm = ValueNumericForm::findAll([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $values = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_numeric')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->all();
 
-        if ($manyValueNumericForm) {
+        if ($values) {
             $result = [];
-            foreach ($manyValueNumericForm as $modelValueNumericForm) {
-                /* @var $modelValueNumericForm ValueNumericForm */
-                $result[] = $modelValueNumericForm->value;
+            foreach ($values as $value) {
+                /* @var $modelValueIntForm ValueIntForm */
+                $result[] = $values['value'];
             }
             return $result;
         }
@@ -852,12 +976,17 @@ class FieldsManage extends Object
      */
     public function getStr($field_id, $document_id)
     {
-        $modelValueStringForm = ValueStringForm::findOne([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
-        if ($modelValueStringForm) {
-            return $modelValueStringForm->value;
+        $value = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_string')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
+
+        if ($value) {
+            return $value['value'];
         }
         return null;
     }
@@ -867,13 +996,17 @@ class FieldsManage extends Object
      */
     public function getDate($field_id, $document_id)
     {
-        $modelValueIntForm = ValueIntForm::findOne([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $value = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_int')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
 
-        if ($modelValueIntForm) {
-            return $modelValueIntForm->value ? Yii::$app->formatter->asDate($modelValueIntForm->value) : null;
+        if ($value) {
+            return $value['value'] ? Yii::$app->formatter->asDate($value['value']) : null;
         }
         return null;
     }
@@ -883,16 +1016,20 @@ class FieldsManage extends Object
      */
     public function getDateRange($field_id, $document_id)
     {
-        $manyValueIntForm = ValueIntForm::findAll([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $values = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_int')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->all();
 
-        if ($manyValueIntForm) {
+        if ($values) {
             $result = [];
-            foreach ($manyValueIntForm as $modelValueIntForm) {
+            foreach ($values as $value) {
                 /* @var $modelValueIntForm ValueIntForm */
-                $result[] = $modelValueIntForm->value ? Yii::$app->formatter->asDate($modelValueIntForm->value) : null;
+                $result[] = $values['value'] ? Yii::$app->formatter->asDate($value['value']) : null;
             }
             return $result;
         }
@@ -904,13 +1041,17 @@ class FieldsManage extends Object
      */
     public function getText($field_id, $document_id)
     {
-        $modelValueTextForm = ValueTextForm::findOne([
-            'field_id' => $field_id,
-            'document_id' => $document_id,
-        ]);
+        $value = (new \yii\db\Query())
+            ->select(['value'])
+            ->from('value_text')
+            ->where([
+                'field_id' => $field_id,
+                'document_id' => $document_id,
+            ])
+            ->one();
 
-        if ($modelValueTextForm) {
-            return $modelValueTextForm->value;
+        if ($value) {
+            return $value['value'] ? Yii::$app->formatter->asDate($value['value']) : null;
         }
         return null;
     }

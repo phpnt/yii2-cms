@@ -220,6 +220,20 @@ class FieldForm extends FieldExtend
             }
         }
 
+        if (isset($this->valuePrices)) {
+            foreach ($this->valuePrices as $modelValuePriceForm) {
+                try {
+                    $modelValuePriceForm->delete();
+                } catch (StaleObjectException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                } catch (\Throwable $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                }
+            }
+        }
+
         if (isset($this->valueNumerics)) {
             foreach ($this->valueNumerics as $modelValueNumericForm) {
                 try {

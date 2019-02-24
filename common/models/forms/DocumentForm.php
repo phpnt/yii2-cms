@@ -36,6 +36,10 @@ class DocumentForm extends DocumentExtend
     public $value_string;
     public $value_array;
 
+    public $value_price;
+    public $value_currency;
+    public $value_discount;
+
     public $input_date;
     public $input_date_from;
     public $input_date_to;
@@ -49,6 +53,8 @@ class DocumentForm extends DocumentExtend
     public $file;
     public $few_files;
 
+    public $parent_alias;
+
     public function rules()
     {
         $items = DocumentExtend::rules();
@@ -58,10 +64,10 @@ class DocumentForm extends DocumentExtend
         $items[] = ['alias', 'unique'];
         $items[] = ['elements_fields', DocumentArrayValidator::className()];
         $items[] = [['errors_fields', 'value_array'], 'each', 'rule' => ['integer'], 'on' => ['create-element', 'update-element']];
-        $items[] = ['value_int', 'integer', 'on' => ['create-element', 'update-element']];
-        $items[] = [['value_number'], 'filter', 'filter' => 'floatval', 'on' => ['create-element', 'update-element']];
-        $items[] = [['value_number'], 'number', 'on' => ['create-element', 'update-element']];
-        $items[] = [['value_string', 'input_date', 'input_date_from', 'input_date_to', 'field_error'], 'string', 'on' => ['create-element', 'update-element']];
+        $items[] = [['value_int', 'value_discount'], 'integer', 'on' => ['create-element', 'update-element']];
+        $items[] = [['value_number', 'value_price'], 'filter', 'filter' => 'floatval', 'on' => ['create-element', 'update-element']];
+        $items[] = [['value_number', 'value_price'], 'number', 'on' => ['create-element', 'update-element']];
+        $items[] = [['value_string', 'input_date', 'input_date_from', 'input_date_to', 'field_error', 'value_currency', 'parent_alias'], 'string', 'on' => ['create-element', 'update-element']];
         $items[] = [['file'], 'file', 'skipOnEmpty' => true, 'on' => ['create-element', 'update-element']];
         $items[] = [['few_files'], 'file', 'skipOnEmpty' => true, 'maxFiles' => 20, 'on' => ['create-element', 'update-element']];
 
@@ -71,6 +77,8 @@ class DocumentForm extends DocumentExtend
     public function attributeLabels()
     {
         $items = DocumentExtend::attributeLabels();
+        $items['value_currency'] = Yii::t('app', 'Валюта');
+        $items['value_discount'] = Yii::t('app', 'Акция/cкидка');
 
         return $items;
     }
@@ -303,6 +311,21 @@ class DocumentForm extends DocumentExtend
             }
         }
 
+        if (isset($this->valuePrices)) {
+            foreach ($this->valuePrices as $modelValuePriceForm) {
+                /* @var $modelValuePriceForm ValuePriceForm */
+                try {
+                    $modelValuePriceForm->delete();
+                } catch (StaleObjectException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                } catch (\Throwable $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    throw new ErrorException($e->getMessage());
+                }
+            }
+        }
+
         if (isset($this->valueStrings)) {
             foreach ($this->valueStrings as $modelValueStringForm) {
                 /* @var $modelValueStringForm ValueStringForm */
@@ -408,6 +431,12 @@ class DocumentForm extends DocumentExtend
                             $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_required'], ['name' => $field['name']]);
                         }
                     }
+                    if ($field['type'] == Constants::FIELD_TYPE_PRICE) {
+                        // для всех полей, кроме радио и списков
+                        if (!$this->value_currency || $this->value_currency == '') {
+                            $this->addError('value_currency', Yii::t('app', 'Выберите валюту.'));
+                        }
+                    }
                 }
             }
         }
@@ -431,11 +460,18 @@ class DocumentForm extends DocumentExtend
                             $field['min_val'] = -2147483648;
                         }
                     }
+                    if ($field['type'] == Constants::FIELD_TYPE_DISCOUNT ||
+                        $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                        if (!$field['min_val'] || $field['min_val'] < 0) {
+                            $field['min_val'] = 0;
+                        }
+                    }
                     // Проверка DOUBLE на число
                     if (($field['type'] == Constants::FIELD_TYPE_INT ||
-                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                        $field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                        $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE) &&
+                            $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT ||
+                            $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
+                            $field['type'] == Constants::FIELD_TYPE_DISCOUNT) &&
                         $this->elements_fields[$key][$sub_key] != '') {
                         if (!is_numeric($this->elements_fields[$key][$sub_key])) {
                             $this->errors_fields[$key][$sub_key] = Yii::t('app', 'Поле не является числом.');
@@ -447,7 +483,8 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            $field['type'] == Constants::FIELD_TYPE_PRICE ||
+                            $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                             if ($this->elements_fields[$key][$sub_key] < (int) $field['min_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
                                     'name' => $field['name'],
@@ -482,9 +519,16 @@ class DocumentForm extends DocumentExtend
                     }
                     // ограничения для полей
                     if ($field['type'] == Constants::FIELD_TYPE_INT ||
-                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE) {
+                        $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
+                        $field['type'] == Constants::FIELD_TYPE_PRICE) {
                         if (!$field['max_val'] || $field['max_val'] > 2147483647) {
                             $field['max_val'] = 2147483647;
+                        }
+                    }
+                    // ограничения для полей
+                    if ($field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
+                        if (!$field['max_val'] || $field['max_val'] > 100) {
+                            $field['max_val'] = 100;
                         }
                     }
                     // проверка на максимальное числовое значение
@@ -493,7 +537,8 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
-                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            $field['type'] == Constants::FIELD_TYPE_PRICE ||
+                            $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                             if ($this->elements_fields[$key][$sub_key] > (int) $field['max_val']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_value'], [
                                     'name' => $field['name'],
@@ -530,7 +575,8 @@ class DocumentForm extends DocumentExtend
                     // ограничения для полей
                     if ($field['type'] == Constants::FIELD_TYPE_INT ||
                         $field['type'] == Constants::FIELD_TYPE_INT_RANGE ||
-                        $field['type'] == Constants::FIELD_TYPE_STRING) {
+                        $field['type'] == Constants::FIELD_TYPE_STRING ||
+                        $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                         if (!$field['min_str'] || $field['min_str'] < 0) {
                             $field['min_str'] = 0;
                         }
@@ -542,7 +588,8 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_FLOAT ||
                             $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_STRING ||
-                            $field['type'] == Constants::FIELD_TYPE_PRICE) {
+                            $field['type'] == Constants::FIELD_TYPE_PRICE ||
+                            $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                             if (iconv_strlen($this->elements_fields[$key][$sub_key]) < (int) $field['min_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
                                     'name' => $field['name'],
@@ -569,6 +616,11 @@ class DocumentForm extends DocumentExtend
                             $field['max_str'] = 10;
                         }
                     }
+                    if ($field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
+                        if (!$field['max_str'] || $field['max_str'] > 3) {
+                            $field['max_str'] = 3;
+                        }
+                    }
                     if ($field['type'] == Constants::FIELD_TYPE_STRING ||
                         $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
                         if (!$field['max_str'] || $field['max_str'] > 255) {
@@ -584,7 +636,8 @@ class DocumentForm extends DocumentExtend
                             $field['type'] == Constants::FIELD_TYPE_FLOAT_RANGE ||
                             $field['type'] == Constants::FIELD_TYPE_STRING ||
                             $field['type'] == Constants::FIELD_TYPE_PRICE ||
-                            $field['type'] == Constants::FIELD_TYPE_ADDRESS) {
+                            $field['type'] == Constants::FIELD_TYPE_ADDRESS ||
+                            $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                             if (iconv_strlen($this->elements_fields[$key][$sub_key]) > (int) $field['max_str']) {
                                 $this->errors_fields[$key][$sub_key] = Yii::t('app', $field['error_length'], [
                                     'name' => $field['name'],
@@ -777,7 +830,8 @@ class DocumentForm extends DocumentExtend
                 $field['type'] == Constants::FIELD_TYPE_LIST ||
                 $field['type'] == Constants::FIELD_TYPE_CITY ||
                 $field['type'] == Constants::FIELD_TYPE_REGION ||
-                $field['type'] == Constants::FIELD_TYPE_COUNTRY) {
+                $field['type'] == Constants::FIELD_TYPE_COUNTRY ||
+                $field['type'] == Constants::FIELD_TYPE_DISCOUNT) {
                 $fieldsManage->setInt($field, $forms_field, $this->id);
             }
             // запись значений для диапазона целых чисел
@@ -790,9 +844,12 @@ class DocumentForm extends DocumentExtend
                 $fieldsManage->setMulty($field, $forms_field, $this->id);
             }
             // запись значений для дробей
-            if ($field['type'] == Constants::FIELD_TYPE_FLOAT ||
-                $field['type'] == Constants::FIELD_TYPE_PRICE) {
+            if ($field['type'] == Constants::FIELD_TYPE_FLOAT) {
                 $fieldsManage->setNum($field, $forms_field, $this->id);
+            }
+            // запись цены
+            if ($field['type'] == Constants::FIELD_TYPE_PRICE) {
+                $fieldsManage->setPrice($field, $forms_field, $this->id, $this->value_currency, $this->value_discount);
             }
             // запись одной даты
             if ($field['type'] == Constants::FIELD_TYPE_DATE) {

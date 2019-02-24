@@ -31,6 +31,7 @@ use Yii;
  * @property ValueFile[] $valueFiles
  * @property ValueInt[] $valueInts
  * @property ValueNumeric[] $valueNumerics
+ * @property ValuePrice[] $valuePrices
  * @property ValueString[] $valueStrings
  * @property ValueText[] $valueTexts
  */
@@ -116,6 +117,14 @@ class Field extends \yii\db\ActiveRecord
     public function getValueNumerics()
     {
         return $this->hasMany(ValueNumeric::className(), ['field_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValuePrices()
+    {
+        return $this->hasMany(ValuePrice::className(), ['field_id' => 'id']);
     }
 
     /**

@@ -38,6 +38,8 @@ use Yii;
  * @property ValueFile[] $valueFiles
  * @property ValueInt[] $valueInts
  * @property ValueNumeric[] $valueNumerics
+ * @property ValuePrice[] $valuePrices
+ * @property ValuePrice[] $valuePrices0
  * @property ValueString[] $valueStrings
  * @property ValueText[] $valueTexts
  * @property Visit[] $visits
@@ -190,6 +192,22 @@ class Document extends \yii\db\ActiveRecord
     public function getValueNumerics()
     {
         return $this->hasMany(ValueNumeric::className(), ['document_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValuePrices()
+    {
+        return $this->hasMany(ValuePrice::className(), ['discount_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValuePrices0()
+    {
+        return $this->hasMany(ValuePrice::className(), ['document_id' => 'id']);
     }
 
     /**

@@ -9,6 +9,7 @@
 
 use common\models\Constants;
 use common\widgets\TemplateOfElement\fields\FieldText;
+use common\widgets\TemplateOfElement\fields\FieldPrice;
 use common\widgets\TemplateOfElement\fields\FieldTextarea;
 use common\widgets\TemplateOfElement\fields\FieldTextRangeFrom;
 use common\widgets\TemplateOfElement\fields\FieldTextRangeTo;
@@ -32,6 +33,19 @@ $model = $widget->model;
 <?php foreach ($model->template->fields as $modelFieldForm): ?>
     <?php /* @var $modelFieldForm \common\models\forms\FieldForm */ ?>
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT): ?>
+        <div class="col-md-12">
+            <?= $form->field($model, 'value_int', [
+                'options' => [
+                    'id' => 'group-' . $modelFieldForm->id
+                ]
+            ])->widget(FieldText::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+            ]) ?>
+        </div>
+    <?php elseif ($model->parent_alias == 'discounts' && $modelFieldForm->type == Constants::FIELD_TYPE_DISCOUNT): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
@@ -78,8 +92,7 @@ $model = $widget->model;
                 <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
             </div>
         <?php endif; ?>
-    <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
-        $modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
+    <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_FLOAT): ?>
         <div class="col-md-12">
             <?= $form->field($model, 'value_number', [
                 'options' => [
@@ -126,6 +139,19 @@ $model = $widget->model;
                 <p class="help-block"><i><?= $modelFieldForm->hint ?></i></p>
             </div>
         <?php endif; ?>
+    <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_PRICE): ?>
+        <div class="col-md-12">
+            <?= $form->field($model, 'value_price', [
+                'options' => [
+                    'id' => 'group-' . $modelFieldForm->id,
+                ]
+            ])->widget(FieldPrice::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+            ]) ?>
+        </div>
     <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_STRING ||
         $modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
         $modelFieldForm->type == Constants::FIELD_TYPE_EMAIL ||
@@ -239,7 +265,6 @@ $model = $widget->model;
             <?= $form->field($model, 'value_int', [
                 'options' => [
                     'id' => 'group-' . $modelFieldForm->id,
-
                 ]
             ])->widget(FieldDatepicker::class, [
                 'modelFieldForm' => $modelFieldForm,

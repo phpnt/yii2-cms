@@ -41,18 +41,22 @@ class ImageForm extends ValueFileForm
             $path = '@frontend/web/uploads/'.$directory_1.'/'.$directory_2;
             $url = '/uploads/'.$directory_1.'/'.$directory_2 . '/' . $file->name;
 
-            $file->saveAs(Yii::getAlias($path . '/' . $file->name, $mode = 777));
+            $saveIs = $file->saveAs(Yii::getAlias($path . '/' . $file->name, $mode = 777));
 
-            $modelValueFileForm = new ValueFileForm();
-            $modelValueFileForm->title = $this->title;
-            $modelValueFileForm->name = $file->name;
-            $modelValueFileForm->extension = $file->extension;
-            $modelValueFileForm->size = $file->size;
-            $modelValueFileForm->path = $url;
-            if (!$modelValueFileForm->save()) {
-                dd($modelValueFileForm->errors);
+            if ($saveIs) {
+                $modelValueFileForm = new ValueFileForm();
+                $modelValueFileForm->title = $this->title;
+                $modelValueFileForm->name = $file->name;
+                $modelValueFileForm->extension = $file->extension;
+                $modelValueFileForm->size = $file->size;
+                $modelValueFileForm->path = $url;
+                if (!$modelValueFileForm->save()) {
+                    dd($modelValueFileForm->errors);
+                }
+                $urlArray[] = $modelValueFileForm->path;
+            } else {
+                $urlArray = false;
             }
-            $urlArray[] = $modelValueFileForm->path;
         }
         return $urlArray;
     }

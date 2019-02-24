@@ -112,7 +112,6 @@ class DocumentSearch extends DocumentForm
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -152,32 +151,30 @@ class DocumentSearch extends DocumentForm
                 ->one();
 
             if (is_array($forms_field)) {
-                if (($field['type'] == Constants::FIELD_TYPE_INT) &&
+                if (($field['type'] == Constants::FIELD_TYPE_INT || $field['type'] == Constants::FIELD_TYPE_DISCOUNT) &&
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
-                    if ($field['type'] == Constants::FIELD_TYPE_INT) {
-                        $query->leftJoin('value_int AS int' . $key, 'document.id = int' . $key . '.document_id');
-                            if (($this->elements_fields[$key][0] != '' &&
-                                    $this->elements_fields[$key][1] != '') &&
-                                $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
-                                $buffer = $this->elements_fields[$key][0];
-                                $this->elements_fields[$key][0] = $this->elements_fields[$key][1];
-                                $this->elements_fields[$key][1] = $buffer;
-                        }
-                        // если значеине "от" не пустое
-                        if ($this->elements_fields[$key][0] != '') {
-                            $query->andWhere(['and',
-                                ['int' . $key . '.type' => Constants::FIELD_TYPE_INT],
-                                ['>=', 'int' . $key . '.value', $this->elements_fields[$key][0]]
-                            ]);
-                          }
-                        // если значеине "до" не пустое
-                        if ($this->elements_fields[$key][1] != '') {
-                            $query->andWhere(['and',
-                                ['int' . $key . '.type' => Constants::FIELD_TYPE_INT],
-                                ['<=', 'int' . $key . '.value', $this->elements_fields[$key][1]]
-                            ]);
-                        }
+                    $query->leftJoin('value_int AS int' . $key, 'document.id = int' . $key . '.document_id');
+                    if (($this->elements_fields[$key][0] != '' &&
+                            $this->elements_fields[$key][1] != '') &&
+                        $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
+                        $buffer = $this->elements_fields[$key][0];
+                        $this->elements_fields[$key][0] = $this->elements_fields[$key][1];
+                        $this->elements_fields[$key][1] = $buffer;
+                    }
+                    // если значеине "от" не пустое
+                    if ($this->elements_fields[$key][0] != '') {
+                        $query->andWhere(['and',
+                            ['int' . $key . '.type' => $field['type']],
+                            ['>=', 'int' . $key . '.value', $this->elements_fields[$key][0]]
+                        ]);
+                    }
+                    // если значеине "до" не пустое
+                    if ($this->elements_fields[$key][1] != '') {
+                        $query->andWhere(['and',
+                            ['int' . $key . '.type' => $field['type']],
+                            ['<=', 'int' . $key . '.value', $this->elements_fields[$key][1]]
+                        ]);
                     }
                 }
                 if ($field['type'] == Constants::FIELD_TYPE_CHECKBOX) {
@@ -304,7 +301,7 @@ class DocumentSearch extends DocumentForm
                     ($this->elements_fields[$key][0] != '' ||
                         $this->elements_fields[$key][1] != '')) {
                     if ($field['type'] == Constants::FIELD_TYPE_PRICE) {
-                        $query->leftJoin('value_numeric AS price' . $key, 'document.id = price' . $key . '.document_id');
+                        $query->leftJoin('value_price AS price' . $key, 'document.id = price' . $key . '.document_id');
                         if (($this->elements_fields[$key][0] != '' &&
                                 $this->elements_fields[$key][1] != '') &&
                             $this->elements_fields[$key][0] > $this->elements_fields[$key][1]) {
@@ -317,14 +314,14 @@ class DocumentSearch extends DocumentForm
                         if ($this->elements_fields[$key][0] != '') {
                             $query->andWhere(['and',
                                 ['price' . $key . '.type' => Constants::FIELD_TYPE_PRICE],
-                                ['>=', 'price' . $key . '.value', $this->elements_fields[$key][0]]
+                                ['>=', 'price' . $key . '.discount_price', $this->elements_fields[$key][0]]
                             ]);
                         }
                         // если значеине "до" не пустое
                         if ($this->elements_fields[$key][1] != '') {
                             $query->andWhere(['and',
                                 ['price' . $key . '.type' => Constants::FIELD_TYPE_PRICE],
-                                ['<=', 'price' . $key . '.value', $this->elements_fields[$key][1]]
+                                ['<=', 'price' . $key . '.discount_price', $this->elements_fields[$key][1]]
                             ]);
                         }
                     }

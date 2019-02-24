@@ -153,8 +153,8 @@ class m000000_000002_cms_shop extends Migration
             'add_comments' => $this->boolean()->defaultValue(0)->comment(Yii::t('app', 'Разрешены комментарии к элементу')),
             'use_filter' => $this->boolean()->defaultValue(0)->comment(Yii::t('app', 'Разрешить фильтр по полям шаблона')),
             'i18n' => $this->boolean()->notNull()->defaultValue(Constants::STATUS_I18N_ALL)->comment(Yii::t('app', 'Режим перевода')), // 1 - перевод названия и значения,
-                                                                                                                                                            // 2 - перевод названия,
-                                                                                                                                                            // 6 - перевод отключен
+            // 2 - перевод названия,
+            // 6 - перевод отключен
         ] , $tableOptions);
 
         //Индексы и ключи таблицы шаблонов template
@@ -249,6 +249,32 @@ class m000000_000002_cms_shop extends Migration
             ['id', 'name', 'type', 'is_required', 'error_required', 'is_unique', 'error_unique', 'min_val', 'max_val', 'error_value',
                 'min_str', 'max_str', 'error_length', 'params', 'mask', 'hint', 'template_id', 'use_filter', 'position'],
             fopen(__DIR__ . '/../../console/migrations/csv/field.csv', "r"));
+
+        // Значения цены дополнительных полей
+        $this->createTable('{{%value_price}}', [
+            'id' => $this->primaryKey()->comment('ID'),
+            'title' => $this->string()->notNull()->comment(Yii::t('app', 'Название')),
+            'price' => $this->decimal(10,2)->notNull()->comment(Yii::t('app', 'Цена')),
+            'discount_price' => $this->decimal(10,2)->notNull()->comment(Yii::t('app', 'Цена со скидкой')),
+            'currency' => $this->string(3)->notNull()->comment(Yii::t('app', 'Валюта')),
+            'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
+            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
+            'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
+            'discount_id' => $this->integer()->comment(Yii::t('app', 'Акция/cкидка')),      // ссылка на документ скидки
+            'params' => $this->string()->comment(Yii::t('app', 'Параметры')),
+        ], $tableOptions);
+
+        //Индексы и ключи таблицы значений дат дополнительных полей
+        $this->addForeignKey('value_price_document_id_fk', '{{%value_price}}', 'document_id', '{{%document}}', 'id', 'NO ACTION', 'CASCADE');
+        $this->addForeignKey('value_price_field_id_fk', '{{%value_price}}', 'field_id', '{{%field}}', 'id', 'NO ACTION', 'CASCADE');
+        $this->addForeignKey('value_price_discount_id_fk', '{{%value_price}}', 'discount_id', '{{%document}}', 'id', 'NO ACTION', 'CASCADE');
+
+        $this->createIndex('value_price_price_index', '{{%value_price}}', 'price');
+        $this->createIndex('value_price_discount_price_index', '{{%value_price}}', 'discount_price');
+
+        $this->importData('value_price',
+            ['id', 'title', 'price', 'discount_price', 'currency', 'type',  'document_id', 'field_id', 'discount_id', 'params'],
+            fopen(__DIR__ . '/../../console/migrations/csv/value_price.csv', "r"));
 
         // Значения целых цисел дополнительных полей
         $this->createTable('{{%value_int}}', [

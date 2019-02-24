@@ -31,11 +31,6 @@ class ImageController extends Controller
             $urlArray = $modelImageForm->upload();
         }
 
-        $urls = [
-            '/uploads/Bo/x5/1.jpg',
-            '/uploads/H5/kg/2.jpg',
-        ];
-
         return $this->asJson(['urls' => $urlArray]);
     }
 }
