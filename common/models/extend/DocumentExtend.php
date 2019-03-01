@@ -146,7 +146,7 @@ class DocumentExtend extends Document
     /*
      * @return string
      * */
-    private function genereteView($templateData, $view, $type) {
+    private function genereteView($templateData, $view, $type) { 
         // Указан используется ли карусель
         if (strpos($view, '{^[') !== false) {
             $parsed = $this->getStringBetween($view, '{^[', ']^}');
@@ -189,7 +189,7 @@ class DocumentExtend extends Document
                 }
                 // цена без скидки
                 if (strpos($view, '{$=' . $field['title'] . '=$}') !== false) {
-                    if (isset($field['value']['price'])) {
+                    if (isset($field['value']['price']) && $field['value']['price'] != $field['value']['discount_price']) {
                         $view = str_replace('{$=' . $field['title'] . '=$}', $field['value']['price'], $view);
                     } else {
                         $view = str_replace('{$=' . $field['title'] . '=$}', Yii::t('app', ''), $view);
@@ -198,7 +198,7 @@ class DocumentExtend extends Document
                 // процент скидки
                 if (strpos($view, '{$%' . $field['title'] . '%$}') !== false) {
                     if (isset($field['value']['percent'])) {
-                        $view = str_replace('{$%' . $field['title'] . '%$}', $field['value']['percent'], $view);
+                        $view = str_replace('{$%' . $field['title'] . '%$}', $field['value']['percent'] . '%', $view);
                     } else {
                         $view = str_replace('{$%' . $field['title'] . '%$}', Yii::t('app', ''), $view);
                     }

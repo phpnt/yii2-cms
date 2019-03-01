@@ -899,7 +899,7 @@ class FieldsManage extends Object
             $result = [];
             foreach ($values as $value) {
                 /* @var $modelValueIntForm ValueIntForm */
-                $result[] = $values['value'];
+                $result[] = $value['value'];
             }
             return $result;
         }

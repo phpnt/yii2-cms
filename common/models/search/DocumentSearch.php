@@ -182,6 +182,7 @@ class DocumentSearch extends DocumentForm
                         $query->leftJoin('value_int AS checkbox' . $key, 'document.id = checkbox' . $key . '.document_id');
                         $query->andWhere(['and',
                             ['checkbox' . $key . '.type' => Constants::FIELD_TYPE_CHECKBOX],
+                            ['checkbox' . $key . '.title' => $field['name']],
                             ['checkbox' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
@@ -191,6 +192,7 @@ class DocumentSearch extends DocumentForm
                         $query->leftJoin('value_int AS list_multy' . $key, 'document.id = list_multy' . $key . '.document_id');
                         $query->andWhere(['and',
                             ['list_multy' . $key . '.type' => Constants::FIELD_TYPE_LIST_MULTY],
+                            ['list_multy' . $key . '.title' => $field['name']],
                             ['list_multy' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
@@ -200,6 +202,7 @@ class DocumentSearch extends DocumentForm
                         $query->leftJoin('value_int AS radio' . $key, 'document.id = radio' . $key . '.document_id');
                         $query->andWhere(['and',
                             ['radio' . $key . '.type' => Constants::FIELD_TYPE_RADIO],
+                            ['radio' . $key . '.title' => $field['name']],
                             ['radio' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
@@ -209,6 +212,7 @@ class DocumentSearch extends DocumentForm
                         $query->leftJoin('value_int AS list' . $key, 'document.id = list' . $key . '.document_id');
                         $query->andWhere(['and',
                             ['list' . $key . '.type' => Constants::FIELD_TYPE_LIST],
+                            ['list' . $key . '.title' => $field['name']],
                             ['list' . $key . '.value' => $this->elements_fields[$key][0]]
                         ]);
                     }
