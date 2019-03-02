@@ -146,7 +146,7 @@ class DocumentExtend extends Document
     /*
      * @return string
      * */
-    private function genereteView($templateData, $view, $type) { 
+    private function genereteView($templateData, $view, $type) {
         // Указан используется ли карусель
         if (strpos($view, '{^[') !== false) {
             $parsed = $this->getStringBetween($view, '{^[', ']^}');
@@ -178,7 +178,14 @@ class DocumentExtend extends Document
                 } else {
                     $view = str_replace('{=' . $field['title'] . '=}', Yii::t('app', '(не задано)'), $view);
                 }
-
+                // валюта
+                if (strpos($view, '{$#' . $field['title'] . '#$}') !== false) {
+                    if (isset($field['value']['currency'])) {
+                        $view = str_replace('{$#' . $field['title'] . '#$}', $field['value']['currency'], $view);
+                    } else {
+                        $view = str_replace('{$#' . $field['title'] . '#$}', Yii::t('app', ''), $view);
+                    }
+                }
                 // название скидки
                 if (strpos($view, '{$_' . $field['title'] . '_$}') !== false) {
                     if (isset($field['value']['name'])) {
@@ -187,6 +194,7 @@ class DocumentExtend extends Document
                         $view = str_replace('{$_' . $field['title'] . '_$}', Yii::t('app', ''), $view);
                     }
                 }
+
                 // цена без скидки
                 if (strpos($view, '{$=' . $field['title'] . '=$}') !== false) {
                     if (isset($field['value']['price']) && $field['value']['price'] != $field['value']['discount_price']) {
@@ -201,14 +209,6 @@ class DocumentExtend extends Document
                         $view = str_replace('{$%' . $field['title'] . '%$}', $field['value']['percent'] . '%', $view);
                     } else {
                         $view = str_replace('{$%' . $field['title'] . '%$}', Yii::t('app', ''), $view);
-                    }
-                }
-                // валюта
-                if (strpos($view, '{$#' . $field['title'] . '#$}') !== false) {
-                    if (isset($field['value']['currency'])) {
-                        $view = str_replace('{$#' . $field['title'] . '#$}', $field['value']['currency'], $view);
-                    } else {
-                        $view = str_replace('{$#' . $field['title'] . '#$}', Yii::t('app', ''), $view);
                     }
                 }
                 // дата окончания скидки

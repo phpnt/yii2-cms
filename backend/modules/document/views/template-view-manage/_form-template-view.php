@@ -44,15 +44,18 @@ use common\models\Constants;
                 'enterHtml' => '',
                 /* Панель управления */
                 'toolbar' => [
-                    ['font', ['fontname', 'fontsize', 'color', 'forecolor', 'backcolor', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                    ['insert', ['table', 'hr']],
-                    ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
-                    ['misc', ['codeview', 'undo', 'redo', 'help']],
+                    ['codeview'],
                 ],
                 'callbacks' => [
-                    'onBlur' => new \yii\web\JsExpression(
+                    'onInit' => new \yii\web\JsExpression(
                         'function (data) {
-                            
+                            $("#summernote").summernote("codeview.activate");
+                            $("#summernote").trigger("focus");
+                        }'
+                    ),
+                    'onFocus' => new \yii\web\JsExpression(
+                        'function (data) {
+                            $("#summernote").summernote("codeview.activate");
                         }'
                     ),
                 ],

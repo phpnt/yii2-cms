@@ -480,7 +480,9 @@ class FieldsManage extends Object
 
     /**
      * Получает поля и значения документа с шаблоном
-     * */
+     *
+     * @throws \yii\db\Exception
+     */
     public function getData($document_id, $template_id)
     {
         $modelTemplateForm = TemplateForm::findOne($template_id);
@@ -610,6 +612,7 @@ class FieldsManage extends Object
                             'document_id' => $document_id,
                         ])
                         ->one();
+
                     if ($dataPrice) {
                         if ($dataPrice['discount_id']) {
                             $dataDiscount = (new \yii\db\Query())
@@ -627,11 +630,25 @@ class FieldsManage extends Object
                                             $dataDiscount['percent'] = $dataDiscountValue['value'];
                                         }
                                         if ($dataDiscountValue['type'] == Constants::FIELD_TYPE_DATE) {
-                                            $dataDiscount['date_end'] = $dataDiscountValue['value'];
+                                            if (strtotime($dataDiscountValue['value']) < strtotime(Yii::$app->formatter->asDate(time()))) {
+                                                Yii::$app->db->createCommand()
+                                                    ->update('value_price', [
+                                                        'discount_price' => $dataPrice['price'],
+                                                        'discount_id' => null,
+                                                    ], [
+                                                        'id' => $dataPrice['id']
+                                                    ])
+                                                    ->execute();
+                                                $dataPrice['discount_price'] = $dataPrice['price'];
+                                            } else {
+                                                $dataDiscount['date_end'] = $dataDiscountValue['value'];
+                                            }
                                         }
                                     }
                                 }
-                                $dataPrice = ArrayHelper::merge($dataPrice, $dataDiscount);
+                                if (isset($dataDiscount['date_end'])) {
+                                    $dataPrice = ArrayHelper::merge($dataPrice, $dataDiscount);
+                                }
                             }
 
                         }
