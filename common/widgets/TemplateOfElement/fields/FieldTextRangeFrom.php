@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
 class FieldTextRangeFrom extends InputWidget
 {
     public $modelFieldForm;
+    public $data_id;
+
     public $options = [];
 
     public function init()
@@ -39,7 +41,7 @@ class FieldTextRangeFrom extends InputWidget
         }
 
         $options = [
-            'id' => 'field-' . $fieldID . '-0',
+            'id' => 'field-' . $this->data_id . '-0',
             'name' => $formName . "[elements_fields][$fieldID][0]",
             'value' => $value,
         ];
@@ -51,7 +53,7 @@ class FieldTextRangeFrom extends InputWidget
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][0])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][0];
             $view = $this->getView();
-            $view->registerJs('addError("#group-' .  $this->modelFieldForm->id . '-0", "' . $error . '");');
+            $view->registerJs('addError("#group-' .  $this->data_id . '-0", "' . $error . '");');
         }
 
         echo Html::activeTextInput($this->model, $this->attribute, $this->options);

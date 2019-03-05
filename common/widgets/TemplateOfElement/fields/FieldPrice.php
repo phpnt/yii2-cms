@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
 class FieldPrice extends InputWidget
 {
     public $modelFieldForm;
+    public $data_id;
+
     public $options = [];
 
     public function init()
@@ -35,7 +37,7 @@ class FieldPrice extends InputWidget
         $priceData = $fieldsManage->getValue($this->modelFieldForm->id, $this->modelFieldForm->type, $this->model->id);
 
         $options = [
-            'id' => 'field-' . $fieldID,
+            'id' => 'field-' . $this->data_id,
             'name' => $formName . "[elements_fields][$fieldID][0]",
             'value' => isset($this->model->elements_fields[$this->modelFieldForm->id][0]) ? $this->model->elements_fields[$this->modelFieldForm->id][0] : $priceData['price'],
         ];
@@ -48,7 +50,7 @@ class FieldPrice extends InputWidget
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][0])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][0];
             $view = $this->getView();
-            $view->registerJs('addError("#group-' .  $this->modelFieldForm->id . '", "' . $error . '");');
+            $view->registerJs('addError("#group-' .  $this->data_id . '", "' . $error . '");');
         }
 
         echo Html::activeTextInput($this->model, $this->attribute, $this->options);
@@ -56,9 +58,7 @@ class FieldPrice extends InputWidget
         echo '<div class="m-t-md m-b-md">';
         echo '<div class="row">';
         echo '<div class="col-sm-6">';
-
         $this->model->value_currency = $this->model->value_currency ? $this->model->value_currency : $priceData['currency'];
-
         echo Html::activeLabel($this->model, 'value_currency');
         echo Html::activeDropDownList($this->model, 'value_currency', $this->model->currencyList,
             [
@@ -72,10 +72,9 @@ class FieldPrice extends InputWidget
             ]);
         echo Html::error($this->model, 'value_currency', ['class' => 'text-danger']);
         echo '</div>';
+
         echo '<div class="col-sm-6">';
-
         $this->model->value_discount = $this->model->value_discount ? $this->model->value_discount : $priceData['discount_id'];
-
         echo Html::activeLabel($this->model, 'value_discount');
         echo Html::activeDropDownList($this->model, 'value_discount', $this->model->discountsAvaible,
             [
@@ -88,6 +87,50 @@ class FieldPrice extends InputWidget
                 ]
             ]);
         echo '</div>';
+
+        echo '<div class="clearfix"></div>';
+
+        echo '<div class="col-sm-3">';
+        $this->model->item = $this->model->item ? $this->model->item : $priceData['item'];
+        echo Html::activeLabel($this->model, 'item');
+        echo Html::activeTextInput($this->model, 'item', ['class' => 'form-control']);
+        echo Html::activeHint($this->model, 'item', ['hint' => '<i>' . Yii::t('app', 'Укажите количество продаваемого ассотремента.') . '</i>']);
+        echo Html::error($this->model, 'item', ['class' => 'text-danger']);
+        echo '</div>';
+
+        echo '<div class="col-sm-3">';
+        $this->model->item_measure = $this->model->item_measure ? $this->model->item_measure : $priceData['item_measure'];
+        echo Html::activeLabel($this->model, 'item_measure');
+        echo Html::activeDropDownList($this->model, 'item_measure', $this->model->measuresList,
+            [
+                'class' => 'form-control selectpicker',
+                'multiple' => false,
+                'data' => [
+                    'style' => 'btn-default',
+                    'live-search' => 'false',
+                    'title' => '---'
+                ]
+            ]);
+        echo Html::activeHint($this->model, 'item_max', ['hint' => '<i>' . Yii::t('app', 'Мера измерения продаваемого ассотремента.') . '</i>']);
+        echo Html::error($this->model, 'item_measure', ['class' => 'text-danger']);
+        echo '</div>';
+
+        echo '<div class="col-sm-3">';
+        $this->model->item_max = $this->model->item_max ? $this->model->item_max : $priceData['item_max'];
+        echo Html::activeLabel($this->model, 'item_max');
+        echo Html::activeTextInput($this->model, 'item_max', ['class' => 'form-control']);
+        echo Html::activeHint($this->model, 'item_max', ['hint' => '<i>' . Yii::t('app', 'Количество ассортемента в форме заказа. Если поле пустое, равно общему количеству.') . '</i>']);
+        echo Html::error($this->model, 'item_max', ['class' => 'text-danger']);
+        echo '</div>';
+
+        echo '<div class="col-sm-3">';
+        $this->model->item_store = $this->model->item_store ? $this->model->item_store : $priceData['item_store'];
+        echo Html::activeLabel($this->model, 'item_store');
+        echo Html::activeTextInput($this->model, 'item_store', ['class' => 'form-control']);
+        echo Html::activeHint($this->model, 'item_max', ['hint' => '<i>' . Yii::t('app', 'Укажите общее количество ассортемента (на складе).') . '</i>']);
+        echo Html::error($this->model, 'item_store', ['class' => 'text-danger']);
+        echo '</div>';
+
         echo '</div>';
         echo '</div>';
     }

@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
 class FieldFile extends InputWidget
 {
     public $modelFieldForm;
+    public $data_id;
+
     public $multiple;
     public $options = [];
 
@@ -36,7 +38,7 @@ class FieldFile extends InputWidget
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][0])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][0];
             $view = $this->getView();
-            $view->registerJs('addError("#group-' .  $this->modelFieldForm->id . '", "' . $error . '");');
+            $view->registerJs('addError("#group-' .  $this->data_id . '", "' . $error . '");');
         }
 
         echo Html::activeFileInput($this->model, $this->attribute, $this->options);

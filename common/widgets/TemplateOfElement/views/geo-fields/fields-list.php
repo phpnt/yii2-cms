@@ -31,6 +31,7 @@ $modelGeoTemplateForm = $widget->modelGeoTemplateForm;
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -77,6 +78,7 @@ $modelGeoTemplateForm = $widget->modelGeoTemplateForm;
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -121,6 +123,7 @@ $modelGeoTemplateForm = $widget->modelGeoTemplateForm;
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],

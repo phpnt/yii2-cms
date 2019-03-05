@@ -70,7 +70,8 @@ use phpnt\datepicker\BootstrapDatepicker;
         <?php $modelFieldForm->error_unique = Yii::t('app', "Поле «{name}» должно быть уникально."); ?>
     <?php endif; ?>
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
-        $modelFieldForm->type == Constants::FIELD_TYPE_INT_RANGE): ?>
+        $modelFieldForm->type == Constants::FIELD_TYPE_INT_RANGE ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_NUM): ?>
         <?php if ($modelFieldForm->isNewRecord): ?>
             <?php $modelFieldForm->min_val = -2147483648; ?>
             <?php $modelFieldForm->max_val = 2147483647; ?>
@@ -126,7 +127,8 @@ use phpnt\datepicker\BootstrapDatepicker;
     <?php endif; ?>
 
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_INT ||
-        $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT): ?>
+        $modelFieldForm->type == Constants::FIELD_TYPE_FLOAT ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_NUM): ?>
         <div class="col-xs-6">
             <?= $form->field($modelFieldForm, 'min_val')
                 ->textInput(['placeholder' => $modelFieldForm->getAttributeLabel('min_val')]) ?>
@@ -420,7 +422,8 @@ use phpnt\datepicker\BootstrapDatepicker;
     <?php if ($modelFieldForm->type == Constants::FIELD_TYPE_ADDRESS ||
         $modelFieldForm->type == Constants::FIELD_TYPE_CITY ||
         $modelFieldForm->type == Constants::FIELD_TYPE_REGION ||
-        $modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY
+        $modelFieldForm->type == Constants::FIELD_TYPE_COUNTRY ||
+        $modelFieldForm->type == Constants::FIELD_TYPE_DOC
     ): ?>
         <div class="col-xs-12">
             <?= $form->field($modelFieldForm, 'is_required', ['template' => '{label} {input}'])->widget(ICheck::class, [

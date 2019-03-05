@@ -21,33 +21,37 @@ class CountUserProducts extends Widget
 
     public function run()
     {
+        $parentData = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where(['alias' => 'basket'])
+            ->one();
+
         if (Yii::$app->user->isGuest) {
-            $data = (new \yii\db\Query())
+            $items = (new \yii\db\Query())
                 ->select(['*'])
-                ->from('basket')
+                ->from('document')
                 ->where([
-                    'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
+                    'parent_id' => $parentData['id'],
                 ])
-                ->all();
-        } else {
-            $data = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('basket')
-                ->where([
+                ->andWhere([
                     'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
-                ])->orWhere(['user_id' => Yii::$app->user->id])
-                ->all();
+                    'user_agent' => Yii::$app->request->userAgent,
+                ])
+                ->count();
+        } else {
+            $items = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'parent_id' => $parentData['id'],
+                ])
+                ->andWhere([
+                    'created_by' => Yii::$app->user->id
+                ])
+                ->count();
         }
 
-        $quantity = 0;
-        if ($data) {
-            foreach ($data as $item) {
-                $quantity = $quantity + $item['quantity'];
-            }
-        }
-
-        return $quantity;
+        return $items;
     }
 }

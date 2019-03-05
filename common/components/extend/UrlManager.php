@@ -225,19 +225,14 @@ class UrlManager extends BaseUrlManager
                 'route' => 'geo/default/<action>',
                 'suffix' => ''
             ];
-            $rules[] = [
-                'pattern' => 'basket/<controller>/<action>',
-                'route' => 'basket/default/<action>',
+            /*$rules[] = [
+                'pattern' => 'basket',
+                'route' => 'basket/default/index',
                 'suffix' => ''
-            ];
+            ];*/
             $rules[] = [
-                'pattern' => 'bm/update',
-                'route' => 'bm/update',
-                'suffix' => ''
-            ];
-            $rules[] = [
-                'pattern' => 'bm/refresh',
-                'route' => 'bm/refresh',
+                'pattern' => 'bm/<action>',
+                'route' => 'bm/<action>',
                 'suffix' => ''
             ];
             $rules[] = [

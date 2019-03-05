@@ -17,9 +17,9 @@ class ValuePriceSearch extends ValuePriceForm
     public function rules()
     {
         return [
-            [['id', 'type', 'document_id', 'field_id', 'discount_id'], 'integer'],
+            [['id', 'item_max', 'item_store', 'item_measure', 'type', 'document_id', 'field_id', 'discount_id'], 'integer'],
             [['title', 'currency', 'params'], 'safe'],
-            [['price', 'discount_price'], 'number'],
+            [['price', 'discount_price', 'item'], 'number'],
         ];
     }
 
@@ -62,6 +62,10 @@ class ValuePriceSearch extends ValuePriceForm
             'id' => $this->id,
             'price' => $this->price,
             'discount_price' => $this->discount_price,
+            'item' => $this->item,
+            'item_max' => $this->item_max,
+            'item_store' => $this->item_store,
+            'item_measure' => $this->item_measure,
             'type' => $this->type,
             'document_id' => $this->document_id,
             'field_id' => $this->field_id,

@@ -193,17 +193,21 @@ class m000000_000002_cms_shop extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment(Yii::t('app', 'Статус')),
             'is_folder' => $this->boolean()->comment(Yii::t('app', 'Папка?')),
             'parent_id' => $this->integer()->comment(Yii::t('app', 'Родитель')),
+            'child_id' => $this->integer()->comment(Yii::t('app', 'Дочерний элемент')),
             'template_id' => $this->integer()->comment(Yii::t('app', 'Шаблон')),
             'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
             'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
-            'created_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Создал')),
-            'updated_by' => $this->integer()->notNull()->comment(Yii::t('app', 'Изменил')),
+            'created_by' => $this->integer()->comment(Yii::t('app', 'Создал')),
+            'updated_by' => $this->integer()->comment(Yii::t('app', 'Изменил')),
             'position' => $this->integer()->comment(Yii::t('app', 'Позиция (перед)')),
             'access' => $this->smallInteger(1)->defaultValue(Constants::ACCESS_USER)->comment(Yii::t('app', 'Доступ')),     // см в Constants
+            'ip' => $this->string(20)->comment(Yii::t('app', 'IP пользователя')),
+            'user_agent' => $this->string()->comment(Yii::t('app', 'Данные браузера')),
         ] , $tableOptions);
 
         //Индексы и ключи таблицы документов document
         $this->addForeignKey('document_parent_id_fk', '{{%document}}', 'parent_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
+        $this->addForeignKey('document_child_id_fk', '{{%document}}', 'child_id', '{{%document}}', 'id');
         $this->addForeignKey('document_template_id_fk', '{{%document}}', 'template_id', '{{%template}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_user_creator_pk', '{{%document}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('document_user_updater_fk', '{{%document}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
@@ -214,7 +218,7 @@ class m000000_000002_cms_shop extends Migration
 
         $this->importData('document',
             ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
-                'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'],
+                'parent_id', 'child_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access', 'ip', 'user_agent'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
 
         $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
@@ -257,6 +261,10 @@ class m000000_000002_cms_shop extends Migration
             'price' => $this->decimal(10,2)->notNull()->comment(Yii::t('app', 'Цена')),
             'discount_price' => $this->decimal(10,2)->notNull()->comment(Yii::t('app', 'Цена со скидкой')),
             'currency' => $this->string(3)->notNull()->comment(Yii::t('app', 'Валюта')),
+            'item' => $this->decimal()->defaultValue(1)->comment(Yii::t('app', 'Ассортемент')),
+            'item_max' => $this->integer()->defaultValue(1)->comment(Yii::t('app', 'Количество ассортемента в форме заказа')),
+            'item_store' => $this->integer()->defaultValue(1)->comment(Yii::t('app', 'Количество доступного ассортемента')),
+            'item_measure' => $this->smallInteger(2)->defaultValue(0)->comment(Yii::t('app', 'Мера измерения')),
             'type' => $this->integer()->notNull()->comment(Yii::t('app', 'Тип')),
             'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
             'field_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Поле')),
@@ -273,7 +281,7 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('value_price_discount_price_index', '{{%value_price}}', 'discount_price');
 
         $this->importData('value_price',
-            ['id', 'title', 'price', 'discount_price', 'currency', 'type',  'document_id', 'field_id', 'discount_id', 'params'],
+            ['id', 'title', 'price', 'discount_price', 'currency','item','item_max','item_store','item_measure', 'type',  'document_id', 'field_id', 'discount_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_price.csv', "r"));
 
         // Значения целых цисел дополнительных полей
@@ -439,26 +447,6 @@ class m000000_000002_cms_shop extends Migration
         $this->importData('like',
             ['id', 'like', 'dislike', 'stars', 'created_at', 'document_id', 'comment_id', 'ip', 'user_agent', 'user_id'],
             fopen(__DIR__ . '/../../console/migrations/csv/like.csv', "r"));
-
-        //Таблица корзины
-        $this->createTable('{{%basket}}', [
-            'id' => $this->primaryKey()->comment('ID'),
-            'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
-            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
-            'quantity' => $this->integer()->notNull()->comment(Yii::t('app', 'Количество')),
-            'status' => $this->integer()->comment(Yii::t('app', 'Статус оплаты')),
-            'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
-            'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
-            'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
-        ], $tableOptions);
-
-        //Индексы и ключи таблицы корзины
-        $this->addForeignKey('basket_document_id_fk', '{{%basket}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('basket_user_fk', '{{%basket}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
-
-        $this->importData('basket',
-            ['id', 'created_at', 'document_id', 'quantity', 'status', 'ip', 'user_agent', 'user_id'],
-            fopen(__DIR__ . '/../../console/migrations/csv/basket.csv', "r"));
     }
 
     public function down()

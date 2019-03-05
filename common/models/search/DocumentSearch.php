@@ -20,8 +20,8 @@ class DocumentSearch extends DocumentForm
     public function rules()
     {
         return [
-            [['id', 'status', 'is_folder', 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
-            [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'elements_fields', 'errors_fields'], 'safe'],
+            [['id', 'status', 'is_folder', 'parent_id', 'child_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
+            [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'ip', 'user_agent'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class DocumentSearch extends DocumentForm
             'status' => $this->status,
             'is_folder' => $this->is_folder,
             'parent_id' => $this->parent_id,
+            'child_id' => $this->child_id,
             'template_id' => $this->template_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -121,6 +122,67 @@ class DocumentSearch extends DocumentForm
             'status' => $this->status,
             'is_folder' => $this->is_folder,
             'parent_id' => $this->parent_id,
+            'child_id' => $this->child_id,
+            'template_id' => $this->template_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+            'position' => $this->position,
+            'access' => $this->access,
+        ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'meta_keywords', $this->meta_keywords])
+            ->andFilterWhere(['like', 'meta_description', $this->meta_description])
+            ->andFilterWhere(['like', 'annotation', $this->annotation])
+            ->andFilterWhere(['like', 'content', $this->content]);
+
+        return $dataProvider;
+    }
+
+    /**
+     * Поиск только элементов папки
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchBasketElements($params, $products)
+    {
+        $query = DocumentForm::find()
+            ->where([
+                'id' => $products,
+                'is_folder' => null,
+            ]);
+
+        // add conditions that should always apply here
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if ($this->elements_fields) {
+            if ($this->validateFields()) {
+                $query = $this->setSearchFieldsQuery($query);
+            }
+        }
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'status' => $this->status,
+            'is_folder' => $this->is_folder,
+            'parent_id' => $this->parent_id,
+            'child_id' => $this->child_id,
             'template_id' => $this->template_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

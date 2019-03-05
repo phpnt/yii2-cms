@@ -66,7 +66,7 @@ DefaultTempAsset::register($this);
                 </div>
             </div>
         </div>
-    <?php elseif (($dataProvider->models || Yii::$app->request->get('DocumentSearch')) && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+    <?php elseif ((Yii::$app->request->get('alias_menu_item') != 'basket') && $dataProvider->models || Yii::$app->request->get('DocumentSearch') && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
         <?php /* Если есть элементы, но нет бокового меню */ ?>
         <div class="row">
             <div class="block-left">
@@ -88,6 +88,40 @@ DefaultTempAsset::register($this);
                 <div class="col-md-9">
                     <div class="row">
                         <?= $this->render('data', [
+                            'page' => $page,
+                            'modelSearch' => $modelSearch,
+                            'dataProvider' => $dataProvider,
+                            'itemsMenu' => $itemsMenu,
+                            'modelDocumentForm' => $modelDocumentForm,
+                            'tree' => $tree,
+                            'templateName' => $templateName
+                        ]); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php elseif ((Yii::$app->request->get('alias_menu_item') == 'basket') && $dataProvider->models || Yii::$app->request->get('DocumentSearch') && isset($modelSearch->template) && $modelSearch->template->use_filter): ?>
+        <?php /* Если есть элементы, но нет бокового меню */ ?>
+        <div class="row">
+            <div class="block-left">
+                <div class="col-md-9">
+                    <div class="row">
+                        <?= $this->render('data', [
+                            'page' => $page,
+                            'modelSearch' => $modelSearch,
+                            'dataProvider' => $dataProvider,
+                            'itemsMenu' => $itemsMenu,
+                            'modelDocumentForm' => $modelDocumentForm,
+                            'tree' => $tree,
+                            'templateName' => $templateName
+                        ]); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="block-right">
+                <div class="col-md-3">
+                    <div class="row">
+                        <?= $this->render('@frontend/views/templates/control/blocks/payment/form-payment', [
                             'page' => $page,
                             'modelSearch' => $modelSearch,
                             'dataProvider' => $dataProvider,

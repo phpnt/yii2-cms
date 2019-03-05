@@ -10,7 +10,5 @@
 use common\widgets\Basket\CountUserProducts;
 use phpnt\bootstrapNotify\BootstrapNotify;
 ?>
-<span id="basket-product-count">
-    <?= BootstrapNotify::widget([]) ?>
-    <span class="badge badge-danger"><?= CountUserProducts::widget() ?></span>
-</span>
+<?= BootstrapNotify::widget([]) ?>
+<span class="badge badge-danger"><?= CountUserProducts::widget() ?></span>

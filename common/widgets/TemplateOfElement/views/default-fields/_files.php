@@ -15,10 +15,9 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 /* @var $manyValueFileForm array */
 /* @var $modelValueFileForm \common\models\forms\ValueFileForm */
 ?>
-<div id="element-files">
-    <?php BootstrapNotify::widget([]) ?>
-    <?php if (isset($manyValueFileForm)): ?>
-        <?php foreach ($manyValueFileForm as $modelValueFileForm): ?>
+<?php BootstrapNotify::widget([]) ?>
+<?php if (isset($manyValueFileForm)): ?>
+    <?php foreach ($manyValueFileForm as $modelValueFileForm): ?>
         <?= Html::a('<span class="fa fa-trash"></span>', 'javascript:void(0);', [
             'class' => 'text-danger',
             'title' => Yii::t('app', 'Удалить файл?'),
@@ -35,6 +34,6 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                 }'
         ]) ?>
         <?= $modelValueFileForm->name ?><br>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
+    <?php endforeach; ?>
+<?php endif; ?>
+

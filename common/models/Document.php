@@ -18,6 +18,7 @@ use Yii;
  * @property int $status Статус
  * @property int $is_folder Папка?
  * @property int $parent_id Родитель
+ * @property int $child_id Дочерний элемент
  * @property int $template_id Шаблон
  * @property int $created_at Время создания
  * @property int $updated_at Время изменения
@@ -25,11 +26,15 @@ use Yii;
  * @property int $updated_by Изменил
  * @property int $position Позиция (перед)
  * @property int $access Доступ
+ * @property string $ip IP пользователя
+ * @property string $user_agent Данные браузера
  *
  * @property Basket[] $baskets
  * @property Comment[] $comments
- * @property Document $parent
+ * @property Document $child
  * @property Document[] $documents
+ * @property Document $parent
+ * @property Document[] $documents0
  * @property Template $template
  * @property User $createdBy
  * @property User $updatedBy
@@ -60,10 +65,12 @@ class Document extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'alias', 'created_by', 'updated_by'], 'required'],
+            [['name', 'alias'], 'required'],
             [['meta_keywords', 'meta_description', 'annotation', 'content'], 'string'],
-            [['status', 'is_folder', 'parent_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
-            [['name', 'alias', 'title'], 'string', 'max' => 255],
+            [['status', 'is_folder', 'parent_id', 'child_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
+            [['name', 'alias', 'title', 'user_agent'], 'string', 'max' => 255],
+            [['ip'], 'string', 'max' => 20],
+            [['child_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['child_id' => 'id']],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -88,6 +95,7 @@ class Document extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Статус'),
             'is_folder' => Yii::t('app', 'Папка?'),
             'parent_id' => Yii::t('app', 'Родитель'),
+            'child_id' => Yii::t('app', 'Дочерний элемент'),
             'template_id' => Yii::t('app', 'Шаблон'),
             'created_at' => Yii::t('app', 'Время создания'),
             'updated_at' => Yii::t('app', 'Время изменения'),
@@ -95,6 +103,8 @@ class Document extends \yii\db\ActiveRecord
             'updated_by' => Yii::t('app', 'Изменил'),
             'position' => Yii::t('app', 'Позиция (перед)'),
             'access' => Yii::t('app', 'Доступ'),
+            'ip' => Yii::t('app', 'IP пользователя'),
+            'user_agent' => Yii::t('app', 'Данные браузера'),
         ];
     }
 
@@ -117,6 +127,22 @@ class Document extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getChild()
+    {
+        return $this->hasOne(Document::className(), ['id' => 'child_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(Document::className(), ['child_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getParent()
     {
         return $this->hasOne(Document::className(), ['id' => 'parent_id']);
@@ -125,7 +151,7 @@ class Document extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDocuments()
+    public function getDocuments0()
     {
         return $this->hasMany(Document::className(), ['parent_id' => 'id']);
     }

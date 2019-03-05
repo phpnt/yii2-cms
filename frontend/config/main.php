@@ -28,9 +28,6 @@ return [
         'comment' => \common\widgets\Comment\controllers\CommentController::class,
     ],
     'modules' => [
-        'basket' => [
-            'class' => 'frontend\modules\basket\Module',
-        ],
         'control' => [
             'class' => 'frontend\modules\control\Module',
         ],

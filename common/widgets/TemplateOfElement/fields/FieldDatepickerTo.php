@@ -20,6 +20,8 @@ use yii\helpers\Json;
 class FieldDatepickerTo extends InputWidget
 {
     public $modelFieldForm;
+    public $data_id;
+
     public $options = [];
 
     public $datapickerOptions   = [];
@@ -54,7 +56,7 @@ class FieldDatepickerTo extends InputWidget
         }
 
         $options = [
-            'id' => 'field-' . $fieldID,
+            'id' => 'field-' . $this->data_id,
             'name' => $formName . "[elements_fields][$fieldID][1]",
             'value' => $value,
         ];
@@ -66,7 +68,7 @@ class FieldDatepickerTo extends InputWidget
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][1])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][1];
             $view = $this->getView();
-            $view->registerJs('addError("#group-' .  $this->modelFieldForm->id . '-1", "' . $error . '");');
+            $view->registerJs('addError("#group-' .  $this->data_id . '-1", "' . $error . '");');
         }
 
         echo "<div class='input-group date'>";

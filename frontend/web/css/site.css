@@ -6,6 +6,12 @@ body {
     visibility: hidden;
     display: none;
 }
+.border-around {
+    border: 1px solid #cccccc;
+}
+.text-line-through {
+    text-decoration: line-through !important;
+}
 .checkbox input[type="checkbox"] {
     position: absolute !important;
     visibility: hidden;

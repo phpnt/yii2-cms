@@ -86,6 +86,8 @@ class Constants
     const FIELD_TYPE_FILE       = 22; // Файл
     const FIELD_TYPE_FEW_FILES  = 23; // Несколько файлов
     const FIELD_TYPE_DISCOUNT   = 24; // Скидка
+    const FIELD_TYPE_DOC        = 25; // Дополнительная связь к другому документу или элементу
+    const FIELD_TYPE_NUM        = 26; // Тип поля - номер
 
     // расширения для файлов
     const FILE_EXT_JPEG         = 'jpeg'; //
@@ -109,4 +111,20 @@ class Constants
     const FILE_EXT_FB2          = 'fb2'; //
     const FILE_EXT_RAR          = 'rar'; //
     const FILE_EXT_ZIP          = 'zip'; //
+
+    // Единицы измерения
+    const ITEM_MEASURE_THING = 0;       // шкука
+    const ITEM_MEASURE_MM = 1;          // миллиметр
+    const ITEM_MEASURE_CM = 2;          // сантиметр
+    const ITEM_MEASURE_M = 3;           // метр
+    const ITEM_MEASURE_MM2 = 4;         // милиметр кв
+    const ITEM_MEASURE_CM2 = 5;         // сантиметр кв
+    const ITEM_MEASURE_M2 = 6;          // метр кв
+    const ITEM_MEASURE_MG = 7;          // миллиграмм
+    const ITEM_MEASURE_G = 8;           // грамм
+    const ITEM_MEASURE_KG = 9;          // килограмм
+    const ITEM_MEASURE_T = 10;          // тонн
+    const ITEM_MEASURE_ML = 11;         // миллилитр
+    const ITEM_MEASURE_L = 12;          // литр
+    const ITEM_MEASURE_M3 = 13;         // метр куб
 }

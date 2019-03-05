@@ -199,10 +199,6 @@ id;language;translation;hash
 239;en;"View Template";de7d8671157afcf8591ab4c152bd8e66
 241;en;"Add field";fd7c127ea5cb6d40f9f4d8be07487775
 242;en;"Delete template";1566e2689101a9f516c920098a3b3272
-243;en;"View basket item";cdf650880bfd088bb180055d975de753
-244;en;"No rights to view.";cdf650880bfd088bb180055d975de753
-245;en;"Cart manager";88375709a4e72d4b584c9b7e8030b665
-246;en;"Export basket to CSV";231e1dab1632c90ceffcee4b169a5e1c
 247;en;"Update field";3bb433c1943a1ca98ae8e3a2cb772a33
 248;en;"Delete field";752f01c2737a098b2bcef4ff9e973fd2
 249;en;Value;7f49a7ed54b6c97415b9a76c814b2365
@@ -265,14 +261,11 @@ id;language;translation;hash
 306;en;"File manager";58cdc675139c5bd0c53ee1f02064c6d5
 307;en;"Folders and items";157f136c0b6eff16f463286f4b2d2a87
 308;en;Quantity;a02e1e8704c6248e7094226cd27133b1
-309;en;"Payment State";61fa3ce1022731bdcf7bd59379701430
 310;en;"To the cart";244b4d6b2d2dedbc27472601f50474d6
 311;en;"Admin panel";48b7aa8290dbee9baa41d45b54a42e2c
 313;en;"You do not have access to this page.";0dffe62ad75196f29c0c7661166971a4
 314;en;"Route to controller action.";858e94a2b3b49b2baedb1d8cbc810fbe
 343;en;"Table ‘user’ users. Displays all users of the site.";8c78e361b921ba5af170e7a01579f8ce
-344;en;"User is not registered.";3838cd7903d95247ace2638eaf9630f6
-345;en;"Table ‘basket’ basket. Shows added to the basket of goods, their number, and users who have ordered them.";9d1da8bd0164345acb0e66365fd258a2
 346;en;"Table ‘document’ documents. CMS folders. Displays the basic structure of the site. Right-clicking on the selected folder - to create, edit, view, delete this folder. Left-clicking on the selected folder - to create, edit, view, delete elements in this folder.";391334ab05a391bce3738e317c4e26d9
 347;en;"Table ‘document’ documents. Elements of a specific folder. These can be publications, products, letter templates, or your own elements used on the site. To create, edit, view, delete items, select a folder.";a7f668cc2f1a35d28a4d0bc65e94f919
 348;en;"Table ‘template’ templates. contains templates for items. Templates are assigned to folders and applied to the elements of these folders.";e496ce2abdfedb5cf67a021d3c062bdb
@@ -428,7 +421,6 @@ id;language;translation;hash
 576;en;"Type of view";949bab82e13566850a1c0505e46f727d
 577;en;View;ec752195c0e9bcb6508e8cb1f9a8031c
 578;en;"Only for the section ""Promotions / discounts.""";175ae85e1f667f4a6eb725231a478050
-579;en;Service.;df5559bbd33c8db6ec9ec89931697989
 581;en;Price.;947f5deebd601d060a883f600c52846d
 587;en;"Promotion / discount";1d8d24c5c13d46d7906b0f97d9a81c2d
 588;en;"Select a currency.";95f0443fc9be83d8adf5a69d044a185d
@@ -439,3 +431,43 @@ id;language;translation;hash
 593;en;"<h1>Promotions / discounts</h1>";a33f91d1f8021d9f163a165e2e148e91
 594;en;"Template for promotions and discounts";5ebe0b21f3bb23b7f18b3d4078ebf823
 595;en;"Discount end date";817982b85154ba734c94a02a4486e79a
+596;en;"Form of payment";58d5fb603be6f6d1914dae4143ce8041
+597;en;"To pay";22cf40d5e3a9c1468ed5cf0d80198c6b
+606;en;"Item in the cart";8d176414a106aa081eb74e45671b8535
+607;en;"User IP";f3df1442d093f09144970aa458ab7460
+608;en;Assortment;ad3366b4c03680aaa4e14341e0eb0df1
+609;en;"Quantity of assortment in the order form";b66c4ccc751f17fea57bdf360dacab77
+610;en;"Amount of assortment available";5bf27c43f75beebc87e9536a6a96aef5
+611;en;Measure;dd4160cd3e09ca66792861752be3fb5c
+612;en;"Not enough data.";812711bed736b8f90126f9fb292dad87
+613;en;"Assortment is required.";4e5d277ce59db54933365f9c4d2d8640
+614;en;"Quantity in stock is required.";0fed1dba352794bcc4f42e78afe038cf
+615;en;"Select a measure of measurement.";64959c873dc315cccad2c87c01e2a241
+616;en;"Assortment must be a positive number.";dccb4e1bd3852d142d993c4c75290cc5
+617;en;"Data error";6e0cc8822ebae9734e5d649d7fc16019
+618;en;"The quantity of assortment in stock should be a positive number.";6fa392cd677cdb0ff111fe36dd218e06
+619;en;"The quantity of assortment chosen by the buyer must be a positive number.";3881ecad6df7b7edbaf8392d285bf6d2
+620;en;"The quantity of assortment chosen by the buyer shall not exceed the quantity in stock.";48ed8d22a869b5d6a012bdb1ab7f920b
+621;en;"The quantity of assortment in stock should not be less than the buyer can choose.";999ed53043c550a0a5c1424951253cae
+623;en;"Link to document";0c674f8f5890077097ab0b0e134799ae
+624;en;thing;943755b94db076cd7258a3dfa39d19bc
+625;en;mm;c3ff1bdbc960f18f4c84fe9152ee7a78
+626;en;cm;8c2508609017c1fa6dda58e68655d91b
+627;en;m;7f840a43fd3e61f6f624d25fee3f4c85
+631;en;mg;cbf8a7ad219bf42b73a3723181b396a4
+632;en;g;864c7f09e43789b7c4b2f5ecfdf3b1cf
+633;en;kg;51519971f46cd279f997ab4cb1edaa4a
+634;en;ton;6c1494c85bf880026394c05d2b520eac
+635;en;ml;a5239adcc01bce4b8e0fbde5d3a970ff
+636;en;l;e7cbb4db3348a0ea07284454a8d66aa0
+638;en;"You already have the maximum quantity of this product in the basket.";956205885d6a08c31560ebe16613dd90
+639;en;"Indicate the quantity of the assortment sold.";1d39c5e0a5b011a783c21b101f972aa1
+640;en;"Measure of the measure of the assortment sold.";70fefc6edab13b275bb513a80a2c8616
+641;en;"Quantity of assortment in the order form. If the field is empty, equal to the total.";e2c923288f492902d28835883743fb7d
+642;en;"Specify the total quantity of assortment (in stock).";e2c923288f492902d28835883743fb7d
+643;en;"Child element";83285e5c3a016e38f031e30fb7bd9564
+644;en;"Shopping cart template";56982b2dd07a71d4a8333881043774d2
+645;en;mm2;2170fd9b44838b7ee5cbf429336a02c1
+646;en;cm2;41a061b6e5b3dcba11257e19c27a4ace
+647;en;m2;41a061b6e5b3dcba11257e19c27a4ace
+648;en;m3;5dbc054f3b8576c1985136dc64b80908

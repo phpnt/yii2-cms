@@ -127,10 +127,47 @@ class ViewItems extends Widget
         } else {
             // если нажата ссылка главного меню или выбран элемент
             $modelSearch = new DocumentSearch();
-            $modelSearch->template_id = $this->menu_item['template_id'];
-            $modelSearch->parent_id = $this->menu_item['id'];
             $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
-            $dataProvider = $modelSearch->searchElement(Yii::$app->request->queryParams);
+            if ($this->alias_menu_item == 'basket') {
+                $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
+                if (Yii::$app->user->isGuest) {
+                    $items = (new \yii\db\Query())
+                        ->select(['*'])
+                        ->from('document')
+                        ->andWhere([
+                            'parent_id' => $this->menu_item['id'],
+                            'ip' => Yii::$app->request->userIP,
+                            'user_agent' => Yii::$app->request->userAgent,
+                        ])
+                        ->all();
+                    $products = [];
+                    foreach ($items as $item) {
+                        $products[] = $item['child_id'];
+                    }
+                } else {
+                    $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
+                    $items = (new \yii\db\Query())
+                        ->select(['*'])
+                        ->from('document')
+                        ->andWhere([
+                            'parent_id' => $this->menu_item['id'],
+                            'created_by' => Yii::$app->user->id
+                        ])
+                        ->all();
+                    $products = [];
+                    foreach ($items as $item) {
+                        $products[] = $item['child_id'];
+                    }
+                }
+
+                $dataProvider = $modelSearch->searchBasketElements(Yii::$app->request->queryParams, $products);
+                $modelSearch->template_id = $this->menu_item['template_id'];
+                $modelSearch->parent_id = $this->menu_item['id'];
+            } else {
+                $modelSearch->template_id = $this->menu_item['template_id'];
+                $modelSearch->parent_id = $this->menu_item['id'];
+                $dataProvider = $modelSearch->searchElement(Yii::$app->request->queryParams);
+            }
         }
 
         // получает элементы бокового меню

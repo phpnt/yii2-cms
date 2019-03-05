@@ -16,11 +16,49 @@ use yii\helpers\Json;
 
 /**
  * @property string $haveTemplateFields
+ * @property array $useTemplateFieldsTypes
+ * @property boolean $haveTemplateType
  *
  * @property TemplateForm $template
  */
 class TemplateViewExtend extends TemplateView
 {
+    /**
+     * Возвращает используется ли тип
+     *
+     * @return boolean
+     */
+    public function getHaveTemplateType($types, $type)
+    {
+        if ($types) {
+            foreach ($types as $key => $value) {
+                if ($value == $type) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Возвращает используемые типы шаблона
+     *
+     * @return array
+     */
+    public function getUseTemplateFieldsTypes()
+    {
+        if ($this->template->fields) {
+
+            $types = [];
+
+            foreach ($this->template->fields as $field) {
+                $types[] = $field->type;
+            }
+            return $types;
+        }
+        return [];
+    }
+
     /**
      * Позвращает используемые поля шаблона, добавленные пользователем
      * @return string

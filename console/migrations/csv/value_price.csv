@@ -1,1 +1,1 @@
-id;title;price;discount_price;currency;type;document_id;field_id;discount_id;params
+id;title;price;discount_price;currency;item;item_max;item_store;item_measure;type;document_id;field_id;discount_id;params

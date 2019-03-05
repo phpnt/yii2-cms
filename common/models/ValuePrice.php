@@ -12,6 +12,10 @@ use Yii;
  * @property string $price Цена
  * @property string $discount_price Цена со скидкой
  * @property string $currency Валюта
+ * @property string $item Ассортемент
+ * @property int $item_max Количество ассортемента в форме заказа
+ * @property int $item_store Количество доступного ассортемента
+ * @property int $item_measure Мера измерения
  * @property int $type Тип
  * @property int $document_id Документ
  * @property int $field_id Поле
@@ -39,8 +43,8 @@ class ValuePrice extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'price', 'discount_price', 'currency', 'type', 'document_id', 'field_id'], 'required'],
-            [['price', 'discount_price'], 'number'],
-            [['type', 'document_id', 'field_id', 'discount_id'], 'integer'],
+            [['price', 'discount_price', 'item'], 'number'],
+            [['item_max', 'item_store', 'item_measure', 'type', 'document_id', 'field_id', 'discount_id'], 'integer'],
             [['title', 'params'], 'string', 'max' => 255],
             [['currency'], 'string', 'max' => 3],
             [['discount_id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::className(), 'targetAttribute' => ['discount_id' => 'id']],
@@ -60,6 +64,10 @@ class ValuePrice extends \yii\db\ActiveRecord
             'price' => Yii::t('app', 'Цена'),
             'discount_price' => Yii::t('app', 'Цена со скидкой'),
             'currency' => Yii::t('app', 'Валюта'),
+            'item' => Yii::t('app', 'Ассортемент'),
+            'item_max' => Yii::t('app', 'Количество ассортемента в форме заказа'),
+            'item_store' => Yii::t('app', 'Количество доступного ассортемента'),
+            'item_measure' => Yii::t('app', 'Мера измерения'),
             'type' => Yii::t('app', 'Тип'),
             'document_id' => Yii::t('app', 'Документ'),
             'field_id' => Yii::t('app', 'Поле'),

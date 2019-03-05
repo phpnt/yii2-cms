@@ -16,6 +16,9 @@ use common\models\Constants;
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $modelTemplateViewForm \common\models\forms\TemplateViewForm */
+/* @var $useTemplateFieldsTypes array */
+
+$useTemplateFieldsTypes = $modelTemplateViewForm->useTemplateFieldsTypes;
 ?>
 <div id="elements-form-block">
     <div class="col-sm-7">
@@ -49,13 +52,12 @@ use common\models\Constants;
                 'callbacks' => [
                     'onInit' => new \yii\web\JsExpression(
                         'function (data) {
-                            $("#summernote").summernote("codeview.activate");
-                            $("#summernote").trigger("focus");
+
                         }'
                     ),
                     'onFocus' => new \yii\web\JsExpression(
                         'function (data) {
-                            $("#summernote").summernote("codeview.activate");
+                            $("div.note-editor .btn-codeview").click(); 
                         }'
                     ),
                 ],
@@ -107,40 +109,64 @@ use common\models\Constants;
                     </p>
                     <label class="control-label"><?= Yii::t('app', 'Встроенные блоки.') ?></label>
                     <p>
-                        <?= Yii::t('app', '<strong>{!like!}</strong> - кнопка "Нравиться".') ?><br>
-                        <?= Yii::t('app', '<strong>{!like-dislike!}</strong> - кнопки "Нравиться" и "Не нравиться".') ?><br>
-                        <?= Yii::t('app', '<strong>{!stars!}</strong> - рейтинг.') ?><br>
                         <?php if ($modelTemplateViewForm->type == Constants::TYPE_ITEM): ?>
+                            <?= Yii::t('app', '<strong>{!like!}</strong> - кнопка "Нравиться".') ?><br>
+                            <?= Yii::t('app', '<strong>{!like-dislike!}</strong> - кнопки "Нравиться" и "Не нравиться".') ?><br>
+                            <?= Yii::t('app', '<strong>{!stars!}</strong> - рейтинг.') ?><br>
                             <?= Yii::t('app', '<strong>{!comments!}</strong> - блок комментариев.') ?><br>
+                            <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_PRICE)): ?>
+                                <?= Yii::t('app', '<strong>{!+basket+!}</strong> - кнопка в корзину.') ?><br>
+                            <?php endif; ?>
                         <?php endif; ?>
-                    </p>
-                    <label class="control-label"><?= Yii::t('app', 'Служебное.') ?></label>
-                    <p>
                         <?php if ($modelTemplateViewForm->type == Constants::TYPE_ITEM_LIST): ?>
+                            <?= Yii::t('app', '<strong>{!like!}</strong> - кнопка "Нравиться".') ?><br>
+                            <?= Yii::t('app', '<strong>{!like-dislike!}</strong> - кнопки "Нравиться" и "Не нравиться".') ?><br>
+                            <?= Yii::t('app', '<strong>{!stars!}</strong> - рейтинг.') ?><br>
                             <?= Yii::t('app', '<strong>{!item-view!}</strong> - ссылка для просмотра элемента.') ?><br>
+                            <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_PRICE)): ?>
+                                <?= Yii::t('app', '<strong>{!+basket+!}</strong> - кнопка в корзину.') ?><br>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if ($modelTemplateViewForm->type == Constants::TYPE_ITEM_BASKET): ?>
+                            <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_PRICE)): ?>
+                                <?= Yii::t('app', '<strong>{!-basket-!}</strong> - удалить из корзины.') ?><br>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </p>
                 </div>
                 <div class="col-sm-6">
-                    <label class="control-label"><?= Yii::t('app', 'Цена.') ?></label>
-                    <p>
-                        <?= Yii::t('app', '<strong>{$_ПОЛЕ_$}</strong> - название скидки.') ?><br>
-                        <?= Yii::t('app', '<strong>{$=ПОЛЕ=$}</strong> - цена без скидки.') ?><br>
-                        <?= Yii::t('app', '<strong>{$%ПОЛЕ%$}</strong> - процент скидки.') ?><br>
-                        <?= Yii::t('app', '<strong>{$!ПОЛЕ!$}</strong> - дата окончания скидки.') ?><br>
-                        <?= Yii::t('app', '<strong>{$#ПОЛЕ#$}</strong> - валюта.') ?><br>
-                    </p>
-                    <label class="control-label"><?= Yii::t('app', 'Изображение.') ?></label>
-                    <p>
-                        <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод изображения в блоке.') ?><br>
-                        <?= Yii::t('app', '<strong>{^=ПОЛЕ=^}</strong> - вывод изображения в модальном окне.') ?><br>
-                        <?= Yii::t('app', '<strong>{^[ПОЛЕ1, ПОЛЕ2, ...]^}</strong> - карусель. Значения ПОЛЕ(N), это один или несколько загруженных файлов (jpg, jpeg, png).') ?><br>
-                    </p>
-                    <label class="control-label"><?= Yii::t('app', 'Видео YouTube.') ?></label>
-                    <p>
-                        <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод превью.') ?><br>
-                        <?= Yii::t('app', '<strong>{^=ПОЛЕ=^}</strong> - вывод видео.') ?><br>
-                    </p>
+                    <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_PRICE)): ?>
+                        <label class="control-label"><?= Yii::t('app', 'Цена.') ?></label>
+                        <p>
+                            <?= Yii::t('app', '<strong>{$_ПОЛЕ_$}</strong> - название скидки.') ?><br>
+                            <?= Yii::t('app', '<strong>{$=ПОЛЕ=$}</strong> - цена без скидки.') ?><br>
+                            <?= Yii::t('app', '<strong>{$%ПОЛЕ%$}</strong> - процент скидки.') ?><br>
+                            <?= Yii::t('app', '<strong>{$!ПОЛЕ!$}</strong> - дата окончания скидки.') ?><br>
+                            <?= Yii::t('app', '<strong>{$#ПОЛЕ#$}</strong> - валюта.') ?><br>
+                            <?= Yii::t('app', '<strong>{$~ПОЛЕ~$}</strong> - ассортимент.') ?><br>
+                            <?= Yii::t('app', '<strong>{$^ПОЛЕ^$}</strong> - ед. измерения.') ?><br>
+                            <?= Yii::t('app', '<strong>{$?ПОЛЕ?$}</strong> - кол-во на складе.') ?><br>
+                            <?php if ($modelTemplateViewForm->type == Constants::TYPE_ITEM_BASKET): ?>
+                                <?= Yii::t('app', '<strong>{$+ПОЛЕ+$}</strong> - выбрано ассортимента.') ?><br>
+                                <?= Yii::t('app', '<strong>{$*ПОЛЕ*$}</strong> - полная стоимость одного товара.') ?><br>
+                            <?php endif; ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_FILE)): ?>
+                        <label class="control-label"><?= Yii::t('app', 'Изображение.') ?></label>
+                        <p>
+                            <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод изображения в блоке.') ?><br>
+                            <?= Yii::t('app', '<strong>{^=ПОЛЕ=^}</strong> - вывод изображения в модальном окне.') ?><br>
+                            <?= Yii::t('app', '<strong>{^[ПОЛЕ1, ПОЛЕ2, ...]^}</strong> - карусель. Значения ПОЛЕ(N), это один или несколько загруженных файлов (jpg, jpeg, png).') ?><br>
+                        </p>
+                    <?php endif; ?>
+                    <?php if ($modelTemplateViewForm->getHaveTemplateType($useTemplateFieldsTypes, Constants::FIELD_TYPE_YOUTUBE)): ?>
+                        <label class="control-label"><?= Yii::t('app', 'Видео YouTube.') ?></label>
+                        <p>
+                            <?= Yii::t('app', '<strong>{^_ПОЛЕ_^}</strong> - вывод превью.') ?><br>
+                            <?= Yii::t('app', '<strong>{^=ПОЛЕ=^}</strong> - вывод видео.') ?><br>
+                        </p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

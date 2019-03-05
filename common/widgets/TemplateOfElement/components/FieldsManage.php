@@ -121,7 +121,7 @@ class FieldsManage extends Object
     }
 
     // записывает поле с ценой
-    public function setPrice($field, $forms_field, $document_id, $value_currency, $discount_id)
+    public function setPrice($field, $forms_field, $document_id, $value_currency, $discount_id, $item, $item_max, $item_store, $item_measure)
     {
         $modelValuePriceForm = ValuePriceForm::findOne([
             'field_id' => $field['id'],
@@ -133,9 +133,14 @@ class FieldsManage extends Object
             $modelValuePriceForm->document_id = $document_id;
             $modelValuePriceForm->field_id = $field['id'];
         }
+
         $modelValuePriceForm->title = $field['name'];
         $modelValuePriceForm->price = (int) $forms_field[0];
         $modelValuePriceForm->currency = $value_currency;
+        $modelValuePriceForm->item = $item;
+        $modelValuePriceForm->item_max = $item_max;
+        $modelValuePriceForm->item_store = $item_store;
+        $modelValuePriceForm->item_measure = $item_measure;
         
         if ($discount_id) {
             $discountValue = (new \yii\db\Query())
@@ -402,9 +407,11 @@ class FieldsManage extends Object
             return $this->getIntRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_LIST_MULTY) {
             return $this->getIntRange($field_id, $document_id);
-        } elseif ($type == Constants::FIELD_TYPE_FLOAT ||
-            $type == Constants::FIELD_TYPE_PRICE) {
+        } elseif ($type == Constants::FIELD_TYPE_PRICE) {
             return $this->getPriceData($field_id, $document_id);
+        } elseif ($type == Constants::FIELD_TYPE_FLOAT ||
+            $type == Constants::FIELD_TYPE_NUM) {
+            return $this->getNum($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_FLOAT_RANGE) {
             return $this->getNumRange($field_id, $document_id);
         } elseif ($type == Constants::FIELD_TYPE_STRING ||

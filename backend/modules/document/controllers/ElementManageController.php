@@ -81,9 +81,9 @@ class ElementManageController extends Controller
      */
     public function actionCreateElement($id_folder)
     {
-        /*if (!Yii::$app->request->isPjax) {
+        if (!Yii::$app->request->isPjax) {
             return $this->redirect(['/document/manage/index']);
-        }*/
+        }
 
         $parentData = (new \yii\db\Query())
             ->select(['*'])
@@ -129,9 +129,9 @@ class ElementManageController extends Controller
      */
     public function actionUpdateElement($id_document, $id_folder)
     {
-        /*if (!Yii::$app->request->isPjax) {
+        if (!Yii::$app->request->isPjax) {
             return $this->redirect(['/document/manage/index']);
-        }*/
+        }
 
         $parentData = (new \yii\db\Query())
             ->select(['*'])
@@ -279,7 +279,7 @@ class ElementManageController extends Controller
         );
 
         if ($modelValueFileForm->type == Constants::FIELD_TYPE_FILE) {
-            return $this->renderAjax('@common/widgets/TemplateOfElement/views/default-fields/__file', ['modelValueFileForm' => null]);
+            return $this->renderAjax('@common/widgets/TemplateOfElement/views/default-fields/_file', ['modelValueFileForm' => null]);
         }
 
         $manyValueFileForm = ValueFileForm::findAll([
@@ -287,6 +287,6 @@ class ElementManageController extends Controller
             'document_id' => $modelValueFileForm->document_id,
         ]);
 
-        return $this->renderAjax('@common/widgets/TemplateOfElement/views/default-fields/__files', ['manyValueFileForm' => $manyValueFileForm]);
+        return $this->renderAjax('@common/widgets/TemplateOfElement/views/default-fields/_files', ['manyValueFileForm' => $manyValueFileForm]);
     }
 }

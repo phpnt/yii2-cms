@@ -9,6 +9,7 @@
 
 use common\models\Constants;
 use common\widgets\TemplateOfElement\fields\FieldText;
+use common\widgets\TemplateOfElement\fields\FieldNumber;
 use common\widgets\TemplateOfElement\fields\FieldPrice;
 use common\widgets\TemplateOfElement\fields\FieldTextarea;
 use common\widgets\TemplateOfElement\fields\FieldTextRangeFrom;
@@ -27,6 +28,7 @@ use common\widgets\TemplateOfElement\fields\FieldFile;
 /* @var $widget \common\widgets\TemplateOfElement\SetDefaultFields */
 /* @var $model \common\models\forms\DocumentForm */
 /* @var $modelName string */
+
 $form = $widget->form;
 $model = $widget->model;
 ?>
@@ -36,10 +38,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldText::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -49,10 +52,25 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldText::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
+                'options' => [
+                    'class' => 'form-control',
+                ],
+            ]) ?>
+        </div>
+    <?php elseif ($modelFieldForm->type == Constants::FIELD_TYPE_NUM): ?>
+        <div class="col-md-12">
+            <?= $form->field($model, 'value_int', [
+                'options' => [
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
+                ]
+            ])->widget(FieldNumber::class, [
+                'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -66,10 +84,11 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-0'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-0'
                 ]
             ])->widget(FieldTextRangeFrom::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -78,10 +97,11 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-1'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-1'
                 ]
             ])->widget(FieldTextRangeTo::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -96,10 +116,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_number', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldText::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -113,10 +134,11 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_number', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-0'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-0'
                 ]
             ])->widget(FieldTextRangeFrom::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -125,10 +147,11 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_number', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-1'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-1'
                 ]
             ])->widget(FieldTextRangeTo::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -143,10 +166,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_price', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id,
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id,
                 ]
             ])->widget(FieldPrice::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -161,10 +185,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldText::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -174,10 +199,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldTextarea::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                     'rows' => 4
@@ -188,12 +214,13 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id,
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id,
 
                 ],
                 'template' => "{label}\n{input}\n{hint}\n{error}"
             ])->widget(FieldCheckbox::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'type'  => FieldCheckbox::TYPE_CHECBOX,
                 'style'  => FieldCheckbox::STYLE_FLAT,
                 'color'  => 'blue',
@@ -207,12 +234,13 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id,
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id,
 
                 ],
                 'template' => "{label}\n{input}\n{hint}\n{error}"
             ])->widget(FieldRadio::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'type'  => FieldRadio::TYPE_RADIO_LIST,
                 'style'  => FieldRadio::STYLE_FLAT,
                 'color'  => 'blue',
@@ -226,10 +254,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldDropdown::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                     'multiple' => false,
@@ -245,10 +274,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldDropdown::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                     'multiple' => 'true',
@@ -264,11 +294,12 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id,
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id,
                 ]
             ])->widget(FieldDatepicker::class, [
                 'modelFieldForm' => $modelFieldForm,
-                'widgetContainerId' => 'group-' . $modelFieldForm->id,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
+                'widgetContainerId' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -287,11 +318,12 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-0'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-0'
                 ]
             ])->widget(FieldDatepickerFrom::class, [
                 'modelFieldForm' => $modelFieldForm,
-                'widgetContainerId' => 'group-' . $modelFieldForm->id . '-0',
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
+                'widgetContainerId' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-0',
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -305,11 +337,12 @@ $model = $widget->model;
         <div class="col-xs-6">
             <?= $form->field($model, 'value_int', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id . '-1'
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-1'
                 ]
             ])->widget(FieldDatepickerTo::class, [
                 'modelFieldForm' => $modelFieldForm,
-                'widgetContainerId' => 'group-' . $modelFieldForm->id . '-1',
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
+                'widgetContainerId' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id . '-1',
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -329,10 +362,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -375,10 +409,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -419,10 +454,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'value_string', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldTypeahead::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -461,10 +497,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'file', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldFile::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                 ],
@@ -473,9 +510,11 @@ $model = $widget->model;
             <?php $fieldsManage = Yii::$app->fieldsManage; ?>
             <?php $modelValueFileForm = $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $model->id); ?>
             <?php if ($modelValueFileForm): ?>
-                <?= $this->render('_file', [
-                    'modelValueFileForm' => $modelValueFileForm
-                ]) ?>
+                <div id="element-file">
+                    <?= $this->render('_file', [
+                        'modelValueFileForm' => $modelValueFileForm
+                    ]) ?>
+                </div>
             <?php endif; ?>
             <hr>
         </div>
@@ -484,10 +523,11 @@ $model = $widget->model;
         <div class="col-md-12">
             <?= $form->field($model, 'few_files[]', [
                 'options' => [
-                    'id' => 'group-' . $modelFieldForm->id
+                    'id' => 'group-' . $model->field_id_prefix . '-' . $modelFieldForm->id
                 ]
             ])->widget(FieldFile::class, [
                 'modelFieldForm' => $modelFieldForm,
+                'data_id' => $model->field_id_prefix . '-' . $modelFieldForm->id,
                 'options' => [
                     'class' => 'form-control',
                     'multiple' => true
@@ -497,9 +537,11 @@ $model = $widget->model;
             <?php $fieldsManage = Yii::$app->fieldsManage; ?>
             <?php $manyValueFileForm = $fieldsManage->getValue($modelFieldForm->id, $modelFieldForm->type, $model->id); ?>
             <?php if ($manyValueFileForm): ?>
-                <?= $this->render('_files', [
-                    'manyValueFileForm' => $manyValueFileForm
-                ]) ?>
+                <div id="element-files">
+                    <?= $this->render('_files', [
+                        'manyValueFileForm' => $manyValueFileForm
+                    ]) ?>
+                </div>
             <?php endif; ?>
             <hr>
         </div>

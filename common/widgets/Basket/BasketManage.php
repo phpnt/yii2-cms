@@ -3,8 +3,8 @@
  * User: Vladimir Baranov <phpnt@yandex.ru>
  * Git: <https://github.com/phpnt>
  * VK: <https://vk.com/phpnt>
- * Date: 29.10.2018
- * Time: 13:54
+ * Date: 04.03.2019
+ * Time: 21:57
  */
 
 namespace common\widgets\Basket;
@@ -13,8 +13,9 @@ use common\models\Constants;
 use common\models\forms\DocumentForm;
 use yii\base\Widget;
 
-class BasketButton extends Widget
+class BasketManage extends Widget
 {
+    public $product_id;
     public $document_id;
 
     public function init()
@@ -30,14 +31,11 @@ class BasketButton extends Widget
             ->where(['alias' => 'basket'])
             ->one();
 
-        $template_id = $parentData['template_id'];
         $parent_alias = $parentData['alias'];
 
-        $modelDocumentForm = new DocumentForm();
-        $modelDocumentForm->scenario = 'create-element';
-        $modelDocumentForm->parent_id = $parentData['id'];
+        $modelDocumentForm = DocumentForm::findOne($this->document_id);
+        $modelDocumentForm->scenario = 'update-element';
         $modelDocumentForm->parent_alias = $parent_alias;
-        $modelDocumentForm->template_id = $template_id;
         $modelDocumentForm->field_id_prefix = $this->document_id;
 
         $valuePrice = (new \yii\db\Query())
@@ -45,12 +43,12 @@ class BasketButton extends Widget
             ->from('value_price')
             ->where([
                 'type' => Constants::FIELD_TYPE_PRICE,
-                'document_id' => $this->document_id,
+                'document_id' => $this->product_id,
             ])
             ->one();
 
         if ($parentData['status'] == Constants::STATUS_DOC_ACTIVE) {
-            return $this->render('@frontend/views/templates/control/blocks/basket/_form-add', [
+            return $this->render('@frontend/views/templates/control/blocks/basket/_form-add-remove', [
                 'widget' => $this,
                 'modelDocumentForm' => $modelDocumentForm,
                 'valuePrice' => $valuePrice

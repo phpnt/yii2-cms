@@ -21,9 +21,11 @@ use yii\widgets\PjaxAsset;
 class FieldTypeahead extends InputWidget
 {
     public $modelFieldForm;
+    public $data_id;
+
     public $options = [];
 
-    public $setValue = true;    // использовать ранее введенные значения
+    public $setValue = true;
 
     public $inputNameId;
     public $changeAttribute;
@@ -88,7 +90,7 @@ class FieldTypeahead extends InputWidget
         if (isset($this->model->errors_fields[$this->modelFieldForm->id][0])) {
             $error = $this->model->errors_fields[$this->modelFieldForm->id][0];
             $view = $this->getView();
-            $view->registerJs('addError("#group-' .  $this->modelFieldForm->id . '", "' . $error . '");');
+            $view->registerJs('addError("#group-' .  $this->data_id . '", "' . $error . '");');
         }
 
         echo Html::activeTextInput($this->model, $this->attribute, $this->options);

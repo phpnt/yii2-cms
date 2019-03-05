@@ -254,6 +254,7 @@ class FieldExtend extends Field
             Constants::FIELD_TYPE_INT_RANGE =>  Yii::t('app', 'Диапазон целых чисел (INT)'),
             Constants::FIELD_TYPE_FLOAT =>  Yii::t('app', 'Число (DOUBLE)'),
             Constants::FIELD_TYPE_FLOAT_RANGE =>  Yii::t('app', 'Диапазон чисел с дробью (DOUBLE)'),
+            Constants::FIELD_TYPE_NUM =>  Yii::t('app', 'Числовое поле (type="number")'),
             Constants::FIELD_TYPE_STRING =>  Yii::t('app', 'Строка (STRING)'),
             Constants::FIELD_TYPE_TEXT =>  Yii::t('app', 'Текст (TEXT)'),
             Constants::FIELD_TYPE_CHECKBOX =>  Yii::t('app', 'Чекбокс'),
@@ -274,6 +275,7 @@ class FieldExtend extends Field
             Constants::FIELD_TYPE_YOUTUBE =>  Yii::t('app', 'Видео YouTube'),
             Constants::FIELD_TYPE_FILE =>  Yii::t('app', 'Файл'),
             Constants::FIELD_TYPE_FEW_FILES =>  Yii::t('app', 'Несколько файлов'),
+            Constants::FIELD_TYPE_DOC =>  Yii::t('app', 'Связь к документу'),
         ];
     }
 
@@ -296,6 +298,9 @@ class FieldExtend extends Field
                 break;
             case Constants::FIELD_TYPE_FLOAT_RANGE:
                 return $this->typeList[Constants::FIELD_TYPE_FLOAT_RANGE];
+                break;
+            case Constants::FIELD_TYPE_NUM:
+                return $this->typeList[Constants::FIELD_TYPE_NUM];
                 break;
             case Constants::FIELD_TYPE_STRING:
                 return $this->typeList[Constants::FIELD_TYPE_STRING];
@@ -356,6 +361,9 @@ class FieldExtend extends Field
                 break;
             case Constants::FIELD_TYPE_FEW_FILES:
                 return $this->typeList[Constants::FIELD_TYPE_FEW_FILES];
+                break;
+            case Constants::FIELD_TYPE_DOC:
+                return $this->typeList[Constants::FIELD_TYPE_DOC];
                 break;
         }
         return false;

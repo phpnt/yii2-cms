@@ -14,13 +14,12 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 /* @var $this yii\web\View */
 /* @var $modelValueFileForm \common\models\forms\ValueFileForm */
 ?>
-<div id="element-file">
-    <?php BootstrapNotify::widget([]) ?>
-    <?php if (isset($modelValueFileForm)): ?>
-        <?= Html::a('<span class="fa fa-trash"></span>', 'javascript:void(0);', [
-            'class' => 'text-danger',
-            'title' => Yii::t('app', 'Удалить файл?'),
-            'onclick' => '
+<?php BootstrapNotify::widget([]) ?>
+<?php if (isset($modelValueFileForm)): ?>
+    <?= Html::a('<span class="fa fa-trash"></span>', 'javascript:void(0);', [
+        'class' => 'text-danger',
+        'title' => Yii::t('app', 'Удалить файл?'),
+        'onclick' => '
                 if (confirm("'. Yii::t('app', 'Удалить элемент?') .'")) {
                     $.pjax({
                         type: "GET",
@@ -31,7 +30,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                         scrollTo: false
                     });
                 }'
-        ]) ?>
-        <?= $modelValueFileForm->name ?>
-    <?php endif; ?>
-</div>
+    ]) ?>
+    <?= $modelValueFileForm->name ?>
+<?php endif; ?>
+

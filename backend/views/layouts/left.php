@@ -42,12 +42,6 @@ use common\widgets\UncheckedComments\UncheckedComments;
                         'visible' => Yii::$app->user->can('document/manage/index')
                     ],
                     [
-                        'label' => '<i class="fas fa-shopping-basket"></i><span> ' . Yii::t('app', 'Корзина') . '</span>',
-                        'url' => ['/document/basket/index'],
-                        'options' => ['class' => 'treeview'],
-                        'visible' => Yii::$app->user->can('document/basket/index')
-                    ],
-                    [
                         'label' => '<i class="fa fa-user"></i><span> '.Yii::t('app', 'Пользователи').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
                         'url' => '#',
                         'items' => [
@@ -137,10 +131,9 @@ use common\widgets\UncheckedComments\UncheckedComments;
                                     'models[18]' => \common\models\search\VisitSearch::class,
                                     'models[19]' => \common\models\search\MessageSearch::class,
                                     'models[20]' => \common\models\search\SourceMessageSearch::class,
-                                    'models[21]' => \common\models\search\BasketSearch::class,
-                                    'models[22]' => \common\models\search\CommentSearch::class,
-                                    'models[23]' => \common\models\search\TemplateViewSearch::class,
-                                    'models[24]' => \common\models\search\ValuePriceSearch::class,
+                                    'models[21]' => \common\models\search\CommentSearch::class,
+                                    'models[22]' => \common\models\search\TemplateViewSearch::class,
+                                    'models[23]' => \common\models\search\ValuePriceSearch::class,
                                     'with_header' => true
                                 ]),
                                 'options' => ['class' => 'treeview'],
