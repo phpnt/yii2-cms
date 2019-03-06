@@ -95,7 +95,7 @@ Modal::begin([
                             if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
                                 return Yii::t('app', 'Нет доступа');
                             }
-                            return $modelDocumentForm->createdBy->email;
+                            return isset($modelDocumentForm->createdBy) ? $modelDocumentForm->createdBy->email : null;
                         }, $modelDocumentForm),
                         'captionOptions' => [
                             'style' => 'width: 50% !important;'
@@ -109,7 +109,7 @@ Modal::begin([
                             if (isset($modelDocumentForm->parent->parent) && $modelDocumentForm->parent->parent->alias == 'profile' && !Yii::$app->user->can('admin')) {
                                 return Yii::t('app', 'Нет доступа');
                             }
-                            return $modelDocumentForm->updatedBy->email;
+                            return isset($modelDocumentForm->updatedBy) ? $modelDocumentForm->createdBy->email : null;
                         }, $modelDocumentForm),
                         'captionOptions' => [
                             'style' => 'width: 50% !important;'

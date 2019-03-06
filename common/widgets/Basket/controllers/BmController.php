@@ -44,7 +44,7 @@ class BmController extends Controller
         $modelDocumentForm->alias = 'basket-' . $time;
         $modelDocumentForm->status = Constants::STATUS_DOC_ACTIVE;
         $modelDocumentForm->template_id = $parentData['template_id'];
-        $modelDocumentForm->child_id = $document_id;
+        $modelDocumentForm->item_id = $document_id;
         $modelDocumentForm->load(Yii::$app->request->post());
 
         if ($modelDocumentForm->validate()) {
@@ -56,7 +56,7 @@ class BmController extends Controller
                     ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
                     ->where([
                         'document.parent_id' => $parentData['id'],
-                        'document.child_id' => $document_id,
+                        'document.item_id' => $document_id,
                     ])
                     ->andWhere([
                         'ip' => Yii::$app->request->userIP,
@@ -71,7 +71,7 @@ class BmController extends Controller
                     ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
                     ->where([
                         'document.parent_id' => $parentData['id'],
-                        'document.child_id' => $document_id,                    ])
+                        'document.item_id' => $document_id,                    ])
                     ->andWhere([
                         'created_by' => Yii::$app->user->id
                     ])
@@ -158,7 +158,7 @@ class BmController extends Controller
             ->select(['value_numeric.id AS id_item', 'value_numeric.value AS count_items', 'value_price.discount_price AS price_items', 'value_price.currency AS currency', 'value_price.item_max AS item_max'])
             ->from('document')
             ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
-            ->innerJoin('value_price', 'value_price.document_id = document.child_id')
+            ->innerJoin('value_price', 'value_price.document_id = document.item_id')
             ->where([
                 'document.id' => $document_id,
             ])

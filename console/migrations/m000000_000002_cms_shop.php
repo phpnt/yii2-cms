@@ -193,7 +193,7 @@ class m000000_000002_cms_shop extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(1)->comment(Yii::t('app', 'Статус')),
             'is_folder' => $this->boolean()->comment(Yii::t('app', 'Папка?')),
             'parent_id' => $this->integer()->comment(Yii::t('app', 'Родитель')),
-            'child_id' => $this->integer()->comment(Yii::t('app', 'Дочерний элемент')),
+            'item_id' => $this->integer()->comment(Yii::t('app', 'Элемент')),
             'template_id' => $this->integer()->comment(Yii::t('app', 'Шаблон')),
             'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
             'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
@@ -207,7 +207,7 @@ class m000000_000002_cms_shop extends Migration
 
         //Индексы и ключи таблицы документов document
         $this->addForeignKey('document_parent_id_fk', '{{%document}}', 'parent_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
-        $this->addForeignKey('document_child_id_fk', '{{%document}}', 'child_id', '{{%document}}', 'id');
+        $this->addForeignKey('document_item_id_fk', '{{%document}}', 'item_id', '{{%document}}', 'id');
         $this->addForeignKey('document_template_id_fk', '{{%document}}', 'template_id', '{{%template}}', 'id', 'SET NULL', 'CASCADE');
         $this->addForeignKey('document_user_creator_pk', '{{%document}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('document_user_updater_fk', '{{%document}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
@@ -218,7 +218,7 @@ class m000000_000002_cms_shop extends Migration
 
         $this->importData('document',
             ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
-                'parent_id', 'child_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access', 'ip', 'user_agent'],
+                'parent_id', 'item_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access', 'ip', 'user_agent'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
 
         $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');

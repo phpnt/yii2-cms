@@ -20,7 +20,7 @@ class DocumentSearch extends DocumentForm
     public function rules()
     {
         return [
-            [['id', 'status', 'is_folder', 'parent_id', 'child_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
+            [['id', 'status', 'is_folder', 'parent_id', 'item_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
             [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'ip', 'user_agent'], 'safe'],
         ];
     }
@@ -65,7 +65,7 @@ class DocumentSearch extends DocumentForm
             'status' => $this->status,
             'is_folder' => $this->is_folder,
             'parent_id' => $this->parent_id,
-            'child_id' => $this->child_id,
+            'item_id' => $this->item_id,
             'template_id' => $this->template_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -122,7 +122,7 @@ class DocumentSearch extends DocumentForm
             'status' => $this->status,
             'is_folder' => $this->is_folder,
             'parent_id' => $this->parent_id,
-            'child_id' => $this->child_id,
+            'item_id' => $this->item_id,
             'template_id' => $this->template_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -182,7 +182,7 @@ class DocumentSearch extends DocumentForm
             'status' => $this->status,
             'is_folder' => $this->is_folder,
             'parent_id' => $this->parent_id,
-            'child_id' => $this->child_id,
+            'item_id' => $this->item_id,
             'template_id' => $this->template_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

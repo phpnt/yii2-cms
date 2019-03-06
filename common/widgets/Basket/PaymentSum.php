@@ -32,7 +32,7 @@ class PaymentSum extends Object
                 ->select(['value_numeric.value AS count_items', 'value_price.discount_price AS price_items', 'value_price.currency AS currency'])
                 ->from('document')
                 ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
-                ->innerJoin('value_price', 'value_price.document_id = document.child_id')
+                ->innerJoin('value_price', 'value_price.document_id = document.item_id')
                 ->where([
                     'parent_id' => $parentData['id'],
                 ])
@@ -46,7 +46,7 @@ class PaymentSum extends Object
                 ->select(['value_numeric.value AS count_items', 'value_price.discount_price AS price_items', 'value_price.currency AS currency'])
                 ->from('document')
                 ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
-                ->innerJoin('value_price', 'value_price.document_id = document.child_id')
+                ->innerJoin('value_price', 'value_price.document_id = document.item_id')
                 ->where([
                     'parent_id' => $parentData['id'],
                 ])

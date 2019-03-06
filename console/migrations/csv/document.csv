@@ -1,4 +1,4 @@
-id;name;alias;title;meta_keywords;meta_description;annotation;content;status;is_folder;parent_id;child_id;template_id;created_at;updated_at;created_by;updated_by;position;access;ip;user_agent
+id;name;alias;title;meta_keywords;meta_description;annotation;content;status;is_folder;parent_id;item_id;template_id;created_at;updated_at;created_by;updated_by;position;access;ip;user_agent
 1;"Yii2 CMS";site;"Yii2 CMS";;;"<p>Yii2 CMS</p>
 ";;1;1;;;;1537605608;1537622526;1;1;;1;;
 2;"Главная страница";main;"Главная страница";;;;"<h1>Главная страница</h1>

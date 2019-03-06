@@ -50,8 +50,8 @@ use yii\helpers\Url;
  * @property array $measuresList
  *
  * @property DocumentForm $parent
- * @property DocumentForm[] $documentChilds
- * @property DocumentForm $documentChild
+ * @property DocumentForm[] $items
+ * @property DocumentForm $item
  * @property DocumentForm $child
  * @property DocumentForm[] $childs
  * @property DocumentForm[] $documents
@@ -310,7 +310,7 @@ class DocumentExtend extends Document
                             ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
                             ->innerJoin('template', 'template.id = document.template_id')
                             ->where([
-                                'document.child_id' => $field['value']['document_id'],
+                                'document.item_id' => $field['value']['document_id'],
                                 'value_numeric.type' => Constants::FIELD_TYPE_NUM,
                                 'template.mark' => 'basket',
                                 'ip' => Yii::$app->request->userIP,
@@ -324,7 +324,7 @@ class DocumentExtend extends Document
                             ->innerJoin('value_numeric', 'value_numeric.document_id = document.id')
                             ->innerJoin('template', 'template.id = document.template_id')
                             ->where([
-                                'document.child_id' => $field['value']['document_id'],
+                                'document.item_id' => $field['value']['document_id'],
                                 'value_numeric.type' => Constants::FIELD_TYPE_NUM,
                                 'template.mark' => 'basket',
                                 'created_by' => Yii::$app->user->id
@@ -880,17 +880,17 @@ class DocumentExtend extends Document
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDocumentChild()
+    public function getItem()
     {
-        return $this->hasOne(DocumentForm::class, ['id' => 'child_id']);
+        return $this->hasOne(DocumentForm::class, ['id' => 'item_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDocumentChilds()
+    public function getItems()
     {
-        return $this->hasMany(DocumentForm::class, ['id' => 'child_id']);
+        return $this->hasMany(DocumentForm::class, ['id' => 'item_id']);
     }
 
     /**

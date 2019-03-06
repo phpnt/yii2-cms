@@ -142,7 +142,7 @@ class ViewItems extends Widget
                         ->all();
                     $products = [];
                     foreach ($items as $item) {
-                        $products[] = $item['child_id'];
+                        $products[] = $item['item_id'];
                     }
                 } else {
                     $modelSearch->status = Constants::STATUS_DOC_ACTIVE;
@@ -156,7 +156,7 @@ class ViewItems extends Widget
                         ->all();
                     $products = [];
                     foreach ($items as $item) {
-                        $products[] = $item['child_id'];
+                        $products[] = $item['item_id'];
                     }
                 }
 
