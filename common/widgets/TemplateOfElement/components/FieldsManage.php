@@ -152,7 +152,7 @@ class FieldsManage extends Object
                 ])
                 ->one();
 
-            $modelValuePriceForm->discount_price = ($modelValuePriceForm->price / 100) * $discountValue['value'];
+            $modelValuePriceForm->discount_price = ($modelValuePriceForm->price / 100) * (100 - $discountValue['value']);
             $modelValuePriceForm->discount_id = $discount_id;
         } else {
             $modelValuePriceForm->discount_price = $modelValuePriceForm->price;
