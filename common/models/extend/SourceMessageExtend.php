@@ -347,11 +347,15 @@ class SourceMessageExtend extends SourceMessage
                         $modelSourceMessage->message = $m;
                         $modelSourceMessage->hash = $msgHash;
                         $modelSourceMessage->location = $this->extractLocations($category, $m);
-                        $modelSourceMessage->save();
+                        if (!$modelSourceMessage->save()) {
+                            dd($modelSourceMessage->errors);
+                        }
                         $newMessages++;
                     } else {
                         $modelSourceMessage->hash = $msgHash;
-                        $modelSourceMessage->save();
+                        if (!$modelSourceMessage->save()) {
+                            dd($modelSourceMessage->errors);
+                        }
                     }
                 }
             }

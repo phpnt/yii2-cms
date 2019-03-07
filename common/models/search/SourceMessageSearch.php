@@ -115,11 +115,7 @@ class SourceMessageSearch extends SourceMessageForm
         if ($this->translation == '1') {
             $subQuery = Message::find()->select('id');
             $query->where(['not in', 'id', $subQuery]);
-            /*$models = $query->all();
-            dd($models);*/
         }
-
-        //dd($this);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
