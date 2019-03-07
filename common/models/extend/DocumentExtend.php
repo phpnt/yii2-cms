@@ -82,16 +82,16 @@ class DocumentExtend extends Document
             Constants::ITEM_MEASURE_MM =>  Yii::t('app', 'мм'),
             Constants::ITEM_MEASURE_CM =>  Yii::t('app', 'см'),
             Constants::ITEM_MEASURE_M =>  Yii::t('app', 'м'),
-            Constants::ITEM_MEASURE_MM2 =>  Yii::t('app', 'мм²'),
-            Constants::ITEM_MEASURE_CM2 =>  Yii::t('app', 'см²'),
-            Constants::ITEM_MEASURE_M2 =>  Yii::t('app', 'м²'),
+            Constants::ITEM_MEASURE_MM2 =>  Yii::t('app', 'мм') . '²',
+            Constants::ITEM_MEASURE_CM2 =>  Yii::t('app', 'см') . '²',
+            Constants::ITEM_MEASURE_M2 =>  Yii::t('app', 'м') . '²',
             Constants::ITEM_MEASURE_MG =>  Yii::t('app', 'мг'),
             Constants::ITEM_MEASURE_G =>  Yii::t('app', 'г'),
             Constants::ITEM_MEASURE_KG =>  Yii::t('app', 'кг'),
             Constants::ITEM_MEASURE_T =>  Yii::t('app', 'т'),
             Constants::ITEM_MEASURE_ML =>  Yii::t('app', 'мл'),
             Constants::ITEM_MEASURE_L =>  Yii::t('app', 'л'),
-            Constants::ITEM_MEASURE_M3 =>  Yii::t('app', 'м³'),
+            Constants::ITEM_MEASURE_M3 =>  Yii::t('app', 'м') . '³',
         ];
     }
 
