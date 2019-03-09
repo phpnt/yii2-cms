@@ -47,14 +47,10 @@ class BasketManage extends Widget
             ])
             ->one();
 
-        if ($parentData['status'] == Constants::STATUS_DOC_ACTIVE) {
-            return $this->render('@frontend/views/templates/control/blocks/basket/_form-add-remove', [
-                'widget' => $this,
-                'modelDocumentForm' => $modelDocumentForm,
-                'valuePrice' => $valuePrice
-            ]);
-        }
-
-        return '';
+        return $this->render('@frontend/views/templates/control/blocks/basket/_form-add-remove', [
+            'widget' => $this,
+            'modelDocumentForm' => $modelDocumentForm,
+            'valuePrice' => $valuePrice
+        ]);
     }
 }

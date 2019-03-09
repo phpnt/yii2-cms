@@ -216,12 +216,12 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('document_alias_index', '{{%document}}', 'alias');
         $this->createIndex('document_status_index', '{{%document}}', 'status');
 
+        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
+
         $this->importData('document',
             ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
                 'parent_id', 'item_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access', 'ip', 'user_agent'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
-
-        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
 
         //Дополнительные поля
         $this->createTable('{{%field}}', [

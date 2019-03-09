@@ -14,6 +14,8 @@ use yii\db\ActiveQuery;
  */
 class DocumentSearch extends DocumentForm
 {
+    public $elements_fields;
+
     /**
      * {@inheritdoc}
      */
@@ -21,7 +23,7 @@ class DocumentSearch extends DocumentForm
     {
         return [
             [['id', 'status', 'is_folder', 'parent_id', 'item_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access'], 'integer'],
-            [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'ip', 'user_agent'], 'safe'],
+            [['name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'ip', 'user_agent', 'elements_fields'], 'safe'],
         ];
     }
 
@@ -104,6 +106,8 @@ class DocumentSearch extends DocumentForm
         ]);
 
         $this->load($params);
+
+        $this->validate();
 
         if ($this->elements_fields) {
             if ($this->validateFields()) {
