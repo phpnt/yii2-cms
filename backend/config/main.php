@@ -24,6 +24,9 @@ return [
         'document' => [
             'class' => 'backend\modules\document\Module',
         ],
+        'elements' => [
+            'class' => 'backend\modules\elements\Module',
+        ],
         'geo' => [
             'class' => 'backend\modules\geo\Module',
         ],

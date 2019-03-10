@@ -1,1 +1,55 @@
 id;type;view;template_id
+1;0;"<div class=""col-md-12"">
+  {~=Содержание=~}
+  <p>
+    {_Дата окончания скидки_} - {=Дата окончания скидки=}<br>
+    {_Процент скидки_} - {=Процент скидки=}
+  </p>
+  <div class=""text-rigth"">{!like!}</div>
+  {!comments!}
+</div>";2
+2;1;"<div class=""col-md-12 m-t-lg"">
+  <a href=""{!item-view!}"" class=""item-link"">
+    {~=Аннотация=~}
+    <p>
+      {_Дата окончания скидки_} - {=Дата окончания скидки=}<br>
+      {_Процент скидки_} - {=Процент скидки=}
+    </p>
+    <div class=""text-rigth"">{!like!}</div>
+  </a>
+</div>";2
+3;2;"<div class=""col-md-4 m-t-md"">
+  <h4 class=""text-center"">{~=Наименование=~}</h4>
+  <h3 class=""text-center"">{=Цена=} {$#Цена#$}</h3>
+  <div class=""col-xs-8 col-xs-offset-2 text-center m-t-sm"">{!-basket-!}</div>
+</div>";1
+4;1;"<div class=""col-md-4 m-t-md"">
+  <a href=""{!item-view!}"" class=""item-link"">
+    <h4 class=""text-center"">{~=Наименование=~}</h4>
+    <h3 class=""text-center"">{=Цена=} {$#Цена#$}</h3>
+  </a>
+  <div class=""text-center"">{!like-dislike!}</div>
+  <div class=""col-xs-8 col-xs-offset-2 text-center m-t-sm"">{!+basket+!}</div>
+</div>";1
+5;0;"<div class=""col-md-12 m-t-md"">
+  <h1 class=""text-center"">{~=Наименование=~}</h1>
+  <div class=""col-md-12"">
+    <h3>{=Цена=} {$#Цена#$}</h3>
+  </div>
+  <div class=""col-md-12"">{!like-dislike!}</div>
+  <div class=""col-md-12 m-t-sm"">{!+basket+!}</div>
+  <div class=""col-md-12"">{!comments!}</div>
+</div>";1
+6;0;"<div class=""col-md-12 m-t-md"">
+  <h1 class=""text-center"">{=Название=}</h1>
+  <div class=""col-md-12 m-t-md m-b-md"">{~=Содержание=~}</div>
+  <div class=""text-right"">{!like-dislike!}</div>
+  <div class=""col-md-12"">{!comments!}</div>
+</div>";3
+7;1;"<div class=""col-md-12 border-around m-t-md"">
+  <a href=""{!item-view!}"" class=""item-link"">
+    <h2 class=""text-center"">{=Название=}</h2>
+    {~=Аннотация=~}
+  </a>
+  <div class=""text-right m-b-md"">{!like-dislike!}</div>
+</div>";3

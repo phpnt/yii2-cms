@@ -12,7 +12,7 @@ use yii\bootstrap\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
+/* @var $id int */
 /* @var $comment_id int */
 /* @var $access_answers int */
 ?>
@@ -32,7 +32,7 @@ Modal::begin([
                 $("#universal-modal").modal("hide");
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
+                    url: "' . Url::to(['/comment/delete-comment', 'id' => $id, 'access_answers' => $access_answers]) . '",
                     container: "#comment-widget",
                     timeout: 10000,
                     push: false,

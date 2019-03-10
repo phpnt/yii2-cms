@@ -66,7 +66,7 @@ DefaultTempAsset::register($this);
                 </div>
             </div>
         </div>
-    <?php elseif ($dataProvider->models || Yii::$app->request->get('DocumentSearch') && (Yii::$app->request->get('alias_menu_item') != 'basket')): ?>
+    <?php elseif (($dataProvider->models || Yii::$app->request->get('DocumentSearch')) && (Yii::$app->request->get('alias_menu_item') != 'basket')): ?>
         <?php /* Если есть элементы, но нет бокового меню */ ?>
         <div class="row">
             <?php if (isset($modelSearch->template) && $modelSearch->template->use_filter): ?>

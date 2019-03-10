@@ -36,21 +36,6 @@ $items = [];
             'active' => Yii::$app->request->get('alias_menu_item') == $item['alias']
         ];
         ?>
-        <?php
-        $js = <<< JS
-            $('#main-body-container').on('pjax:end',   function() { 
-                $.pjax({
-                    type: "GET", 
-                    url: "/bm/update-count",
-                    container: "#basket-product-count",
-                    push: false,
-                    timeout: 20000,
-                    scrollTo: false
-                });
-            });
-JS;
-        $this->registerJs($js);
-        ?>
     <?php elseif (Yii::$app->hasModule($item['alias'])): ?>
         <?php if ($item['alias'] == 'login'): ?>
             <?php /* Если "Войти" */ ?>

@@ -216,12 +216,12 @@ class m000000_000002_cms_shop extends Migration
         $this->createIndex('document_alias_index', '{{%document}}', 'alias');
         $this->createIndex('document_status_index', '{{%document}}', 'status');
 
-        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
-
         $this->importData('document',
             ['id', 'name', 'alias', 'title', 'meta_keywords', 'meta_description', 'annotation', 'content', 'status', 'is_folder',
                 'parent_id', 'item_id', 'template_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'position', 'access', 'ip', 'user_agent'],
             fopen(__DIR__ . '/../../console/migrations/csv/document.csv', "r"));
+
+        $this->addForeignKey('user_document_id_fk', '{{%user}}', 'document_id', '{{%document}}', 'id', 'SET NULL', 'CASCADE');
 
         //Дополнительные поля
         $this->createTable('{{%field}}', [
@@ -383,82 +383,12 @@ class m000000_000002_cms_shop extends Migration
         $this->importData('value_file',
             ['id', 'title', 'name', 'extension', 'size', 'path', 'type',  'document_id', 'field_id', 'params'],
             fopen(__DIR__ . '/../../console/migrations/csv/value_file.csv', "r"));
-
-        //Таблица просмотров документов visit
-        $this->createTable('{{%visit}}', [
-            'id' => $this->primaryKey()->comment('ID'),
-            'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
-            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
-            'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
-            'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
-            'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
-        ], $tableOptions);
-
-        //Индексы и ключи таблицы таблицы просмотров документов visit
-        $this->addForeignKey('visit_document_id_fk', '{{%visit}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('visit_user_fk', '{{%visit}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
-
-        $this->importData('visit',
-            ['id', 'created_at', 'document_id', 'ip', 'user_agent', 'user_id'],
-            fopen(__DIR__ . '/../../console/migrations/csv/visit.csv', "r"));
-
-        //Таблица комментариев
-        $this->createTable('{{%comment}}', [
-            'id' => $this->primaryKey()->comment('ID'),
-            'text' => $this->text()->notNull()->comment('Комментарий'),
-            'document_id' => $this->integer()->notNull()->comment(Yii::t('app', 'Документ')),
-            'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
-            'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
-            'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
-            'parent_id' => $this->integer()->comment(Yii::t('app', 'Ответ на коммментарий')),
-            'status' => $this->boolean()->defaultValue(Constants::STATUS_DOC_WAIT)->comment(Yii::t('app', 'Статус комментария')),
-            'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
-            'updated_at' => $this->integer()->comment(Yii::t('app', 'Время изменения')),
-        ], $tableOptions);
-
-        //Индексы и ключи таблицы комментариев
-        $this->addForeignKey('comment_document_id_fk', '{{%comment}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('comment_user_fk', '{{%comment}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('comment_comment_fk', '{{%comment}}', 'parent_id', '{{%comment}}', 'id', 'CASCADE', 'CASCADE');
-
-        $this->importData('comment',
-            ['id', 'text', 'document_id', 'ip', 'user_agent', 'user_id', 'parent_id', 'status', 'created_at', 'updated_at'],
-            fopen(__DIR__ . '/../../console/migrations/csv/comment.csv', "r"));
-
-        //Таблица просмотров документов visit
-        $this->createTable('{{%like}}', [
-            'id' => $this->primaryKey()->comment('ID'),
-            'like' => $this->boolean()->comment(Yii::t('app', 'Нравиться')),
-            'dislike' => $this->boolean()->comment(Yii::t('app', 'Не нравиться')),
-            'stars' => $this->smallInteger(3)->comment(Yii::t('app', 'Количество звезд')),
-            'created_at' => $this->integer()->comment(Yii::t('app', 'Время создания')),
-            'document_id' => $this->integer()->comment(Yii::t('app', 'Документ')),
-            'comment_id' => $this->integer()->comment(Yii::t('app', 'Комментарий')),
-            'ip' => $this->string(20)->notNull()->comment(Yii::t('app', 'IP')),
-            'user_agent' => $this->text()->comment(Yii::t('app', 'Данные браузера')),
-            'user_id' => $this->integer()->comment(Yii::t('app', 'Пользователь')),
-        ], $tableOptions);
-
-        //Индексы и ключи таблицы таблицы просмотров документов visit
-        $this->addForeignKey('like_document_id_fk', '{{%like}}', 'document_id', '{{%document}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('like_comment_id_fk', '{{%like}}', 'comment_id', '{{%comment}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('like_user_fk', '{{%like}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
-
-        $this->importData('like',
-            ['id', 'like', 'dislike', 'stars', 'created_at', 'document_id', 'comment_id', 'ip', 'user_agent', 'user_id'],
-            fopen(__DIR__ . '/../../console/migrations/csv/like.csv', "r"));
     }
 
     public function down()
     {
         $this->dropForeignKey('document_user_creator_pk', '{{%document}}');
         $this->dropForeignKey('document_user_updater_fk', '{{%document}}');
-        $this->dropForeignKey('like_document_id_fk', '{{%like}}');
-        $this->dropForeignKey('like_user_fk', '{{%like}}');
-        $this->dropForeignKey('visit_document_id_fk', '{{%visit}}');
-        $this->dropForeignKey('visit_user_fk', '{{%visit}}');
-        $this->dropForeignKey('basket_document_id_fk', '{{%basket}}');
-        $this->dropForeignKey('basket_user_fk', '{{%basket}}');
         $this->dropTable('{{%auth_assignment}}');
         $this->dropTable('{{%auth_item_child}}');
         $this->dropTable('{{%auth_item}}');
@@ -473,9 +403,6 @@ class m000000_000002_cms_shop extends Migration
         $this->dropTable('{{%field}}');
         $this->dropTable('{{%document}}');
         $this->dropTable('{{%template}}');
-        $this->dropTable('{{%like}}');
-        $this->dropTable('{{%visit}}');
-        $this->dropTable('{{%basket}}');
     }
 
     /**

@@ -9,7 +9,8 @@
 
 namespace common\widgets\Rating\controllers;
 
-use common\models\forms\LikeForm;
+use common\models\Constants;
+use common\models\forms\DocumentForm;
 use Yii;
 use yii\web\Controller;
 
@@ -27,79 +28,107 @@ class RatingController extends Controller
             return $this->goHome();
         }
 
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         // контроль посещений страниц
         if (Yii::$app->user->isGuest) {
-            if ($dislike) {
-                // удаляет dislike, если есть
-                LikeForm::deleteAll([
-                    'like' => 0,
-                    'document_id' => $document_id,
-                    'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
-                ]);
-            }
+            // удаляет dislike, если есть
+            DocumentForm::deleteAll([
+                'annotation' => 'dislike',
+                'item_id' => $document_id,
+                'ip' => Yii::$app->request->userIP,
+                'user_agent' => Yii::$app->request->userAgent
+            ]);
             // с одним IP обновляется раз в сутки
             $data = (new \yii\db\Query())
                 ->select(['*'])
-                ->from('like')
+                ->from('document')
                 ->where([
-                'document_id' => $document_id,
-                'ip' => Yii::$app->request->userIP,
-                'user_agent' => Yii::$app->request->userAgent
-            ])->one();
+                    'annotation' => 'like',
+                    'item_id' => $document_id,
+                    'ip' => Yii::$app->request->userIP,
+                    'user_agent' => Yii::$app->request->userAgent
+                ])
+                ->andWhere(['>', 'updated_at', time() - (60 * 60 * 24)])
+                ->one();
+
             if (!$data) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 1;
-                $modelLikeForm->dislike = 0;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->save();
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'like-' . $time;
+                $modelDocumentForm->alias = 'like-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'like';
+                $modelDocumentForm->content = 'like';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'document_id' => $document_id,
+                DocumentForm::deleteAll([
+                    'annotation' => 'like',
+                    'item_id' => $document_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ]);
             }
         } else {
-            if ($dislike) {
-                // удаляет dislike, если есть
-                LikeForm::deleteAll([
-                    'like' => 0,
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
-                ]);
-            }
-            $modelLikeForm = LikeForm::findOne([
-                'document_id' => $document_id,
-                'user_id' => Yii::$app->user->id
+            // удаляет dislike, если есть
+            DocumentForm::deleteAll([
+                'annotation' => 'dislike',
+                'item_id' => $document_id,
+                'created_by' => Yii::$app->user->id,
             ]);
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 1;
-                $modelLikeForm->dislike = 0;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->user_id = Yii::$app->user->id;
-                $modelLikeForm->save();
+
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'annotation' => 'like',
+                    'item_id' => $document_id,
+                    'created_by' => Yii::$app->user->id,
+                ])->one();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'like-' . $time;
+                $modelDocumentForm->alias = 'like-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'like';
+                $modelDocumentForm->content = 'like';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
+                DocumentForm::deleteAll([
+                    'annotation' => 'like',
+                    'item_id' => $document_id,
+                    'created_by' => Yii::$app->user->id,
                 ]);
             }
         }
 
-        // количество лайков
         $likes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 1,
-                'document_id' => $document_id,
+                'annotation' => 'like',
+                'parent_id' => $parent['id'],
+                'item_id' => $document_id,
             ])
             ->count();
 
@@ -110,12 +139,13 @@ class RatingController extends Controller
             ]);
         }
 
-        // количество дизлайков
         $dislikes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 0,
-                'document_id' => $document_id,
+                'annotation' => 'dislike',
+                'parent_id' => $parent['id'],
+                'item_id' => $document_id,
             ])
             ->count();
 
@@ -138,87 +168,108 @@ class RatingController extends Controller
             return $this->goHome();
         }
 
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         // контроль посещений страниц
         if (Yii::$app->user->isGuest) {
-            if ($like) {
-                // удаляет dislike, если есть
-                LikeForm::deleteAll([
-                    'like' => 1,
-                    'document_id' => $document_id,
-                    'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
-                ]);
-            }
             // удаляет like, если есть
-            LikeForm::deleteAll([
-                'like' => 1,
-                'document_id' => $document_id,
+            DocumentForm::deleteAll([
+                'annotation' => 'like',
+                'item_id' => $document_id,
                 'ip' => Yii::$app->request->userIP,
                 'user_agent' => Yii::$app->request->userAgent
             ]);
+
             // с одним IP обновляется раз в сутки
-            $modelLikeForm = LikeForm::find()
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
                 ->where([
-                    'document_id' => $document_id,
+                    'annotation' => 'dislike',
+                    'item_id' => $document_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ])
+                ->andWhere(['>', 'updated_at', time() - (60 * 60 * 24)])
                 ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 0;
-                $modelLikeForm->dislike = 1;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->save();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'dislike-' . $time;
+                $modelDocumentForm->alias = 'dislike-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'dislike';
+                $modelDocumentForm->content = 'dislike';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'document_id' => $document_id,
+                DocumentForm::deleteAll([
+                    'annotation' => 'dislike',
+                    'item_id' => $document_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ]);
             }
         } else {
-            if ($like) {
-                // удаляет dislike, если есть
-                LikeForm::deleteAll([
-                    'like' => 1,
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
-                ]);
-            }
-            $modelLikeForm = LikeForm::find()
+            // удаляет dislike, если есть
+            DocumentForm::deleteAll([
+                'annotation' => 'like',
+                'item_id' => $document_id,
+                'created_by' => Yii::$app->user->id,
+            ]);
+
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
                 ->where([
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
-                ])
-                ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 0;
-                $modelLikeForm->dislike = 1;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->user_id = Yii::$app->user->id;
-                $modelLikeForm->save();
+                    'annotation' => 'dislike',
+                    'item_id' => $document_id,
+                    'created_by' => Yii::$app->user->id,
+                ])->one();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'dislike-' . $time;
+                $modelDocumentForm->alias = 'dislike-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'dislike';
+                $modelDocumentForm->content = 'dislike';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
+                DocumentForm::deleteAll([
+                    'annotation' => 'dislike',
+                    'item_id' => $document_id,
+                    'created_by' => Yii::$app->user->id,
                 ]);
             }
         }
 
-        // количество дизлайков
         $dislikes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 0,
-                'document_id' => $document_id,
+                'annotation' => 'dislike',
+                'parent_id' => $parent['id'],
+                'item_id' => $document_id,
             ])
             ->count();
 
@@ -229,12 +280,13 @@ class RatingController extends Controller
             ]);
         }
 
-        // количество лайков
         $likes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 1,
-                'document_id' => $document_id,
+                'annotation' => 'like',
+                'parent_id' => $parent['id'],
+                'item_id' => $document_id,
             ])
             ->count();
 
@@ -263,9 +315,7 @@ class RatingController extends Controller
         // если ошибка
         if (($value < 10 || $value > 100) ||
             (!$stars_number && $stars_number < 2 || $stars_number > 10) ||
-            (!$star_cost && $star_cost < 10 || $star_cost > 50))
-        {
-
+            (!$star_cost && $star_cost < 10 || $star_cost > 50)) {
             Yii::$app->session->set(
                 'message',
                 [
@@ -277,65 +327,93 @@ class RatingController extends Controller
             return $this->goHome();
         }
 
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         // записываем результат
         if (Yii::$app->user->isGuest) {
             // с одним IP обновляется раз в сутки
-            $modelLikeForm = LikeForm::find()
+            $modelDocumentForm = DocumentForm::find()
                 ->where([
-                    'document_id' => $document_id,
+                    'annotation' => 'stars',
+                    'item_id' => $document_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ])
+                ->andWhere(['>', 'updated_at', time() - (60 * 60 * 24)])
                 ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->stars = $value;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->save();
+
+            if (!$modelDocumentForm) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'stars-' . $time;
+                $modelDocumentForm->alias = 'stars-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'stars';
+                $modelDocumentForm->content = $value;
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                $modelLikeForm->stars = $value;
-                $modelLikeForm->save();
+                $modelDocumentForm->content = $value;
+                $modelDocumentForm->save();
             }
         } else {
-            $modelLikeForm = LikeForm::find()
+            $modelDocumentForm = DocumentForm::find()
                 ->where([
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
+                    'annotation' => 'stars',
+                    'item_id' => $document_id,
+                    'created_by' => Yii::$app->user->id
                 ])
                 ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->stars = $value;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->document_id = $document_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->user_id = Yii::$app->user->id;
-                $modelLikeForm->save();
+
+            if (!$modelDocumentForm) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'stars-' . $time;
+                $modelDocumentForm->alias = 'stars-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $document_id;
+                $modelDocumentForm->annotation = 'stars';
+                $modelDocumentForm->content = $value;
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                $modelLikeForm->stars = $value;
-                $modelLikeForm->save();
+                $modelDocumentForm->content = $value;
+                $modelDocumentForm->save();
             }
         }
 
         // подсчет процентов
         $data = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'document_id' => $document_id,
+                'annotation' => 'stars',
+                'parent_id' => $parent['id'],
+                'item_id' => $document_id,
             ])
             ->all();
 
-        // количество проголосовавших
         $votes_number = count($data);
 
         $percent_count = 0;
         $i = 0;
         foreach ($data as $item) {
-            $percent_count = $percent_count + $item['stars'];
+            $percent_count = $percent_count + (int) $item['content'];
             $i++;
         }
         if ($i == 0) {
@@ -364,84 +442,117 @@ class RatingController extends Controller
             return $this->goHome();
         }
 
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         // контроль посещений страниц
         if (Yii::$app->user->isGuest) {
             // удаляет dislike, если есть
-            LikeForm::deleteAll([
-                'like' => 0,
-                'comment_id' => $comment_id,
+            DocumentForm::deleteAll([
+                'annotation' => 'dislike',
+                'item_id' => $comment_id,
                 'ip' => Yii::$app->request->userIP,
                 'user_agent' => Yii::$app->request->userAgent
             ]);
             // с одним IP обновляется раз в сутки
             $data = (new \yii\db\Query())
                 ->select(['*'])
-                ->from('like')
+                ->from('document')
                 ->where([
-                    'comment_id' => $comment_id,
+                    'annotation' => 'like',
+                    'item_id' => $comment_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
-                ])->one();
+                ])
+                ->andWhere(['>', 'updated_at', time() - (60 * 60 * 24)])
+                ->one();
+
             if (!$data) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 1;
-                $modelLikeForm->dislike = 0;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->comment_id = $comment_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->save();
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'like-' . $time;
+                $modelDocumentForm->alias = 'like-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $comment_id;
+                $modelDocumentForm->annotation = 'like';
+                $modelDocumentForm->content = 'like';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'comment_id' => $comment_id,
+                DocumentForm::deleteAll([
+                    'annotation' => 'like',
+                    'item_id' => $comment_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ]);
             }
         } else {
-                // удаляет dislike, если есть
-                LikeForm::deleteAll([
-                    'like' => 0,
-                    'comment_id' => $comment_id,
-                    'user_id' => Yii::$app->user->id
-                ]);
-            $modelLikeForm = LikeForm::findOne([
-                'comment_id' => $comment_id,
-                'user_id' => Yii::$app->user->id
+            // удаляет dislike, если есть
+            DocumentForm::deleteAll([
+                'annotation' => 'dislike',
+                'item_id' => $comment_id,
+                'created_by' => Yii::$app->user->id,
             ]);
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 1;
-                $modelLikeForm->dislike = 0;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->comment_id = $comment_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->user_id = Yii::$app->user->id;
-                $modelLikeForm->save();
+
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
+                ->where([
+                    'annotation' => 'like',
+                    'item_id' => $comment_id,
+                    'created_by' => Yii::$app->user->id,
+                ])->one();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'like-' . $time;
+                $modelDocumentForm->alias = 'like-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $comment_id;
+                $modelDocumentForm->annotation = 'like';
+                $modelDocumentForm->content = 'like';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'comment_id' => $comment_id,
-                    'user_id' => Yii::$app->user->id
+                DocumentForm::deleteAll([
+                    'annotation' => 'like',
+                    'item_id' => $comment_id,
+                    'created_by' => Yii::$app->user->id,
                 ]);
             }
         }
 
-        // количество лайков
         $likes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 1,
-                'comment_id' => $comment_id,
+                'annotation' => 'like',
+                'parent_id' => $parent['id'],
+                'item_id' => $comment_id,
             ])
             ->count();
 
-        // количество дизлайков
         $dislikes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 0,
-                'comment_id' => $comment_id,
+                'annotation' => 'dislike',
+                'parent_id' => $parent['id'],
+                'item_id' => $comment_id,
             ])
             ->count();
 
@@ -464,92 +575,118 @@ class RatingController extends Controller
             return $this->goHome();
         }
 
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         // контроль посещений страниц
         if (Yii::$app->user->isGuest) {
-            // удаляет dislike, если есть
-            LikeForm::deleteAll([
-                'like' => 1,
-                'comment_id' => $comment_id,
-                'ip' => Yii::$app->request->userIP,
-                'user_agent' => Yii::$app->request->userAgent
-            ]);
             // удаляет like, если есть
-            LikeForm::deleteAll([
-                'like' => 1,
-                'comment_id' => $comment_id,
+            DocumentForm::deleteAll([
+                'annotation' => 'like',
+                'item_id' => $comment_id,
                 'ip' => Yii::$app->request->userIP,
                 'user_agent' => Yii::$app->request->userAgent
             ]);
+
             // с одним IP обновляется раз в сутки
-            $modelLikeForm = LikeForm::find()
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
                 ->where([
-                    'comment_id' => $comment_id,
+                    'annotation' => 'dislike',
+                    'item_id' => $comment_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ])
+                ->andWhere(['>', 'updated_at', time() - (60 * 60 * 24)])
                 ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 0;
-                $modelLikeForm->dislike = 1;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->comment_id = $comment_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->save();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'dislike-' . $time;
+                $modelDocumentForm->alias = 'dislike-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $comment_id;
+                $modelDocumentForm->annotation = 'dislike';
+                $modelDocumentForm->content = 'dislike';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'comment_id' => $comment_id,
+                DocumentForm::deleteAll([
+                    'annotation' => 'dislike',
+                    'item_id' => $comment_id,
                     'ip' => Yii::$app->request->userIP,
                     'user_agent' => Yii::$app->request->userAgent
                 ]);
             }
         } else {
             // удаляет dislike, если есть
-            LikeForm::deleteAll([
-                'like' => 1,
-                'comment_id' => $comment_id,
-                'user_id' => Yii::$app->user->id
+            DocumentForm::deleteAll([
+                'annotation' => 'like',
+                'item_id' => $comment_id,
+                'created_by' => Yii::$app->user->id,
             ]);
-            $modelLikeForm = LikeForm::find()
+
+            $data = (new \yii\db\Query())
+                ->select(['*'])
+                ->from('document')
                 ->where([
-                    'comment_id' => $comment_id,
-                    'user_id' => Yii::$app->user->id
-                ])
-                ->one();
-            if (!$modelLikeForm) {
-                $modelLikeForm = new LikeForm();
-                $modelLikeForm->like = 0;
-                $modelLikeForm->dislike = 1;
-                $modelLikeForm->created_at = time();
-                $modelLikeForm->comment_id = $comment_id;
-                $modelLikeForm->ip = Yii::$app->request->userIP;
-                $modelLikeForm->user_agent = Yii::$app->request->userAgent;
-                $modelLikeForm->user_id = Yii::$app->user->id;
-                $modelLikeForm->save();
+                    'annotation' => 'dislike',
+                    'item_id' => $comment_id,
+                    'created_by' => Yii::$app->user->id,
+                ])->one();
+
+            if (!$data) {
+                $modelDocumentForm = new DocumentForm();
+                $modelDocumentForm->scenario = 'create-element';
+                $time = time();
+                $modelDocumentForm->name = 'dislike-' . $time;
+                $modelDocumentForm->alias = 'dislike-' . $time;
+                $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+                $modelDocumentForm->template_id = $parent['template_id'];
+                $modelDocumentForm->parent_id = $parent['id'];
+                $modelDocumentForm->item_id = $comment_id;
+                $modelDocumentForm->annotation = 'dislike';
+                $modelDocumentForm->content = 'dislike';
+                if (!$modelDocumentForm->save()) {
+                    dd($modelDocumentForm->errors);
+                }
             } else {
-                LikeForm::deleteAll([
-                    'comment_id' => $comment_id,
-                    'user_id' => Yii::$app->user->id
+                DocumentForm::deleteAll([
+                    'annotation' => 'dislike',
+                    'item_id' => $comment_id,
+                    'created_by' => Yii::$app->user->id,
                 ]);
             }
         }
 
-        // количество дизлайков
-        $dislikes = (new \yii\db\Query())
-            ->from('like')
+        $likes = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 0,
-                'comment_id' => $comment_id,
+                'annotation' => 'like',
+                'parent_id' => $parent['id'],
+                'item_id' => $comment_id,
             ])
             ->count();
 
-        // количество лайков
-        $likes = (new \yii\db\Query())
-            ->from('like')
+        $dislikes = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 1,
-                'comment_id' => $comment_id,
+                'annotation' => 'dislike',
+                'parent_id' => $parent['id'],
+                'item_id' => $comment_id,
             ])
             ->count();
 

@@ -475,7 +475,7 @@ class FieldsManage extends Object
                 ->one();
             $data = $this->getData($user['document_id'], $document['template_id']);
 
-            $name = $this->getValueByName('Имя', $data);
+            $name = $this->getValueByName($name, $data);
 
             if ($name) {
                 return $name;

@@ -59,27 +59,20 @@ use yii\bootstrap\ActiveForm;
                     processData: false
                 })
                 .done(function(data) {
-                    try {
-                        var result = jQuery.parseJSON(data);
-                    } catch (e) {
-                        return false;
-                    }
-                    if(result.success) {
-                        // data is saved
-                        console.log('success');
-                    } else if (result.validation) {
-                        // server validation failed
-                        console.log('validation failed');
-                        form.yiiActiveForm('updateMessages', data.validation, true); // renders validation messages at appropriate places
-                    } else {
-                        // incorrect server response
-                        console.log('incorrect server response');
-                    }
+                    console.log('success');
+                    $.pjax({
+                        type: "GET", 
+                        url: "/bm/update-count",
+                        container: "#basket-product-count",
+                        push: false,
+                        timeout: 20000,
+                        scrollTo: false
+                    });
                 })
                 .fail(function () {
                     // request failed
                     console.log('request failed');
-                })
+                });
             return false; // prevent default form submission
         });
 JS;

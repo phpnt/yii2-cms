@@ -5,7 +5,6 @@ namespace frontend\modules\control\controllers;
 use common\models\Constants;
 use common\models\extend\UserExtend;
 use common\models\forms\DocumentForm;
-use common\models\forms\VisitForm;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\AccessControl;
@@ -80,69 +79,11 @@ class DefaultController extends Controller
             }
         }
 
-        if (Yii::$app->request->get('alias')) {
-            $alias = Yii::$app->request->get('alias');
-        } else {
-            $alias = 'main';
-        }
-
         try {
             parent::beforeAction($action);
         } catch (BadRequestHttpException $e) {
             Yii::$app->errorHandler->logException($e);
             throw new ErrorException($e->getMessage());
-        }
-
-        $data = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('document')
-            ->where([
-                'alias' => $alias,
-                //'parent_id' => $this->page['id'],
-            ])
-            ->one();
-
-        $document_id = $data['id'];
-
-        // контроль посещений страниц
-        if (Yii::$app->user->isGuest) {
-            // с одним IP обновляется раз в сутки
-            $data = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('visit')
-                ->where([
-                    'document_id' => $document_id,
-                    'ip' => Yii::$app->request->userIP,
-                    'user_agent' => Yii::$app->request->userAgent
-                ])
-                ->andWhere(['>', 'created_at', time() - 24*60*60])
-                ->one();
-            if ($data == false) {
-                $modelVisitForm = new VisitForm();
-                $modelVisitForm->created_at = time();
-                $modelVisitForm->document_id = $document_id;
-                $modelVisitForm->ip = Yii::$app->request->userIP;
-                $modelVisitForm->user_agent = Yii::$app->request->userAgent;
-                $modelVisitForm->save();
-            }
-        } else {
-            $data = (new \yii\db\Query())
-                ->select(['*'])
-                ->from('visit')
-                ->where([
-                    'document_id' => $document_id,
-                    'user_id' => Yii::$app->user->id
-                ])
-                ->one();
-            if (!$data) {
-                $modelVisitForm = new VisitForm();
-                $modelVisitForm->created_at = time();
-                $modelVisitForm->document_id = $document_id;
-                $modelVisitForm->ip = Yii::$app->request->userIP;
-                $modelVisitForm->user_agent = Yii::$app->request->userAgent;
-                $modelVisitForm->user_id = Yii::$app->user->id;
-                $modelVisitForm->save();
-            }
         }
 
         return true;

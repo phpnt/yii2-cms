@@ -9,13 +9,14 @@
 
 namespace common\widgets\Rating;
 
+use common\models\Constants;
 use Yii;
 use yii\base\Widget;
 
 class CommentRating extends Widget
 {
     public $comment_id;
-    public $access_guests = true;   // разрешены не авторизованным пользовател€м
+    public $access_guests = true;
 
     public function init()
     {
@@ -24,20 +25,31 @@ class CommentRating extends Widget
 
     public function run()
     {
-        // количество лайков
-        $likes = (new \yii\db\Query())
-            ->from('like')
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
             ->where([
-                'like' => 1,
-                'comment_id' => $this->comment_id,
+                'alias' => 'rating',
+            ])
+            ->one();
+
+        $likes = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
+            ->where([
+                'annotation' => 'like',
+                'parent_id' => $parent['id'],
+                'item_id' => $this->comment_id,
             ])
             ->count();
-        // количество дизлайков
+
         $dislikes = (new \yii\db\Query())
-            ->from('like')
+            ->select(['document.*'])
+            ->from('document')
             ->where([
-                'like' => 0,
-                'comment_id' => $this->comment_id,
+                'annotation' => 'dislike',
+                'parent_id' => $parent['id'],
+                'item_id' => $this->comment_id,
             ])
             ->count();
 

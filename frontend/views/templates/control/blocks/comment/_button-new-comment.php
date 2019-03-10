@@ -11,7 +11,7 @@ use yii\bootstrap\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
+/* @var $item_id int */
 /* @var $access_answers boolean */
 /* @var $modelUserForm \common\models\extend\UserExtend */
 $modelUserForm = Yii::$app->user->identity;
@@ -23,8 +23,8 @@ $modelUserForm = Yii::$app->user->identity;
             'onclick' => '
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/create-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]) . '",
-                    container: "#block-comment-add-form-' . $document_id . '",
+                    url: "' . Url::to(['/comment/create-comment', 'item_id' => $item_id]) . '",
+                    container: "#block-comment-add-form-' . $item_id . '",
                     push: false,
                     timeout: 10000,
                     scrollTo: false
@@ -33,7 +33,7 @@ $modelUserForm = Yii::$app->user->identity;
 <?php else: ?>
     <?php
     $url = Url::to(['/profile/default/create-profile',
-        'url' => Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]),
+        'url' => Url::to(['/comment/refresh-comment', 'item_id' => $item_id]),
         'container' => '#comment-widget',
     ]);
     ?>

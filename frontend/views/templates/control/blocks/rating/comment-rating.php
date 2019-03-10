@@ -18,7 +18,7 @@ use yii\helpers\Url;
 <span id="comment-rating-widget-<?= $comment_id ?>"  class="block-comment-rating">
     <?= Html::a('<i class="fas fa-thumbs-up"></i> ' . $likes, 'javascript:void(0);', [
         'title' => Yii::t('app', 'Нравиться'),
-        'class' => 'btn btn-xs btn-success',
+        'class' => 'btn btn-xs',
         'onclick' => '
             $.pjax({
                 type: "GET",
@@ -30,7 +30,7 @@ use yii\helpers\Url;
             })'
     ]); ?>
     <?= Html::a('<i class="fas fa-thumbs-down"></i> ' . $dislikes, 'javascript:void(0);', [
-        'class' => 'btn btn-xs btn-danger',
+        'class' => 'btn btn-xs',
         'title' => Yii::t('app', 'Не нравиться'),
         'onclick' => '
             $.pjax({

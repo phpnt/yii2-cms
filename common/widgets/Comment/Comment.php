@@ -15,7 +15,7 @@ use yii\base\Widget;
 
 class Comment extends Widget
 {
-    public $document_id;
+    public $item_id;
 
     public $access_answers = true;  // разрешены ответы на комментарии
     public $access_guests = false;  // разрешены не авторизованным пользователям
@@ -37,21 +37,30 @@ class Comment extends Widget
 
     public function run()
     {
-        $comments = (new \yii\db\Query())
+        $parent = (new \yii\db\Query())
             ->select(['*'])
-            ->from('comment')
+            ->from('document')
             ->where([
-                'document_id' => $this->document_id,
-                'parent_id' => null,
+                'alias' => 'comments',
+            ])
+            ->one();
+
+        $comments = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
+            ->leftJoin('value_int', 'value_int.document_id = document.id')
+            ->where([
+                'parent_id' => $parent['id'],
+                'item_id' => $this->item_id,
+                'value_int.id' => null,
             ])
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
         return $this->render('@frontend/views/templates/control/blocks/comment/index', [
             'widget' => $this,
-            'document_id' => $this->document_id,
-            'comments' => $comments,
-            'access_answers' => $this->access_answers
+            'item_id' => $this->item_id,
+            'comments' => $comments
         ]);
     }
 }

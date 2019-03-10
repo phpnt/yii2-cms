@@ -16,7 +16,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
     <?= BootstrapNotify::widget() ?>
     <?php if ($countComment): ?>
         <span class="pull-right-container">
-        <span class="label label-danger pull-right"><?= $countComment ?></span>
+        <span class="label label-warning pull-right"><?= $countComment ?></span>
     </span>
     <?php endif; ?>
 </span>

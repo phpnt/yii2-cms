@@ -10,21 +10,21 @@
 use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
-/* @var $modelCommentForm \common\models\forms\CommentForm */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm */
 ?>
 <?php
-$header = $modelCommentForm->isNewRecord ? Yii::t('app', 'Создать комментарий') : Yii::t('app', 'Изменить комментарий');
+$header = $modelDocumentForm->isNewRecord ? Yii::t('app', 'Создать элемент') : Yii::t('app', 'Изменить элемент');
 Modal::begin([
     'id' => 'universal-modal',
-    'size' => 'modal-sm',
+    'size' => 'modal-lg',
     'header' => '<h2 class="text-center m-t-sm m-b-sm">' . $header . '</h2>',
     'clientOptions' => ['show' => true],
     'options' => [],
 ]);
 ?>
     <div class="row">
-        <?= $this->render('_form-comment', [
-            'modelCommentForm' => $modelCommentForm,
+        <?= $this->render('_form-element', [
+            'modelDocumentForm' => $modelDocumentForm,
         ]); ?>
     </div>
     <div class="clearfix"></div>

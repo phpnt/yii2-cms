@@ -10,7 +10,7 @@
 
 use yii\helpers\Url;
 use yii\widgets\Menu;
-use common\widgets\UncheckedComments\UncheckedComments;
+use common\widgets\Comment\UncheckedComments;
 
 /* @var $this yii\web\View */ 
 ?>
@@ -30,29 +30,43 @@ use common\widgets\UncheckedComments\UncheckedComments;
                         'options' => ['class' => 'header'],
                     ],
                     [
-                        'label' => '<i class="glyphicon glyphicon-home"></i><span> ' . Yii::t('app', 'Рабочий стол') . '</span>',
+                        'label' => '<i class="fas fa-home"></i><span> ' . Yii::t('app', 'Рабочий стол') . '</span>',
                         'url' => ['/main/manage/index'],
                         'options' => ['class' => 'treeview'],
                         'visible' => Yii::$app->user->can('main/manage/index')
                     ],
                     [
-                        'label' => '<i class="glyphicon glyphicon-file"></i><span> ' . Yii::t('app', 'Документы') . '</span>',
+                        'label' => '<i class="fas fa-file"></i><span> ' . Yii::t('app', 'Документы') . '</span>',
                         'url' => ['/document/manage/index'],
                         'options' => ['class' => 'treeview'],
                         'visible' => Yii::$app->user->can('document/manage/index')
                     ],
                     [
-                        'label' => '<i class="fa fa-user"></i><span> '.Yii::t('app', 'Пользователи').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+                        'label' => '<i class="fas fa-th"></i><span> '.Yii::t('app', 'Элементы').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
                         'url' => '#',
                         'items' => [
                             [
-                                'label' => '<i class="fa fa-users"></i><span> '.Yii::t('app', 'Пользователи').'</span>',
+                                'label' => '<i class="fas fa-comment-alt"></i><span> ' . Yii::t('app', 'Комментарии') . '</span>' . UncheckedComments::widget(),
+                                'url' => ['/elements/comments/index'],
+                                'options' => ['class' => 'treeview'],
+                                'active' => Yii::$app->controller->id == 'comments',
+                                'visible' => Yii::$app->user->can('elements/comments/index')
+                            ],
+                        ],
+                        'active' => Yii::$app->controller->module->id == 'elements',
+                    ],
+                    [
+                        'label' => '<i class="fas fa-user"></i><span> '.Yii::t('app', 'Пользователи').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+                        'url' => '#',
+                        'items' => [
+                            [
+                                'label' => '<i class="fas fa-users"></i><span> '.Yii::t('app', 'Пользователи').'</span>',
                                 'url' => ['/user/manage/index'],
                                 'options' => ['class' => 'treeview'],
                                 'visible' => Yii::$app->user->can('user/manage/index')
                             ],
                             [
-                                'label' => '<i class="fa fa-user-lock"></i><span> '.Yii::t('app', 'Роли и права').'</span>',
+                                'label' => '<i class="fas fa-user-lock"></i><span> '.Yii::t('app', 'Роли и права').'</span>',
                                 'url' => ['/role/manage/index'],
                                 'options' => ['class' => 'treeview'],
                                 'visible' => Yii::$app->user->can('role/manage/index')
@@ -61,29 +75,23 @@ use common\widgets\UncheckedComments\UncheckedComments;
                         'active' => Yii::$app->controller->module->id == 'user' || Yii::$app->controller->module->id == 'role',
                     ],
                     [
-                        'label' => '<i class="fas fa-comment-alt"></i><span> ' . Yii::t('app', 'Комментарии') . '</span>' . UncheckedComments::widget(),
-                        'url' => ['/comment/manage/index'],
-                        'options' => ['class' => 'treeview'],
-                        //'visible' => Yii::$app->user->can('comment/manage/index')
-                    ],
-                    [
-                        'label' => '<i class="fa fa-map"></i><span> '.Yii::t('app', 'Гео').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+                        'label' => '<i class="fas fa-map"></i><span> '.Yii::t('app', 'Гео').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
                         'url' => '#',
                         'items' => [
                             [
-                                'label' => '<i class="fa fa-globe-asia"></i><span> '.Yii::t('app', 'Страны').'</span>',
+                                'label' => '<i class="fas fa-globe-asia"></i><span> '.Yii::t('app', 'Страны').'</span>',
                                 'url' => ['/geo/country/index'],
                                 'options' => ['class' => 'treeview'],
                                 'visible' => Yii::$app->user->can('geo/country/index')
                             ],
                             [
-                                'label' => '<i class="fa fa-map"></i><span> '.Yii::t('app', 'Регионы').'</span>',
+                                'label' => '<i class="fas fa-map"></i><span> '.Yii::t('app', 'Регионы').'</span>',
                                 'url' => ['/geo/region/index'],
                                 'options' => ['class' => 'treeview'],
                                 'visible' => Yii::$app->user->can('geo/region/index')
                             ],
                             [
-                                'label' => '<i class="fa fa-building"></i><span> '.Yii::t('app', 'Города').'</span>',
+                                'label' => '<i class="fas fa-building"></i><span> '.Yii::t('app', 'Города').'</span>',
                                 'url' => ['/geo/city/index'],
                                 'options' => ['class' => 'treeview'],
                                 'visible' => Yii::$app->user->can('geo/city/index')
@@ -98,52 +106,36 @@ use common\widgets\UncheckedComments\UncheckedComments;
                         'visible' => Yii::$app->user->can('i18n/manage/index')
                     ],
                     [
-                        'label' => '<i class="glyphicon glyphicon-cog"></i><span> '.Yii::t('app', 'Настройки').'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
-                        'url' => '#',
-                        'items' => [
-                            [
-                                'label' => '<i class="fa fa-chart-area"></i><span> '.Yii::t('app', 'Статистика').'</span>',
-                                'url' => ['/settings/statistic/index'],
-                                'options' => ['class' => 'treeview'],
-                                'visible' => Yii::$app->user->can('settings/statistic/index')
-                            ],
-                            [
-                                'label' => '<i class="fa fa-download"></i><span> '.Yii::t('app', 'Экспорт всей БД в CSV').'</span>',
-                                'url' => Url::to(['/csv-manager/export',
-                                    'models[0]' => \common\models\search\UserSearch::class,
-                                    'models[1]' => \common\models\search\AuthAssignmentSearch::class,
-                                    'models[2]' => \common\models\search\AuthItemSearch::class,
-                                    'models[3]' => \common\models\search\AuthItemChildSearch::class,
-                                    'models[4]' => \common\models\search\AuthRuleSearch::class,
-                                    'models[5]' => \common\models\search\DocumentSearch::class,
-                                    'models[6]' => \common\models\search\FieldSearch::class,
-                                    'models[7]' => \common\models\search\GeoCountrySearch::class,
-                                    'models[8]' => \common\models\search\GeoRegionSearch::class,
-                                    'models[9]' => \common\models\search\GeoCitySearch::class,
-                                    'models[10]' => \common\models\search\LikeSearch::class,
-                                    'models[11]' => \common\models\search\TemplateSearch::class,
-                                    'models[12]' => \common\models\search\UserOauthKeySearch::class,
-                                    'models[13]' => \common\models\search\ValueTextSearch::class,
-                                    'models[14]' => \common\models\search\ValueStringSearch::class,
-                                    'models[15]' => \common\models\search\ValueNumericSearch::class,
-                                    'models[16]' => \common\models\search\ValueFileSearch::class,
-                                    'models[17]' => \common\models\search\ValueIntSearch::class,
-                                    'models[18]' => \common\models\search\VisitSearch::class,
-                                    'models[19]' => \common\models\search\MessageSearch::class,
-                                    'models[20]' => \common\models\search\SourceMessageSearch::class,
-                                    'models[21]' => \common\models\search\CommentSearch::class,
-                                    'models[22]' => \common\models\search\TemplateViewSearch::class,
-                                    'models[23]' => \common\models\search\ValuePriceSearch::class,
-                                    'with_header' => true
-                                ]),
-                                'options' => ['class' => 'treeview'],
-                                'visible' => Yii::$app->user->can('admin')
-                            ],
-                        ],
-                        'active' => Yii::$app->controller->module->id == 'settings',
+                        'label' => '<i class="fas fa-download"></i><span> '.Yii::t('app', 'Экспорт всей БД в CSV').'</span>',
+                        'url' => Url::to(['/csv-manager/export',
+                            'models[0]' => \common\models\search\UserSearch::class,
+                            'models[1]' => \common\models\search\AuthAssignmentSearch::class,
+                            'models[2]' => \common\models\search\AuthItemSearch::class,
+                            'models[3]' => \common\models\search\AuthItemChildSearch::class,
+                            'models[4]' => \common\models\search\AuthRuleSearch::class,
+                            'models[5]' => \common\models\search\DocumentSearch::class,
+                            'models[6]' => \common\models\search\FieldSearch::class,
+                            'models[7]' => \common\models\search\GeoCountrySearch::class,
+                            'models[8]' => \common\models\search\GeoRegionSearch::class,
+                            'models[9]' => \common\models\search\GeoCitySearch::class,
+                            'models[10]' => \common\models\search\TemplateSearch::class,
+                            'models[11]' => \common\models\search\UserOauthKeySearch::class,
+                            'models[12]' => \common\models\search\ValueTextSearch::class,
+                            'models[13]' => \common\models\search\ValueStringSearch::class,
+                            'models[14]' => \common\models\search\ValueNumericSearch::class,
+                            'models[15]' => \common\models\search\ValueFileSearch::class,
+                            'models[16]' => \common\models\search\ValueIntSearch::class,
+                            'models[17]' => \common\models\search\MessageSearch::class,
+                            'models[18]' => \common\models\search\SourceMessageSearch::class,
+                            'models[19]' => \common\models\search\TemplateViewSearch::class,
+                            'models[20]' => \common\models\search\ValuePriceSearch::class,
+                            'with_header' => true
+                        ]),
+                        'options' => ['class' => 'treeview'],
+                        'visible' => Yii::$app->user->can('admin')
                     ],
                     [
-                        'label' => '<i class="glyphicon glyphicon-hdd"></i><span> ' . Yii::t('app', 'Файловый менеджер') . '</span>',
+                        'label' => '<i class="fas fa-hdd"></i><span> ' . Yii::t('app', 'Файловый менеджер') . '</span>',
                         'url' => ['#'],
                         'template' => '<a id="link-files-manager" href="javascript:void(0);" class="url-class">{label}</a>',
                         'options' => ['class' => 'treeview']

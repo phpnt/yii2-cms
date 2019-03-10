@@ -29,7 +29,6 @@ use Yii;
  * @property string $ip IP пользователя
  * @property string $user_agent Данные браузера
  *
- * @property Comment[] $comments
  * @property Document $item
  * @property Document[] $documents
  * @property Document $parent
@@ -37,7 +36,6 @@ use Yii;
  * @property Template $template
  * @property User $createdBy
  * @property User $updatedBy
- * @property Like[] $likes
  * @property User[] $users
  * @property ValueFile[] $valueFiles
  * @property ValueInt[] $valueInts
@@ -46,7 +44,6 @@ use Yii;
  * @property ValuePrice[] $valuePrices0
  * @property ValueString[] $valueStrings
  * @property ValueText[] $valueTexts
- * @property Visit[] $visits
  */
 class Document extends \yii\db\ActiveRecord
 {
@@ -110,14 +107,6 @@ class Document extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['document_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getItem()
     {
         return $this->hasOne(Document::className(), ['id' => 'item_id']);
@@ -169,14 +158,6 @@ class Document extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLikes()
-    {
-        return $this->hasMany(Like::className(), ['document_id' => 'id']);
     }
 
     /**
@@ -241,13 +222,5 @@ class Document extends \yii\db\ActiveRecord
     public function getValueTexts()
     {
         return $this->hasMany(ValueText::className(), ['document_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVisits()
-    {
-        return $this->hasMany(Visit::className(), ['document_id' => 'id']);
     }
 }

@@ -10,7 +10,7 @@
 use common\widgets\Rating\CommentRating;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
+/* @var $item_id int */
 /* @var $comments array */
 /* @var $access_answers boolean */
 /* @var $commentsManage \common\widgets\Comment\components\CommentManage */
@@ -22,18 +22,15 @@ $commentsManage = Yii::$app->commentsManage;
 ?>
 <div class="comment-list">
     <?php foreach ($comments as $comment): ?>
-        <strong><?= $fieldsManage->getUserValueByName($name = 'Имя', $comment['user_id']) ?></strong>:
+        <strong><?= $fieldsManage->getUserValueByName($name = 'Имя', $comment['created_by']) ?></strong>:
         <div class="comment-item">
-            <?= $comment['text'] ?>
+            <?= $comment['content'] ?>
             <p><?= Yii::$app->formatter->asDate($comment['updated_at']) ?></p>
         </div>
         <div id="block-comment-update-form-<?= $comment['id'] ?>" class="m-b-md text-right">
             <?php if (!Yii::$app->user->isGuest): ?>
                 <?= $this->render('__buttons-comment', [
-                    'document_id' => $document_id,
-                    'comment_id' => $comment['id'],
-                    'user_id' => $comment['user_id'],
-                    'access_answers' => $access_answers,
+                    'comment' => $comment,
                 ]) ?>
             <?php endif; ?>
             &nbsp;&nbsp;&nbsp;<?= CommentRating::widget(['comment_id' => $comment['id']]) ?>
@@ -42,9 +39,8 @@ $commentsManage = Yii::$app->commentsManage;
         <?php if ($commentsIn): ?>
             <div class="comment-sub-item">
                 <?= $this->render('_comments-list', [
-                    'document_id' => $document_id,
-                    'comments' => $commentsIn,
-                    'access_answers' => $access_answers,
+                    'item_id' => $item_id,
+                    'comments' => $commentsIn
                 ]) ?>
             </div>
         <?php endif; ?>

@@ -11,22 +11,21 @@ use yii\bootstrap\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
-/* @var $comment_id int */
-/* @var $user_id int */
-/* @var $access_answers boolean */
+/* @var $comment array */
 /* @var $modelUserForm \common\models\extend\UserExtend */
 $modelUserForm = Yii::$app->user->identity;
+
+//d($comment);
 ?>
-<?php if ($access_answers && $user_id != Yii::$app->user->id): ?>
+<?php if ($comment['created_by'] != Yii::$app->user->id): ?>
     <?php if ($modelUserForm->document_id): ?>
         <?= Html::a(Yii::t('app', 'Ответить'), 'javascript:void(0)',
             [
                 'onclick' => '
                     $.pjax({
                         type: "GET",
-                        url: "' . Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
-                        container: "#block-comment-update-form-' . $comment_id . '",
+                        url: "' . Url::to(['/comment/create-comment', 'item_id' => $comment['item_id'], 'comment_id' => $comment['id']]) . '",
+                        container: "#block-comment-update-form-' . $comment['id'] . '",
                         push: false,
                         timeout: 10000,
                         scrollTo: false
@@ -35,7 +34,7 @@ $modelUserForm = Yii::$app->user->identity;
     <?php else: ?>
         <?php
         $url = Url::to(['/profile/default/create-profile',
-            'url' => Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]),
+            'url' => Url::to(['/comment/refresh-comment', 'item_id' => $comment['item_id']]),
             'container' => '#comment-widget',
         ]);
         ?>
@@ -53,14 +52,17 @@ $modelUserForm = Yii::$app->user->identity;
             ]) ?>
     <?php endif; ?>
 <?php endif; ?>
-<?php if ($user_id == Yii::$app->user->id): ?>
+<?php if ($comment['created_by'] == Yii::$app->user->id): ?>
+    <?php
+    //d($comment);
+    ?>
     <?= Html::a(Yii::t('app', 'Редактировать'), 'javascript:void(0)',
         [
             'onclick' => '
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
-                    container: "#block-comment-update-form-' . $comment_id . '",
+                    url: "' . Url::to(['/comment/update-comment', 'id' => $comment['id']]) . '",
+                    container: "#block-comment-update-form-' . $comment['id'] . '",
                     push: false,
                     timeout: 10000,
                     scrollTo: false
@@ -71,7 +73,7 @@ $modelUserForm = Yii::$app->user->identity;
             'onclick' => '
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/confirm-delete-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) . '",
+                    url: "' . Url::to(['/comment/confirm-delete-comment', 'id' => $comment['id']]) . '",
                     container: "#pjaxModalUniversal",
                     push: false,
                     timeout: 10000,

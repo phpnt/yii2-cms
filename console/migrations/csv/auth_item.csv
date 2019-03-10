@@ -1,12 +1,5 @@
 name;type;description;rule_name;data;created_at;updated_at
 admin;1;Администратор;;;1535796441;1549205215
-comment/manage/count-unchecked;2;"Обновляет значок не проверенных комментариев.";;;1549204668;1549204668
-comment/manage/create-comment;2;"comment/manage/create-comment (создание комментариев)";;;1547977028;1547977028
-comment/manage/delete-comment;2;"comment/manage/delete-comment (удаление комментариев)";;;1547977054;1547977054
-comment/manage/index;2;"comment/manage/index (просмотр списка комментариев)";;;1547976886;1547976940
-comment/manage/refresh-comment;2;"comment/manage/refresh-comment (обновление комментариев)";;;1547976974;1547976974
-comment/manage/update-comment;2;"comment/manage/update-comment (изменение комментариев)";;;1547977000;1547977000
-comment/manage/view-comment;2;"comment/manage/view-comment (просмотр комментариев)";;;1547976925;1547976925
 document/basket/index;2;"document/basket/index (просмотр таблицы корзины)";;;1540823696;1540823696
 document/basket/view-basket;2;"document/basket/view-basket (просмотр элемента корзины)";;;1540823662;1540823662
 document/element-manage/confirm-delete-element;2;"document/element-manage/confirm-delete-element (подтверждение удаления элемента)";;;1540722333;1540722333
@@ -39,6 +32,13 @@ document/template-manage/refresh-template;2;"document/template-manage/refresh-te
 document/template-manage/update-template;2;"document/template-manage/update-template (изменение шаблона)";;;1540719202;1540719202
 document/template-manage/view-template;2;"document/template-manage/view-template (просмотр шаблона)";;;1540719051;1540719051
 editor;1;Модератор;;;1535796441;1540974233
+elements/comments/count-unchecked;2;"Обновляет значок не проверенных комментариев.";;;1549204668;1552205139
+elements/comments/create;2;"elements/comments/create (создание комментариев)";;;1547977028;1552205158
+elements/comments/delete;2;"elements/comments/delete (удаление комментариев)";;;1547977054;1552205176
+elements/comments/index;2;"elements/comments/index (просмотр списка комментариев)";;;1547976886;1552205190
+elements/comments/refresh;2;"elements/comments/refresh (обновление комментариев)";;;1547976974;1552205205
+elements/comments/update;2;"elements/comments/update (изменение комментариев)";;;1547977000;1552205226
+elements/comments/view;2;"elements/comments/view (просмотр комментариев)";;;1547976925;1552205245
 geo/city/get-city;2;"geo/city/get-city (получить город)";;;1540732206;1540732206
 geo/city/index;2;"geo/city/index (просматривать таблицу городов)";;;1540726983;1540726983
 geo/country/get-country;2;"geo/country/get-country (получить страну)";;;1540732252;1540732252

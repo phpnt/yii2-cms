@@ -33,10 +33,12 @@ class CommentManage extends Object
     // получает дочерние комментарии
     public function getChilds($parent_id) {
         $comments = (new \yii\db\Query())
-            ->select(['*'])
-            ->from('comment')
+            ->select(['document.*'])
+            ->from('document')
+            ->innerJoin('value_int', 'value_int.document_id = document.id')
             ->where([
-                'parent_id' => $parent_id,
+                'value_int.type' => Constants::FIELD_TYPE_DOC,
+                'value_int.value' => $parent_id,
             ])
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();

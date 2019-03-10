@@ -145,32 +145,6 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                 },
             ],
             [
-                'label' => Yii::t('app', 'Просмотров'),
-                'format' => 'raw',
-                'contentOptions' => [
-                    'class' => 'vcenter',
-                    //'style' => 'max-width: 100px !important; width: 100px !important;'
-                ],
-                'headerOptions'   => ['class' => 'text-center'],
-                'value' => function ($modelDocumentForm) {
-                    /* @var $modelDocumentForm \common\models\forms\DocumentForm */
-                    return $modelDocumentForm->viewedDocument;
-                },
-            ],
-            [
-                'label' => Yii::t('app', 'Лайков'),
-                'format' => 'raw',
-                'contentOptions' => [
-                    'class' => 'vcenter',
-                    //'style' => 'max-width: 100px !important; width: 100px !important;'
-                ],
-                'headerOptions'   => ['class' => 'text-center'],
-                'value' => function ($modelDocumentForm) {
-                    /* @var $modelDocumentForm \common\models\forms\DocumentForm */
-                    return $modelDocumentForm->likedDocument;
-                },
-            ],
-            [
                 'attribute' => 'status',
                 'format' => 'raw',
                 'contentOptions' => [
@@ -188,6 +162,18 @@ use phpnt\bootstrapNotify\BootstrapNotify;
                         'live-search' => 'false',
                         'title' => '---'
                     ]]),
+                //'contentOptions' => ['style'=>'max-width: 20px !important; width: 20px !important;'],
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'contentOptions' => [
+                    'class' => 'text-center vcenter',
+                ],
+                'value' => function ($modelDocumentForm) {
+                    /* @var $modelDocumentForm \common\models\forms\DocumentForm */
+                    return Yii::$app->formatter->asDatetime($modelDocumentForm->created_at);
+                },
                 //'contentOptions' => ['style'=>'max-width: 20px !important; width: 20px !important;'],
             ],
             //'id',

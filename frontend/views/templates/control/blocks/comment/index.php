@@ -11,7 +11,7 @@ use phpnt\bootstrapNotify\BootstrapNotify;
 use frontend\views\templates\control\blocks\comment\assets\CommentTempAsset;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
+/* @var $item_id int */
 /* @var $comments array */
 /* @var $access_answers boolean */
 
@@ -25,17 +25,15 @@ CommentTempAsset::register($this);
     <div class="m-b-md">
         <div class="slim-scroll-comments block-comments-height" data-height="600px">
             <?= $this->render('_comments-list', [
-                'document_id' => $document_id,
+                'item_id' => $item_id,
                 'comments' => $comments,
-                'access_answers' => $access_answers
             ]) ?>
         </div>
     </div>
     <?php if (!Yii::$app->user->isGuest): ?>
-        <div id="block-comment-add-form-<?= $document_id ?>">
+        <div id="block-comment-add-form-<?= $item_id ?>">
             <?= $this->render('_button-new-comment', [
-                'document_id' => $document_id,
-                'access_answers' => $access_answers,
+                'item_id' => $item_id,
             ]) ?>
         </div>
     <?php else: ?>

@@ -1,18 +1,16 @@
 <?php
 
-namespace backend\modules\settings;
-
-use Yii;
+namespace backend\modules\elements;
 
 /**
- * settings module definition class
+ * elements module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'backend\modules\settings\controllers';
+    public $controllerNamespace = 'backend\modules\elements\controllers';
 
     /**
      * {@inheritdoc}

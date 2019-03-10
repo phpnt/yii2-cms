@@ -7,7 +7,7 @@
  * Time: 12:28
  */
 
-namespace common\widgets\UncheckedComments;
+namespace common\widgets\Comment;
 
 use common\models\Constants;
 use yii\base\Widget;
@@ -24,10 +24,21 @@ class UncheckedComments extends Widget
 
     public function run()
     {
-        // подсчет процентов
+        $parent = (new \yii\db\Query())
+        ->select(['*'])
+        ->from('document')
+        ->where([
+            'alias' => 'comments',
+        ])
+        ->one();
+
         $countComment = (new \yii\db\Query())
-            ->from('comment')
-            ->where(['status' => Constants::STATUS_DOC_WAIT])
+            ->select(['document.*'])
+            ->from('document')
+            ->where([
+                'parent_id' => $parent['id'],
+                'status' => Constants::STATUS_DOC_WAIT
+            ])
             ->count();
 
         return $this->render('index', [

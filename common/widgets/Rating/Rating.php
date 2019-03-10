@@ -22,7 +22,6 @@ class Rating extends Widget
     private $star_cost;         // цена звезды в процентах
 
     public $document_id;
-    public $comment_id;
 
     public $access_guests = true;   // разрешены не авторизованным пользователям
 
@@ -39,13 +38,24 @@ class Rating extends Widget
 
     public function run()
     {
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'rating',
+            ])
+            ->one();
+
         if (($this->access_guests && Yii::$app->user->isGuest) || !Yii::$app->user->isGuest) {
             if ($this->percentage) {
                 // подсчет процентов
                 $data = (new \yii\db\Query())
-                    ->from('like')
+                    ->select(['document.*'])
+                    ->from('document')
                     ->where([
-                        'document_id' => $this->document_id,
+                        'annotation' => 'stars',
+                        'parent_id' => $parent['id'],
+                        'item_id' => $this->document_id,
                     ])
                     ->all();
 
@@ -54,7 +64,7 @@ class Rating extends Widget
                 $percent_count = 0;
                 $i = 0;
                 foreach ($data as $item) {
-                    $percent_count = $percent_count + $item['stars'];
+                    $percent_count = $percent_count + (int) $item['content'];
                     $i++;
                 }
                 if ($i == 0) {
@@ -72,10 +82,12 @@ class Rating extends Widget
             } elseif ($this->like && !$this->dislike) {
                 // количество лайков
                 $likes = (new \yii\db\Query())
-                    ->from('like')
+                    ->select(['document.*'])
+                    ->from('document')
                     ->where([
-                        'like' => 1,
-                        'document_id' => $this->document_id,
+                        'annotation' => 'like',
+                        'parent_id' => $parent['id'],
+                        'item_id' => $this->document_id,
                     ])
                     ->count();
 
@@ -98,20 +110,23 @@ class Rating extends Widget
                     'dislikes' => $dislikes,
                 ]);
             } elseif ($this->like && $this->dislike) {
-                // количество лайков
                 $likes = (new \yii\db\Query())
-                    ->from('like')
+                    ->select(['document.*'])
+                    ->from('document')
                     ->where([
-                        'like' => 1,
-                        'document_id' => $this->document_id,
+                        'annotation' => 'like',
+                        'parent_id' => $parent['id'],
+                        'item_id' => $this->document_id,
                     ])
                     ->count();
-                // количество дизлайков
+
                 $dislikes = (new \yii\db\Query())
-                    ->from('like')
+                    ->select(['document.*'])
+                    ->from('document')
                     ->where([
-                        'like' => 0,
-                        'document_id' => $this->document_id,
+                        'annotation' => 'dislike',
+                        'parent_id' => $parent['id'],
+                        'item_id' => $this->document_id,
                     ])
                     ->count();
 

@@ -21,13 +21,11 @@ use Yii;
 use common\models\Constants;
 use common\models\Document;
 use common\models\forms\DocumentForm;
-use common\models\forms\LikeForm;
 use common\models\forms\TemplateForm;
 use common\models\forms\UserForm;
 use common\models\forms\ValueNumericForm;
 use common\models\forms\ValueStringForm;
 use common\models\forms\ValueTextForm;
-use common\models\forms\VisitForm;
 use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -43,22 +41,20 @@ use yii\helpers\Url;
  * @property array $currencyList
  * @property array $allFolders
  * @property array $accessList
- * @property int $viewedDocument
- * @property int $likedDocument
+  * @property int $likedDocument
  * @property string $dataItem
  * @property array $discountsAvaible
  * @property array $measuresList
  *
  * @property DocumentForm $parent
- * @property DocumentForm[] $items
- * @property DocumentForm $item
+ * @property DocumentForm[] $documentItems
+ * @property DocumentForm $documentItem
  * @property DocumentForm $child
  * @property DocumentForm[] $childs
  * @property DocumentForm[] $documents
  * @property TemplateForm $template
  * @property UserForm $createdBy
  * @property UserForm $updatedBy
- * @property LikeForm[] $likes
  * @property ValueFileForm[] $valueFiles
  * @property ValueIntForm[] $valueInts
  * @property ValueNumericForm[] $valueNumerics
@@ -66,7 +62,6 @@ use yii\helpers\Url;
  * @property ValueTextForm[] $valueTexts
  * @property ValuePriceForm[] $valuePrices
  * @property ValuePriceForm[] $discounts
- * @property VisitForm[] $visits
  *
 */
 class DocumentExtend extends Document
@@ -548,8 +543,7 @@ class DocumentExtend extends Document
         if (strpos($view, '{!comments!}') !== false) {
             if ($this->template->add_comments && $type == Constants::TYPE_ITEM) {
                 $comments = Comment::widget([
-                    'document_id' => $this->id,
-                    'access_answers' => true,   // разрешены ответы на комментарии
+                    'item_id' => $this->id,
                 ]);
                 $view = str_replace('{!comments!}', '<div id="comment-widget">' . $comments . '</div>', $view);
             } else {
@@ -646,21 +640,6 @@ class DocumentExtend extends Document
         return (new \yii\db\Query())
             ->select(['*'])
             ->from('like')
-            ->where([
-                'document_id' => $this->id,
-            ])
-            ->count();
-    }
-
-    /**
-     * Возвращает количество просмотров документа
-     * @return int
-     */
-    public function getViewedDocument()
-    {
-        return (new \yii\db\Query())
-            ->select(['*'])
-            ->from('visit')
             ->where([
                 'document_id' => $this->id,
             ])
@@ -880,7 +859,7 @@ class DocumentExtend extends Document
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItem()
+    public function getDocumentItem()
     {
         return $this->hasOne(DocumentForm::class, ['id' => 'item_id']);
     }
@@ -888,7 +867,7 @@ class DocumentExtend extends Document
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItems()
+    public function getDocumentItems()
     {
         return $this->hasMany(DocumentForm::class, ['id' => 'item_id']);
     }
@@ -939,14 +918,6 @@ class DocumentExtend extends Document
     public function getUpdatedBy()
     {
         return $this->hasOne(UserForm::class, ['id' => 'updated_by']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLikes()
-    {
-        return $this->hasMany(LikeForm::class, ['document_id' => 'id']);
     }
 
     /**
@@ -1003,13 +974,5 @@ class DocumentExtend extends Document
     public function getDiscounts()
     {
         return $this->hasMany(ValuePriceForm::class, ['discount_id' => 'id']);        
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVisits()
-    {
-        return $this->hasMany(VisitForm::class, ['document_id' => 'id']);
     }
 }

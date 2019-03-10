@@ -48,6 +48,8 @@ class DocumentForm extends DocumentExtend
 
     public $items_number;
 
+    public $comment_id;
+
     public $input_date;
     public $input_date_from;
     public $input_date_to;
@@ -72,7 +74,7 @@ class DocumentForm extends DocumentExtend
         $items[] = ['alias', 'unique'];
         $items[] = ['elements_fields', DocumentArrayValidator::className()];
         $items[] = [['errors_fields', 'value_array'], 'each', 'rule' => ['integer'], 'on' => ['create-element', 'update-element']];
-        $items[] = [['value_int', 'value_discount', 'item_max', 'item_store', 'item_measure', 'items_number'], 'integer', 'on' => ['create-element', 'update-element']];
+        $items[] = [['value_int', 'value_discount', 'item_max', 'item_store', 'item_measure', 'items_number', 'comment_id'], 'integer', 'on' => ['create-element', 'update-element']];
         $items[] = [['value_number', 'value_price'], 'filter', 'filter' => 'floatval', 'on' => ['create-element', 'update-element']];
         $items[] = [['value_number', 'value_price', 'item'], 'number', 'on' => ['create-element', 'update-element']];
         $items[] = [['value_string', 'input_date', 'input_date_from', 'input_date_to', 'field_error', 'value_currency', 'parent_alias', 'field_id_prefix'], 'string', 'on' => ['create-element', 'update-element']];
@@ -400,19 +402,12 @@ class DocumentForm extends DocumentExtend
             }
         }
 
-        if (isset($this->documentChild) && isset($this->documentChild->template) && $this->documentChild->template->mark == 'basket') {
-            foreach ($this->documentChilds as $modelDocumentForm) {
-                /* @var $modelDocumentForm DocumentForm */
-                try {
-                    $modelDocumentForm->delete();
-                } catch (StaleObjectException $e) {
-                    Yii::$app->errorHandler->logException($e);
-                    throw new ErrorException($e->getMessage());
-                } catch (\Throwable $e) {
-                    Yii::$app->errorHandler->logException($e);
-                    throw new ErrorException($e->getMessage());
-                }
-            }
+        if (isset($this->parent_id) && $this->parent->alias == 'comments') {
+            // удаляет likes, если есть
+            DocumentForm::deleteAll([
+                'annotation' => ['like', 'dislike', 'stars'],
+                'item_id' => $this->id,
+            ]);
         }
 
         return true;

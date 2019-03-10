@@ -11,6 +11,8 @@ namespace common\widgets\Comment\controllers;
 
 use common\models\Constants;
 use common\models\forms\CommentForm;
+use common\models\forms\DocumentForm;
+use function GuzzleHttp\Psr7\str;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\StaleObjectException;
@@ -24,26 +26,35 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionRefreshComment($document_id, $access_answers = false)
+    public function actionRefreshComment($item_id)
     {
         if (!Yii::$app->request->isPjax) {
             return $this->goHome();
         }
 
-        $comments = (new \yii\db\Query())
+        $parent = (new \yii\db\Query())
             ->select(['*'])
-            ->from('comment')
+            ->from('document')
             ->where([
-                'document_id' => $document_id,
-                'parent_id' => null,
+                'alias' => 'comments',
+            ])
+            ->one();
+
+        $comments = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
+            ->leftJoin('value_int', 'value_int.document_id = document.id')
+            ->where([
+                'parent_id' => $parent['id'],
+                'item_id' => $item_id,
+                'value_int.id' => null,
             ])
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
         return $this->renderAjax('@frontend/views/templates/control/blocks/comment/index', [
-            'document_id' => $document_id,
+            'item_id' => $item_id,
             'comments' => $comments,
-            'access_answers' => $access_answers,
         ]);
     }
 
@@ -53,18 +64,34 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionCreateComment($document_id, $comment_id = null, $access_answers = false)
+    public function actionCreateComment($item_id, $comment_id = null)
     {
-        if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
+        /*if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->goHome();
-        }
+        }*/
 
-        $modelCommentForm = new CommentForm();
-        $modelCommentForm->scenario = 'update-comment';
-        $modelCommentForm->document_id = $document_id;
-        $modelCommentForm->parent_id = $comment_id;
+        // если нажата ссылка главного меню
+        $parent = (new \yii\db\Query())
+            ->select(['*'])
+            ->from('document')
+            ->where([
+                'alias' => 'comments',
+            ])
+            ->one();
 
-        if ($modelCommentForm->load(Yii::$app->request->post()) && $modelCommentForm->save()) {
+        $modelDocumentForm = new DocumentForm();
+        $modelDocumentForm->scenario = 'create-element';
+        $time = time();
+        $modelDocumentForm->name = 'comment-' . $time;
+        $modelDocumentForm->alias = 'comment-' . $time;
+        $modelDocumentForm->status = Constants::STATUS_DOC_WAIT;
+        $modelDocumentForm->template_id = $parent['template_id'];
+        $modelDocumentForm->parent_id = $parent['id'];
+        $modelDocumentForm->item_id = $item_id;
+        $modelDocumentForm->field_id_prefix = strval($item_id);
+        $modelDocumentForm->comment_id = $comment_id;
+
+        if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
             Yii::$app->session->set(
                 'message',
                 [
@@ -77,10 +104,8 @@ class CommentController extends Controller
         }
 
         return $this->renderAjax('@frontend/views/templates/control/blocks/comment/_form-comment', [
-            'document_id' => $document_id,
-            'comment_id' => $comment_id,
-            'modelCommentForm' => $modelCommentForm,
-            'access_answers' => $access_answers,
+            'item_id' => $item_id,
+            'modelDocumentForm' => $modelDocumentForm,
         ]);
     }
 
@@ -90,17 +115,22 @@ class CommentController extends Controller
      * @return mixed
      * @throws \yii\base\Exception
      */
-    public function actionUpdateComment($document_id, $comment_id, $access_answers = false)
+    public function actionUpdateComment($id)
     {
-        if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
+        /*if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->goHome();
-        }
+        }*/
 
-        $modelCommentForm = CommentForm::findOne($comment_id);
-        $modelCommentForm->scenario = 'update-comment';
+        $modelDocumentForm = DocumentForm::findOne($id);
+        $modelDocumentForm->scenario = 'update-element';
+        $modelDocumentForm->field_id_prefix = strval($modelDocumentForm->item_id);
 
-        if ($modelCommentForm->user_id == Yii::$app->user->id) {
-            if ($modelCommentForm->load(Yii::$app->request->post()) && $modelCommentForm->save()) {
+        /*if ($modelDocumentForm->created_by != Yii::$app->user->id) {
+            return $this->goHome();
+        }*/
+
+        if ($modelDocumentForm->created_by == Yii::$app->user->id) {
+            if ($modelDocumentForm->load(Yii::$app->request->post()) && $modelDocumentForm->save()) {
                 Yii::$app->session->set(
                     'message',
                     [
@@ -124,10 +154,8 @@ class CommentController extends Controller
         }
 
         return $this->renderAjax('@frontend/views/templates/control/blocks/comment/_form-comment', [
-            'document_id' => $document_id,
-            'comment_id' => $comment_id,
-            'modelCommentForm' => $modelCommentForm,
-            'access_answers' => $access_answers,
+            'item_id' => $modelDocumentForm->item_id,
+            'modelDocumentForm' => $modelDocumentForm,
         ]);
     }
 
@@ -135,15 +163,14 @@ class CommentController extends Controller
      * Подтверждение удаления комментария
      * @return string
      */
-    public function actionConfirmDeleteComment($document_id, $comment_id, $access_answers = false)
+    public function actionConfirmDeleteComment($id, $access_answers = false)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->redirect(['index']);
         }
 
         return $this->renderAjax('@frontend/views/templates/control/blocks/comment/confirm-delete-comment', [
-            'document_id' => $document_id,
-            'comment_id' => $comment_id,
+            'id' => $id,
             'access_answers' => $access_answers,
         ]);
     }
@@ -154,17 +181,17 @@ class CommentController extends Controller
      * @return string
      * @throws ErrorException
      */
-    public function actionDeleteComment($document_id, $comment_id, $access_answers = false)
+    public function actionDeleteComment($id)
     {
         if (!Yii::$app->request->isPjax || Yii::$app->user->isGuest) {
             return $this->redirect(['index']);
         }
 
-        $modelCommentForm = CommentForm::findOne($comment_id);
+        $modelDocumentForm = DocumentForm::findOne($id);
 
-        if ($modelCommentForm->user_id == Yii::$app->user->id) {
+        if ($modelDocumentForm->created_by == Yii::$app->user->id) {
             try {
-                $modelCommentForm->delete();
+                $modelDocumentForm->delete();
             } catch (StaleObjectException $e) {
                 Yii::$app->errorHandler->logException($e);
                 throw new ErrorException($e->getMessage());
@@ -192,20 +219,29 @@ class CommentController extends Controller
             );
         }
 
-        $comments = (new \yii\db\Query())
+        $parent = (new \yii\db\Query())
             ->select(['*'])
-            ->from('comment')
+            ->from('document')
             ->where([
-                'document_id' => $document_id,
-                'parent_id' => null,
+                'alias' => 'comments',
+            ])
+            ->one();
+
+        $comments = (new \yii\db\Query())
+            ->select(['document.*'])
+            ->from('document')
+            ->leftJoin('value_int', 'value_int.document_id = document.id')
+            ->where([
+                'parent_id' => $parent['id'],
+                'item_id' => $modelDocumentForm->item_id,
+                'value_int.id' => null,
             ])
             ->andWhere(['!=', 'status', Constants::STATUS_DOC_BLOCKED])
             ->all();
 
         return $this->renderAjax('@frontend/views/templates/control/blocks/comment/index', [
-            'document_id' => $document_id,
-            'comments' => $comments,
-            'access_answers' => $access_answers,
+            'item_id' => $modelDocumentForm->item_id,
+            'comments' => $comments
         ]);
     }
 }

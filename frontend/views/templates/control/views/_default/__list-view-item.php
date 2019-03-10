@@ -29,7 +29,7 @@ if ($modelDocumentForm->alias_menu_item ==$modelDocumentForm->parent->alias) {
 ?>
 <div class="list-item list-item-<?= $templateName; ?>">
     <?php if ((Yii::$app->request->get('alias_menu_item') == 'basket') && isset($modelDocumentForm->template->templateViewItemBasket) && $modelDocumentForm->template->templateViewItemBasket->view): ?>
-        <div class="col-md-12"><?= $modelDocumentForm->getDataItemListBasket($url); ?></div>
+        <?= $modelDocumentForm->getDataItemListBasket($url); ?>
     <?php elseif ((Yii::$app->request->get('alias_menu_item') != 'basket') && isset($modelDocumentForm->template->templateViewItemList) && $modelDocumentForm->template->templateViewItemList->view): ?>
         <?= $modelDocumentForm->getDataItemList($url); ?>
     <?php else: ?>

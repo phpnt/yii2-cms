@@ -11,25 +11,26 @@ use yii\bootstrap\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use phpnt\summernote\SummernoteWidget;
+use common\widgets\TemplateOfElement\SetCommentFields;
 
 /* @var $this yii\web\View */
-/* @var $document_id int */
+/* @var $item_id int */
 /* @var $comment_id int */
 /* @var $access_answers boolean */
-/* @var $modelCommentForm \common\models\forms\CommentForm */
+/* @var $modelDocumentForm \common\models\forms\DocumentForm */
 ?>
 <div id="block-item-comment">
     <div class="row">
         <?php $form = ActiveForm::begin([
             'id' => 'form-comment',
-            'action' => $modelCommentForm->isNewRecord ? Url::to(['/comment/create-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]) : Url::to(['/comment/update-comment', 'document_id' => $document_id, 'comment_id' => $comment_id, 'access_answers' => $access_answers]),
+            'action' => $modelDocumentForm->isNewRecord ? Url::to(['/comment/create-comment', 'item_id' => $item_id]) : Url::to(['/comment/update-comment', 'id' => $modelDocumentForm->id]),
             'options' => ['data-pjax' => true]
         ]); ?>
 
         <div class="col-md-12 text-left">
-            <?= $form->field($modelCommentForm, 'text')->widget(SummernoteWidget::class,[
+            <?= $form->field($modelDocumentForm, 'content')->widget(SummernoteWidget::class,[
                 'options' => [
-                    'id' => 'summernote' . $modelCommentForm->id,
+                    'id' => 'summernote' . $modelDocumentForm->id,
                     'class' => 'hidden',
                 ],
                 'i18n' => true,             // переводить на другие языки
@@ -48,7 +49,7 @@ use phpnt\summernote\SummernoteWidget;
                     'popover' => false,
                     /* Панель управления */
                     'toolbar' => [
-                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['style', ['bold', 'italic', 'underline']],
                         /*['font', ['strikethrough', 'superscript', 'subscript']],
                         ['fontsize', ['fontsize']],
                         ['color', ['color']],
@@ -67,6 +68,13 @@ use phpnt\summernote\SummernoteWidget;
             ])->label(false); ?>
         </div>
 
+        <?php if ($modelDocumentForm->comment_id): ?>
+            <?= SetCommentFields::widget([
+                'form' => $form,
+                'model' => $modelDocumentForm,
+            ]); ?>
+        <?php endif; ?>
+
         <div class="col-md-12 form-group">
             <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-primary']) ?>
             <?= Html::button(Yii::t('app', 'Отмена'),
@@ -75,7 +83,7 @@ use phpnt\summernote\SummernoteWidget;
                     'onclick' => '
                         $.pjax({
                             type: "GET",
-                            url: "' . Url::to(['/comment/refresh-comment', 'document_id' => $document_id]) . '",
+                            url: "' . Url::to(['/comment/refresh-comment', 'item_id' => $item_id]) . '",
                             container: "#comment-widget",
                             push: false,
                             timeout: 10000,
@@ -86,7 +94,7 @@ use phpnt\summernote\SummernoteWidget;
 
         <?php ActiveForm::end(); ?>
         <?php
-        $url_refresh = Url::to(['/comment/refresh-comment', 'document_id' => $document_id, 'access_answers' => $access_answers]);
+        $url_refresh = Url::to(['/comment/refresh-comment', 'item_id' => $item_id]);
         $block_refresh = '#comment-widget';
         $js = <<< JS
         $('#form-comment').on('beforeSubmit', function () { 
@@ -110,8 +118,6 @@ use phpnt\summernote\SummernoteWidget;
                         return false;
                     }
                     if(result.success) {
-                        //console.log('ok');
-                        // data is saved
                         $.pjax({
                             type: "GET", 
                             url: "$url_refresh",

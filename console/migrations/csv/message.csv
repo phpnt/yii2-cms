@@ -249,14 +249,8 @@ id;language;translation;hash
 294;en;"Regional Management";854bfe8a1d9b363544e09a57cbebddfd
 295;en;"Exporting Regions to CSV";7133adb16b772f184685e7d96181b53b
 296;en;Regions;f03229fb0ebeefc7d9914d0558b22a66
-297;en;Statistics;dec6ca4a45b419390c0aa23545b6fab4
-298;en;"Visitor statistics";d233ff93ca69dbbbf385aa5103f79724
-299;en;"Export visitor statistics to CSV";d233ff93ca69dbbbf385aa5103f79724
-300;en;"User rating";a1c1bedab6ba5c9c03c011c9cda05797
-301;en;"Export user ratings to CSV";932df96ce61781a5dd61daa631e373cd
 302;en;"Roles and rights";e523a8b09a7d6ac127d0f66eae0d3a90
 303;en;Geo;e523a8b09a7d6ac127d0f66eae0d3a90
-304;en;Settings;419e9c40b86df22bb3d94dc111b39343
 305;en;"Export entire database to CSV";d99da46d6d6d7ef1b2fdddf017ab93ab
 306;en;"File manager";58cdc675139c5bd0c53ee1f02064c6d5
 307;en;"Folders and items";157f136c0b6eff16f463286f4b2d2a87
@@ -276,8 +270,6 @@ id;language;translation;hash
 353;en;"Country ‘geo_country’ table. Contains a list of countries and information about them.";1a9a8bc48f99d7abd25082d32e70edb4
 354;en;"Table ‘city geo_city’. Contains a list of cities and information about them.";20e2d7190ab17d7aa21522ee9f20e041
 355;en;"Table ‘geo_region’ regions. Contains a list of regions and information about them.";12bbbe5b2273fb2e2fc175dfd2c532b2
-356;en;"Table ‘visit’ statistics of visits.";578c1f76ed6a623f0a63d0abcb5fcdf3
-357;en;"Table ‘like’ statistics of ratings.";bcc88fe88d4494a81d4b912f1add680d
 358;en;"Further folder attachment is not yet provided.";86e9ac62aeba9635a69a7ada398b2009
 359;en;"Login using social network";66f07d66bce5516a2eb1ce7ddb7d2462
 360;en;"Check your email and follow the instructions.";d3df7db8ed72140d7ef8b5dd6bcd8599
@@ -296,8 +288,6 @@ id;language;translation;hash
 386;en;"Fill out the profile";1edfa68a67732ab11eca62e911899d9f
 388;en;"User Profile";c17e99dea24bc7cdfafd0050bf876da8
 389;en;"Select a profile";6c678cad9426e00201f929ba107fd0d7
-390;en;"User Profile 1";524ac245989ce61d9e9f6151ce39369e
-393;en;"A template for the user\\\\\\\\\\\\\\\\\\\`s profile 1";6efdf4f51aa67eef14bca84ce652c64d
 401;en;"User is not found.";5bab565fbc756c9bb6db739b2ee48045
 402;en;"You must confirm your email.";57aa824a7264ef24f811e3e6a64f9a8e
 403;en;"User registration";e618511dd9200a0dbf580e995e4506bb
@@ -312,12 +302,8 @@ id;language;translation;hash
 416;en;"No access";a2141479bc5667f65a3b587c88b54e8b
 417;en;Like;7f03e5b57cb52afcd0c67f3a02c9dfea
 418;en;"Do not like";28080f460db7f85766ddfafc9a4efe5e
-419;en;"Number of stars";de3eec213076253239ab19132fed95fb
-420;en;Comment;ea2b040dbbffbbc71818a415d32fbdf6
 421;en;"Item evaluation allowed";3d1bfabce33f796c7333597c71086c3b
 422;en;"Allow comments to an item";30d0a8ba5d8c2ddf7c5464d914a3120f
-423;en;"Reply to comment";b14bb0f3c780ecaba9bc0d906b73b396
-424;en;Checked;3a117c25034f8a8bf6f9786907ebe62f
 425;en;Reply;706b5864ef3d02ad1c065dea86e694a6
 426;en;Update;2cdf05f4dc927309ded93af82d3d73cc
 427;en;Delete;7d037c7196de7933475c555379223ac2
@@ -326,15 +312,9 @@ id;language;translation;hash
 432;en;"Do not translate";e370b68e1630b87d617963bf6a09297c
 433;en;"Your account has been blocked.";9c5158df55b912bf17547ab71abe17df
 436;en;"Votes {votes_number}";ee478205b16a49d6262313a8bdd58a48
-438;en;"Create Comment";94e67d00e75f2b4b93cfe328104da6e0
-439;en;"Update Comment";29877b79303bd765d220397df0ec7a4b
-440;en;"View Comment";d01d9ae0dd475e8ae1430f54acc17e6d
 441;en;"Comment management";67fd9f41033acfc9c0d735fb5fb742bf
-442;en;"Export comments to CSV";54ea1887ce8c873771a6c11b468f97c9
 443;en;Comments;5e18186107cdc28e261b1abcaf86b12d
-444;en;"Table ‘comment’. User comments.";330a55b0df31d57670ffedf50cc98c35
 450;en;"The name of the role or permissions";cc1bad7fe76b41d4eb40a0d12fa1a212
-452;en;"Comment status";f51903b5be4153ae3f50ea87ea6c937c
 453;en;"Translate all";c5ec1dff985f5c36e5fe289bd0145684
 454;en;"Main Page";44f3f9d2dff2e8a35fccf96fdb975c54
 455;en;Product;44f3f9d2dff2e8a35fccf96fdb975c54
@@ -469,6 +449,9 @@ id;language;translation;hash
 649;en;Element;88b36db3bdad656a2c3dc7ded0d8b3eb
 654;en;"Template for articles";013b33bfa78a9d97427850bf52e13570
 655;en;"Product Template";67ff9f52709fa4160c1da4f0d9db98c1
-656;en;"Profile template";48ec8cd7ee885a7f07b90af5a1bbfdee
 657;en;Service;ce3f400a59263910d289872d4de7ec53
 658;en;Rating;c0788864a7eb52fd0efa9d7e25eb46da
+659;en;Items;eeede5c18c33b95c0cc56b5a4725e4e5
+660;en;"Template for comments";380376a842302b300a5d2e2ed74001ac
+661;en;"Link to comment";03e8999cc9d644d5ca8ec4a11b510471
+662;en;"User profile template";ef54c28e4d4f50a9aa9c46f0961f734d

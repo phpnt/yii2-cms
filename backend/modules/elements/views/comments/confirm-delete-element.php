@@ -13,12 +13,14 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $id int */
+
+$url_unchecked_count = Url::to(['count-unchecked']);
 ?>
 <?php
 Modal::begin([
     'id' => 'universal-modal',
     'size' => 'modal-sm',
-    'header' => '<h2 class="text-center">' . Yii::t('app', 'Удалить комментарий') . '?</h2>',
+    'header' => '<h2 class="text-center">' . Yii::t('app', 'Удалить элемент') . '?</h2>',
     'clientOptions' => ['show' => true],
     'options' => [],
 ]);
@@ -30,12 +32,22 @@ Modal::begin([
                 $("#universal-modal").modal("hide");
                 $.pjax({
                     type: "GET",
-                    url: "' . Url::to(['/comment/manage/delete-comment', 'id' => $id]) . '",
-                    container: "#pjax-grid-comment-block",
+                    url: "' . Url::to(['delete', 'id' => $id]) . '",
+                    container: "#pjax-grid-elements-block",
                     timeout: 10000,
                     push: false,
                     scrollTo: false
-                })'
+                })
+                .done(function(data) {
+                    $.pjax({
+                        type: "GET", 
+                        url: "' . $url_unchecked_count . '",
+                        container: "#unchecked-count-comments",
+                        push: false,
+                        timeout: 20000,
+                        scrollTo: false
+                    });
+                });'
         ]) ?>
     </div>
     <div class="col-xs-6 text-center">
